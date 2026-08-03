@@ -1,0 +1,209 @@
+{
+  "id": "astronauts",
+  "name": "Astronauts",
+  "first_human_in_space": {
+    "name": "Yuri Gagarin",
+    "mission": "Vostok 1",
+    "date": "April 12, 1961",
+    "country": "USSR",
+    "duration": "108 minutes",
+    "detail": "Gagarin completed one orbit of Earth and safely returned, becoming the first human to travel to outer space and experience weightlessness."
+  },
+  "first_American_in_space": {
+    "name": "Alan Shepard",
+    "date": "May 5, 1961",
+    "mission": "Freedom 7 (Mercury-Redstone 3)",
+    "detail": "Shepard's 15-minute suborbital flight made him the first American in space, just 23 days after Gagarin's orbital mission."
+  },
+  "first_Moon_walk": {
+    "name": "Neil Armstrong",
+    "date": "July 20, 1969",
+    "mission": "Apollo 11",
+    "quote": "That's one small step for [a] man, one giant leap for mankind.",
+    "detail": "Armstrong became the first human to walk on the Moon, followed by Buzz Aldrin, while Michael Collins orbited above in the Command Module."
+  },
+  "first_woman_in_space": {
+    "name": "Valentina Tereshkova",
+    "date": "June 16, 1963",
+    "mission": "Vostok 6",
+    "country": "USSR",
+    "detail": "Tereshkova orbited Earth 48 times over nearly three days, becoming the first woman in space — a record that stood for 19 years."
+  },
+  "first_spacewalk": {
+    "name": "Alexei Leonov",
+    "date": "March 18, 1965",
+    "mission": "Voskhod 2",
+    "country": "USSR",
+    "duration": "12 minutes 9 seconds",
+    "detail": "Leonov floated outside his spacecraft for over 12 minutes. His spacesuit inflated dangerously in the vacuum, forcing him to release pressure manually to re-enter the airlock."
+  },
+  "notable_astronauts": [
+    {
+      "name": "Neil Armstrong",
+      "country": "USA",
+      "missions": ["Apollo 11"],
+      "achievement": "First human to walk on the Moon (July 20, 1969)",
+      "born": "August 5, 1930",
+      "died": "August 25, 2012"
+    },
+    {
+      "name": "Buzz Aldrin",
+      "country": "USA",
+      "missions": ["Gemini 12", "Apollo 11"],
+      "achievement": "Second human to walk on the Moon; advocate for Mars exploration",
+      "born": "January 20, 1930"
+    },
+    {
+      "name": "Yuri Gagarin",
+      "country": "USSR",
+      "missions": ["Vostok 1"],
+      "achievement": "First human in space (April 12, 1961)",
+      "born": "March 9, 1934",
+      "died": "March 27, 1968"
+    },
+    {
+      "name": "Sunita Williams",
+      "country": "USA",
+      "missions": ["STS-116", "STS-117"],
+      "achievement": "Holds record for most spacewalks by a woman (7 spacewalks, 50+ hours EVA); also stranded on ISS in 2024 during Boeing Starliner mission",
+      "born": "September 19, 1965"
+    },
+    {
+      "name": "Kalpana Chawla",
+      "country": "USA/India",
+      "missions": ["STS-87", "STS-107"],
+      "achievement": "First woman of Indian origin in space; died in the Space Shuttle Columbia disaster on February 1, 2003",
+      "born": "March 17, 1962",
+      "died": "February 1, 2003"
+    },
+    {
+      "name": "Rakesh Sharma",
+      "country": "India",
+      "missions": ["Soyuz T-11"],
+      "achievement": "First Indian citizen in space (April 3, 1984); spent 7 days on Salyut 7 space station",
+      "born": "January 13, 1949"
+    },
+    {
+      "name": "Sally Ride",
+      "country": "USA",
+      "missions": ["STS-7"],
+      "achievement": "First American woman in space (June 18, 1983); remained the youngest American in space for decades",
+      "born": "May 26, 1951",
+      "died": "July 23, 2012"
+    },
+    {
+      "name": "Valentina Tereshkova",
+      "country": "USSR",
+      "missions": ["Vostok 6"],
+      "achievement": "First woman in space (June 16, 1963); sole crew member who was not a professional pilot",
+      "born": "March 6, 1937"
+    },
+    {
+      "name": "Chris Hadfield",
+      "country": "Canada",
+      "missions": ["STS-74", "ISS Expedition 34/35", "STS-100"],
+      "achievement": "First Canadian to walk in space; commanded ISS as first Canadian commander; famous for viral guitar videos aboard the ISS",
+      "born": "August 29, 1959"
+    },
+    {
+      "name": "Scott Kelly",
+      "country": "USA",
+      "missions": ["ISS Year in Space — Expedition 43/44/45/46"],
+      "achievement": "Spent 340 consecutive days on the ISS (2015–2016); twin study with brother Mark Kelly provided key data on long-duration spaceflight effects",
+      "born": "February 21, 1964"
+    }
+  ],
+  "iss_long_duration_records": {
+    "overview": "The International Space Station has been continuously inhabited since November 2, 2000, serving as the world's longest continuously occupied space laboratory.",
+    "longest_single_mission_records": [
+      {
+        "astronaut": "Oleg Kononenko",
+        "country": "Russia",
+        "days": 878,
+        "note": "Longest cumulative time in space by any human as of 2024"
+      },
+      {
+        "astronaut": "Scott Kelly (USA) and Mikhail Kornienko (Russia)",
+        "days": 340,
+        "note": "Landmark one-year mission (2015–2016) studied long-duration spaceflight effects"
+      },
+      {
+        "astronaut": "Frank Rubio",
+        "country": "USA",
+        "days": 371,
+        "note": "Longest single spaceflight by a NASA astronaut (2022–2023) after Soyuz capsule leak stranded him on ISS"
+      }
+    ],
+    "health_effects_studied": [
+      "Bone density loss (up to 1–2% per month without countermeasures)",
+      "Muscle atrophy",
+      "Vision changes (intracranial pressure)",
+      "Cardiovascular deconditioning",
+      "Immune system changes",
+      "Psychological effects of isolation"
+    ]
+  },
+  "summary": "Astronauts are trained professionals — pilots, scientists, engineers, and doctors — who travel beyond Earth's atmosphere to conduct scientific research, maintain space stations, and explore other worlds. From Yuri Gagarin's pioneering 108-minute orbit in 1961 to astronauts living aboard the International Space Station for months at a time, human spaceflight has expanded our knowledge of science, medicine, engineering, and the human capacity to adapt to extreme environments.",
+  "interesting_facts": [
+    "Yuri Gagarin was selected from 20 candidates partly because of his modest height (1.57m / 5'2\") — necessary to fit in the cramped Vostok capsule.",
+    "Neil Armstrong's 'one small step' was actually a 1-meter drop from the lunar module ladder — he was trying to conserve his suit's life support.",
+    "Astronauts on the ISS witness 16 sunrises every 24 hours because the station orbits Earth at ~28,000 km/h every 90 minutes.",
+    "Kalpana Chawla logged over 376 hours in space across two missions before being lost in the Columbia disaster.",
+    "Valentina Tereshkova remains the only woman to have flown a solo space mission.",
+    "Sunita Williams ran the Boston Marathon on a treadmill aboard the ISS in 2007, finishing in 4 hours 24 minutes.",
+    "The first spacewalk by an American, Ed White in 1965, had to be ordered to end — he reportedly said it was 'the saddest moment of his life' returning inside.",
+    "Rakesh Sharma, when asked how India looked from space by Prime Minister Indira Gandhi, replied: 'Saare Jahan Se Achha' (better than the whole world).",
+    "Chris Hadfield's rendition of David Bowie's 'Space Oddity' aboard the ISS became the first music video filmed in space, garnering millions of YouTube views.",
+    "Astronauts can grow up to 5 cm taller in microgravity as the spine decompresses — they shrink back upon returning to Earth."
+  ],
+  "faq": [
+    {
+      "question": "Who was the first human in space?",
+      "answer": "Yuri Gagarin of the Soviet Union was the first human in space, completing one orbit of Earth on April 12, 1961, during the Vostok 1 mission. The flight lasted 108 minutes."
+    },
+    {
+      "question": "Who first walked on the Moon?",
+      "answer": "Neil Armstrong became the first human to walk on the Moon on July 20, 1969, during the Apollo 11 mission. Buzz Aldrin followed about 20 minutes later. Michael Collins orbited above in the Command Module."
+    },
+    {
+      "question": "Who was the first woman in space?",
+      "answer": "Valentina Tereshkova of the Soviet Union was the first woman in space, orbiting Earth 48 times over nearly 3 days during the Vostok 6 mission on June 16, 1963."
+    },
+    {
+      "question": "What is the first Indian to go to space?",
+      "answer": "Rakesh Sharma became the first Indian citizen in space on April 3, 1984, aboard Soyuz T-11, spending about 7 days at the Soviet Salyut 7 space station. Wing Commander Sharma flew under an Indo-Soviet space program agreement."
+    },
+    {
+      "question": "Who is Kalpana Chawla?",
+      "answer": "Kalpana Chawla was the first woman of Indian origin in space, flying on STS-87 (1997) and STS-107 (2003). Tragically, she and six other crew members died when the Space Shuttle Columbia disintegrated on re-entry on February 1, 2003."
+    },
+    {
+      "question": "How long can astronauts stay in space?",
+      "answer": "Standard ISS missions last about 6 months. Some astronauts have stayed up to a year or more. Russia's Oleg Kononenko holds the record for cumulative time in space at over 878 days. Long-duration missions study health effects relevant to future deep-space travel."
+    },
+    {
+      "question": "How do astronauts train?",
+      "answer": "Astronaut training spans 2+ years and includes spacewalk training in large neutral buoyancy pools, spacecraft systems training, survival training, Russian language (for ISS cooperation), aircraft flight training, and scientific research skills."
+    },
+    {
+      "question": "How many people have walked on the Moon?",
+      "answer": "Twelve people have walked on the Moon, all Americans, during six Apollo missions (Apollo 11, 12, 14, 15, 16, and 17) between 1969 and 1972. No human has returned to the Moon since Apollo 17 in December 1972."
+    },
+    {
+      "question": "What does 'EVA' mean?",
+      "answer": "EVA stands for Extravehicular Activity — commonly called a spacewalk. It refers to any activity performed by an astronaut outside a spacecraft. EVAs are used to repair equipment, install experiments, and assemble structures like the ISS."
+    },
+    {
+      "question": "What are the health risks of spaceflight?",
+      "answer": "Long-duration spaceflight causes bone density loss, muscle atrophy, vision changes (due to intracranial pressure changes), cardiovascular deconditioning, radiation exposure, and psychological effects of isolation and confinement."
+    },
+    {
+      "question": "How many astronauts have been in space in total?",
+      "answer": "As of 2024, approximately 650 people from over 40 countries have flown in space. The majority were from the USA and Russia/USSR, but the community now includes astronauts from many nations through ISS partnerships and commercial spaceflight."
+    },
+    {
+      "question": "What is the ISS?",
+      "answer": "The International Space Station (ISS) is a large habitable spacecraft in low Earth orbit, built and operated by a 15-nation consortium. It has been continuously inhabited since November 2, 2000, hosting over 270 people from 20 countries, serving as a microgravity research laboratory."
+    }
+  ]
+}

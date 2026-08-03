@@ -1,0 +1,209 @@
+{
+  "id": "neptune",
+  "name": "Neptune",
+  "alternative_names": ["The Windy Planet", "The Blue Giant", "The Ice Giant"],
+  "type": "Ice Giant Planet",
+  "planet_number": 8,
+  "description": "Neptune is the eighth and farthest known planet from the Sun in the solar system. It is classified as an ice giant, similar in composition to Uranus, consisting primarily of icy materials — water, methane, and ammonia — surrounding a rocky core, with a thick atmosphere of hydrogen and helium. Neptune is famous for having the fastest winds in the solar system, reaching speeds of up to 2,100 km/h. It was discovered on September 23, 1846, making it the first planet found through mathematical prediction rather than direct observation. Neptune has a striking deep blue color and a dynamic atmosphere featuring massive storm systems.",
+  "discovery": {
+    "discovered_by": "Johann Galle (observed), Urbain Le Verrier and John Couch Adams (predicted mathematically)",
+    "discovery_date": "September 23, 1846",
+    "discovery_method": "Mathematical prediction based on perturbations in Uranus's orbit, followed by telescopic confirmation"
+  },
+  "physical_characteristics": {
+    "diameter_km": 49244,
+    "diameter_earth_comparison": "Nearly 4 times wider than Earth",
+    "radius_km": 24622,
+    "mass_kg": "1.024 × 10^26",
+    "mass_earth_comparison": "17.1 times Earth's mass",
+    "density_g_per_cm3": 1.638,
+    "volume_earth_comparison": "57.7 Earths could fit inside Neptune"
+  },
+  "gravity": {
+    "surface_gravity_m_per_s2": 11.15,
+    "surface_gravity_relative_to_earth": 1.14,
+    "note": "Slightly stronger than Earth's surface gravity despite being much larger"
+  },
+  "escape_velocity": {
+    "value_km_per_s": 23.5,
+    "comparison": "About twice Earth's escape velocity"
+  },
+  "distance_from_sun": {
+    "average_km": "4.5 billion km",
+    "average_au": 30.07,
+    "perihelion_au": 29.81,
+    "aphelion_au": 30.33,
+    "light_travel_time": "Approximately 4 hours 10 minutes"
+  },
+  "orbital_characteristics": {
+    "orbital_period_years": 165,
+    "orbital_period_days": 60182,
+    "orbital_speed_km_per_s": 5.43,
+    "orbital_eccentricity": 0.0097,
+    "orbital_inclination_degrees": 1.77,
+    "notable": "Neptune completed its first full orbit since its discovery in 2011, 165 years after being found in 1846"
+  },
+  "rotation": {
+    "rotation_period": "16 hours 6 minutes",
+    "rotation_direction": "Prograde (counterclockwise when viewed from above north pole)",
+    "axial_tilt_degrees": 28.3,
+    "note": "Neptune's axial tilt is similar to Earth's (23.5°) and Saturn's (26.7°), giving it distinct seasons — each lasting about 40 Earth years"
+  },
+  "temperature": {
+    "temperature_avg_celsius": -201,
+    "temperature_avg_fahrenheit": -330,
+    "temperature_avg_kelvin": 72,
+    "cloud_top_temperature_celsius": -218,
+    "status": "Second coldest planetary atmosphere in the solar system after Uranus",
+    "internal_heat_note": "Neptune radiates about 2.6 times more energy than it receives from the Sun, suggesting a significant internal heat source that drives its extreme weather"
+  },
+  "atmosphere": {
+    "composition": {
+      "hydrogen_H2_percent": 80,
+      "helium_He_percent": 19,
+      "methane_CH4_percent": 1,
+      "trace_gases": ["Hydrogen deuteride (HD)", "Ethane", "Acetylene", "Ammonia"]
+    },
+    "color_cause": "Methane absorbs red light and reflects blue light; an additional unknown atmospheric component gives Neptune a more vivid blue compared to Uranus",
+    "clouds": "High-altitude methane ice crystal clouds appear as white streaks; lower clouds of hydrogen sulfide",
+    "weather": "Most extreme weather in the solar system"
+  },
+  "wind_speed": {
+    "maximum_km_per_h": 2100,
+    "maximum_mph": 1305,
+    "status": "Fastest winds of any planet in the solar system",
+    "direction": "Winds blow westward (retrograde), opposite to the planet's rotation",
+    "note": "Despite receiving very little solar energy, Neptune's internal heat drives these extraordinary wind speeds"
+  },
+  "magnetic_field": {
+    "description": "Neptune has a strong but complex magnetic field, similar in its unusual nature to Uranus",
+    "offset_from_rotation_axis_degrees": 47,
+    "offset_from_center": "Offset significantly from the planet's geometric center",
+    "strength_relative_to_earth": "27 times stronger than Earth's magnetic field",
+    "note": "The tilted, offset magnetic field is thought to be generated in a thin shell of conducting fluid rather than the core"
+  },
+  "moons": {
+    "total_count": 16,
+    "major_moons": [
+      {
+        "name": "Triton",
+        "diameter_km": 2707,
+        "description": "Largest moon of Neptune, orbiting in a retrograde direction (opposite to Neptune's rotation), strongly suggesting it was captured from the Kuiper Belt. Triton is geologically active, with nitrogen geysers erupting from its surface. It is slowly spiraling inward and will eventually be torn apart by Neptune's gravity in approximately 3.6 billion years.",
+        "orbital_direction": "Retrograde",
+        "surface_temperature_celsius": -235,
+        "notable_features": "Active nitrogen geysers, retrograde orbit, thin nitrogen atmosphere"
+      },
+      {
+        "name": "Proteus",
+        "diameter_km": 420,
+        "description": "Second largest moon of Neptune, irregularly shaped and very dark"
+      },
+      {
+        "name": "Nereid",
+        "diameter_km": 340,
+        "description": "Has one of the most eccentric orbits of any moon in the solar system"
+      },
+      {
+        "name": "Larissa",
+        "diameter_km": 194,
+        "description": "Irregularly shaped inner moon discovered by Voyager 2"
+      },
+      {
+        "name": "Despina",
+        "diameter_km": 148,
+        "description": "Inner moon that acts as a shepherd moon for the Le Verrier ring"
+      }
+    ],
+    "other_moons": ["Naiad", "Thalassa", "Galatea", "Halimede", "Sao", "Laomedeia", "Psamathe", "Neso", "Hippocamp"]
+  },
+  "rings": {
+    "total_count": 5,
+    "discovery": "Confirmed by Voyager 2 in 1989; earlier stellar occultation data had hinted at their existence",
+    "named_rings": [
+      {"name": "Galle", "description": "Innermost ring, wide and faint"},
+      {"name": "Le Verrier", "description": "Narrow and distinct ring"},
+      {"name": "Lassell", "description": "Wide and faint ring between Le Verrier and Arago"},
+      {"name": "Arago", "description": "Narrow ring just outside Lassell"},
+      {"name": "Adams", "description": "Outermost and most prominent ring, containing bright arc clumps named Liberté, Egalité, and Fraternité"}
+    ],
+    "notable_feature": "The Adams ring contains bright, stable arc segments — clumps of material that persist despite orbital mechanics, likely held in place by the shepherd moon Galatea"
+  },
+  "great_dark_spot": {
+    "description": "The Great Dark Spot was a massive storm system observed by Voyager 2 in 1989, comparable in size to Earth. It was an anticyclonic storm with winds reaching 2,100 km/h surrounding it.",
+    "current_status": "When the Hubble Space Telescope observed Neptune in 1994, the original Great Dark Spot had disappeared. However, new dark spots have been observed since, suggesting such storms form and dissipate over years to decades.",
+    "comparison": "Similar in concept to Jupiter's Great Red Spot, but far less stable"
+  },
+  "known_missions": [
+    {
+      "mission": "Voyager 2",
+      "agency": "NASA",
+      "flyby_date": "August 25, 1989",
+      "significance": "Only spacecraft to visit Neptune; discovered 6 new moons, confirmed the ring system, observed the Great Dark Spot, and revealed Triton's geysers",
+      "closest_approach_km": 4950
+    }
+  ],
+  "planned_missions": {
+    "neptune_odyssey": "A proposed NASA concept study (2021) for a Neptune orbiter and Triton probe, which could launch in the 2030s",
+    "trident": "A proposed NASA Discovery mission focused on Triton that was not selected in 2021 but remains a scientific priority"
+  },
+  "internal_structure": {
+    "core": "Rocky silicate and iron-nickel core, roughly Earth-sized",
+    "mantle": "Thick layer of water, ammonia, and methane ices under high pressure — sometimes called a 'water-ammonia ocean'",
+    "atmosphere": "Outer envelope of hydrogen and helium gas blending gradually into the mantle"
+  },
+  "summary": "Neptune is the eighth and farthest planet from the Sun, an ice giant located 4.5 billion km away that takes 165 years to complete one orbit. With a diameter of 49,244 km, it is slightly smaller than Uranus but denser and more massive. Neptune is famous for having the fastest winds in the solar system at up to 2,100 km/h and a vivid deep blue color. Its largest moon, Triton, orbits backwards and was likely captured from the Kuiper Belt. Discovered in 1846 through mathematical prediction, Neptune has only been visited by one spacecraft — Voyager 2, during a 1989 flyby. Its extreme weather, internal heat source, and the mysteries of Triton make it one of the most scientifically compelling destinations in the outer solar system.",
+  "interesting_facts": [
+    "Neptune has the fastest winds of any planet in the solar system, reaching speeds of up to 2,100 km/h — faster than the speed of sound on Earth.",
+    "Neptune was discovered on September 23, 1846, through mathematical prediction alone. Astronomers noticed irregularities in Uranus's orbit and calculated where an unknown planet must be, then found it at almost exactly the predicted location.",
+    "Neptune's largest moon, Triton, orbits in the opposite direction to Neptune's rotation. This retrograde orbit is strong evidence that Triton was captured from the Kuiper Belt.",
+    "Triton is the only large moon in the solar system with a retrograde orbit, and it is slowly spiraling inward. In about 3.6 billion years, Neptune's gravity will tear it apart.",
+    "Neptune completed its very first full orbit since its discovery in July 2011, 165 years after being found in 1846.",
+    "Neptune emits about 2.6 times more energy than it receives from the Sun. This internal heat source drives its extreme atmospheric activity.",
+    "The Great Dark Spot observed by Voyager 2 in 1989 — a storm the size of Earth — had disappeared when Hubble looked at Neptune five years later.",
+    "Neptune's Adams ring contains stable arc-shaped clumps of material named Liberté, Egalité, and Fraternité, after the French Revolutionary motto.",
+    "Despite being the farthest planet, Neptune is not the coldest — Uranus holds that record. Neptune's internal heat keeps it slightly warmer.",
+    "Only one spacecraft — Voyager 2 — has ever visited Neptune. The 1989 flyby lasted just a few hours as the probe passed at nearly 60,000 km/h."
+  ],
+  "faq": [
+    {
+      "question": "Why does Neptune have such extreme winds?",
+      "answer": "Neptune generates about 2.6 times more heat internally than it receives from the Sun. This internal heat source creates strong temperature gradients in the atmosphere, which drive powerful convection currents and jet streams. The extreme cold at the cloud tops combined with the internal heat creates enormous pressure differences that power the solar system's fastest winds, reaching up to 2,100 km/h."
+    },
+    {
+      "question": "How was Neptune discovered?",
+      "answer": "Neptune was discovered through mathematics before it was actually seen. Astronomers noticed that Uranus was not following its predicted orbit exactly, and concluded that an unknown planet's gravity was pulling on it. French mathematician Urbain Le Verrier and British mathematician John Couch Adams independently calculated where the mystery planet should be. On September 23, 1846, German astronomer Johann Galle pointed his telescope to Le Verrier's predicted location and found Neptune within the same night."
+    },
+    {
+      "question": "What makes Triton so unusual?",
+      "answer": "Triton is Neptune's largest moon and the only large moon in the solar system that orbits in the opposite direction to its planet's rotation — a retrograde orbit. This strongly indicates Triton did not form alongside Neptune but was captured from the Kuiper Belt. Triton is also geologically active, with nitrogen geysers erupting from its surface. Because its retrograde orbit is unstable, Triton is slowly spiraling inward and will eventually be broken up by Neptune's tidal forces in about 3.6 billion years."
+    },
+    {
+      "question": "Has any spacecraft visited Neptune?",
+      "answer": "Only one spacecraft has visited Neptune: NASA's Voyager 2, which flew by on August 25, 1989. During the flyby, Voyager 2 discovered 6 new moons, confirmed and detailed Neptune's ring system, observed the Great Dark Spot storm, detected Triton's nitrogen geysers, and captured the first close-up images of the planet. No mission has returned since, though several proposals are under study for the 2030s."
+    },
+    {
+      "question": "Why is Neptune blue?",
+      "answer": "Neptune's deep blue color comes primarily from methane in its atmosphere, which absorbs red wavelengths of sunlight and reflects blue wavelengths back to space. However, Neptune appears a more vivid and deeper blue than Uranus, which has a similar methane content. Scientists believe an additional unknown chemical compound in Neptune's atmosphere contributes to its distinctive rich blue color."
+    },
+    {
+      "question": "What is the Great Dark Spot?",
+      "answer": "The Great Dark Spot was a massive anticyclonic storm system observed on Neptune by Voyager 2 in 1989. It was roughly the size of Earth, with winds of up to 2,100 km/h at its edges. Unlike Jupiter's Great Red Spot, Neptune's storm systems are not stable — when the Hubble Space Telescope observed Neptune in 1994, the original Great Dark Spot had completely disappeared. New dark spots have since been observed and disappeared, indicating these storms have lifetimes of years to decades."
+    },
+    {
+      "question": "How long is a year on Neptune?",
+      "answer": "One Neptunian year — the time it takes to complete one orbit around the Sun — equals approximately 165 Earth years. Neptune was discovered in 1846 and completed its first full orbit since discovery in 2011. Its axial tilt of 28.3 degrees gives it seasons, but each season lasts approximately 40 years."
+    },
+    {
+      "question": "Does Neptune have rings?",
+      "answer": "Yes, Neptune has 5 known rings. They are dark and relatively faint, and were confirmed by Voyager 2 in 1989. The outermost ring, named Adams, is the most prominent and contains unusual arc-shaped clumps of material named Liberté, Egalité, and Fraternité, which are kept in place by the gravitational influence of the moon Galatea."
+    },
+    {
+      "question": "How many moons does Neptune have?",
+      "answer": "Neptune has 16 known moons. The largest by far is Triton, which is larger than the dwarf planet Pluto. Other notable moons include Proteus, Nereid, Larissa, and Despina. Most of Neptune's smaller outer moons are thought to be captured Kuiper Belt objects, similar to Triton."
+    },
+    {
+      "question": "Is Neptune colder than Uranus?",
+      "answer": "No. Despite being farther from the Sun, Neptune is actually slightly warmer than Uranus. Neptune's atmosphere averages about -201°C, while Uranus holds the record for coldest planetary atmosphere at as low as -224°C. The reason is that Neptune has a strong internal heat source, radiating 2.6 times more energy than it receives from the Sun, whereas Uranus emits almost no internal heat."
+    }
+  ]
+}

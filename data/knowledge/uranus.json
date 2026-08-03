@@ -1,0 +1,155 @@
+{
+  "id": "uranus",
+  "name": "Uranus",
+  "alternative_names": ["The Ice Giant", "The Sideways Planet", "Georgium Sidus (historical)"],
+  "type": "Ice Giant Planet",
+  "planet_number": 7,
+  "description": "Uranus is the seventh planet from the Sun and the third-largest in the Solar System by diameter. It is classified as an ice giant, composed primarily of icy materials such as water, methane, and ammonia beneath a hydrogen and helium atmosphere. Uranus is unique among all planets for rotating on its side, with an axial tilt of 97.8 degrees — likely the result of a massive collision early in the Solar System's history.",
+  "diameter_km": 50724,
+  "radius_km": 25362,
+  "mass_kg": "8.681 × 10²⁵ kg",
+  "mass_earth_units": 14.54,
+  "density_g_per_cm3": 1.27,
+  "gravity_m_per_s2": 8.69,
+  "gravity_earth_units": 0.886,
+  "escape_velocity_km_per_s": 21.3,
+  "distance_from_sun_km": "2.871 billion km",
+  "distance_from_sun_AU": 19.22,
+  "orbital_period_years": 84,
+  "orbital_period_earth_days": 30589,
+  "rotation_period": "17 hours 14 minutes (retrograde)",
+  "rotation_direction": "Retrograde (clockwise when viewed from north)",
+  "axial_tilt_degrees": 97.8,
+  "axial_tilt_note": "Rotates nearly on its side — poles experience 42 years of continuous sunlight followed by 42 years of darkness",
+  "temperature_avg_celsius": -197,
+  "temperature_note": "Coldest planetary atmosphere in the Solar System despite not being the farthest from the Sun",
+  "atmosphere": {
+    "composition": {
+      "hydrogen_H2_percent": 83,
+      "helium_He_percent": 15,
+      "methane_CH4_percent": 2,
+      "trace_gases": ["acetylene", "ethane", "water ice"]
+    },
+    "color_reason": "Methane in the atmosphere absorbs red light and reflects blue-green wavelengths, giving Uranus its distinctive cyan appearance",
+    "cloud_layers": ["methane ice clouds (upper)", "ammonia hydrosulfide (middle)", "water ice clouds (lower)"]
+  },
+  "magnetic_field": {
+    "description": "Uranus has a strong but highly unusual magnetic field",
+    "offset_from_rotation_axis_degrees": 60,
+    "offset_from_center_km": 10000,
+    "note": "The magnetic field is tilted 60° from the rotation axis and offset from the planet's center, creating an asymmetric and tumbling magnetosphere"
+  },
+  "interior_structure": {
+    "core": "Small rocky silicate/iron-nickel core",
+    "mantle": "Icy mantle of water, methane, and ammonia ices (the 'ice' is actually a hot, dense fluid)",
+    "outer_layer": "Hydrogen and helium atmosphere"
+  },
+  "moons": {
+    "count": 28,
+    "named_after": "Characters from Shakespeare and Alexander Pope",
+    "major_moons": [
+      {
+        "name": "Titania",
+        "diameter_km": 1578,
+        "note": "Largest moon of Uranus"
+      },
+      {
+        "name": "Oberon",
+        "diameter_km": 1523,
+        "note": "Second largest, heavily cratered"
+      },
+      {
+        "name": "Umbriel",
+        "diameter_km": 1169,
+        "note": "Darkest of the major moons"
+      },
+      {
+        "name": "Ariel",
+        "diameter_km": 1158,
+        "note": "Brightest surface, youngest geological features"
+      },
+      {
+        "name": "Miranda",
+        "diameter_km": 472,
+        "note": "Has a massive canyon (Verona Rupes) 20 km deep — the tallest known cliff in the Solar System"
+      }
+    ]
+  },
+  "rings": {
+    "count": 13,
+    "discovery_year": 1977,
+    "discovered_by": "James Elliot, Edward Dunham, and Douglas Mink via stellar occultation",
+    "composition": "Dark particles of water ice and organic compounds",
+    "notable_rings": ["Epsilon ring (brightest and most massive)", "Zeta ring (innermost)"]
+  },
+  "known_missions": [
+    {
+      "name": "Voyager 2",
+      "agency": "NASA",
+      "flyby_date": "January 24, 1986",
+      "note": "Only spacecraft to visit Uranus. Discovered 10 new moons, 2 new rings, and returned the first close-up images",
+      "distance_at_closest_approach_km": 81500
+    },
+    {
+      "name": "Proposed Uranus Orbiter and Probe (UOP)",
+      "agency": "NASA",
+      "status": "Recommended as top priority in the 2023–2032 Planetary Science Decadal Survey",
+      "target_launch": "Early 2030s"
+    }
+  ],
+  "summary": "Uranus is a pale blue-green ice giant rolling through the outer Solar System on its side. Its extreme axial tilt, frigid temperatures, offset magnetic field, and system of 13 dark rings and 28 moons make it one of the most unusual planets in our Solar System. Despite being visited only once — by Voyager 2 in 1986 — what we've learned reveals a world of dramatic extremes: 42-year-long seasons, the coldest atmosphere of any planet, and a moon with the tallest cliff in the Solar System.",
+  "interesting_facts": [
+    "Uranus rotates on its side with an axial tilt of 97.8°, meaning its poles receive more sunlight over a year than its equator.",
+    "Uranus is the coldest planet in the Solar System with a minimum atmospheric temperature of -224°C, despite Neptune being farther from the Sun.",
+    "A day on Uranus lasts only 17 hours and 14 minutes, but a year lasts 84 Earth years.",
+    "Uranus was the first planet discovered with a telescope, by William Herschel on March 13, 1781.",
+    "All 27 named moons of Uranus are named after characters from Shakespeare and Alexander Pope — unique among planetary moon systems.",
+    "Uranus has 13 known rings, discovered in 1977 — making it only the second ringed planet known at the time after Saturn.",
+    "Miranda, a small moon of Uranus, has Verona Rupes — a cliff approximately 20 km high, the tallest known cliff in the Solar System.",
+    "Uranus's magnetic field is tilted 60° from its rotation axis and offset significantly from the planet's center, unlike any other planet.",
+    "It takes sunlight approximately 2 hours and 40 minutes to travel from the Sun to Uranus.",
+    "Uranus was nearly named 'Georgium Sidus' (George's Star) after King George III by its discoverer William Herschel."
+  ],
+  "faq": [
+    {
+      "question": "Why does Uranus rotate on its side?",
+      "answer": "Scientists believe Uranus was struck by one or more Earth-sized protoplanets billions of years ago during the early formation of the Solar System. This catastrophic collision knocked Uranus onto its side, giving it an axial tilt of 97.8°. As a result, the planet's poles effectively point toward and away from the Sun during its 84-year orbit."
+    },
+    {
+      "question": "Why is Uranus the coldest planet if Neptune is farther from the Sun?",
+      "answer": "Uranus emits very little internal heat compared to the other giant planets. While Jupiter, Saturn, and Neptune radiate significantly more heat than they receive from the Sun, Uranus releases almost none. This means Uranus cannot warm itself from the inside, making its atmosphere the coldest in the Solar System at around -224°C at its minimum."
+    },
+    {
+      "question": "How many moons does Uranus have?",
+      "answer": "Uranus has 28 known moons as of the latest confirmed discoveries. The five major moons are Titania, Oberon, Umbriel, Ariel, and Miranda. All named moons are named after characters from the works of William Shakespeare and Alexander Pope, a tradition unique to Uranian moons in the Solar System."
+    },
+    {
+      "question": "Does Uranus have rings?",
+      "answer": "Yes, Uranus has 13 known rings. They were discovered in 1977 when Uranus passed in front of a star and astronomers observed the starlight dimming before and after the planet itself blocked it. The rings are dark and composed of water ice mixed with organic compounds, making them much less visible than Saturn's bright rings."
+    },
+    {
+      "question": "Has any spacecraft visited Uranus?",
+      "answer": "Only one spacecraft has visited Uranus: NASA's Voyager 2, which conducted a flyby on January 24, 1986. It came within 81,500 km of the planet's cloud tops, discovering 10 new moons, 2 new rings, and revealing the unusual magnetic field. No mission has orbited Uranus, but NASA's Planetary Science Decadal Survey (2023–2032) prioritized a Uranus Orbiter and Probe as the top recommended mission."
+    },
+    {
+      "question": "What is Uranus made of?",
+      "answer": "Uranus is classified as an ice giant. Its interior likely consists of a small rocky core, surrounded by a thick mantle of 'icy' materials — water, methane, and ammonia in a hot, pressurized fluid state. The outer layer is a hydrogen and helium atmosphere with trace amounts of methane, which gives Uranus its distinctive blue-green color."
+    },
+    {
+      "question": "How long is a season on Uranus?",
+      "answer": "Because Uranus takes 84 Earth years to orbit the Sun and rotates on its side, each of its four seasons lasts approximately 21 Earth years. During summer at one pole, that pole is pointed almost directly at the Sun, receiving 21 years of continuous sunlight. The opposite pole simultaneously experiences 21 years of total darkness."
+    },
+    {
+      "question": "Who discovered Uranus?",
+      "answer": "Uranus was discovered by British astronomer William Herschel on March 13, 1781, using a telescope he built himself. It was the first planet discovered in modern history using a telescope. Herschel initially thought it was a comet before its circular orbit was confirmed. He wanted to name it 'Georgium Sidus' after King George III, but the scientific community eventually settled on 'Uranus,' following the tradition of naming planets after Roman gods."
+    },
+    {
+      "question": "What is the Great Dark Spot on Uranus?",
+      "answer": "Unlike Neptune, Uranus does not have a well-known Great Dark Spot. Uranus appears relatively featureless in visible light due to a high-altitude methane haze that obscures cloud activity below. However, infrared imaging has revealed dynamic storm systems and bands of clouds in the deeper atmosphere, particularly around the time of equinoxes."
+    },
+    {
+      "question": "Could humans ever live on or near Uranus?",
+      "answer": "Living on Uranus itself is not feasible — it has no solid surface, temperatures around -197°C, crushing atmospheric pressure at depth, and lethal radiation. However, some of its moons could theoretically support future research outposts with heavy engineering. Any crewed mission would face immense challenges including the 2.8-billion-km distance from Earth (roughly a 9-year one-way journey with current technology) and the harsh radiation environment."
+    }
+  ]
+}

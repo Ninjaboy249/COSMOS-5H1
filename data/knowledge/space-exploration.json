@@ -1,0 +1,347 @@
+{
+  "id": "space-exploration",
+  "name": "Space Exploration History",
+  "description": "Space exploration is the investigation of outer space using astronomy, robotic spacecraft, and crewed missions. Beginning in the late 1950s as a Cold War competition between the United States and Soviet Union, space exploration has grown into a global endeavor involving dozens of nations and commercial companies. It has yielded profound scientific discoveries, transformative technologies, and a fundamentally changed understanding of Earth's place in the cosmos.",
+  "timeline": [
+    {
+      "year": 1957,
+      "event": "Sputnik 1 — first satellite",
+      "details": "The Soviet Union launched Sputnik 1 on October 4, 1957 — the first artificial Earth satellite. Weighing 83.6 kg, it transmitted a radio beep for 21 days and marked the dawn of the Space Age. Its launch shocked the United States and ignited the Space Race."
+    },
+    {
+      "year": 1957,
+      "event": "Laika — first animal in space",
+      "details": "On November 3, 1957, the Soviet Union launched Sputnik 2 carrying Laika, a stray dog from Moscow, becoming the first living creature to orbit Earth. The mission was planned as a one-way trip, demonstrating that living organisms could survive launch and weightlessness."
+    },
+    {
+      "year": 1958,
+      "event": "NASA founded",
+      "details": "NASA (National Aeronautics and Space Administration) was established on July 29, 1958, by the National Aeronautics and Space Act, consolidating various US aeronautical research agencies in response to the Soviet Sputnik launch."
+    },
+    {
+      "year": 1961,
+      "event": "Yuri Gagarin — first human in space",
+      "details": "On April 12, 1961, Soviet cosmonaut Yuri Gagarin became the first human to journey into outer space aboard Vostok 1. He completed one orbit of Earth in 108 minutes. Gagarin is celebrated worldwide as a pioneer of human spaceflight; April 12 is now International Day of Human Space Flight."
+    },
+    {
+      "year": 1961,
+      "event": "Alan Shepard — first American in space",
+      "details": "On May 5, 1961, Alan Shepard became the first American in space on a 15-minute suborbital flight aboard Freedom 7 (Mercury-Redstone 3). President Kennedy then announced the goal of landing on the Moon before the end of the decade."
+    },
+    {
+      "year": 1963,
+      "event": "Valentina Tereshkova — first woman in space",
+      "details": "On June 16, 1963, Soviet cosmonaut Valentina Tereshkova became the first woman in space aboard Vostok 6, completing 48 orbits over nearly three days. She remains the only woman to have flown a solo space mission."
+    },
+    {
+      "year": 1965,
+      "event": "Alexei Leonov — first spacewalk",
+      "details": "On March 18, 1965, Soviet cosmonaut Alexei Leonov performed the first EVA (Extra-Vehicular Activity), floating in space for 12 minutes outside Voskhod 2. He nearly died when his suit inflated and he could not re-enter the airlock without partially deflating it."
+    },
+    {
+      "year": 1966,
+      "event": "Luna 9 — first soft landing on the Moon",
+      "details": "The Soviet Luna 9 achieved the first successful soft landing on the Moon on February 3, 1966, transmitting the first photographs from the lunar surface. It confirmed that the Moon's surface was solid enough to support a landing spacecraft."
+    },
+    {
+      "year": 1969,
+      "event": "Apollo 11 — first Moon landing",
+      "details": "On July 20, 1969, NASA astronauts Neil Armstrong and Buzz Aldrin landed on the Moon in the Sea of Tranquility while Michael Collins orbited above in the Command Module. Armstrong's words — 'That's one small step for [a] man, one giant leap for mankind' — became one of history's most famous quotes. Apollo 11 fulfilled President Kennedy's 1961 challenge."
+    },
+    {
+      "year": 1971,
+      "event": "Salyut 1 — first space station",
+      "details": "The Soviet Union launched Salyut 1 on April 19, 1971 — the first space station. Crew Soyuz 10 failed to dock, but Soyuz 11 successfully docked and the three cosmonauts lived aboard for 23 days. Tragically, they died during re-entry when a faulty valve depressurized their Soyuz capsule."
+    },
+    {
+      "year": 1972,
+      "event": "Apollo 17 — last crewed Moon landing",
+      "details": "Apollo 17 (December 1972) was the final Apollo mission to the Moon. Commander Gene Cernan was the last person to walk on the lunar surface. Six Apollo missions (11, 12, 14, 15, 16, 17) successfully landed 12 astronauts on the Moon between 1969 and 1972."
+    },
+    {
+      "year": 1973,
+      "event": "Pioneer 10 — first spacecraft to reach Jupiter",
+      "details": "NASA's Pioneer 10 became the first spacecraft to travel through the asteroid belt and fly past Jupiter in December 1973, sending back the first close-up images of the giant planet. It became the first human-made object to leave the inner solar system."
+    },
+    {
+      "year": 1975,
+      "event": "Apollo-Soyuz — first US-Soviet joint mission",
+      "details": "The Apollo-Soyuz Test Project (July 1975) saw US and Soviet spacecraft dock in orbit and their crews meet — a symbolic end to the space race and beginning of international cooperation in space."
+    },
+    {
+      "year": 1977,
+      "event": "Voyager 1 and 2 launched",
+      "details": "NASA launched Voyager 2 on August 20 and Voyager 1 on September 5, 1977 to take advantage of a rare planetary alignment. Both conducted flybys of Jupiter and Saturn; Voyager 2 went on to visit Uranus (1986) and Neptune (1989). Voyager 1 crossed into interstellar space in 2012 and is now the most distant human-made object."
+    },
+    {
+      "year": 1981,
+      "event": "Space Shuttle first flight",
+      "details": "STS-1 (Columbia) launched on April 12, 1981 — 20 years to the day after Gagarin's flight — carrying astronauts John Young and Bob Crippen. The Space Shuttle was the first reusable crewed spacecraft. It flew 135 missions over 30 years, deployed Hubble, and built the ISS."
+    },
+    {
+      "year": 1986,
+      "event": "Mir space station launched",
+      "details": "The Soviet Union launched the core module of the Mir space station in February 1986. Mir was the first modularly assembled space station and was continuously inhabited for almost 10 years (1989–1999). It hosted international crews and was deorbited in 2001."
+    },
+    {
+      "year": 1990,
+      "event": "Hubble Space Telescope launched",
+      "details": "NASA launched the Hubble Space Telescope on April 24, 1990 aboard Space Shuttle Discovery. Initially marred by a flawed mirror, it was corrected by astronauts in 1993 and has since revolutionized astronomy, observing everything from planets to the deepest reaches of the universe. Over 1.5 million observations and 20,000+ scientific papers."
+    },
+    {
+      "year": 1995,
+      "event": "Galileo arrives at Jupiter",
+      "details": "NASA's Galileo spacecraft entered Jupiter's orbit in December 1995, beginning an 8-year study of the gas giant and its moons. It released a probe into Jupiter's atmosphere and discovered evidence of a subsurface ocean on Europa — a major astrobiological finding."
+    },
+    {
+      "year": 1997,
+      "event": "Mars Pathfinder and Sojourner — first Mars rover",
+      "details": "NASA's Mars Pathfinder landed on July 4, 1997, deploying Sojourner — the first rover on Mars. The landing used an airbag system and was watched by millions online in an early viral internet event. Sojourner operated for 83 days."
+    },
+    {
+      "year": 1998,
+      "event": "ISS construction begins",
+      "details": "On November 20, 1998, Russia launched the Zarya module — the first ISS component. The Unity module followed two weeks later. Assembly of the station would continue over the next 13 years across 42 assembly flights. The ISS is the largest structure ever assembled in space."
+    },
+    {
+      "year": 2003,
+      "event": "China sends first astronaut — Yang Liwei",
+      "details": "On October 15, 2003, China launched Yang Liwei aboard Shenzhou 5, making China the third nation (after the Soviet Union and United States) to independently send a human into space. Yang completed 14 orbits in about 21 hours. China subsequently developed its own space station program (Tiangong)."
+    },
+    {
+      "year": 2004,
+      "event": "Opportunity and Spirit rovers land on Mars",
+      "details": "NASA's Mars Exploration Rovers Spirit (January 3) and Opportunity (January 24, 2004) landed on Mars. Designed for 90-day missions, Spirit operated for 6 years and Opportunity for an extraordinary 15 years, returning vast amounts of geological data and confirming Mars once had liquid water."
+    },
+    {
+      "year": 2008,
+      "event": "Chandrayaan-1 discovers Moon water",
+      "details": "India's Chandrayaan-1 lunar orbiter (launched 2008) made the landmark discovery of water molecules in the Moon's permanently shadowed polar regions, using its Moon Mineralogy Mapper instrument provided by NASA. This finding transformed the prospect of future human lunar settlements using local water resources."
+    },
+    {
+      "year": 2010,
+      "event": "Hayabusa returns first asteroid sample",
+      "details": "Japan's Hayabusa spacecraft returned to Earth in June 2010 carrying samples from asteroid Itokawa — the first samples ever returned from an asteroid. The mission overcame numerous technical crises and opened a new era of asteroid sample return."
+    },
+    {
+      "year": 2011,
+      "event": "Space Shuttle program ends",
+      "details": "The final Space Shuttle flight, STS-135 (Atlantis), landed on July 21, 2011, ending NASA's 30-year Shuttle program. The US then relied on Russian Soyuz spacecraft for crewed ISS access until SpaceX's Commercial Crew Program became operational in 2020."
+    },
+    {
+      "year": 2012,
+      "event": "Curiosity rover lands on Mars",
+      "details": "NASA's Curiosity rover landed in Gale Crater on Mars on August 5-6, 2012, using a novel 'sky crane' landing system. The car-sized nuclear-powered rover confirmed that Mars had ancient habitable environments with liquid water and the chemical ingredients for life. It continues to operate as of 2024."
+    },
+    {
+      "year": 2014,
+      "event": "Rosetta orbits comet 67P",
+      "details": "ESA's Rosetta spacecraft became the first to orbit a comet (67P/Churyumov-Gerasimenko) in August 2014, after a 10-year journey. On November 12, 2014, the Philae lander made the first comet landing. Rosetta studied the comet's composition, structure, and activity in unprecedented detail before ending its mission in 2016."
+    },
+    {
+      "year": 2015,
+      "event": "New Horizons flies past Pluto",
+      "details": "NASA's New Horizons spacecraft made the first close flyby of Pluto on July 14, 2015, revealing a stunningly complex world with nitrogen ice plains, water-ice mountains up to 3,500 m tall, and a thin atmosphere. The heart-shaped region named Tombaugh Regio became an iconic image."
+    },
+    {
+      "year": 2015,
+      "event": "Dawn arrives at Ceres",
+      "details": "NASA's Dawn spacecraft entered orbit around dwarf planet Ceres in March 2015, becoming the first spacecraft to orbit a dwarf planet. It discovered mysterious bright spots in Occator Crater, later identified as salt deposits from subsurface brine."
+    },
+    {
+      "year": 2016,
+      "event": "First gravitational wave detection announced",
+      "details": "The LIGO collaboration announced on February 11, 2016, the first direct detection of gravitational waves from the merger of two black holes 1.3 billion light-years away, confirming a key prediction of Einstein's General Relativity a century after it was made."
+    },
+    {
+      "year": 2019,
+      "event": "First black hole image — M87*",
+      "details": "On April 10, 2019, the Event Horizon Telescope collaboration released the first image of a black hole — the supermassive black hole M87* in the galaxy Messier 87, 55 million light-years away. The image of a glowing ring with a dark shadow confirmed the theoretical predictions of black hole appearance."
+    },
+    {
+      "year": 2020,
+      "event": "SpaceX Crew Dragon — first commercial crewed spaceflight",
+      "details": "On May 30, 2020, SpaceX's Crew Dragon (Demo-2) launched NASA astronauts Doug Hurley and Bob Behnken to the ISS — the first crewed orbital launch from US soil since 2011 and the first crewed flight by a private company. This launched the Commercial Crew era."
+    },
+    {
+      "year": 2021,
+      "event": "Perseverance rover and Ingenuity helicopter on Mars",
+      "details": "NASA's Perseverance rover landed in Jezero Crater on February 18, 2021, carrying the Ingenuity helicopter. On April 19, 2021, Ingenuity became the first powered aircraft to fly on another planet. Perseverance is collecting rock samples for eventual return to Earth and searching for signs of ancient life."
+    },
+    {
+      "year": 2021,
+      "event": "JWST launched",
+      "details": "The James Webb Space Telescope launched on December 25, 2021 on an Ariane 5 rocket from Kourou, French Guiana. After a complex 6-month deployment and commissioning process, it reached its operational orbit at the Sun-Earth L2 Lagrange point."
+    },
+    {
+      "year": 2022,
+      "event": "JWST first science images released",
+      "details": "On July 12, 2022, NASA released JWST's first science images — the deepest infrared image of the universe ever taken (SMACS 0723 galaxy cluster), an exoplanet atmosphere spectrum, stellar nurseries in the Carina Nebula, the Stephan's Quintet galaxy group, and the Southern Ring Nebula."
+    },
+    {
+      "year": 2022,
+      "event": "Artemis I — first Orion lunar flyby",
+      "details": "NASA's uncrewed Artemis I mission launched on November 16, 2022, sending the Orion spacecraft on a 25-day mission around the Moon and back — the first flight of the Space Launch System (SLS), NASA's most powerful rocket ever built."
+    },
+    {
+      "year": 2023,
+      "event": "Chandrayaan-3 south pole landing",
+      "details": "On August 23, 2023, India's Chandrayaan-3 mission successfully landed its Vikram lander near the Moon's south pole — the first spacecraft ever to land near the lunar south pole and only the fourth country (after the US, USSR, and China) to achieve a soft Moon landing. The Pragyan rover operated for 14 days."
+    },
+    {
+      "year": 2024,
+      "event": "Europa Clipper launched",
+      "details": "NASA's Europa Clipper spacecraft launched in October 2024 on a SpaceX Falcon Heavy rocket, beginning a 5.5-year journey to Jupiter's moon Europa. It will conduct 49 flybys of Europa to assess whether the icy moon's subsurface ocean could support life, arriving in 2030."
+    }
+  ],
+  "future_missions": [
+    {
+      "name": "Artemis Program",
+      "agency": "NASA (with international partners)",
+      "goal": "Return humans to the Moon — specifically to the lunar south pole — for the first time since Apollo 17 in 1972, including the first woman and first person of color to walk on the Moon",
+      "status": "Artemis II (crewed lunar flyby) planned for 2026; Artemis III (crewed landing) planned for 2026–2027",
+      "key_systems": "Space Launch System (SLS), Orion spacecraft, SpaceX Starship Human Landing System, Gateway lunar orbital station"
+    },
+    {
+      "name": "SpaceX Starship",
+      "agency": "SpaceX",
+      "goal": "Fully reusable Super Heavy/Starship rocket system for Earth orbit, Moon, and Mars missions; aims to dramatically reduce cost of space access",
+      "status": "Undergoing orbital test flights from Boca Chica, Texas; IFT-4 successfully completed in June 2024 with both stages recovered",
+      "capability": "Largest and most powerful rocket ever built; ~100 tons to LEO, designed to be fully and rapidly reusable"
+    },
+    {
+      "name": "Mars Human Mission — 2030s",
+      "agency": "NASA, SpaceX (independently)",
+      "goal": "First crewed mission to Mars",
+      "timeline": "NASA targets the 2030s; SpaceX has stated ambitions for uncrewed Starship landings on Mars in the late 2020s and crewed missions in the early 2030s",
+      "challenges": "Long transit time (6–9 months), radiation exposure, life support, landing large masses on Mars, return journey"
+    },
+    {
+      "name": "Europa Clipper",
+      "agency": "NASA",
+      "goal": "Assess the habitability of Jupiter's moon Europa, which has a global subsurface ocean beneath its icy shell",
+      "launch": "October 2024",
+      "arrival": "2030",
+      "science": "49 close flybys of Europa with instruments to study its ice shell, ocean, geology, and surface chemistry"
+    },
+    {
+      "name": "Dragonfly",
+      "agency": "NASA",
+      "goal": "Send a rotorcraft lander to Saturn's moon Titan to study prebiotic chemistry and assess the potential for life",
+      "destination": "Titan — the only moon with a dense atmosphere and bodies of liquid (methane/ethane lakes)",
+      "launch": "Planned for 2028",
+      "arrival": "2034",
+      "description": "Dragonfly is a car-sized dual-quadcopter that will fly between dozens of sites on Titan's surface, covering more ground than all previous planetary rovers combined"
+    },
+    {
+      "name": "LISA (Laser Interferometer Space Antenna)",
+      "agency": "ESA (with NASA)",
+      "goal": "First space-based gravitational wave detector — three spacecraft in a triangular configuration 2.5 million km apart, detecting gravitational waves from supermassive black hole mergers",
+      "launch": "Planned for 2035"
+    },
+    {
+      "name": "Nancy Grace Roman Space Telescope",
+      "agency": "NASA",
+      "goal": "Wide-field infrared space telescope to survey large areas of the sky, study dark energy, dark matter, and discover thousands of exoplanets via microlensing",
+      "launch": "Planned for 2027"
+    },
+    {
+      "name": "China Space Station (Tiangong)",
+      "agency": "CNSA (China National Space Administration)",
+      "goal": "China's permanent space station in LEO, completed in 2022, with crew of up to 3 astronauts on 6-month rotations. China plans crewed Moon landing by 2030 and permanent lunar base."
+    }
+  ],
+  "key_agencies": [
+    {
+      "name": "NASA",
+      "country": "United States",
+      "founded": 1958,
+      "notable_programs": "Apollo, Space Shuttle, ISS, Hubble, Mars rovers, JWST, Artemis"
+    },
+    {
+      "name": "Roscosmos",
+      "country": "Russia",
+      "founded": 1992,
+      "notable_programs": "Soyuz, Progress, ISS, Mir, Vostok, Venera, Luna"
+    },
+    {
+      "name": "ESA",
+      "country": "Europe (22 member states)",
+      "founded": 1975,
+      "notable_programs": "Ariane rockets, Rosetta, Mars Express, Huygens, Galileo GPS, JWST (partner)"
+    },
+    {
+      "name": "JAXA",
+      "country": "Japan",
+      "founded": 2003,
+      "notable_programs": "Hayabusa asteroid sample return, H-II rockets, ISS Kibo module"
+    },
+    {
+      "name": "ISRO",
+      "country": "India",
+      "founded": 1969,
+      "notable_programs": "Chandrayaan (Moon), Mangalyaan (Mars), PSLV/GSLV rockets, Gaganyaan crewed program"
+    },
+    {
+      "name": "CNSA",
+      "country": "China",
+      "founded": 1993,
+      "notable_programs": "Shenzhou crewed missions, Chang'e Moon program, Tianwen Mars mission, Tiangong space station"
+    }
+  ],
+  "summary": "Space exploration has evolved from a Cold War competition between two superpowers into a global endeavor involving dozens of space agencies and a growing commercial sector. In seven decades, humanity has landed on the Moon, sent rovers to Mars, dispatched probes to every planet in the solar system, built an international space station, detected gravitational waves, and begun imaging black holes and distant galaxies with unprecedented clarity. The next decades promise human return to the Moon, the first crewed Mars mission, and revolutionary new observatories, making this one of the most exciting eras in the history of exploration.",
+  "interesting_facts": [
+    "The Space Race was triggered by Sputnik's 1957 launch; within 12 years, humans had walked on the Moon — arguably the greatest technological achievement in human history.",
+    "Yuri Gagarin's flight on April 12, 1961 lasted just 108 minutes — the shortest human spaceflight on record, yet it changed humanity's self-perception forever.",
+    "Voyager 1, launched in 1977, is now over 23 billion km from the Sun — the most distant human-made object — and still transmitting data, powered by nuclear (RTG) generators.",
+    "The Apollo program employed 400,000 engineers, scientists, and technicians and cost approximately $25 billion in 1960s dollars (about $280 billion today).",
+    "China's Yutu-2 rover, landed on the Moon's far side in 2019, marked the first-ever soft landing on the lunar far side, a hemisphere never visible from Earth.",
+    "The European Space Agency's Rosetta mission identified over 16 organic compounds on comet 67P, including the amino acid glycine — a building block of proteins.",
+    "Neil Armstrong's famous words 'That's one small step for man' were intended to be 'That's one small step for a man' — the 'a' was lost in radio transmission.",
+    "SpaceX's reusable Falcon 9 rocket has dramatically reduced launch costs — from roughly $10,000 per kg to LEO with Shuttle to about $2,700 per kg with Falcon 9.",
+    "The Perseverance rover carried a small piece of fabric from the Wright Brothers' Flyer on its Mars mission — connecting the first airplane flight (1903) to the first Mars helicopter flight (2021).",
+    "India's Mars Orbiter Mission (Mangalyaan, 2014) was the cheapest interplanetary mission ever — costing just $74 million, less than the Hollywood film 'Gravity'."
+  ],
+  "faq": [
+    {
+      "question": "Who was the first person in space?",
+      "answer": "Soviet cosmonaut Yuri Gagarin was the first human in space. He launched on April 12, 1961 aboard Vostok 1, completing one orbit of Earth in 108 minutes. This date is now celebrated annually as the International Day of Human Space Flight, also called Yuri's Night."
+    },
+    {
+      "question": "How many people have walked on the Moon?",
+      "answer": "Twelve people have walked on the Moon, all Americans, all during the Apollo program between 1969 and 1972: Neil Armstrong, Buzz Aldrin (Apollo 11), Pete Conrad, Alan Bean (Apollo 12), Alan Shepard, Edgar Mitchell (Apollo 14), David Scott, James Irwin (Apollo 15), John Young, Charles Duke (Apollo 16), and Gene Cernan, Harrison Schmitt (Apollo 17)."
+    },
+    {
+      "question": "What is the farthest any human has traveled from Earth?",
+      "answer": "The crew of Apollo 13 holds the record for the farthest distance from Earth traveled by humans — approximately 400,171 km — as they looped around the far side of the Moon during their emergency return after an oxygen tank explosion in 1970."
+    },
+    {
+      "question": "What was the Space Race?",
+      "answer": "The Space Race was a 20th-century competition between the United States and Soviet Union for supremacy in space exploration during the Cold War (roughly 1957–1975). Key milestones include Sputnik (1957), first human in space — Gagarin (1961), Moon landing — Apollo 11 (1969), and the symbolic end with the Apollo-Soyuz docking (1975)."
+    },
+    {
+      "question": "How long does it take to reach Mars?",
+      "answer": "A one-way trip to Mars using current chemical rocket technology takes approximately 6–9 months, depending on the alignment of Earth and Mars (which repeats approximately every 26 months). The fastest missions (fly-bys) have taken about 7 months. Future missions using nuclear propulsion or other advanced concepts could potentially reduce this to as little as 3–4 months."
+    },
+    {
+      "question": "What is the Artemis program?",
+      "answer": "Artemis is NASA's program to return humans to the Moon. Named after the twin sister of Apollo in Greek mythology, it aims to land the first woman and first person of color on the lunar surface, specifically near the resource-rich south pole. The program involves the Space Launch System rocket, the Orion capsule, a SpaceX Starship lunar lander, and a future lunar Gateway space station."
+    },
+    {
+      "question": "What is the Commercial Crew Program?",
+      "answer": "NASA's Commercial Crew Program partners with private companies to provide crewed transportation to and from the ISS. SpaceX's Crew Dragon has been operational since 2020, and Boeing's Starliner has conducted test flights. The program ended US reliance on Russian Soyuz for ISS crewed access and has significantly reduced costs compared to the Space Shuttle era."
+    },
+    {
+      "question": "Has any spacecraft left the solar system?",
+      "answer": "Voyager 1 crossed into interstellar space (beyond the heliopause) in August 2012, becoming the first human-made object to leave the solar system. Voyager 2 followed in November 2018. Both are still communicating with NASA. Pioneer 10 and 11 are also headed out of the solar system but their transmitters have failed."
+    },
+    {
+      "question": "What is the significance of the Chandrayaan-3 landing?",
+      "answer": "India's Chandrayaan-3 made history on August 23, 2023 by becoming the first spacecraft to land near the Moon's south pole — a region of intense scientific and strategic interest due to confirmed water ice deposits in permanently shadowed craters. India became the fourth nation to achieve a soft Moon landing, and the mission was completed at a fraction of the cost of comparable Western missions."
+    },
+    {
+      "question": "What has JWST discovered so far?",
+      "answer": "Since releasing first science images in July 2022, JWST has made numerous landmark discoveries: the most distant galaxies ever observed (just 300–400 million years after the Big Bang), detection of CO2 in an exoplanet atmosphere (first ever), water vapor in star-forming regions, the most detailed images of planet-forming disks, and remarkable detail of gravitational lens systems, among hundreds of peer-reviewed publications."
+    }
+  ]
+}

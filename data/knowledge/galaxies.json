@@ -1,0 +1,235 @@
+{
+  "id": "galaxies",
+  "name": "Galaxies",
+  "description": "A galaxy is a vast system of stars, stellar remnants, interstellar gas, dust, dark matter, and other objects bound together by gravity. Galaxies range in size from dwarf galaxies with just a few million stars to giant elliptical galaxies containing hundreds of trillions of stars. The observable universe contains an estimated 2 trillion or more galaxies. Galaxies are the fundamental building blocks of large-scale cosmic structure, and virtually every massive galaxy — including our own Milky Way — harbors a supermassive black hole at its center.",
+  "types": [
+    {
+      "name": "Spiral Galaxies",
+      "description": "Feature a flat, rotating disk with spiral arms winding outward from a central bulge. Stars, gas, and dust are concentrated along the spiral arms, which are sites of active star formation. Spiral galaxies are subdivided into 'normal' spirals (type S) and barred spirals (type SB), where a bar-shaped structure of stars extends across the center.",
+      "percentage_of_large_galaxies": "~60-70%",
+      "examples": ["Milky Way (barred spiral)", "Andromeda Galaxy (M31)", "Whirlpool Galaxy (M51)", "Pinwheel Galaxy (M101)"]
+    },
+    {
+      "name": "Elliptical Galaxies",
+      "description": "Appear as smooth, featureless ellipsoidal or spherical blobs. They contain mostly old, red stars with little gas or dust, and minimal ongoing star formation. They range from nearly spherical (E0) to highly elongated (E7) and include the largest galaxies known.",
+      "percentage_of_large_galaxies": "~10-15%",
+      "examples": ["M87 (host of the first imaged black hole)", "IC 1101 (largest known galaxy)", "Messier 49", "Centaurus A"]
+    },
+    {
+      "name": "Irregular Galaxies",
+      "description": "Have no defined regular shape, often as a result of gravitational interactions with neighboring galaxies. They are typically rich in gas and dust, and feature vigorous star formation. Many are the remnants of collisions or close encounters between other galaxies.",
+      "percentage_of_large_galaxies": "~20-25%",
+      "examples": ["Large Magellanic Cloud (LMC)", "Small Magellanic Cloud (SMC)", "NGC 1427A"]
+    },
+    {
+      "name": "Lenticular Galaxies",
+      "description": "A transitional class between spiral and elliptical galaxies (type S0). They have a disk component like spiral galaxies but lack prominent spiral arms. The disk contains older stars with little active star formation, similar to ellipticals.",
+      "percentage_of_large_galaxies": "~20%",
+      "examples": ["NGC 2787", "Spindle Galaxy (NGC 5866)", "Sombrero Galaxy (M104, debated)"]
+    }
+  ],
+  "milky_way": {
+    "type": "Barred Spiral Galaxy (SBbc)",
+    "diameter_light_years": "100,000 light-years",
+    "thickness_light_years": "1,000 light-years (disk); ~10,000 (central bulge)",
+    "stars": "200–400 billion estimated stars",
+    "age_years": "13.6 billion years",
+    "age_note": "Among the oldest galaxies in the universe — formed when the universe was only about 180 million years old",
+    "mass_solar_masses": "Approximately 1.5 trillion solar masses (including dark matter halo)",
+    "position_in_universe": "Member of the Local Group of galaxies",
+    "sun_location": "About 26,000 light-years from the Galactic Center, in the Orion Arm (a minor spur between the Sagittarius and Perseus Arms)",
+    "sun_orbital_period_years": "225–250 million years (one 'galactic year')",
+    "nearest_star": {
+      "name": "Proxima Centauri",
+      "distance_light_years": 4.24,
+      "type": "Red dwarf (M-type)",
+      "note": "Part of the Alpha Centauri triple star system"
+    },
+    "central_black_hole": "Sagittarius A* (Sgr A*)",
+    "central_black_hole_mass_solar_masses": "4 million",
+    "satellite_galaxies": ["Large Magellanic Cloud (~160,000 ly away)", "Small Magellanic Cloud (~200,000 ly away)", "Canis Major Dwarf (~25,000 ly)", "Sagittarius Dwarf Spheroidal", "and ~50 others"],
+    "structure": {
+      "central_bar": "A bar-shaped structure of stars approximately 27,000 light-years long at the galaxy's core",
+      "spiral_arms": ["Norma Arm", "Scutum–Centaurus Arm", "Sagittarius Arm", "Orion Arm (minor spur — location of our Solar System)", "Perseus Arm"],
+      "disk": "A flat disk about 100,000 light-years across and about 1,000 light-years thick",
+      "central_bulge": "A dense central bulge of older stars about 10,000–12,000 light-years across",
+      "halo": "A spherical halo of old stars and globular clusters extending well beyond the disk, plus a much larger dark matter halo"
+    }
+  },
+  "andromeda": {
+    "formal_name": "Andromeda Galaxy",
+    "designation": "M31 (Messier 31) / NGC 224",
+    "type": "Barred Spiral Galaxy",
+    "distance_light_years": "2.537 million light-years",
+    "diameter_light_years": "220,000 light-years",
+    "stars": "~1 trillion",
+    "mass_solar_masses": "~1.5 trillion solar masses",
+    "status": "Largest galaxy in the Local Group; nearest large spiral galaxy to the Milky Way",
+    "collision_with_milky_way": {
+      "expected_in": "Approximately 4.5 billion years",
+      "result": "A new, merged galaxy — sometimes nicknamed 'Milkomeda' or 'Milkdromeda' — likely an elliptical galaxy",
+      "note": "Our Solar System will almost certainly survive the merger, as the vast distances between stars make actual stellar collisions extremely unlikely, but it may be flung into a different location within the merged galaxy"
+    },
+    "visible_from_earth": "Visible to the naked eye as a faint smudge in the constellation Andromeda — the farthest object visible without a telescope"
+  },
+  "largest_known_galaxy": {
+    "name": "IC 1101",
+    "type": "Supergiant elliptical galaxy (cD galaxy)",
+    "diameter_light_years": "6 million light-years",
+    "diameter_comparison": "About 60 times larger than the Milky Way",
+    "distance_from_earth_light_years": "1.045 billion light-years",
+    "location": "At the center of the galaxy cluster Abell 2029",
+    "stars": "Estimated 100 trillion stars",
+    "mass": "Approximately 100 trillion solar masses",
+    "note": "IC 1101 is one of the most massive known objects in the universe, formed through repeated mergers of other galaxies over billions of years"
+  },
+  "observable_universe_galaxies": {
+    "estimated_count": "2 trillion+",
+    "note": "A 2016 study using deep Hubble imagery concluded there are at least 2 trillion galaxies in the observable universe — about 10 times more than previously estimated",
+    "observable_universe_diameter_light_years": "93 billion light-years",
+    "hubble_deep_field": "The Hubble Deep Field (1995) revealed thousands of previously unknown galaxies in a tiny patch of apparently empty sky — transforming our understanding of galaxy abundance"
+  },
+  "galaxy_clusters": {
+    "description": "Galaxies rarely exist in isolation — they are gathered into groups, clusters, and superclusters by gravity",
+    "local_group": {
+      "description": "The Milky Way is a member of the Local Group — a collection of about 54 galaxies spanning roughly 10 million light-years",
+      "major_members": ["Milky Way", "Andromeda (M31)", "Triangulum Galaxy (M33)", "Large Magellanic Cloud", "Small Magellanic Cloud"],
+      "mass": "Approximately 3 trillion solar masses (dominated by Milky Way and Andromeda)"
+    },
+    "virgo_cluster": {
+      "description": "The nearest large galaxy cluster, containing over 1,300 galaxies, centered about 65 million light-years away",
+      "notable_member": "M87 — host of the first-ever photographed black hole"
+    },
+    "laniakea_supercluster": {
+      "description": "The supercluster in which the Milky Way resides, discovered/defined in 2014",
+      "diameter_light_years": "520 million light-years",
+      "mass_solar_masses": "Approximately 10^17 (100 quadrillion solar masses)",
+      "galaxies": "~100,000 galaxies",
+      "note": "Named from the Hawaiian word for 'immeasurable heaven'"
+    },
+    "largest_known_structures": [
+      {
+        "name": "Hercules–Corona Borealis Great Wall",
+        "type": "Galaxy filament (large-scale structure)",
+        "size_light_years": "10 billion light-years",
+        "note": "Possibly the largest known structure in the observable universe"
+      },
+      {
+        "name": "Sloan Great Wall",
+        "type": "Galaxy filament",
+        "size_light_years": "1.37 billion light-years"
+      }
+    ]
+  },
+  "dark_matter": {
+    "description": "Dark matter is a form of matter that does not interact with the electromagnetic force (so it emits, absorbs, and reflects no light), but exerts gravitational force. It is estimated to make up about 27% of the total energy content of the universe.",
+    "evidence_in_galaxies": [
+      "Galaxy rotation curves: Stars in the outer regions of galaxies orbit too fast to be explained by visible matter alone — a dark matter halo must provide extra gravitational force",
+      "Gravitational lensing: Clusters of galaxies bend light from objects behind them more than visible mass can explain",
+      "Galaxy cluster dynamics: Galaxies in clusters move faster than visible mass can account for",
+      "Large-scale structure formation: Galaxies and clusters could not have formed in the time available without dark matter seeds"
+    ],
+    "nature": "Unknown. Candidates include WIMPs (Weakly Interacting Massive Particles), axions, sterile neutrinos, and primordial black holes.",
+    "ratio_in_galaxies": "Typical galaxies are embedded in dark matter halos containing about 5–10 times as much mass as their visible stars and gas"
+  },
+  "galaxy_formation_and_evolution": {
+    "description": "Galaxies formed from small density fluctuations in the early universe, which grew over billions of years through gravity-driven collapse of gas and dark matter.",
+    "first_galaxies": "The earliest galaxies formed roughly 400–600 million years after the Big Bang. The James Webb Space Telescope (JWST) has detected galaxies from as early as ~300 million years after the Big Bang.",
+    "mergers": "Galaxies grow primarily through collisions and mergers with other galaxies, accumulating mass and stars over billions of years. The Milky Way itself has consumed dozens of smaller galaxies throughout its history.",
+    "AGN_feedback": "Active Galactic Nuclei (AGN) — powered by supermassive black holes — can regulate star formation in galaxies by heating and ejecting gas, a key mechanism in galaxy evolution.",
+    "cosmic_web": "Galaxies are not distributed randomly in space. They are arranged in a 'cosmic web' of filaments, walls, and voids — the largest-scale structure in the universe."
+  },
+  "famous_galaxies": [
+    {
+      "name": "Whirlpool Galaxy (M51)",
+      "type": "Spiral",
+      "distance_ly": "23 million light-years",
+      "note": "First galaxy in which spiral structure was observed (1845, by Lord Rosse)"
+    },
+    {
+      "name": "Sombrero Galaxy (M104)",
+      "type": "Sa/Lenticular (debated)",
+      "distance_ly": "29.3 million light-years",
+      "note": "Features a distinctive dust lane and large central bulge resembling a Mexican hat"
+    },
+    {
+      "name": "Centaurus A (NGC 5128)",
+      "type": "Elliptical/Radio galaxy",
+      "distance_ly": "13 million light-years",
+      "note": "Nearest radio galaxy to Earth, notable for massive jets from its active central black hole"
+    },
+    {
+      "name": "Large Magellanic Cloud (LMC)",
+      "type": "Irregular/Barred Spiral (debated)",
+      "distance_ly": "160,000 light-years",
+      "note": "Satellite galaxy of the Milky Way; site of Supernova 1987A — the nearest observed supernova in modern times"
+    }
+  ],
+  "summary": "Galaxies are the fundamental building blocks of the universe — vast collections of stars, gas, dust, and dark matter held together by gravity. The observable universe contains an estimated 2 trillion galaxies. They come in four main types: spiral, elliptical, lenticular, and irregular. Our own Milky Way is a barred spiral galaxy about 100,000 light-years across, containing 200–400 billion stars, with a supermassive black hole (Sagittarius A*) at its center. The Andromeda Galaxy, our nearest large neighbor at 2.537 million light-years away, is on a collision course with the Milky Way, expected to merge in about 4.5 billion years. The largest known galaxy, IC 1101, spans an astounding 6 million light-years and contains roughly 100 trillion stars.",
+  "interesting_facts": [
+    "The observable universe is estimated to contain over 2 trillion galaxies — about 10 times more than astronomers believed before 2016.",
+    "The Milky Way has a supermassive black hole at its center — Sagittarius A* — with a mass 4 million times that of the Sun.",
+    "It takes our Solar System about 225–250 million years to complete one orbit around the Milky Way's center — a span of time sometimes called a 'galactic year' or 'cosmic year'.",
+    "The Andromeda Galaxy is on a collision course with the Milky Way and will merge with it in approximately 4.5 billion years, likely forming a giant elliptical galaxy.",
+    "The farthest object visible to the naked eye is the Andromeda Galaxy, which appears as a faint smudge in dark skies despite being 2.537 million light-years away.",
+    "The largest known galaxy, IC 1101, is about 6 million light-years in diameter — 60 times the size of the Milky Way — and contains an estimated 100 trillion stars.",
+    "The Milky Way itself has consumed and absorbed dozens of smaller dwarf galaxies over its lifetime — a process called galactic cannibalism.",
+    "Galaxies are not uniformly distributed in space. They form a 'cosmic web' of filaments, walls, and vast voids that stretches across the entire observable universe.",
+    "About 27% of the universe's total energy content is dark matter, and galaxies are embedded in vast invisible dark matter halos that extend far beyond their visible boundaries.",
+    "The James Webb Space Telescope (JWST), launched in 2021, has detected galaxies from just ~300 million years after the Big Bang, pushing back the frontier of cosmic observation."
+  ],
+  "faq": [
+    {
+      "question": "What is a galaxy?",
+      "answer": "A galaxy is a gravitationally bound system of stars, stellar remnants, interstellar gas, dust, and dark matter. Galaxies range from dwarf galaxies with a few million stars to giant elliptical galaxies with hundreds of trillions. They are the fundamental building blocks of the large-scale structure of the universe. The observable universe is estimated to contain at least 2 trillion galaxies."
+    },
+    {
+      "question": "How many galaxies are in the universe?",
+      "answer": "The observable universe is estimated to contain over 2 trillion galaxies, according to a comprehensive 2016 study. This estimate was about 10 times higher than earlier estimates of ~200 billion, thanks to deep surveys accounting for small, faint galaxies that earlier telescopes could not resolve. The total number of galaxies in the entire universe (beyond the observable limit) is unknown and potentially infinite."
+    },
+    {
+      "question": "What type of galaxy is the Milky Way?",
+      "answer": "The Milky Way is a barred spiral galaxy (type SBbc). It has a central bar-shaped structure of stars, with spiral arms winding outward from the ends of the bar. It is approximately 100,000 light-years in diameter, contains an estimated 200–400 billion stars, and our Solar System is located in the Orion Arm, a minor spiral spur, about 26,000 light-years from the Galactic Center."
+    },
+    {
+      "question": "Will the Milky Way and Andromeda Galaxy collide?",
+      "answer": "Yes — the Andromeda Galaxy and the Milky Way are currently approaching each other at about 110 km/s and are expected to begin merging in approximately 4.5 billion years. After a series of gravitational interactions and pass-throughs over about 2 billion years following that, they will likely settle into a single giant elliptical galaxy. Despite the collision, the vast distances between individual stars mean actual stellar collisions are astronomically unlikely — but the night sky will be transformed dramatically."
+    },
+    {
+      "question": "What is a galactic year?",
+      "answer": "A galactic year (also called a cosmic year) is the time it takes for the Solar System to complete one full orbit around the center of the Milky Way. It takes approximately 225–250 million Earth years. Since Earth formed, our Solar System has completed roughly 18–20 galactic orbits. The last time our Solar System was at its current position in the galaxy, the dominant life forms on Earth were early dinosaurs."
+    },
+    {
+      "question": "What is dark matter and why is it important to galaxies?",
+      "answer": "Dark matter is an invisible form of matter that does not emit, absorb, or reflect light, but exerts gravitational force. Its existence was inferred because the outer stars of galaxies orbit too fast to be held in place by the gravity of visible matter alone. Dark matter halos extend far beyond the visible edge of galaxies and provide the extra gravitational mass needed to explain observed rotation rates, galaxy cluster dynamics, and the large-scale structure of the universe. It comprises about 27% of the universe's total energy content."
+    },
+    {
+      "question": "What is the largest known galaxy?",
+      "answer": "The largest known galaxy is IC 1101, a supergiant elliptical galaxy at the center of galaxy cluster Abell 2029, about 1.045 billion light-years from Earth. It spans approximately 6 million light-years in diameter — roughly 60 times the size of the Milky Way — and contains an estimated 100 trillion stars. IC 1101 formed through billions of years of galactic mergers and cannibalism."
+    },
+    {
+      "question": "What is the nearest galaxy to the Milky Way?",
+      "answer": "The nearest galaxy to the Milky Way is the Canis Major Dwarf Galaxy, located only about 25,000 light-years from Earth's solar system (and about 42,000 light-years from the Milky Way's center). However, it is currently being actively absorbed/disrupted by the Milky Way's gravity. The nearest large, distinct galaxy is the Andromeda Galaxy (M31), at 2.537 million light-years away. The Large Magellanic Cloud (~160,000 light-years away) is the nearest large satellite galaxy."
+    },
+    {
+      "question": "How did galaxies form?",
+      "answer": "Galaxies formed from tiny density fluctuations in the hot, nearly uniform early universe after the Big Bang. Over hundreds of millions of years, dark matter and gas gravitationally collapsed into small clumps, which grew through mergers and accretion into the first protogalaxies and eventually into the diverse galaxies we see today. The James Webb Space Telescope has detected galaxies as early as ~300 million years after the Big Bang, revealing surprisingly massive and well-formed early galaxies that challenge some aspects of current models."
+    },
+    {
+      "question": "Can you see other galaxies with the naked eye?",
+      "answer": "Yes — several galaxies are visible to the naked eye under dark skies. The Andromeda Galaxy (M31) at 2.537 million light-years is the farthest object visible without a telescope, appearing as a faint smudge in the constellation Andromeda. The Large and Small Magellanic Clouds (at 160,000 and 200,000 light-years respectively) are clearly visible from the Southern Hemisphere. In very dark skies, the Triangulum Galaxy (M33) may also be glimpsed."
+    },
+    {
+      "question": "What is a galaxy cluster?",
+      "answer": "A galaxy cluster is a gravitationally bound collection of hundreds to thousands of galaxies, along with vast amounts of hot intracluster gas and dark matter. They are the largest gravitationally bound structures in the universe. The Milky Way belongs to the Local Group (~54 galaxies), which is itself part of the Virgo Supercluster, which is part of the Laniakea Supercluster — a cosmic structure spanning 520 million light-years and containing roughly 100,000 galaxies."
+    },
+    {
+      "question": "What is the cosmic web?",
+      "answer": "The cosmic web is the large-scale structure of the universe, in which galaxies and galaxy clusters are arranged in a web-like pattern of filaments, sheets, and walls surrounding vast empty regions called voids. This structure formed because dark matter and normal matter in the early universe was not perfectly smooth — slight overdensities attracted more matter, growing into filaments and cluster nodes, while underdense regions grew into voids. The largest known structure in the observable universe is the Hercules–Corona Borealis Great Wall, a galaxy filament spanning about 10 billion light-years."
+    },
+    {
+      "question": "Does every galaxy have a black hole at its center?",
+      "answer": "Most large galaxies are believed to harbor a supermassive black hole (SMBH) at their center — this appears to be the rule rather than the exception. The Milky Way's central black hole is Sagittarius A* (4 million solar masses), and M87's is 6.5 billion solar masses. The mass of the central black hole correlates strongly with the mass of the surrounding stellar bulge (the M-sigma relation), suggesting black holes and galaxies co-evolve. Dwarf galaxies may host smaller black holes or none at all."
+    }
+  ]
+}

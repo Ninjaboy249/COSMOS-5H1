@@ -1,0 +1,175 @@
+{
+  "id": "nasa-missions",
+  "name": "NASA Missions",
+  "summary": "NASA (National Aeronautics and Space Administration) was founded on July 29, 1958, by President Dwight D. Eisenhower in response to the Soviet Union's Sputnik launch. It replaced the earlier NACA (National Advisory Committee for Aeronautics). Since its founding, NASA has led humanity's exploration of space, from the first American in orbit to landing on the Moon, launching space telescopes that reshaped our understanding of the universe, sending robotic explorers to every planet in the solar system, and building and operating the International Space Station. NASA operates from its headquarters in Washington, D.C., with major centers including Kennedy Space Center, Johnson Space Center, Jet Propulsion Laboratory, Goddard Space Flight Center, and many others.",
+  "founded": 1958,
+  "headquarters": "Washington, D.C., USA",
+  "notable_programs": {
+    "Apollo": {
+      "years": "1961-1972",
+      "landings": 6,
+      "crews_to_moon": 12,
+      "highlight": "Apollo 11, July 20 1969, first Moon landing. Neil Armstrong and Buzz Aldrin became the first humans to walk on the Moon while Michael Collins orbited above.",
+      "missions": [
+        "Apollo 1 (1967) - Tragic launchpad fire killed Gus Grissom, Ed White, and Roger Chaffee",
+        "Apollo 7 (1968) - First crewed Apollo mission in Earth orbit",
+        "Apollo 8 (1968) - First crewed mission to orbit the Moon",
+        "Apollo 11 (1969) - First Moon landing, Sea of Tranquility",
+        "Apollo 12 (1969) - Second Moon landing, Ocean of Storms",
+        "Apollo 13 (1970) - Aborted Moon landing due to oxygen tank explosion; crew safely returned",
+        "Apollo 14 (1971) - Third Moon landing, Fra Mauro",
+        "Apollo 15 (1971) - Fourth Moon landing, introduced Lunar Roving Vehicle",
+        "Apollo 16 (1972) - Fifth Moon landing, Descartes Highlands",
+        "Apollo 17 (1972) - Sixth and final Moon landing, Taurus-Littrow valley"
+      ]
+    },
+    "Hubble": {
+      "launch": 1990,
+      "status": "Active",
+      "discoveries": "Determined age of universe (~13.8 billion years), dark energy evidence, deep field images showing thousands of galaxies, black holes in galactic centers, protoplanetary disks",
+      "servicing_missions": 5,
+      "altitude_km": 547,
+      "notes": "Launched with a flawed mirror but corrected in 1993 by Space Shuttle astronauts in a historic servicing mission."
+    },
+    "Mars_Exploration": {
+      "missions": [
+        "Pathfinder 1997 - First Mars rover (Sojourner), proved concept of airbag landing",
+        "Spirit 2004 - Explored Gusev Crater, operated until 2010",
+        "Opportunity 2004-2018 - Explored Meridiani Planum, lasted 14+ years (designed for 90 days)",
+        "Curiosity 2012-active - Nuclear-powered rover in Gale Crater, confirmed habitability",
+        "Perseverance 2021-active - Jezero Crater, collecting samples for return, produced oxygen on Mars",
+        "Ingenuity 2021 - First powered flight on another planet, helicopter companion to Perseverance"
+      ],
+      "earlier_missions": [
+        "Mariner 4 (1965) - First Mars flyby",
+        "Viking 1 & 2 (1976) - First successful Mars landers"
+      ]
+    },
+    "ISS": {
+      "start": 1998,
+      "continuous_crewed_since": 2000,
+      "partners": "NASA, ROSCOSMOS, ESA, JAXA, CSA",
+      "altitude_km": 408,
+      "orbital_speed_kmh": 27600,
+      "size": "109 meters wide, 73 meters long",
+      "notes": "The ISS is the largest human-made structure in space and the most expensive ($150 billion+). It circles Earth every ~90 minutes."
+    },
+    "Artemis": {
+      "goal": "Return humans to the Moon's south pole, including first woman and first person of color on the Moon",
+      "Artemis_I": "November 2022 - Uncrewed test flight around the Moon using SLS rocket and Orion capsule",
+      "Artemis_II": "2025 - Crewed flyby of the Moon with four astronauts",
+      "Artemis_III": "2026 - Planned Moon landing at south polar region using SpaceX Starship as Human Landing System",
+      "rocket": "Space Launch System (SLS)",
+      "capsule": "Orion"
+    },
+    "Voyager": {
+      "launch": 1977,
+      "status": "Both active in interstellar space",
+      "Voyager_1": "Launched Sept 5 1977; crossed into interstellar space in 2012; farthest human-made object from Earth (~24 billion km as of 2024)",
+      "Voyager_2": "Launched Aug 20 1977; only spacecraft to visit Uranus and Neptune; crossed into interstellar space in 2018",
+      "power_source": "Radioisotope Thermoelectric Generators (RTGs)"
+    },
+    "JWST": {
+      "full_name": "James Webb Space Telescope",
+      "launch": "December 25, 2021",
+      "operation_point": "L2 (Second Lagrange Point, 1.5 million km from Earth)",
+      "first_images": "July 12, 2022",
+      "capabilities": "Infrared telescope observing earliest galaxies, exoplanet atmospheres, star formation",
+      "mirror_diameter_m": 6.5,
+      "partners": "NASA, ESA, CSA"
+    },
+    "Cassini": {
+      "years": "1997-2017",
+      "achievement": "13 years in Saturn orbit; discovered water plumes on Enceladus; Huygens probe landed on Titan",
+      "end": "Grand Finale — deliberately plunged into Saturn's atmosphere September 15, 2017",
+      "partner": "ESA (Huygens probe)"
+    },
+    "New_Horizons": {
+      "launch": 2006,
+      "pluto_flyby": "July 14, 2015",
+      "discoveries": "Revealed Pluto's heart-shaped Tombaugh Regio, mountains, thin atmosphere, 5 moons",
+      "current_status": "Continuing into Kuiper Belt; flew by Arrokoth (2014 MU69) in January 2019"
+    },
+    "Parker_Solar_Probe": {
+      "launch": 2018,
+      "closest_approach": "6.1 million km from Sun's surface",
+      "speed": "Fastest human-made object — ~692,000 km/h",
+      "mission": "Study the Sun's corona and solar wind origin",
+      "achievement": "First spacecraft to fly through the Sun's corona (2021)"
+    }
+  },
+  "interesting_facts": [
+    "NASA was established on July 29, 1958, less than a year after the Soviet Union launched Sputnik 1 on October 4, 1957.",
+    "The Apollo program employed more than 400,000 engineers, scientists, and technicians at its peak.",
+    "NASA's Opportunity rover on Mars was designed for a 90-day mission but operated for over 14 years until 2018.",
+    "The Voyager 1 spacecraft, launched in 1977, is now over 24 billion kilometers from Earth — the farthest human-made object ever.",
+    "The Hubble Space Telescope has made over 1.5 million observations since launch and contributed to more than 19,000 scientific papers.",
+    "NASA's Parker Solar Probe is the fastest human-made object ever, traveling at speeds exceeding 692,000 km/h.",
+    "The International Space Station travels at 27,600 km/h and completes about 16 orbits of Earth every day.",
+    "NASA's JWST can observe galaxies that formed just 300 million years after the Big Bang — looking back over 13.5 billion years.",
+    "NASA's Ingenuity helicopter on Mars achieved the first powered, controlled flight on another planet on April 19, 2021.",
+    "The total cost of the Apollo program was approximately $25.4 billion (~$260 billion in today's dollars), one of the largest peacetime expenditures in US history."
+  ],
+  "faq": [
+    {
+      "question": "When was NASA founded?",
+      "answer": "NASA was founded on July 29, 1958, by President Dwight D. Eisenhower, replacing the earlier National Advisory Committee for Aeronautics (NACA)."
+    },
+    {
+      "question": "Who was the first person to walk on the Moon?",
+      "answer": "Neil Armstrong was the first human to walk on the Moon, on July 20, 1969, during the Apollo 11 mission. Buzz Aldrin followed shortly after."
+    },
+    {
+      "question": "How many people have walked on the Moon?",
+      "answer": "Twelve people have walked on the Moon, all Americans, during six Apollo missions between 1969 and 1972 (Apollo 11, 12, 14, 15, 16, and 17)."
+    },
+    {
+      "question": "What is the James Webb Space Telescope?",
+      "answer": "JWST is NASA's premier space science observatory, launched December 25, 2021. It observes the universe in infrared light from the L2 point, 1.5 million km from Earth, and can see back to within 300 million years of the Big Bang."
+    },
+    {
+      "question": "What is the Artemis program?",
+      "answer": "Artemis is NASA's program to return humans to the Moon, aiming to land at the lunar south pole. Artemis I (uncrewed) flew in November 2022, Artemis II (crewed flyby) is planned for 2025, and Artemis III (Moon landing) is targeted for 2026."
+    },
+    {
+      "question": "What is the ISS and who operates it?",
+      "answer": "The International Space Station is a modular orbital laboratory assembled in space starting in 1998. It has been continuously crewed since November 2000 and is operated by a partnership of NASA (USA), Roscosmos (Russia), ESA (Europe), JAXA (Japan), and CSA (Canada)."
+    },
+    {
+      "question": "How far has Voyager 1 traveled?",
+      "answer": "As of 2024, Voyager 1 is approximately 24 billion kilometers from Earth, making it the farthest human-made object ever. It crossed into interstellar space in 2012 and continues to send data back to NASA."
+    },
+    {
+      "question": "What did the Hubble Space Telescope discover?",
+      "answer": "Hubble's key discoveries include confirming the accelerating expansion of the universe (dark energy), determining the universe's age (~13.8 billion years), imaging deep fields showing thousands of galaxies, confirming black holes in galactic centers, and observing protoplanetary disks."
+    },
+    {
+      "question": "What is the Cassini mission?",
+      "answer": "Cassini was a NASA/ESA spacecraft that orbited Saturn from 2004 to 2017 — a total of 13 years. It discovered water plumes on Enceladus, carried the Huygens probe that landed on Titan, and ended with a 'Grand Finale' dive into Saturn's atmosphere in September 2017."
+    },
+    {
+      "question": "What is the Parker Solar Probe?",
+      "answer": "Parker Solar Probe, launched in 2018, is the fastest human-made object and the closest spacecraft to the Sun, approaching within 6.1 million km of its surface. In 2021, it became the first spacecraft to fly through the Sun's corona."
+    },
+    {
+      "question": "What is NASA's budget?",
+      "answer": "NASA's annual budget is approximately $25 billion (FY2024), which is about 0.4% of the US federal budget. Despite being a fraction of total government spending, it has yielded enormous scientific and technological returns."
+    },
+    {
+      "question": "What happened on Apollo 13?",
+      "answer": "Apollo 13, launched April 11, 1970, suffered an oxygen tank explosion en route to the Moon. The crew of Jim Lovell, Jack Swigert, and Fred Haise used the Lunar Module as a lifeboat and safely returned to Earth on April 17, 1970, in what NASA called its 'finest hour.'"
+    },
+    {
+      "question": "What is the DART mission?",
+      "answer": "DART (Double Asteroid Redirection Test) was NASA's first planetary defense mission. In October 2022, the DART spacecraft deliberately impacted the asteroid Dimorphos (moonlet of Didymos), successfully changing its orbital period — demonstrating humanity's ability to deflect a potential asteroid threat."
+    },
+    {
+      "question": "What rovers are currently active on Mars?",
+      "answer": "As of 2024, NASA has two active Mars rovers: Curiosity (since 2012) in Gale Crater, and Perseverance (since February 2021) in Jezero Crater. Ingenuity, the helicopter companion to Perseverance, flew until January 2024 when it damaged a rotor blade."
+    },
+    {
+      "question": "What was the first NASA mission?",
+      "answer": "NASA's first major launch was Pioneer 1 on October 11, 1958 — just weeks after the agency was formed. The first American in space was Alan Shepard on May 5, 1961, aboard Freedom 7 during Project Mercury."
+    }
+  ]
+}

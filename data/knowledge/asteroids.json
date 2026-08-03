@@ -1,0 +1,165 @@
+{
+  "id": "asteroids",
+  "name": "Asteroids",
+  "description": "Asteroids are rocky, metallic, or carbonaceous bodies that orbit the Sun, primarily remnants from the formation of the solar system about 4.6 billion years ago. Unlike planets, asteroids are too small to have achieved hydrostatic equilibrium (a round shape). They range in size from microscopic dust to Ceres, which is 940 km in diameter and classified as a dwarf planet. Most asteroids reside in the main asteroid belt between Mars and Jupiter, but populations also exist in Jupiter's Trojan points, the Kuiper Belt, and in Earth-crossing orbits (near-Earth asteroids). Studying asteroids provides a window into the early solar system, as they are preserved primordial material.",
+  "main_asteroid_belt": {
+    "location": "Between Mars and Jupiter",
+    "distance_from_sun": "2.2 to 3.2 AU (Astronomical Units)",
+    "estimated_objects": "Over 1 million asteroids larger than 1 km",
+    "total_mass": "Approximately 4% of the Moon's mass — surprisingly sparse",
+    "notes": "Despite popular depictions, the main belt is mostly empty space. Spacecraft traveling through it rarely encounter any asteroids by chance."
+  },
+  "asteroid_types": {
+    "C_type": {
+      "name": "Carbonaceous",
+      "percentage": "~75% of all asteroids",
+      "description": "Dark, carbon-rich asteroids found in the outer main belt. Primitive composition similar to the Sun minus volatiles. Ryugu and Bennu are C-type asteroids.",
+      "albedo": "Very low (dark surface)"
+    },
+    "S_type": {
+      "name": "Silicate (Stony)",
+      "percentage": "~17% of all asteroids",
+      "description": "Composed of silicate minerals and metal (iron, magnesium). Common in the inner main belt. Itokawa (Hayabusa target) is an S-type asteroid.",
+      "albedo": "Moderate (brighter than C-type)"
+    },
+    "M_type": {
+      "name": "Metallic",
+      "percentage": "~8% of all asteroids",
+      "description": "Metal-rich asteroids, primarily iron and nickel. Thought to be remnant cores of differentiated planetesimals. Psyche is the most famous M-type asteroid.",
+      "albedo": "Moderate to high"
+    }
+  },
+  "notable_asteroids": {
+    "Ceres": {
+      "size": "940 km — classified as a dwarf planet",
+      "type": "C-type",
+      "location": "Main asteroid belt",
+      "mission": "NASA Dawn spacecraft arrived 2015; first dwarf planet to be orbited by a spacecraft",
+      "discoveries": "Bright spots in Occator Crater found to be brine deposits (salty water that froze)"
+    },
+    "Vesta": {
+      "size": "525 km",
+      "type": "V-type (basaltic, differentiated)",
+      "location": "Main asteroid belt",
+      "mission": "NASA Dawn spacecraft orbited 2011-2012",
+      "discoveries": "Has a differentiated interior (core, mantle, crust) like a small planet; giant impact basin at south pole"
+    },
+    "Apophis": {
+      "size": "370 meters diameter",
+      "type": "S-type",
+      "close_approach": "April 13, 2029 — will pass just 31,000 km from Earth (closer than many satellites)",
+      "risk": "Initially thought to have a small impact probability in 2036; ruled out after further observations",
+      "visibility": "Will be visible to the naked eye during its 2029 flyby"
+    },
+    "Ryugu": {
+      "size": "~900 meters",
+      "type": "C-type",
+      "mission": "JAXA's Hayabusa2 collected and returned samples to Earth in December 2020",
+      "discoveries": "Samples revealed organic molecules and amino acid precursors, supporting the theory that asteroids seeded Earth with the building blocks of life"
+    },
+    "Bennu": {
+      "size": "~500 meters",
+      "type": "C-type",
+      "mission": "NASA OSIRIS-REx collected samples and returned them to Earth on September 24, 2023",
+      "discoveries": "Found hydrated silicates and organics; confirmed presence of water-altered minerals",
+      "risk": "1-in-2,700 chance of Earth impact in 2182 — highest known probability for any significant asteroid",
+      "current_mission": "Spacecraft now renamed OSIRIS-APEX, heading to asteroid Apophis"
+    },
+    "Psyche": {
+      "size": "~280 km",
+      "type": "M-type metallic",
+      "description": "Psyche may be the exposed metallic core of a differentiated planetesimal that lost its rocky mantle in ancient collisions. Could contain metal worth quintillions of dollars.",
+      "mission": "NASA Psyche mission launched October 13, 2023; arriving at asteroid in 2029",
+      "significance": "First mission to study a metallic world; may reveal how planetary cores form"
+    },
+    "Itokawa": {
+      "size": "~535 meters",
+      "type": "S-type",
+      "mission": "JAXA Hayabusa-1 returned tiny samples in 2010 — first asteroid sample return mission"
+    }
+  },
+  "near_earth_objects": {
+    "definition": "NEOs are asteroids and comets with orbits that bring them within 1.3 AU of the Sun (within 0.3 AU of Earth's orbit).",
+    "count": "Over 32,000 known NEAs (Near-Earth Asteroids) as of 2024",
+    "monitoring": "NASA's Center for Near Earth Object Studies (CNEOS) tracks all known NEOs",
+    "Spaceguard_goal": "Find 90% of NEOs larger than 1 km (largely achieved)"
+  },
+  "potentially_hazardous_asteroids": {
+    "definition": "Asteroids larger than ~140 meters that approach within 0.05 AU (7.5 million km) of Earth's orbit.",
+    "count": "Over 2,300 PHAs known as of 2024",
+    "monitoring": "Continuously monitored by NASA, ESA's NEOCC, and global telescope networks",
+    "threat_threshold": "Objects larger than 140 meters could cause regional devastation; larger than 1 km could have global effects"
+  },
+  "DART_mission": {
+    "full_name": "Double Asteroid Redirection Test",
+    "agency": "NASA",
+    "target": "Dimorphos — moonlet of asteroid Didymos",
+    "impact_date": "October 26, 2022",
+    "result": "Successfully shortened Dimorphos's orbital period around Didymos by 33 minutes — proving that kinetic impactor technology can deflect an asteroid",
+    "significance": "First successful planetary defense test in history; demonstrated that humanity can deflect an asteroid threat given enough warning time",
+    "follow_up": "ESA's Hera mission launched 2024 will inspect the Didymos system and measure the crater left by DART"
+  },
+  "summary": "Asteroids are the leftover building blocks of the solar system — rocky and metallic bodies that never coalesced into a planet. The main belt between Mars and Jupiter contains over a million, but the total mass is surprisingly small. Classified into C, S, and M types based on composition, they range from Ceres (a dwarf planet) to rubble piles a few meters across. Near-Earth asteroids are tracked for impact risk, and missions like DART have proved we can deflect them. Sample-return missions to Ryugu and Bennu have revealed organic molecules that may have seeded life on early Earth.",
+  "interesting_facts": [
+    "If all the material in the main asteroid belt were combined, it would form a body smaller than Earth's Moon, with less than 4% of the Moon's mass.",
+    "Asteroid Apophis will pass closer to Earth than many satellites on April 13, 2029 — at just 31,000 km — and will be visible to the naked eye.",
+    "NASA's DART mission in October 2022 successfully changed an asteroid's orbit for the first time in history, demonstrating planetary defense capability.",
+    "Asteroid Bennu, the target of NASA's OSIRIS-REx mission, has a 1-in-2,700 chance of hitting Earth in 2182 and is classed as the most significant known asteroid risk.",
+    "Samples returned from asteroid Ryugu by JAXA's Hayabusa2 contained amino acid precursors and organic molecules, suggesting asteroids may have delivered life's building blocks to Earth.",
+    "Asteroid Psyche may be the metallic core of a shattered protoplanet and could theoretically contain iron-nickel metal worth tens of quintillions of dollars.",
+    "The Chicxulub impactor that killed the dinosaurs 66 million years ago was an asteroid approximately 10-15 km wide.",
+    "The asteroid belt is not the dense field of rocks depicted in science fiction movies — spacecraft can safely traverse it without collision risk.",
+    "Ceres, the largest asteroid at 940 km, is classified as a dwarf planet and contains about 30% of the total mass of the entire asteroid belt.",
+    "Over 32,000 near-Earth asteroids have been discovered as of 2024, with hundreds more found each month thanks to increasingly powerful survey telescopes."
+  ],
+  "faq": [
+    {
+      "question": "What is an asteroid?",
+      "answer": "An asteroid is a rocky, metallic, or carbonaceous body that orbits the Sun, ranging in size from a few meters to hundreds of kilometers. They are remnants from the formation of the solar system 4.6 billion years ago that never coalesced into a planet, primarily due to Jupiter's gravitational influence."
+    },
+    {
+      "question": "Where is the main asteroid belt?",
+      "answer": "The main asteroid belt is located between the orbits of Mars and Jupiter, at distances of 2.2 to 3.2 AU from the Sun. Despite containing over one million asteroids larger than 1 km, the belt is mostly empty space and is easily traversed by spacecraft."
+    },
+    {
+      "question": "What are the types of asteroids?",
+      "answer": "Asteroids are classified mainly as C-type (carbonaceous, ~75%, dark and primitive), S-type (silicate/stony, ~17%, brighter and rocky), and M-type (metallic, ~8%, iron-nickel rich). Each type gives clues about the early solar system's chemistry and the formation of planetary bodies."
+    },
+    {
+      "question": "What is the DART mission?",
+      "answer": "DART (Double Asteroid Redirection Test) was NASA's first planetary defense mission. On October 26, 2022, it deliberately crashed into Dimorphos (a moonlet of Didymos) at over 22,000 km/h, successfully shortening Dimorphos's orbit by 33 minutes — proving asteroids can be deflected by kinetic impact."
+    },
+    {
+      "question": "Will Apophis hit Earth?",
+      "answer": "No. Apophis (370 m wide) will have a very close flyby of Earth on April 13, 2029, passing within just 31,000 km — closer than geostationary satellites. However, impact has been conclusively ruled out. It will be visible to the naked eye. Scientists will use the 2029 flyby to study how Earth's gravity alters the asteroid's orbit."
+    },
+    {
+      "question": "What are near-Earth asteroids?",
+      "answer": "Near-Earth Asteroids (NEAs) are asteroids with orbits that bring them within 1.3 AU of the Sun. Over 32,000 have been discovered as of 2024. NASA's Center for Near Earth Object Studies (CNEOS) continuously monitors all known NEAs for potential impact risk."
+    },
+    {
+      "question": "What did the OSIRIS-REx mission find on Bennu?",
+      "answer": "OSIRIS-REx found hydrated (water-altered) silicate minerals and organic molecules on Bennu, suggesting asteroid delivery of water and organics to early Earth. The samples, returned September 2023, could help explain how Earth became a habitable planet."
+    },
+    {
+      "question": "What did Hayabusa2 find on Ryugu?",
+      "answer": "JAXA's Hayabusa2 returned samples from C-type asteroid Ryugu in December 2020. Analysis revealed over 20 amino acids, nucleobases (building blocks of DNA and RNA), and abundant organic molecules — the richest organic material ever found in an extraterrestrial sample."
+    },
+    {
+      "question": "What is the NASA Psyche mission?",
+      "answer": "NASA's Psyche mission, launched October 13, 2023, is traveling to the metallic asteroid 16 Psyche — a 280 km body that may be the exposed core of an ancient shattered planetesimal. It will arrive in 2029 and study the composition of a metallic world for the first time, potentially revealing how Earth's own iron-nickel core formed."
+    },
+    {
+      "question": "What asteroid killed the dinosaurs?",
+      "answer": "The Chicxulub impactor struck Earth approximately 66 million years ago near what is now the Yucatán Peninsula, Mexico. It was an asteroid (or possibly comet) roughly 10–15 km in diameter. The impact triggered massive wildfires, a 'nuclear winter' effect from debris, and ultimately the extinction of ~75% of all species, including non-avian dinosaurs."
+    },
+    {
+      "question": "Are asteroids dangerous to Earth?",
+      "answer": "Small asteroids (under a few meters) burn up in the atmosphere harmlessly. Larger ones pose real risks: ~25 m can cause local damage (Chelyabinsk 2013), ~140 m+ could devastate a region, and 1 km+ could have global consequences. Over 2,300 potentially hazardous asteroids are known and continuously monitored."
+    },
+    {
+      "question": "What was the Chelyabinsk event?",
+      "answer": "On February 15, 2013, a ~20 m asteroid entered Earth's atmosphere over Chelyabinsk, Russia, and exploded as an airburst at ~30 km altitude with energy equivalent to ~500 kilotons of TNT (about 30 Hiroshima bombs). The shockwave injured ~1,500 people (mostly from broken glass) and damaged thousands of buildings. It was the largest asteroid impact on Earth since the 1908 Tunguska event."
+    }
+  ]
+}

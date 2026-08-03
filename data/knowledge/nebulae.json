@@ -1,0 +1,178 @@
+{
+  "id": "nebulae",
+  "name": "Nebulae",
+  "types": [
+    {
+      "name": "Emission Nebula",
+      "description": "Clouds of ionized gas that emit light of various colors. Nearby hot stars provide ultraviolet radiation that ionizes the gas, causing it to glow. Example: Orion Nebula."
+    },
+    {
+      "name": "Reflection Nebula",
+      "description": "Clouds of dust that reflect the light of nearby stars without emitting their own. They typically appear blue due to the scattering of shorter wavelengths. Example: The nebula surrounding the Pleiades star cluster."
+    },
+    {
+      "name": "Dark Nebula",
+      "description": "Dense clouds of gas and dust that block background light from stars or emission nebulae behind them, appearing as dark patches in the sky. Example: Horsehead Nebula, Coalsack Nebula."
+    },
+    {
+      "name": "Planetary Nebula",
+      "description": "Shells of ionized gas expelled by dying low-to-medium mass stars at the end of their red giant phase, leaving behind a hot white dwarf at the center. Example: Helix Nebula, Ring Nebula."
+    },
+    {
+      "name": "Supernova Remnant",
+      "description": "The expanding shell of gas and dust ejected by a massive star's supernova explosion. These structures can persist for thousands of years. Example: Crab Nebula, Veil Nebula."
+    }
+  ],
+  "famous_nebulae": {
+    "Orion_Nebula": {
+      "designation": "M42 / NGC 1976",
+      "description": "The nearest major star-forming region to Earth at approximately 1,344 light-years away, visible to the naked eye in Orion's sword. It is a stellar nursery actively producing hundreds of new stars.",
+      "distance_ly": 1344,
+      "type": "Emission Nebula"
+    },
+    "Pillars_of_Creation": {
+      "designation": "Part of M16 — Eagle Nebula",
+      "description": "Towering columns of interstellar gas and dust within the Eagle Nebula where new stars are being born. First famously imaged by Hubble in 1995 and re-imaged in stunning detail by the James Webb Space Telescope in 2022.",
+      "distance_ly": 6500,
+      "type": "Emission Nebula"
+    },
+    "Crab_Nebula": {
+      "designation": "M1 / NGC 1952",
+      "description": "The remnant of a supernova explosion observed and recorded by Chinese astronomers in 1054 AD. Located approximately 6,523 light-years away, it contains a rapidly spinning pulsar at its center.",
+      "distance_ly": 6523,
+      "type": "Supernova Remnant"
+    },
+    "Helix_Nebula": {
+      "designation": "NGC 7293",
+      "description": "A large, nearby planetary nebula approximately 650 light-years away in the constellation Aquarius. Its dramatic eye-like appearance has earned it the nickname 'Eye of God' or 'Eye of the Universe'.",
+      "distance_ly": 650,
+      "type": "Planetary Nebula"
+    },
+    "Carina_Nebula": {
+      "designation": "NGC 3372",
+      "description": "A massive, complex star-forming region approximately 10,000 light-years away in the southern sky. It spans over 300 light-years and is home to some of the most massive and luminous stars known, including Eta Carinae.",
+      "distance_ly": 10000,
+      "type": "Emission Nebula"
+    },
+    "Horsehead_Nebula": {
+      "designation": "Barnard 33",
+      "description": "A dark nebula in the constellation Orion, silhouetted against the bright emission nebula IC 434. Its striking horse-head shape makes it one of the most recognized astronomical objects. Located roughly 1,375 light-years away.",
+      "distance_ly": 1375,
+      "type": "Dark Nebula"
+    }
+  },
+  "star_formation_process": {
+    "overview": "Stars are born in cold, dense regions of molecular clouds called stellar nurseries. The process unfolds over millions of years.",
+    "steps": [
+      {
+        "stage": "1. Molecular Cloud",
+        "description": "Vast clouds of hydrogen gas, helium, and trace dust — the raw material for star formation. They can span hundreds of light-years."
+      },
+      {
+        "stage": "2. Cloud Collapse",
+        "description": "A trigger (nearby supernova, galactic density wave, or cloud collision) causes a region of the cloud to collapse under its own gravity, fragmenting into smaller clumps."
+      },
+      {
+        "stage": "3. Protostar",
+        "description": "A collapsing clump heats up as gravitational energy converts to thermal energy. A dense, opaque protostar forms at the center, surrounded by a rotating disk of gas and dust."
+      },
+      {
+        "stage": "4. T Tauri Phase",
+        "description": "The protostar continues to accrete mass. Strong stellar winds blow away the surrounding nebular material. Temperatures rise but nuclear fusion has not yet begun."
+      },
+      {
+        "stage": "5. Main Sequence Star",
+        "description": "Once core temperatures reach ~10 million Kelvin, hydrogen fusion ignites. The outward pressure from fusion balances gravity — the star achieves hydrostatic equilibrium and enters the main sequence."
+      }
+    ]
+  },
+  "planetary_nebula_formation": {
+    "overview": "Despite the misleading name (coined by William Herschel who thought they resembled planets), planetary nebulae have nothing to do with planets.",
+    "process": [
+      "A star of 0.8 to 8 solar masses exhausts its core hydrogen and expands into a red giant.",
+      "The star pulsates and sheds its outer layers as a slow stellar wind, forming an expanding shell of gas.",
+      "The exposed hot white dwarf core emits intense ultraviolet radiation.",
+      "This UV radiation ionizes the surrounding gas shell, causing it to glow in vibrant colors.",
+      "The nebula expands and fades over roughly 10,000–30,000 years, merging with the interstellar medium."
+    ],
+    "colors": "The colors indicate different ionized elements: red/pink from hydrogen-alpha, blue-green from doubly ionized oxygen (OIII), and red from ionized nitrogen (NII)."
+  },
+  "JWST_observations": {
+    "telescope": "James Webb Space Telescope",
+    "launched": "December 25, 2021",
+    "relevance": "JWST observes in infrared light, allowing it to peer through dust clouds invisible to optical telescopes, revealing hidden star formation and the earliest stages of stellar birth.",
+    "key_nebula_images": [
+      {
+        "target": "Carina Nebula",
+        "detail": "JWST's first release image (July 2022) revealed hundreds of previously unseen young stars in the Carina Nebula's 'Cosmic Cliffs'."
+      },
+      {
+        "target": "Pillars of Creation",
+        "detail": "JWST captured the Pillars of Creation in both near-infrared and mid-infrared light in 2022, revealing newborn stars embedded within the pillars for the first time."
+      },
+      {
+        "target": "Southern Ring Nebula",
+        "detail": "JWST revealed that the central white dwarf in the Southern Ring Nebula has a companion star, resolving a long-standing mystery about the nebula's asymmetric shape."
+      },
+      {
+        "target": "Orion Nebula",
+        "detail": "JWST observed the Orion Nebula in unprecedented detail, discovering new planet-forming disks (protoplanetary disks or 'proplyds') and young stellar objects."
+      }
+    ]
+  },
+  "summary": "Nebulae are vast clouds of gas and dust in space — the birthplaces, and sometimes the graveyards, of stars. They come in many forms: glowing emission nebulae ionized by young stars, reflective dust clouds, dark obscuring clouds, delicate planetary nebulae from dying stars, and dramatic supernova remnants. Nebulae are essential to the cosmic cycle: the heavy elements forged in stars are returned to the interstellar medium through nebulae, enriching the next generation of stars and planets.",
+  "interesting_facts": [
+    "The Orion Nebula is one of the most studied objects in the sky and is visible to the naked eye as a fuzzy star in Orion's sword.",
+    "The Pillars of Creation in the Eagle Nebula are approximately 4–5 light-years tall — stretching the distance between the Sun and Proxima Centauri.",
+    "The Crab Nebula expands at roughly 1,500 km/s and grows noticeably larger over decades — change that can be documented in human lifetimes.",
+    "Planetary nebulae are extremely thin — despite spanning light-years, they are almost perfect vacuums by terrestrial standards.",
+    "The Helix Nebula is one of the closest planetary nebulae to Earth at only 650 light-years, making it the largest in apparent size in the sky.",
+    "The Horsehead Nebula is a dark cloud about 3.5 light-years tall, silhouetted against a glowing curtain of ionized hydrogen gas.",
+    "Nebulae are not static — they evolve and change over thousands of years as their stars evolve and their gas disperses.",
+    "The Carina Nebula is about 300 light-years across, making it one of the largest nebulae known — dwarfing the Orion Nebula by a factor of 6.",
+    "Stars form in clusters inside nebulae; the Orion Nebula has produced a cluster of over 1,000 young stars in the last million years.",
+    "JWST's infrared vision can see through the dust that blocks optical telescopes, revealing the interior of nebulae and protostars hidden within."
+  ],
+  "faq": [
+    {
+      "question": "What is a nebula?",
+      "answer": "A nebula is an interstellar cloud of gas (mainly hydrogen and helium) and dust. They are the birthplaces of stars and planets, and can also be the remnants of dying stars. The word comes from Latin meaning 'cloud' or 'mist'."
+    },
+    {
+      "question": "How large are nebulae?",
+      "answer": "Nebulae vary enormously in size. Small planetary nebulae may be less than a light-year across, while large star-forming regions like the Carina Nebula span over 300 light-years. The largest nebulae in the universe are hundreds of light-years wide."
+    },
+    {
+      "question": "Can we see nebulae with the naked eye?",
+      "answer": "A few bright nebulae are visible to the naked eye. The Orion Nebula appears as a fuzzy star in Orion's sword, and the Eta Carinae Nebula is faintly visible from the Southern Hemisphere. Most nebulae require telescopes or long-exposure photography."
+    },
+    {
+      "question": "Why do nebulae glow in different colors?",
+      "answer": "Colors in nebulae correspond to different ionized elements: hydrogen glows red/pink (H-alpha), doubly ionized oxygen (OIII) glows blue-green, ionized nitrogen (NII) glows red, and sulfur (SII) glows deep red. Reflection nebulae appear blue due to scattered starlight."
+    },
+    {
+      "question": "What is the difference between an emission and reflection nebula?",
+      "answer": "Emission nebulae emit their own light because nearby hot stars ionize the gas, causing it to glow. Reflection nebulae do not emit light — they simply scatter and reflect light from nearby stars, similar to how fog reflects car headlights."
+    },
+    {
+      "question": "Why is it called a 'planetary nebula' if it has nothing to do with planets?",
+      "answer": "The term was coined in the 18th century by astronomer William Herschel because through the small telescopes of the era, these nebulae appeared round and disc-like — similar in appearance to the planet Uranus. The name stuck despite being astronomically misleading."
+    },
+    {
+      "question": "What will our Sun look like when it dies?",
+      "answer": "In about 5 billion years, the Sun will expand into a red giant and then shed its outer layers, creating a beautiful planetary nebula (similar to the Ring Nebula or Helix Nebula). The remaining core will be a white dwarf slowly cooling over billions of years."
+    },
+    {
+      "question": "How did JWST change our view of nebulae?",
+      "answer": "JWST's infrared instruments pierce through dust that blocks visible light, revealing hidden star-forming regions, embedded protostars, and fine structural details never seen before. Its 2022 images of the Carina Nebula and Pillars of Creation showed hundreds of previously unseen young stars."
+    },
+    {
+      "question": "Are nebulae related to black holes or supernovae?",
+      "answer": "Yes. Supernova remnant nebulae (like the Crab Nebula) are directly created by supernova explosions of massive stars. These same supernovae can leave behind neutron stars or black holes at the nebula's center. Supernovae also trigger new star formation in nearby molecular clouds."
+    },
+    {
+      "question": "What is a stellar nursery?",
+      "answer": "A stellar nursery is a region within a molecular cloud where conditions are right for star formation — dense, cold, and gravitationally unstable. The Orion Nebula, Pillars of Creation, and Carina Nebula are all famous stellar nurseries actively forming new stars today."
+    }
+  ]
+}

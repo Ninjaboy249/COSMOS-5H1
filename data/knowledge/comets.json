@@ -1,0 +1,166 @@
+{
+  "id": "comets",
+  "name": "Comets",
+  "description": "Comets are small icy bodies in the solar system that, when they approach the Sun, heat up and release gases and dust — forming the characteristic glowing coma and spectacular tail visible from Earth. They are among the most ancient objects in the solar system, composed of material dating back to its formation 4.6 billion years ago. Comets travel on highly elliptical orbits, spending most of their lives in the cold outer solar system and only briefly passing through the inner solar system near the Sun. They have been observed and recorded by humans for millennia — feared as omens and now understood as frozen time capsules of early solar system chemistry.",
+  "structure": {
+    "nucleus": {
+      "description": "The solid core of a comet — a 'dirty snowball' (or 'icy dirtball') of ice, dust, and rock, typically 1–50 km in diameter. The nucleus is extremely dark (albedo ~0.04), darker than coal, due to organic material on its surface.",
+      "composition": "Water ice (~80%), carbon dioxide, carbon monoxide, methane, ammonia, and organic molecules mixed with rocky dust and silicates",
+      "model": "Fred Whipple's 'dirty snowball' model (1950) describes the nucleus as a mixture of ice and embedded dust/rocks"
+    },
+    "coma": {
+      "description": "A fuzzy cloud of gas and dust that surrounds and expands away from the nucleus when the comet approaches the Sun (within ~3 AU). The coma can grow to hundreds of thousands of kilometers in diameter — sometimes larger than the Sun.",
+      "formation": "Solar radiation heats the nucleus, causing sublimation (ice turning directly to gas), which carries dust with it"
+    },
+    "ion_tail": {
+      "description": "A straight, bluish tail made of ionized gas (plasma) that always points directly away from the Sun, regardless of the comet's direction of travel.",
+      "cause": "Solar wind — a stream of charged particles from the Sun — sweeps ionized gas straight back from the coma at all times",
+      "color": "Blue (due to CO+ and other ions)"
+    },
+    "dust_tail": {
+      "description": "A curved, yellowish-white tail made of dust particles released from the nucleus. It curves and follows the comet's orbital path, trailing behind the comet's direction of motion.",
+      "cause": "Radiation pressure from sunlight pushes dust particles away from the nucleus, but less forcefully than the solar wind acts on ions, resulting in a curved shape",
+      "color": "White/yellowish (reflects sunlight)"
+    },
+    "hydrogen_cloud": {
+      "description": "A vast invisible cloud of hydrogen atoms surrounding the coma, sometimes extending millions of kilometers, only detectable in ultraviolet light."
+    }
+  },
+  "origin": {
+    "oort_cloud": {
+      "description": "A vast spherical shell of icy bodies surrounding the solar system at distances of 2,000 to 100,000 AU from the Sun. It is the source of long-period comets (orbital periods > 200 years).",
+      "estimated_objects": "Trillions of icy bodies",
+      "origin": "Icy planetesimals formed near the giant planets that were gravitationally ejected to the outer solar system billions of years ago",
+      "examples": "Halley's Comet (short-period, but originally from Oort Cloud), Comet Hale-Bopp"
+    },
+    "kuiper_belt": {
+      "description": "A flattened disk of icy bodies beyond Neptune's orbit, spanning 30 to 50 AU from the Sun. It is the source of short-period comets (orbital periods < 200 years).",
+      "examples": "Comet 67P/Churyumov-Gerasimenko, Encke's Comet",
+      "notes": "Pluto and many other dwarf planets reside in the Kuiper Belt"
+    }
+  },
+  "famous_comets": {
+    "Halley": {
+      "full_name": "1P/Halley",
+      "period": "75–76 years",
+      "last_perihelion": 1986,
+      "next_perihelion": 2061,
+      "discovery": "Edmond Halley correctly predicted in 1705 that comet sightings in 1531, 1607, and 1682 were all the same comet returning. It is the only short-period comet visible to the naked eye.",
+      "historical_sightings": "Recorded by Chinese astronomers in 240 BC; depicted in the Bayeux Tapestry (1066 AD)",
+      "missions": "ESA Giotto probe flew within 600 km of nucleus in 1986; revealed an irregular, dark, potato-shaped nucleus 15 km long"
+    },
+    "Comet_67P": {
+      "full_name": "67P/Churyumov-Gerasimenko",
+      "discovered": 1969,
+      "period_years": 6.45,
+      "mission": "ESA Rosetta mission — first comet to be orbited (2014–2016) and first comet landing (Philae lander, November 12, 2014)",
+      "shape": "Distinctive rubber duck shape — two lobes connected by a neck (result of two comets merging)",
+      "discoveries": "Organic molecules detected, comet song (magnetic field oscillations), and oxygen molecules (O2) in the coma — unexpected finding"
+    },
+    "Hale_Bopp": {
+      "full_name": "C/1995 O1 Hale-Bopp",
+      "year": 1997,
+      "discovered": "Independently discovered by Alan Hale and Thomas Bopp on July 23, 1995",
+      "note": "Brightest comet of the 20th century. Visible to the naked eye for a record 18 months. Estimated nucleus ~60 km in diameter — unusually large.",
+      "perihelion": "April 1, 1997",
+      "next_return": "In approximately 4,200 years"
+    },
+    "Shoemaker_Levy_9": {
+      "full_name": "D/1993 F2 Shoemaker-Levy 9",
+      "year": 1994,
+      "note": "Crashed into Jupiter in July 1994 in 21 separate fragments over 6 days — the first observed collision of two solar system bodies. The largest impact left a dark scar in Jupiter's atmosphere the size of Earth. Discovered by Carolyn and Gene Shoemaker and David Levy.",
+      "fragments": 21,
+      "significance": "Demonstrated that Jupiter acts as a gravitational shield for the inner solar system, capturing or deflecting potential Earth impactors"
+    },
+    "Comet_NEOWISE": {
+      "full_name": "C/2020 F3 NEOWISE",
+      "year": 2020,
+      "discovered": "March 27, 2020, by the NEOWISE space telescope",
+      "note": "First comet visible to the naked eye from the Northern Hemisphere since Hale-Bopp in 1997. Peak brightness in July 2020. Spectacular twin tails observed with binoculars.",
+      "next_return": "In approximately 6,800 years"
+    },
+    "Comet_Encke": {
+      "full_name": "2P/Encke",
+      "period_years": 3.3,
+      "note": "Has the shortest known orbital period of any comet — returns every 3.3 years. Associated with the Taurid meteor shower."
+    },
+    "Comet_Hyakutake": {
+      "full_name": "C/1996 B2 Hyakutake",
+      "year": 1996,
+      "note": "Passed very close to Earth (0.1 AU) in March 1996. X-rays were detected from a comet for the first time. Briefly one of the brightest comets of the 20th century."
+    }
+  },
+  "dirty_snowball_model": {
+    "proposed_by": "Fred Whipple, 1950",
+    "description": "The dirty snowball model describes a comet nucleus as a mixture of ices (water, CO2, CO, methane, ammonia) embedded with dust and rocky particles. When approaching the Sun, the ices sublimate directly from solid to gas, carrying dust to form the coma and tails.",
+    "refinement": "Later updated to the 'icy dirtball' or 'snowy dirtball' model after observations showed many comet nuclei are predominantly dusty and dark with ice concentrated beneath the surface."
+  },
+  "Stardust_mission": {
+    "agency": "NASA",
+    "launch": 1999,
+    "achievement": "Flew through the coma of Comet Wild 2 in 2004, collecting dust particles in aerogel, and returned the sample capsule to Earth in January 2006 — the first comet material ever returned to Earth.",
+    "discoveries": "Found crystalline silicate minerals (forsterite) that normally form at high temperatures close to the Sun — suggesting material is mixed throughout the solar system.",
+    "bonus_mission": "Stardust-NExT (2011) flew past Comet Tempel 1 to photograph the crater left by NASA's Deep Impact mission in 2005."
+  },
+  "Deep_Impact_mission": {
+    "agency": "NASA",
+    "year": 2005,
+    "achievement": "Deliberately fired an 370 kg copper impactor into Comet Tempel 1 on July 4, 2005, excavating a crater and exposing pristine interior material. First mission to directly probe the interior of a comet.",
+    "discoveries": "Interior found to be unexpectedly fine-grained dust with less ice than predicted"
+  },
+  "summary": "Comets are ancient icy bodies from the outer solar system that develop glowing comas and spectacular tails as they approach the Sun. Their nuclei are 'dirty snowballs' of ice, dust, and organics. Long-period comets originate from the Oort Cloud; short-period comets come from the Kuiper Belt. Iconic comets include Halley (returning in 2061), Hale-Bopp (1997), and NEOWISE (2020). The Rosetta mission achieved the first comet landing in 2014. Comets may have delivered water and organic molecules to early Earth, making them central to the story of life's origins.",
+  "interesting_facts": [
+    "Comet tails always point away from the Sun, not behind the comet's direction of travel — meaning a comet actually travels tail-first when moving away from the Sun.",
+    "The coma of a comet can grow larger than the Sun, despite the nucleus being only a few kilometers across — making comets appear huge from a distance.",
+    "Halley's Comet has been observed every 75–76 years since at least 240 BC, with confirmed records from Chinese, Babylonian, and medieval European sources.",
+    "ESA's Rosetta mission traveled 6.4 billion km over 10 years and performed three Earth flybys and one Mars flyby to gain enough speed to match orbits with Comet 67P.",
+    "Comet Shoemaker-Levy 9's 1994 impact on Jupiter was the first observed collision of two solar system bodies. The largest fragment left an impact scar larger than Earth.",
+    "Comet Hale-Bopp (1997) was visible to the naked eye for a record 18 months — the longest naked-eye visibility of any comet in recorded history.",
+    "The Stardust mission in 2006 returned the first comet dust samples to Earth from Comet Wild 2 — and found minerals that typically form at high temperatures near the Sun, surprising scientists.",
+    "Comets may have played a crucial role in delivering water and organic molecules to the early Earth, helping to seed it for the emergence of life.",
+    "The nucleus of Comet 67P (target of ESA Rosetta) is only 4.3 km at its widest point, yet it outgasses up to 300 kg of water vapor per second when near the Sun.",
+    "Jupiter acts as a 'vacuum cleaner' for the solar system, capturing or deflecting many comets and asteroids with its enormous gravity — including Shoemaker-Levy 9 in 1994 — helping protect Earth from high-energy impacts."
+  ],
+  "faq": [
+    {
+      "question": "What is a comet?",
+      "answer": "A comet is a small icy body from the outer solar system composed of ice, dust, and rocky material. When a comet approaches the Sun, solar radiation causes its ices to sublimate, creating a glowing cloud of gas and dust (the coma) and two distinct tails — an ion tail pointing away from the Sun and a curved dust tail."
+    },
+    {
+      "question": "Where do comets come from?",
+      "answer": "Comets originate from two regions: the Kuiper Belt (beyond Neptune, 30–50 AU), which is the source of short-period comets like Comet 67P that return within 200 years, and the Oort Cloud (2,000–100,000 AU), a vast spherical shell that produces long-period comets like Hale-Bopp that take thousands to millions of years to complete one orbit."
+    },
+    {
+      "question": "Why does a comet have two tails?",
+      "answer": "A comet has two tails for different reasons. The ion (plasma) tail consists of electrically charged gas blown directly away from the Sun by the solar wind — it always points straight away from the Sun and is blue. The dust tail consists of larger particles pushed by radiation pressure and curves along the comet's orbital path — it is white/yellowish and curved."
+    },
+    {
+      "question": "When will Halley's Comet return?",
+      "answer": "Halley's Comet last reached perihelion (closest point to the Sun) in February 1986. It is expected to return to the inner solar system in mid-2061, when it will again become visible to the naked eye. Its orbital period is approximately 75–76 years."
+    },
+    {
+      "question": "What was the Rosetta mission?",
+      "answer": "ESA's Rosetta mission (2004–2016) was the first to orbit a comet and deploy a lander on one. After a 10-year, 6.4 billion km journey, Rosetta arrived at Comet 67P/Churyumov-Gerasimenko in 2014. Its Philae lander touched down on November 12, 2014, achieving the first comet landing in history. Discoveries included organic molecules, unexpected O2, and a distinctive rubber-duck-shaped nucleus."
+    },
+    {
+      "question": "What is the dirty snowball model?",
+      "answer": "The dirty snowball model was proposed by astronomer Fred Whipple in 1950. It describes a comet nucleus as a loose mixture of ices (predominantly water ice, plus CO2, CO, and other volatiles) embedded with dust and rocky particles. When near the Sun, ices sublimate to form the coma and tails. Later observations refined this to an 'icy dirtball' — emphasizing that many nuclei are more rocky and dusty than icy on the surface."
+    },
+    {
+      "question": "Did comets bring water to Earth?",
+      "answer": "This is an active area of research. Some scientists believe comets delivered water and organic molecules to early Earth, contributing to the origin of life. However, the deuterium-to-hydrogen (D/H) ratio in most comet water differs from Earth's ocean water, suggesting asteroids may have been the primary water source. Comet 103P/Hartley 2 was found to have a D/H ratio matching Earth's oceans, so comets may have contributed partially."
+    },
+    {
+      "question": "What was the Shoemaker-Levy 9 event?",
+      "answer": "Comet Shoemaker-Levy 9 was a comet that was captured by Jupiter's gravity, torn into 21 fragments, and then crashed into Jupiter between July 16–22, 1994 — the first collision of solar system bodies ever directly observed. The largest impact released energy equivalent to 6 million megatons of TNT and left dark scars in Jupiter's atmosphere larger than Earth."
+    },
+    {
+      "question": "What was the brightest comet in recent history?",
+      "answer": "Comet Hale-Bopp (C/1995 O1) is considered the brightest comet of the 20th century. It was visible to the naked eye for 18 months from mid-1996 through late-1997, and at its peak in April 1997 was clearly visible even in light-polluted cities. Its nucleus was estimated at ~60 km in diameter — unusually large."
+    },
+    {
+      "question": "What was the Stardust mission?",
+      "answer": "NASA's Stardust mission (launched 1999) flew through the coma of Comet Wild 2 in 2004 and collected thousands of dust particles in aerogel collectors. The sample capsule returned to Earth in January 2006 — the first extraterrestrial material returned since the Apollo Moon rocks. Analysis found crystalline silicates and complex organic molecules in the comet dust."
+    }
+  ]
+}

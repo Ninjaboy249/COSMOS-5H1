@@ -1,0 +1,154 @@
+{
+  "id": "space-weather",
+  "name": "Space Weather",
+  "description": "Space weather refers to the environmental conditions in near-Earth space driven by the Sun's activity. It encompasses solar flares, coronal mass ejections, geomagnetic storms, and other phenomena that can affect satellites, power grids, radio communications, and human spaceflight. Understanding space weather is critical for protecting modern technological infrastructure.",
+  "solar_activity": {
+    "sunspot_cycle": "11 years",
+    "solar_minimum": "Fewest sunspots — period of lowest solar activity within the 11-year cycle, with reduced frequency of solar flares and CMEs",
+    "solar_maximum": "Most sunspots and solar activity — peak of the 11-year cycle with highest frequency of solar flares, CMEs, and geomagnetic storms"
+  },
+  "event_types": {
+    "solar_flare": {
+      "description": "Intense burst of radiation from the Sun's surface, caused by the release of magnetic energy associated with sunspots",
+      "classes": "A, B, C, M, X — each class is 10x more powerful than the previous; X is the most powerful",
+      "effects": "Radio blackouts rated R1 (minor) to R5 (extreme); can disrupt HF radio communications on the sunlit side of Earth",
+      "duration": "Minutes to hours",
+      "travel_time": "Light and radiation reach Earth in approximately 8 minutes"
+    },
+    "CME": {
+      "description": "Coronal Mass Ejection — a large cloud of magnetized plasma expelled from the Sun's corona into interplanetary space",
+      "travel_time": "1 to 3 days to reach Earth, depending on speed (ranges from 250 to 3000 km/s)",
+      "effects": "Geomagnetic storms, spectacular aurora displays at lower latitudes, satellite drag and orbital decay, potential damage to satellite electronics, power grid disruption",
+      "size": "Can contain billions of tons of solar plasma"
+    },
+    "geomagnetic_storm": {
+      "description": "A major disturbance of Earth's magnetosphere caused by a solar wind shock wave or cloud of magnetic field",
+      "scale": "G1 (minor) to G5 (extreme)",
+      "effects": "Aurora visible at lower latitudes (G3+), power grid voltage irregularities, satellite orientation problems, disruption of GPS and radio navigation",
+      "G5_effects": "Widespread power grid collapse possible, satellite operations severely disrupted, aurora visible as far south as Florida and Texas"
+    },
+    "solar_energetic_particles": {
+      "description": "High-energy protons and other particles accelerated by solar flares and CME shockwaves",
+      "scale": "S1 (minor) to S5 (extreme)",
+      "effects": "Radiation hazard for astronauts in space and passengers on polar aircraft routes, damage to satellite electronics, increased radiation dose at aviation altitudes"
+    },
+    "high_speed_solar_wind": {
+      "description": "Fast-moving streams of solar wind originating from coronal holes on the Sun",
+      "effects": "Substorms and auroral activity, mild geomagnetic disturbances, enhanced aurora at high latitudes",
+      "speed": "Typically 500–800 km/s compared to normal solar wind of ~400 km/s"
+    }
+  },
+  "carrington_event": {
+    "year": 1859,
+    "description": "The largest recorded geomagnetic storm in history, named after British astronomer Richard Carrington who observed the associated solar flare on September 1, 1859",
+    "observed_by": "Richard Carrington and Richard Hodgson independently",
+    "effects_at_time": "Telegraph systems across Europe and North America failed; some telegraph operators received electric shocks; aurora visible as far south as Cuba and Hawaii",
+    "modern_impact": "A similar event today would devastate modern electronics, satellite infrastructure, and power grids worldwide; estimated economic damage of $1–2 trillion in the first year alone",
+    "recurrence_probability": "Estimated ~1% chance per decade of a Carrington-scale event",
+    "near_miss": "In July 2012, a Carrington-class CME narrowly missed Earth by approximately 9 days"
+  },
+  "aurora": {
+    "cause": "Solar wind particles are guided by Earth's magnetic field lines toward the polar regions, where they collide with atmospheric gases (oxygen and nitrogen), exciting them and causing them to emit light",
+    "aurora_borealis": "Northern Lights — visible in the northern hemisphere, typically at latitudes above 65° but extending to lower latitudes during strong geomagnetic storms",
+    "aurora_australis": "Southern Lights — the southern hemisphere equivalent, visible from Antarctica, southern South America, New Zealand, and southern Australia",
+    "colors": {
+      "green": "Most common — oxygen at ~100 km altitude",
+      "red": "Oxygen at higher altitudes (~200+ km)",
+      "blue_purple": "Nitrogen molecules",
+      "pink": "Mixture of nitrogen and oxygen at lower altitudes"
+    },
+    "oval": "The auroral oval is a ring-shaped zone around each magnetic pole where aurora is most frequently visible"
+  },
+  "monitoring_agencies": [
+    "NASA — National Aeronautics and Space Administration (SOHO, SDO, ACE, STEREO missions)",
+    "NOAA Space Weather Prediction Center (SWPC) — primary US forecasting agency",
+    "ESA Space Weather Service — European Space Agency monitoring network",
+    "UK Met Office Space Weather Operations Centre",
+    "Japanese NICT Space Weather Laboratory"
+  ],
+  "key_spacecraft": [
+    {
+      "name": "SOHO (Solar and Heliospheric Observatory)",
+      "operator": "NASA/ESA",
+      "purpose": "Continuous solar monitoring since 1995"
+    },
+    {
+      "name": "ACE (Advanced Composition Explorer)",
+      "operator": "NASA",
+      "purpose": "Solar wind monitoring at L1 Lagrange point"
+    },
+    {
+      "name": "Solar Dynamics Observatory (SDO)",
+      "operator": "NASA",
+      "purpose": "High-resolution solar imaging since 2010"
+    },
+    {
+      "name": "Parker Solar Probe",
+      "operator": "NASA",
+      "purpose": "Closest-ever approach to the Sun to study solar wind at its source"
+    }
+  ],
+  "summary": "Space weather is driven by the Sun's magnetic activity and has real consequences for modern society. Solar flares, coronal mass ejections, and geomagnetic storms can disrupt satellites, power grids, GPS navigation, radio communications, and pose radiation risks to astronauts and high-altitude aircrew. The 11-year solar cycle governs the overall level of activity, with solar maximum bringing the highest risk. Agencies like NASA, NOAA, and ESA continuously monitor the Sun to provide advance warning of potentially damaging events.",
+  "interesting_facts": [
+    "The largest geomagnetic storm ever recorded — the Carrington Event of 1859 — caused telegraph systems to spark and catch fire across Europe and North America.",
+    "A Carrington-scale event today could cause trillions of dollars in damage and knock out power for millions of people for months or years.",
+    "In July 2012, a powerful CME barely missed Earth; had it hit, it could have caused a Carrington-level event.",
+    "The Sun emits a constant stream of charged particles called the solar wind at speeds of 300–800 km/s, continuously filling the heliosphere.",
+    "Aurora can sometimes be seen as far south as Rome, Florida, and even northern Mexico during extreme geomagnetic storms.",
+    "Solar flares release as much energy in minutes as a billion hydrogen bombs.",
+    "Space weather can cause GPS errors of tens of meters by distorting signals passing through the ionosphere.",
+    "The International Space Station crew may shelter in more heavily shielded modules during strong solar energetic particle events.",
+    "High-latitude and polar airline routes are sometimes rerouted during severe space weather to protect passengers and crew from radiation.",
+    "The solar cycle was first discovered by German astronomer Samuel Heinrich Schwabe in 1843 after 17 years of systematic sunspot observations."
+  ],
+  "faq": [
+    {
+      "question": "What is space weather?",
+      "answer": "Space weather refers to the dynamic conditions in the space environment near Earth, primarily driven by the Sun's activity. It includes solar flares, coronal mass ejections (CMEs), solar wind variations, and geomagnetic storms that can affect satellites, power grids, and communications."
+    },
+    {
+      "question": "How does the Sun cause space weather?",
+      "answer": "The Sun continuously emits charged particles as the solar wind. Magnetic activity on the Sun's surface causes sudden releases of energy as solar flares and CMEs, which send intense radiation and plasma toward Earth, interacting with Earth's magnetosphere."
+    },
+    {
+      "question": "What is a solar flare?",
+      "answer": "A solar flare is a sudden, intense burst of electromagnetic radiation from the Sun's surface, caused by the release of stored magnetic energy. Flares are classified A, B, C, M, or X in increasing order of intensity, with X-class being the most powerful."
+    },
+    {
+      "question": "What is a coronal mass ejection (CME)?",
+      "answer": "A CME is a large expulsion of plasma and magnetic field from the Sun's corona. Unlike a solar flare, which travels at the speed of light, a CME is a physical cloud of matter that takes 1–3 days to travel from the Sun to Earth."
+    },
+    {
+      "question": "What is a geomagnetic storm?",
+      "answer": "A geomagnetic storm is a major disturbance of Earth's magnetosphere caused by a solar wind shockwave or CME. Storms are rated G1 (minor) to G5 (extreme) and can cause aurora at low latitudes, power grid problems, and satellite disruptions."
+    },
+    {
+      "question": "Can space weather cause power outages?",
+      "answer": "Yes. A severe geomagnetic storm can induce electrical currents in long conductor lines like power transmission cables, potentially overloading and destroying transformers. The most severe storms (G4–G5) pose a real risk of widespread power grid failure."
+    },
+    {
+      "question": "What is the solar cycle?",
+      "answer": "The solar cycle is an approximately 11-year cycle of the Sun's magnetic activity. It alternates between solar minimum (fewest sunspots, least activity) and solar maximum (most sunspots, most frequent and powerful solar events)."
+    },
+    {
+      "question": "Are astronauts at risk from space weather?",
+      "answer": "Yes. Astronauts outside Earth's protective magnetosphere — such as those on the Moon or in deep space — face significant radiation risks from solar energetic particle events. Even on the ISS, crews may shelter in more shielded areas during severe events."
+    },
+    {
+      "question": "What was the Carrington Event?",
+      "answer": "The Carrington Event of 1859 was the most powerful geomagnetic storm in recorded history. It caused telegraph systems worldwide to fail, spark, and even catch fire. Scientists estimate a similar event today could cause $1–2 trillion in damage to global infrastructure."
+    },
+    {
+      "question": "How do we monitor space weather?",
+      "answer": "Space weather is monitored by satellites like NASA's ACE and SDO, ESA's SOHO, and NOAA's GOES, along with ground-based magnetometer networks. NOAA's Space Weather Prediction Center and ESA's Space Weather Service provide operational forecasts."
+    },
+    {
+      "question": "Can space weather affect GPS?",
+      "answer": "Yes. Solar flares and geomagnetic storms disturb the ionosphere — the upper layer of Earth's atmosphere through which GPS signals travel. This can introduce errors of tens of meters in positioning data, which is critical for aviation and precision navigation."
+    },
+    {
+      "question": "How much warning do we get before a geomagnetic storm?",
+      "answer": "Solar flares and their radiation effects arrive in about 8 minutes (travelling at light speed). CMEs take 1–3 days to arrive, providing more warning time. Real-time monitoring at the L1 Lagrange point (1.5 million km from Earth) gives about 15–60 minutes of final warning before a CME impact."
+    }
+  ]
+}

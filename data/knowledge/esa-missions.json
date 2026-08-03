@@ -1,0 +1,148 @@
+{
+  "id": "esa-missions",
+  "name": "ESA Missions",
+  "esa_founded": 1975,
+  "headquarters": "Paris, France",
+  "full_name": "European Space Agency",
+  "member_states": 22,
+  "member_states_list": [
+    "Austria", "Belgium", "Czech Republic", "Denmark", "Estonia", "Finland",
+    "France", "Germany", "Greece", "Hungary", "Ireland", "Italy", "Luxembourg",
+    "Netherlands", "Norway", "Poland", "Portugal", "Romania", "Spain", "Sweden",
+    "Switzerland", "United Kingdom"
+  ],
+  "budget": "~8.3 billion EUR/year",
+  "summary": "The European Space Agency was established in 1975 through the merger of two earlier European space bodies: ESRO (European Space Research Organisation) and ELDO (European Launcher Development Organisation). With 22 member states and an annual budget of approximately €8.3 billion, ESA is one of the world's premier space agencies. ESA is famous for its landmark scientific missions, including the first comet landing (Rosetta/Philae), the Huygens probe landing on Saturn's moon Titan, the Gaia star-mapping observatory, and the XMM-Newton X-ray telescope. ESA contributes to the International Space Station through the Columbus laboratory module and provides ATV cargo vehicles. The Ariane 5 and upcoming Ariane 6 rockets have been Europe's primary heavy-lift launch vehicles. ESA collaborates extensively with NASA, JAXA, and other agencies on major scientific endeavors.",
+  "launch_sites": ["Kourou, French Guiana (ELA launch complex)"],
+  "notable_missions": {
+    "Rosetta": {
+      "years": "2004-2016",
+      "achievement": "First mission to orbit a comet and first to land on one. Rosetta orbited Comet 67P/Churyumov-Gerasimenko and deployed the Philae lander on November 12, 2014 — the first ever soft landing on a comet nucleus.",
+      "comet": "67P Churyumov-Gerasimenko",
+      "Philae_lander": "First comet landing, November 12, 2014",
+      "discoveries": "Detected organic molecules, measured magnetic field, studied comet outgassing",
+      "end": "Rosetta deliberately crash-landed on the comet on September 30, 2016"
+    },
+    "Huygens": {
+      "year": 2005,
+      "achievement": "Landed on Titan, Saturn's largest moon, on January 14, 2005 — the most distant planetary landing ever achieved. Transmitted images and data of Titan's orange haze and surface.",
+      "carried_by": "NASA Cassini spacecraft",
+      "surface": "Revealed river channels, pebble-like rocks, and an orange methane-rich atmosphere"
+    },
+    "Mars_Express": {
+      "year": 2003,
+      "status": "Active",
+      "achievement": "Longest-running Mars mission in history. Discovered strong evidence for subsurface liquid water at the south pole of Mars (2018). Carrying MARSIS radar instrument.",
+      "launch_date": "June 2, 2003",
+      "key_discovery": "Subsurface liquid water lake detected under Martian south polar cap"
+    },
+    "Venus_Express": {
+      "years": "2005-2014",
+      "achievement": "ESA's first mission to Venus. Studied Venus's atmosphere, climate, and plasma environment. Confirmed the planet's extreme greenhouse effect and detected signs of recent volcanic activity.",
+      "instruments": "VIRTIS (thermal mapping), VMC (Venus Monitoring Camera), ASPERA"
+    },
+    "Gaia": {
+      "year": 2013,
+      "achievement": "Mapping 1 billion stars in the Milky Way with unprecedented positional precision (microarcsecond accuracy). Creating the most detailed 3D map of our galaxy ever made.",
+      "stars_mapped": "~1 billion",
+      "operation_point": "L2",
+      "data_releases": "DR1 (2016), DR2 (2018), DR3 (2022), DR4 expected"
+    },
+    "XMM_Newton": {
+      "year": 1999,
+      "full_name": "X-ray Multi-Mirror Mission",
+      "achievement": "Europe's largest science satellite and most powerful X-ray observatory. Studies black holes, neutron stars, galaxy clusters, and hot gas in the universe.",
+      "status": "Active"
+    },
+    "Solar_Orbiter": {
+      "year": 2020,
+      "launch_date": "February 10, 2020",
+      "achievement": "Captured the closest images of the Sun ever taken. First spacecraft to image the Sun's polar regions. Discovered 'campfires' — small solar flares near the Sun's surface.",
+      "collaboration": "ESA/NASA joint mission",
+      "closest_approach": "Within 42 million km of the Sun"
+    },
+    "Euclid": {
+      "year": 2023,
+      "launch_date": "July 1, 2023",
+      "achievement": "Designed to map the large-scale structure of the universe, studying the distribution of dark matter and dark energy over 10 billion light-years. Will survey 15,000 square degrees of sky.",
+      "operation_point": "L2",
+      "mission_duration": "6 years"
+    },
+    "Ariel": {
+      "planned": 2029,
+      "full_name": "Atmospheric Remote-sensing Infrared Exoplanet Large-survey",
+      "achievement": "ESA's dedicated exoplanet atmosphere mission. Will study the chemical composition, thermal structure, and weather of 1,000 exoplanet atmospheres.",
+      "targets": "~1,000 exoplanets"
+    },
+    "JUICE": {
+      "year": 2023,
+      "full_name": "Jupiter Icy Moons Explorer",
+      "launch": "April 14, 2023",
+      "arrival": "2031",
+      "mission": "Studying Jupiter's three icy Galilean moons — Ganymede, Europa, and Callisto — with a focus on habitability and subsurface oceans. Will enter orbit around Ganymede in 2034.",
+      "notes": "First mission dedicated to studying the icy moons of Jupiter"
+    },
+    "Planck": {
+      "years": "2009-2013",
+      "achievement": "Mapped the Cosmic Microwave Background (CMB) — the afterglow of the Big Bang — with the highest precision ever. Pinpointed the age of the universe at 13.82 billion years."
+    },
+    "Herschel": {
+      "years": "2009-2013",
+      "achievement": "Largest infrared space telescope ever launched. Studied star formation, cold dust in galaxies, and water in the universe."
+    }
+  },
+  "interesting_facts": [
+    "ESA's Rosetta mission achieved the first-ever landing on a comet nucleus in November 2014, traveling 6.4 billion km over 10 years to reach Comet 67P.",
+    "The Huygens probe's landing on Titan in 2005 remains the most distant planetary landing ever accomplished by any spacecraft.",
+    "ESA's Mars Express has been orbiting Mars since December 2003, making it one of the longest-running planetary missions in history.",
+    "The Gaia satellite is creating a 3D map of over 1 billion stars in the Milky Way with positional accuracy equivalent to measuring a human hair from 1,000 km away.",
+    "ESA's Solar Orbiter captured the closest-ever images of the Sun and is the first spacecraft to observe the solar poles.",
+    "ESA's Euclid telescope, launched in 2023, will survey over one-third of the sky to map dark matter and dark energy — which together make up 95% of the universe.",
+    "The Columbus laboratory, built by ESA, is one of the primary science modules of the International Space Station.",
+    "ESA's Ariane 5 rocket had a remarkable success rate of over 97% during its operational life and launched many critical missions including JWST.",
+    "The Planck satellite provided the most accurate measurement of the age of the universe: 13.82 billion years, with an uncertainty of only 0.05 billion years.",
+    "ESA and NASA collaborated on the SOHO (Solar and Heliospheric Observatory) mission, which has discovered over 4,000 comets since its launch in 1995."
+  ],
+  "faq": [
+    {
+      "question": "When was ESA founded and by how many countries?",
+      "answer": "ESA was founded in 1975 and currently has 22 member states, all European nations. It was formed by merging the European Space Research Organisation (ESRO) and the European Launcher Development Organisation (ELDO)."
+    },
+    {
+      "question": "What was the Rosetta mission?",
+      "answer": "Rosetta was ESA's groundbreaking mission that became the first to orbit a comet and the first to land on one. After a 10-year journey, it reached Comet 67P/Churyumov-Gerasimenko in 2014. Its Philae lander made the first-ever comet landing on November 12, 2014. The mission ended in 2016 when Rosetta itself landed on the comet."
+    },
+    {
+      "question": "What did the Huygens probe do?",
+      "answer": "The Huygens probe, built by ESA and carried by NASA's Cassini spacecraft, descended through the atmosphere of Titan — Saturn's largest moon — and landed on its surface on January 14, 2005. It is the most distant planetary landing ever achieved and returned images and data of Titan's alien surface."
+    },
+    {
+      "question": "What has Mars Express discovered?",
+      "answer": "Mars Express, active since 2003, has made many key discoveries including the first radar detection of a subsurface liquid water lake beneath the Martian south polar cap (2018). It has also mapped the Martian surface in high detail, studied its thin atmosphere, and detected methane, which could indicate geological or biological processes."
+    },
+    {
+      "question": "What is the JUICE mission?",
+      "answer": "JUICE (Jupiter Icy Moons Explorer) was launched in April 2023 and will arrive at Jupiter in 2031. It will study Jupiter's icy moons Ganymede, Europa, and Callisto — which are thought to harbor subsurface liquid water oceans and could be candidates for extraterrestrial life. JUICE will eventually orbit Ganymede from 2034."
+    },
+    {
+      "question": "What is the Euclid mission studying?",
+      "answer": "Euclid, launched in July 2023, is ESA's dark universe explorer. It will map the 3D distribution of hundreds of millions of galaxies over 10 billion light-years to understand the nature of dark matter and dark energy, which together make up ~95% of the universe's total energy content."
+    },
+    {
+      "question": "What is Gaia doing?",
+      "answer": "Gaia is ESA's astrometry mission, launched in 2013 and operating at L2. It is precisely mapping the positions, distances, proper motions, and characteristics of approximately 1 billion stars in the Milky Way, creating the most detailed 3D stellar map of our galaxy ever produced."
+    },
+    {
+      "question": "What is ESA's annual budget?",
+      "answer": "ESA's annual budget is approximately €8.3 billion (as of the 2023–2025 period). This makes it one of the world's larger space agency budgets, though still significantly less than NASA's ~$25 billion annual budget."
+    },
+    {
+      "question": "Does ESA launch its own rockets?",
+      "answer": "Yes. ESA primarily used the Ariane 5 rocket (retired 2023) from its launch site in Kourou, French Guiana. The next-generation Ariane 6 is now operational, with smaller payloads served by the Vega-C rocket. Launches are operated by Arianespace, a commercial partner."
+    },
+    {
+      "question": "What is ESA's contribution to the ISS?",
+      "answer": "ESA's primary contribution to the ISS is the Columbus laboratory module, which has been attached to the station since 2008 and serves as Europe's main research facility in space. ESA also provided the Automated Transfer Vehicle (ATV) for cargo resupply and several ESA astronauts have conducted long-duration missions aboard the ISS."
+    }
+  ]
+}

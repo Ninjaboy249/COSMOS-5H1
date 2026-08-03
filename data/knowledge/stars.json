@@ -1,0 +1,137 @@
+{
+  "id": "stars",
+  "name": "Stars",
+  "types": [
+    "Main Sequence",
+    "Giant",
+    "Supergiant",
+    "White Dwarf",
+    "Neutron Star",
+    "Brown Dwarf"
+  ],
+  "our_sun_classification": "G2V yellow dwarf",
+  "stellar_lifecycle": "nebula → protostar → main sequence → giant → death",
+  "famous_stars": {
+    "Proxima_Centauri": "nearest star to the Sun at 4.24 light-years, a red dwarf in the Alpha Centauri system",
+    "Betelgeuse": "red supergiant in Orion, ~700 light-years away, may explode as a supernova",
+    "Sirius": "brightest star in the night sky, a binary system 8.6 light-years away",
+    "Rigel": "blue supergiant approximately 860 light-years away, brightest star in Orion",
+    "Polaris": "the north pole star, a yellow supergiant ~433 light-years away"
+  },
+  "stellar_evolution": {
+    "overview": "Stars form from collapsing clouds of gas and dust and evolve over millions to billions of years depending on their mass.",
+    "low_mass_stars": "Stars like our Sun fuse hydrogen for ~10 billion years, then expand into red giants, shed outer layers as planetary nebulae, and leave behind white dwarfs.",
+    "high_mass_stars": "Stars more than ~8 solar masses burn through fuel far faster (millions of years), expand into supergiants, and end in violent supernova explosions leaving neutron stars or black holes.",
+    "brown_dwarfs": "Sub-stellar objects with insufficient mass to sustain hydrogen fusion. They slowly cool and fade over time.",
+    "stellar_age_range": "Stars can live from a few million years (massive O-type) to trillions of years (red dwarfs)."
+  },
+  "supernovae": {
+    "overview": "Supernovae are among the most energetic explosions in the universe, briefly outshining entire galaxies.",
+    "Type_Ia": {
+      "description": "Occurs in binary systems when a white dwarf accretes enough mass from a companion star to exceed the Chandrasekhar limit (~1.4 solar masses) and undergoes a thermonuclear explosion.",
+      "significance": "Used as 'standard candles' to measure cosmic distances; instrumental in discovering the accelerating expansion of the universe."
+    },
+    "Type_II": {
+      "description": "Core-collapse supernova occurring when a massive star (>8 solar masses) exhausts its nuclear fuel; the core collapses in milliseconds, releasing an enormous shockwave.",
+      "remnants": "Leaves behind neutron stars or black holes, and expels heavy elements forged in the star into the interstellar medium."
+    }
+  },
+  "neutron_stars": {
+    "description": "Incredibly dense remnants of massive stellar cores after a supernova. A teaspoon of neutron star material would weigh roughly one billion tons.",
+    "diameter": "Typically ~20 km across",
+    "mass": "1.1 to 2.3 solar masses packed into a city-sized sphere",
+    "density": "~4 × 10^17 kg/m³ — denser than atomic nuclei",
+    "subtypes": ["Pulsars", "Magnetars", "Millisecond pulsars", "X-ray binary neutron stars"]
+  },
+  "pulsars": {
+    "description": "Rapidly rotating neutron stars that emit beams of electromagnetic radiation from their magnetic poles.",
+    "discovery": "First pulsar (CP 1919) discovered in 1967 by Jocelyn Bell Burnell and Antony Hewish.",
+    "rotation_rate": "Can rotate hundreds of times per second (millisecond pulsars).",
+    "use": "Act as extremely precise natural clocks; used to test general relativity and gravitational wave detection."
+  },
+  "magnetars": {
+    "description": "A subtype of neutron star with an extraordinarily powerful magnetic field — up to 10^11 Tesla, the strongest known in the universe.",
+    "activity": "Occasionally release gamma-ray flares energetic enough to affect Earth's ionosphere from thousands of light-years away.",
+    "known_count": "Fewer than 30 confirmed magnetars in the Milky Way."
+  },
+  "stellar_nurseries": {
+    "description": "Regions of dense molecular clouds where gravity causes gas and dust to collapse, forming new stars.",
+    "examples": ["Orion Nebula (M42)", "Eagle Nebula — Pillars of Creation", "Carina Nebula", "Rho Ophiuchi cloud complex"],
+    "process": "Turbulence, shockwaves from supernovae, or galaxy collisions can trigger the collapse of cloud cores into protostars."
+  },
+  "HR_diagram": {
+    "full_name": "Hertzsprung–Russell Diagram",
+    "description": "A scatter plot of stars showing the relationship between stellar luminosity (absolute magnitude) and surface temperature (spectral type).",
+    "main_sequence": "A diagonal band where most stars, including the Sun, spend the majority of their lives fusing hydrogen.",
+    "regions": {
+      "top_left": "Hot, luminous blue giants and supergiants",
+      "bottom_left": "Hot but faint white dwarfs",
+      "top_right": "Cool but luminous red giants and supergiants",
+      "middle": "Main sequence stars like our Sun"
+    },
+    "significance": "Fundamental tool in stellar astrophysics for classifying stars and understanding stellar evolution."
+  },
+  "summary": "Stars are massive, luminous spheres of plasma held together by gravity and powered by nuclear fusion in their cores. They are the fundamental building blocks of galaxies and the primary source of energy in the universe. Stars forge the chemical elements heavier than hydrogen and helium, scattering them across space through stellar winds and supernova explosions — making them the forges of all matter we see around us.",
+  "interesting_facts": [
+    "The Sun accounts for 99.86% of the total mass of our solar system.",
+    "There are an estimated 200–400 billion stars in the Milky Way galaxy alone.",
+    "The observable universe contains roughly 2 trillion galaxies, each with billions of stars.",
+    "Neutron stars are so dense that a sugar-cube-sized amount of their material would weigh about 1 billion tons.",
+    "The nearest star system, Alpha Centauri, is so far away that light from it takes 4.24 years to reach Earth.",
+    "Betelgeuse is so large that if placed at the center of our solar system, it would engulf Mercury, Venus, Earth, and Mars.",
+    "The Sun converts approximately 600 million tonnes of hydrogen into helium every second via nuclear fusion.",
+    "Some red dwarf stars are theorized to live for up to 10 trillion years — nearly 1,000 times the current age of the universe.",
+    "Sirius B, the companion of Sirius, is a white dwarf roughly the size of Earth but with a mass close to the Sun's.",
+    "The first stars in the universe (Population III stars) were likely hundreds of times more massive than the Sun and contained no metals."
+  ],
+  "faq": [
+    {
+      "question": "What is the nearest star to Earth?",
+      "answer": "The nearest star is Proxima Centauri, a red dwarf located 4.24 light-years away. It is part of the Alpha Centauri triple star system. The Sun is, of course, the nearest star to Earth at about 150 million km away."
+    },
+    {
+      "question": "What is the brightest star in the night sky?",
+      "answer": "Sirius (Alpha Canis Majoris) is the brightest star visible from Earth at night, with an apparent magnitude of −1.46. It is located 8.6 light-years away and is about twice the mass of the Sun."
+    },
+    {
+      "question": "What makes stars shine?",
+      "answer": "Stars shine through nuclear fusion. In their cores, enormous gravitational pressure and temperatures of millions of degrees cause hydrogen nuclei to fuse into helium, releasing tremendous amounts of energy as light and heat."
+    },
+    {
+      "question": "How do stars die?",
+      "answer": "Stellar death depends on mass. Low-mass stars like our Sun expand into red giants, shed their outer layers forming planetary nebulae, and leave behind white dwarfs. High-mass stars explode as supernovae, leaving neutron stars or black holes."
+    },
+    {
+      "question": "What is a neutron star?",
+      "answer": "A neutron star is the collapsed core of a massive star after a supernova explosion. It is typically 20 km across but contains more mass than the Sun, making it extraordinarily dense — a teaspoon would weigh a billion tons."
+    },
+    {
+      "question": "What is a pulsar?",
+      "answer": "A pulsar is a rapidly rotating neutron star that emits beams of radio waves (and sometimes X-rays or gamma rays) from its magnetic poles. As it spins, the beam sweeps past Earth like a lighthouse, creating regular pulses."
+    },
+    {
+      "question": "How long does our Sun have left?",
+      "answer": "The Sun is approximately 4.6 billion years old and is about halfway through its main-sequence life. It will continue fusing hydrogen for another ~5 billion years before expanding into a red giant and eventually becoming a white dwarf."
+    },
+    {
+      "question": "What is the largest known star?",
+      "answer": "One of the largest known stars is UY Scuti, a red supergiant with a radius roughly 1,700 times that of the Sun. If placed at the Sun's position, it would extend beyond the orbit of Jupiter. Stephenson 2-18 may be even larger."
+    },
+    {
+      "question": "What is the Hertzsprung–Russell diagram?",
+      "answer": "The HR diagram is a key astronomical tool that plots stars by their luminosity versus surface temperature. It reveals that most stars fall along a 'main sequence' band, and helps astronomers understand stellar evolution and classify stars."
+    },
+    {
+      "question": "Can a star become a black hole?",
+      "answer": "Yes. Stars with masses greater than roughly 20–25 solar masses can collapse after a supernova into stellar-mass black holes. The core's gravity becomes so strong that not even light can escape, forming an event horizon."
+    },
+    {
+      "question": "What is a brown dwarf?",
+      "answer": "Brown dwarfs are 'failed stars' — objects too massive to be planets but too small (less than ~80 Jupiter masses) to sustain hydrogen fusion. They emit faint infrared radiation and slowly cool over billions of years."
+    },
+    {
+      "question": "What elements do stars create?",
+      "answer": "Stars forge chemical elements through nuclear fusion: hydrogen into helium on the main sequence; helium into carbon, oxygen, and nitrogen in later stages. Supernova explosions produce the heaviest elements (gold, platinum, uranium) and scatter them through the galaxy."
+    }
+  ]
+}

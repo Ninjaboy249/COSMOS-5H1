@@ -1,0 +1,212 @@
+{
+  "id": "spacecraft",
+  "name": "Spacecraft and Space Probes",
+  "categories": [
+    "Orbiters",
+    "Landers",
+    "Rovers",
+    "Flyby Probes",
+    "Space Telescopes",
+    "Crewed Spacecraft"
+  ],
+  "notable_spacecraft": [
+    {
+      "name": "Voyager 1",
+      "agency": "NASA",
+      "launch": 1977,
+      "launch_date": "September 5, 1977",
+      "status": "Active — in interstellar space",
+      "distance": "23+ billion km from Earth (as of 2024)",
+      "achievement": "Most distant human-made object ever built; first spacecraft to enter interstellar space (2012)",
+      "notable_facts": [
+        "Carries the Golden Record — a 12-inch gold-plated copper disc with sounds and images of Earth for any extraterrestrial life that may find it.",
+        "Still communicates with Earth despite being beyond the heliosphere.",
+        "Signal travel time from Earth exceeds 22 hours each way."
+      ]
+    },
+    {
+      "name": "Voyager 2",
+      "agency": "NASA",
+      "launch": 1977,
+      "launch_date": "August 20, 1977",
+      "status": "Active — in interstellar space",
+      "distance": "19+ billion km from Earth (as of 2024)",
+      "achievement": "Only spacecraft to fly past all four outer planets — Jupiter, Saturn, Uranus, and Neptune — and visit Uranus and Neptune up close",
+      "notable_facts": [
+        "Discovered 10 new moons and 2 new rings at Uranus.",
+        "Discovered active geysers on Neptune's moon Triton.",
+        "Entered interstellar space in 2018, confirmed by plasma density instruments."
+      ]
+    },
+    {
+      "name": "Hubble Space Telescope",
+      "agency": "NASA/ESA",
+      "launch": 1990,
+      "launch_date": "April 24, 1990",
+      "status": "Active",
+      "orbit": "Low Earth orbit, ~547 km altitude",
+      "achievement": "Over 1.5 million observations; transformed virtually every area of astronomy; helped determine the age of the universe and confirm its accelerating expansion",
+      "notable_facts": [
+        "Initial mirror flaw was corrected in 1993 by Space Shuttle servicing mission.",
+        "Has produced some of the most iconic astronomical images including the Hubble Deep Field and Pillars of Creation.",
+        "Contributed to the discovery of dark energy via Type Ia supernova observations."
+      ]
+    },
+    {
+      "name": "James Webb Space Telescope",
+      "agency": "NASA/ESA/CSA",
+      "launch": 2021,
+      "launch_date": "December 25, 2021",
+      "status": "Active at L2 (Lagrange Point 2)",
+      "mirror_diameter": "6.5 meters (18 gold-plated beryllium segments)",
+      "achievement": "Most powerful and complex space telescope ever built; can observe objects 13.6 billion light-years away — light from when the universe was ~200 million years old",
+      "notable_facts": [
+        "Observes in infrared, allowing it to see through dust clouds and observe the earliest galaxies.",
+        "Located 1.5 million km from Earth at L2 — too far for servicing missions.",
+        "Released its first full-color science images on July 12, 2022, stunning the world."
+      ]
+    },
+    {
+      "name": "Parker Solar Probe",
+      "agency": "NASA",
+      "launch": 2018,
+      "launch_date": "August 12, 2018",
+      "status": "Active",
+      "achievement": "Closest spacecraft to the Sun ever built; holds the record as the fastest human-made object at ~635,000 km/h (2024)",
+      "perihelion": "Within 6.1 million km of the Sun's surface",
+      "notable_facts": [
+        "Protected by a carbon-composite heat shield that keeps instruments at room temperature while the shield faces ~1,400°C.",
+        "Crossed into the Sun's outer atmosphere (corona) for the first time in 2021.",
+        "Collecting data on the solar wind origin and the mystery of why the corona is hotter than the surface."
+      ]
+    },
+    {
+      "name": "Cassini-Huygens",
+      "agency": "NASA/ESA/ASI",
+      "launch": 1997,
+      "launch_date": "October 15, 1997",
+      "status": "Mission completed September 15, 2017",
+      "achievement": "Spent 13 years in Saturn's orbit; discovered active water-ice geysers on moon Enceladus suggesting a subsurface ocean; Huygens probe landed on Titan",
+      "notable_facts": [
+        "Huygens became the first probe to land on a moon in the outer solar system (Titan, January 14, 2005).",
+        "Discovered that Enceladus ejects plumes of water vapor and ice — a strong candidate for extraterrestrial life.",
+        "Ended mission with a deliberate plunge into Saturn's atmosphere to prevent contaminating icy moons."
+      ]
+    },
+    {
+      "name": "New Horizons",
+      "agency": "NASA",
+      "launch": 2006,
+      "launch_date": "January 19, 2006",
+      "status": "Active — in the Kuiper Belt",
+      "achievement": "First spacecraft to fly past Pluto (July 14, 2015); revealed Pluto as a geologically active world with mountains, plains, and a hazy atmosphere",
+      "notable_facts": [
+        "Flyby of Pluto revealed 3,500-meter-tall water-ice mountains and the vast Tombaugh Regio nitrogen plains.",
+        "Also flew past Kuiper Belt Object Arrokoth (2019) — most distant object ever explored up close.",
+        "Now over 57 AU from the Sun and still returning data."
+      ]
+    },
+    {
+      "name": "Perseverance",
+      "agency": "NASA",
+      "launch": 2020,
+      "launch_date": "July 30, 2020",
+      "status": "Active on Mars — Jezero Crater",
+      "achievement": "Successfully produced oxygen on Mars (MOXIE experiment); collecting rock and soil samples for future return to Earth; deployed Ingenuity helicopter",
+      "notable_facts": [
+        "Ingenuity became the first powered aircraft to fly on another planet (April 19, 2021).",
+        "MOXIE produced 122 grams of oxygen during its experiments — a proof of concept for human Mars missions.",
+        "Carries microphones — the first to capture audio from the Martian surface."
+      ]
+    },
+    {
+      "name": "Chandrayaan-3",
+      "agency": "ISRO (Indian Space Research Organisation)",
+      "launch": 2023,
+      "launch_date": "July 14, 2023",
+      "status": "Mission completed",
+      "achievement": "First spacecraft in history to successfully land near the lunar south pole (August 23, 2023); made India the fourth nation to achieve a soft Moon landing",
+      "notable_facts": [
+        "Vikram lander and Pragyan rover operated for one lunar day (~14 Earth days) near the south pole.",
+        "Pragyan rover confirmed the presence of sulfur, iron, oxygen, and other elements near the south pole.",
+        "Mission cost approximately $75 million — among the most cost-effective lunar missions ever."
+      ]
+    },
+    {
+      "name": "InSight",
+      "agency": "NASA",
+      "launch": 2018,
+      "launch_date": "May 5, 2018",
+      "status": "Mission completed December 2022",
+      "achievement": "First seismometer placed on Mars; detected over 1,300 marsquakes; measured Mars's internal structure — crust, mantle, and core",
+      "notable_facts": [
+        "Confirmed Mars has a liquid outer core, roughly 1,830 km in radius.",
+        "Detected seismic waves from meteorite impacts, allowing precise interior mapping.",
+        "Solar panels gradually covered by dust, causing power loss that ended the mission."
+      ]
+    }
+  ],
+  "summary": "Spacecraft and space probes are humanity's robotic and crewed extensions into the cosmos. From the first primitive satellites to sophisticated interstellar probes and multi-billion-dollar space observatories, these machines have transformed our understanding of the solar system, the universe, and our place in it. Each mission pushes the frontier of engineering, science, and exploration — answering old questions while raising new and deeper ones.",
+  "interesting_facts": [
+    "Voyager 1 is so far away that a radio signal traveling at the speed of light takes over 22 hours to reach it from Earth.",
+    "The James Webb Space Telescope's primary mirror is so large (6.5m) it had to fold origami-style to fit in the Ariane 5 rocket fairing.",
+    "Cassini discovered that Saturn's moon Enceladus has liquid water beneath its icy crust — making it a top candidate in the search for extraterrestrial life.",
+    "The Parker Solar Probe travels faster than any object ever made by humans — approximately 635,000 km/h at perihelion.",
+    "Perseverance's MOXIE experiment proved it is possible to generate breathable oxygen from the Martian CO₂ atmosphere.",
+    "New Horizons was traveling so fast when launched that it passed the Moon's orbit in just 9 hours (Apollo took 3 days).",
+    "Hubble has traveled more than 6 billion km in its orbit around Earth since launch in 1990.",
+    "The Chandrayaan-3 mission cost less than the production budget of many Hollywood blockbuster films.",
+    "InSight detected a magnitude 5 marsquake in 2022 — the largest ever recorded on another planet.",
+    "The Voyager probes were launched before the first IBM Personal Computer was released — yet they still operate and communicate with Earth."
+  ],
+  "faq": [
+    {
+      "question": "What is the most distant spacecraft ever built?",
+      "answer": "Voyager 1 is the most distant human-made object, currently over 23 billion km from Earth in interstellar space. It crossed the heliopause — the boundary between the solar wind and interstellar medium — in 2012."
+    },
+    {
+      "question": "What is the James Webb Space Telescope and why is it important?",
+      "answer": "JWST is the most powerful space telescope ever built, launched on December 25, 2021. It observes in infrared wavelengths, allowing it to see through cosmic dust, observe the earliest galaxies formed after the Big Bang, and study atmospheres of exoplanets."
+    },
+    {
+      "question": "Has any spacecraft landed on another planet besides Mars?",
+      "answer": "Yes. Soviet Venera probes landed on Venus (1970–1985), surviving up to 127 minutes in the crushing heat and pressure. The Huygens probe landed on Saturn's moon Titan in 2005. Various probes also landed on the Moon, asteroids, and a comet."
+    },
+    {
+      "question": "What did Cassini discover at Saturn?",
+      "answer": "Cassini made numerous discoveries during its 13 years at Saturn, including active water-ice geysers on moon Enceladus indicating a subsurface liquid ocean, complex hydrocarbon lakes on Titan, new moons and ring structures, and seasonal changes on Saturn."
+    },
+    {
+      "question": "What is Chandrayaan-3 and why is it significant?",
+      "answer": "Chandrayaan-3 is India's ISRO lunar mission that successfully landed near the Moon's south pole on August 23, 2023 — a historic first. The south pole region is scientifically valuable because it likely contains water ice in permanently shadowed craters, vital for future human missions."
+    },
+    {
+      "question": "What is the fastest spacecraft ever made?",
+      "answer": "The Parker Solar Probe currently holds the record as the fastest human-made object, reaching approximately 635,000 km/h (about 176 km/s) during its close solar passes in 2024. It uses Venus gravity assists to progressively reduce its perihelion distance."
+    },
+    {
+      "question": "What is the Golden Record on the Voyager probes?",
+      "answer": "Both Voyager probes carry a Golden Record — a 12-inch gold-plated copper phonograph disc containing sounds and images representing life and culture on Earth, greetings in 55 languages, and music from around the world, intended as a message to any extraterrestrial civilization that might find the probes."
+    },
+    {
+      "question": "How does JWST differ from Hubble?",
+      "answer": "JWST observes primarily in infrared (vs. Hubble's mainly visible/UV range), has a much larger 6.5m mirror (vs. Hubble's 2.4m), is stationed 1.5 million km away at L2 (vs. Hubble's low Earth orbit), and can see significantly older, more distant objects — including the first galaxies formed after the Big Bang."
+    },
+    {
+      "question": "What did the Perseverance rover find on Mars?",
+      "answer": "Perseverance confirmed ancient lake sediments in Jezero Crater suggesting Mars once had liquid water. It collected rock core samples for eventual return to Earth, demonstrated oxygen production from Martian CO₂, and deployed Ingenuity — the first powered aircraft on another planet."
+    },
+    {
+      "question": "Are there spacecraft outside our solar system?",
+      "answer": "Yes — Voyager 1 and Voyager 2 have both crossed into interstellar space, beyond the Sun's heliosphere. Voyager 1 crossed the heliopause in 2012, and Voyager 2 in 2018. Both are technically in the interstellar medium, though still within the gravitational influence of the Sun."
+    },
+    {
+      "question": "How long do space probes last?",
+      "answer": "It varies widely. The Voyager probes have operated for over 47 years. Cassini functioned for 20 years before its deliberate end. InSight lasted about 4 years. Lifespans depend on power source (solar or nuclear RTG), component longevity, and whether the mission encounters environmental hazards."
+    },
+    {
+      "question": "What is a space telescope?",
+      "answer": "A space telescope is an observatory placed in orbit or at a Lagrange point, above Earth's distorting atmosphere. This allows far sharper images and access to wavelengths (UV, infrared, X-ray) blocked by the atmosphere. Famous examples include Hubble, JWST, Chandra (X-ray), and Spitzer (infrared)."
+    }
+  ]
+}

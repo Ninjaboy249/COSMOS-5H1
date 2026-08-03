@@ -1,0 +1,184 @@
+{
+  "id": "dwarf-planets",
+  "name": "Dwarf Planets",
+  "description": "Dwarf planets are a class of solar system bodies that orbit the Sun and have achieved hydrostatic equilibrium (becoming roughly spherical under their own gravity), but have not cleared their orbital neighborhood of other debris. The category was formally established by the International Astronomical Union (IAU) in 2006, a decision that reclassified Pluto from the ninth planet to a dwarf planet. As of 2024, five bodies are officially recognized as dwarf planets, though scientists estimate the solar system may contain hundreds more.",
+  "pluto_reference": "Pluto is covered in detail in its dedicated knowledge file (pluto.json). This file covers all dwarf planets including brief Pluto information and focuses in depth on the other recognized dwarf planets.",
+  "iau_definition": {
+    "established": "August 24, 2006 — IAU General Assembly, Prague",
+    "criteria": [
+      "Must orbit the Sun directly",
+      "Must have sufficient mass for self-gravity to overcome rigid body forces, giving it a roughly spherical (hydrostatic equilibrium) shape",
+      "Must NOT have cleared the neighborhood around its orbit of other debris — this is the key distinction from full planets",
+      "Must not be a natural satellite of another body"
+    ],
+    "planet_distinction": "A full planet (Mercury through Neptune) meets all three criteria of the planet definition, including clearing its orbital neighborhood. Dwarf planets fail the third criterion.",
+    "controversy": "The 2006 IAU definition remains controversial. Many planetary scientists argue it is flawed — notably, by this definition, Earth, Mars, Jupiter, and Neptune would not be planets if placed at Pluto's distance. Some propose 'hydrostatic equilibrium' (roundness) as the sole criterion for planethood."
+  },
+  "known_dwarf_planets": {
+    "Pluto": {
+      "diameter": "2,377 km",
+      "moons": 5,
+      "moon_names": ["Charon (largest — half Pluto's size)", "Styx", "Nix", "Kerberos", "Hydra"],
+      "discovery": 1930,
+      "discovered_by": "Clyde Tombaugh",
+      "reclassified": 2006,
+      "location": "Kuiper Belt",
+      "distance_from_sun": "39.5 AU average",
+      "orbital_period": "248 Earth years",
+      "mission": "NASA New Horizons — flew past Pluto on July 14, 2015, providing the first close-up images",
+      "notable_features": "Heart-shaped nitrogen ice plain (Tombaugh Regio), towering water-ice mountains up to 3,500 m, thin nitrogen atmosphere",
+      "see_also": "pluto.json for comprehensive details"
+    },
+    "Eris": {
+      "formal_designation": "136199 Eris",
+      "diameter": "2,326 km",
+      "mass": "Approximately 27% more massive than Pluto — the most massive known dwarf planet",
+      "distance_from_sun": "Highly elliptical orbit; currently about 97 AU from the Sun (approaching aphelion)",
+      "orbital_period": "Approximately 559 Earth years",
+      "semi_major_axis": "67.8 AU",
+      "moon": "Dysnomia (one known moon, approximately 700 km diameter)",
+      "discovery": 2005,
+      "discovered_by": "Michael Brown, Chadwick Trujillo, David Rabinowitz (Palomar Observatory)",
+      "location": "Scattered disk — a region of the outer solar system beyond the Kuiper Belt",
+      "surface": "Extremely reflective — one of the brightest objects in the solar system; surface covered in methane ice",
+      "significance": "The discovery of Eris directly triggered the 2006 IAU debate about planetary status, because it was clearly larger/more massive than Pluto. Rather than make Eris a 10th planet, the IAU chose to reclassify both Eris and Pluto as dwarf planets."
+    },
+    "Makemake": {
+      "formal_designation": "136472 Makemake",
+      "diameter": "Approximately 1,430 km (slightly smaller than Pluto)",
+      "location": "Kuiper Belt — classical cold Kuiper Belt object",
+      "distance_from_sun": "45.8 AU average",
+      "orbital_period": "Approximately 307 Earth years",
+      "discovery": 2005,
+      "discovered_by": "Michael Brown, Chadwick Trujillo, David Rabinowitz (just days after the Eris announcement)",
+      "named_for": "The creator deity of the Rapa Nui people of Easter Island",
+      "surface": "Red-tinged with patches of methane and ethane ice",
+      "atmosphere": "Thin, transient nitrogen atmosphere that freezes and collapses as Makemake moves away from the Sun",
+      "moon": "One small moon discovered in 2016 (nicknamed MK 2), approximately 160 km across"
+    },
+    "Haumea": {
+      "formal_designation": "136108 Haumea",
+      "shape": "Elongated egg shape — the most ellipsoidal known dwarf planet; roughly the size of Pluto but stretched into a triaxial ellipsoid (1,960 × 1,518 × 996 km)",
+      "cause_of_shape": "Extremely rapid rotation — completes a full rotation every 3.9 hours, causing the equatorial bulge",
+      "mass": "About 1/3 the mass of Pluto",
+      "location": "Kuiper Belt",
+      "distance_from_sun": "43.1 AU average",
+      "orbital_period": "Approximately 285 Earth years",
+      "moons": 2,
+      "moon_names": ["Hi'iaka (310 km)", "Namaka (170 km)"],
+      "rings": 1,
+      "ring_description": "A thin ring at 2,287 km from Haumea's center — the only known ring around a Kuiper Belt object; discovered in 2017",
+      "discovery": 2004,
+      "discovered_by": "José Luis Ortiz Morales (Sierra Nevada Observatory) in 2004; also credited to Michael Brown's team (2005)",
+      "named_for": "The Hawaiian goddess of fertility and childbirth",
+      "surface": "One of the most reflective objects in the solar system — surface covered in crystalline water ice"
+    },
+    "Ceres": {
+      "formal_designation": "1 Ceres",
+      "diameter": "940 km — the largest object in the asteroid belt",
+      "mass": "Accounts for approximately 1/3 of the total mass of the asteroid belt",
+      "location": "Asteroid Belt — the only dwarf planet in the inner solar system",
+      "distance_from_sun": "2.77 AU",
+      "orbital_period": "4.6 Earth years",
+      "discovery": 1801,
+      "discovered_by": "Giuseppe Piazzi — originally classified as a planet, then an asteroid for 150 years",
+      "reclassified": "Recognized as a dwarf planet by the IAU in 2006",
+      "mission": "NASA Dawn spacecraft — arrived at Ceres in March 2015, first mission to orbit a dwarf planet",
+      "water_ice": true,
+      "water_description": "Dawn discovered widespread water ice, including in permanently shadowed polar craters. Ceres may have a subsurface ocean or ice mantle.",
+      "bright_spots": "Dawn imaged mysterious bright spots in Occator Crater — later identified as brine (salt water) deposits from upwelling briny liquid that evaporated and left bright salt deposits",
+      "atmosphere": "Thin, temporary water vapor exosphere detected by ESA's Herschel Space Observatory"
+    }
+  },
+  "candidate_dwarf_planets": {
+    "description": "Many other solar system bodies are believed to meet dwarf planet criteria but have not yet been officially designated by the IAU. Some estimates suggest there could be hundreds or even over a thousand dwarf planets in the outer solar system.",
+    "notable_candidates": [
+      {
+        "name": "Sedna",
+        "diameter": "~995 km",
+        "note": "Extreme trans-Neptunian object with an orbital period of ~11,400 years; may be part of the inner Oort Cloud"
+      },
+      {
+        "name": "Quaoar",
+        "diameter": "~1,110 km",
+        "note": "Kuiper Belt object with a ring system discovered in 2022 — ring orbits at a surprising distance where rings typically cannot form"
+      },
+      {
+        "name": "Orcus",
+        "diameter": "~910 km",
+        "note": "Kuiper Belt object with a large moon (Vanth); sometimes called 'anti-Pluto' due to its similar but phase-shifted orbit"
+      },
+      {
+        "name": "Gonggong",
+        "diameter": "~1,230 km",
+        "note": "Scattered disk object with one known moon (Xiangliu)"
+      }
+    ]
+  },
+  "kuiper_belt_objects": {
+    "description": "The Kuiper Belt is a vast region of the solar system extending from Neptune's orbit (30 AU) out to about 50 AU. It contains hundreds of thousands of icy bodies, including most of the known dwarf planets. It is the source of short-period comets. The total mass of the Kuiper Belt is estimated at about 1/10th to 1/30th of Earth's mass.",
+    "discovery": "Predicted by Kenneth Edgeworth (1943) and Gerard Kuiper (1951), first Kuiper Belt Object (other than Pluto) discovered in 1992 by David Jewitt and Jane Luu",
+    "composition": "Primarily water ice, ammonia ice, methane ice, and rocky material — pristine remnants from the early solar system",
+    "new_horizons": "NASA's New Horizons spacecraft, after its 2015 Pluto flyby, continued into the Kuiper Belt and flew past the Kuiper Belt Object Arrokoth (2014 MU69) on January 1, 2019"
+  },
+  "scattered_disk": {
+    "description": "The scattered disk is a distant, sparsely populated region of the outer solar system overlapping with the Kuiper Belt but extending to much greater distances (over 100 AU). Objects in the scattered disk have highly eccentric and inclined orbits caused by gravitational interactions with Neptune early in the solar system's history.",
+    "notable_objects": "Eris is the most massive known scattered disk object. Sedna may represent an inner Oort Cloud population.",
+    "significance": "The scattered disk is believed to be a reservoir of long-period comets and may contain many undiscovered dwarf planets at extreme distances."
+  },
+  "summary": "Dwarf planets represent a fascinating and diverse class of solar system objects. From Ceres in the inner asteroid belt to the distant scattered disk world Eris — which directly triggered Pluto's reclassification — these worlds offer valuable clues about the formation and history of the solar system. NASA's Dawn mission to Ceres and New Horizons' flyby of Pluto have revealed these worlds to be geologically complex and scientifically rewarding. Many more dwarf planets likely await discovery in the distant outer solar system.",
+  "interesting_facts": [
+    "The discovery of Eris in 2005, a body more massive than Pluto, forced astronomers to either accept a 10th planet or redefine 'planet' — they chose the latter, demoting Pluto in 2006.",
+    "Pluto's moon Charon is so large (about half Pluto's diameter) that the two form a binary system — their common center of mass (barycenter) lies between them, in space rather than inside Pluto.",
+    "Ceres was the first object in the asteroid belt to be discovered (1801), was initially classified as a planet, then demoted to asteroid, then re-elevated to dwarf planet in 2006.",
+    "Haumea rotates once every 3.9 hours — the fastest rotation of any known body in the solar system larger than 100 km across, giving it its distinctive squashed egg shape.",
+    "Eris is so far from the Sun that its surface temperature is about -240°C (33 K), just above absolute zero.",
+    "Dawn was the first spacecraft to orbit two extraterrestrial destinations in sequence (asteroid Vesta in 2011–2012, then Ceres in 2015), enabled by its ion propulsion system.",
+    "New Horizons captured images of Pluto showing mountains of water ice as tall as the Rockies, formed at most a few hundred million years ago — geologically very young.",
+    "Makemake was discovered on March 31, 2005 — just two days after Easter Sunday — and is named after the Easter Island deity in indirect reference to that timing.",
+    "Quaoar has a ring orbiting at a distance where ring particles should have coalesced into a moon — its discovery challenged existing ring formation theories.",
+    "Some models suggest there could be a large undiscovered planet (hypothetical 'Planet Nine') shepherding the unusual orbits of extreme trans-Neptunian objects like Sedna."
+  ],
+  "faq": [
+    {
+      "question": "Why was Pluto demoted?",
+      "answer": "Pluto was reclassified as a dwarf planet in 2006 by the IAU because it fails to meet the third criterion for planethood — it has not gravitationally cleared its orbital neighborhood. Pluto shares its orbit with thousands of other Kuiper Belt objects, while the eight major planets have dominated their orbital zones. The discovery of Eris — similar in size but more massive than Pluto — made the reclassification necessary."
+    },
+    {
+      "question": "How many dwarf planets are there?",
+      "answer": "The IAU currently officially recognizes five dwarf planets: Pluto, Eris, Makemake, Haumea, and Ceres. However, many scientists believe there are hundreds to potentially over a thousand bodies in the outer solar system that qualify. The precise number depends on how many of the distant, faint Kuiper Belt objects are actually round enough to meet the criteria."
+    },
+    {
+      "question": "Could Pluto ever be reclassified back as a planet?",
+      "answer": "The IAU definition could be revised at a future General Assembly. Some planetary scientists advocate for a geophysical definition where any roughly spherical body is a planet, which would restore Pluto's status and add many other bodies. However, a formal change would require a vote of IAU members. As of 2024, there is no active official process to reverse Pluto's reclassification."
+    },
+    {
+      "question": "Is Eris bigger than Pluto?",
+      "answer": "Eris is slightly smaller in diameter than Pluto (2,326 km vs 2,377 km), but about 27% more massive. For years after its discovery in 2005, Eris was thought to be larger than Pluto, but measurements by the Herschel telescope and occultation observations confirmed Pluto is actually the larger body by diameter. Eris is denser than Pluto, suggesting a higher proportion of rock."
+    },
+    {
+      "question": "What are the bright spots on Ceres?",
+      "answer": "The bright spots in Occator Crater on Ceres are deposits of sodium carbonate and other salt minerals. NASA's Dawn mission determined they formed when briny water from a subsurface reservoir seeped to the surface through fractures, evaporated in the near-vacuum environment, and left behind bright salt deposits. This suggests Ceres may still have subsurface liquid brine."
+    },
+    {
+      "question": "Is there water on dwarf planets?",
+      "answer": "Yes. Water is widespread among dwarf planets. Ceres has water ice in shadowed craters and possibly a subsurface brine reservoir. Pluto has water ice mountains and glaciers of nitrogen ice. Haumea has a surface of crystalline water ice. Eris, Makemake, and many Kuiper Belt objects are thought to have water ice beneath their methane-ice surfaces."
+    },
+    {
+      "question": "Could any dwarf planet support life?",
+      "answer": "Life as we know it is considered very unlikely on dwarf planets given their extreme cold, lack of substantial atmospheres, and distance from the Sun. However, Ceres is of interest because of possible subsurface liquid water — a potential environment for microbial life. Some scientists have speculated about habitable niches beneath the surfaces of Kuiper Belt dwarf planets heated by radioactive decay."
+    },
+    {
+      "question": "What is the scattered disk?",
+      "answer": "The scattered disk is a region of the outer solar system beyond the Kuiper Belt, containing objects with highly eccentric and inclined orbits. It extends to over 100 AU from the Sun. Eris is the most notable scattered disk object. These objects were gravitationally 'scattered' by Neptune during the early solar system. The scattered disk may contain many undiscovered dwarf planets."
+    },
+    {
+      "question": "What spacecraft have visited dwarf planets?",
+      "answer": "Two NASA spacecraft have visited dwarf planets: Dawn (arrived Ceres in 2015 and is now in permanent orbit there) and New Horizons (flew past Pluto in July 2015, then past the Kuiper Belt Object Arrokoth in 2019). No missions have visited Eris, Makemake, or Haumea, and given their extreme distances, such missions would take decades."
+    },
+    {
+      "question": "Why is Haumea shaped like an egg?",
+      "answer": "Haumea has an extreme elongated egg shape because it rotates incredibly fast — completing one rotation every 3.9 hours. This rapid rotation creates centrifugal force that flattens the poles and extends the equator, producing a triaxial ellipsoid shape. Despite this unusual shape, it has enough mass to achieve hydrostatic equilibrium and qualifies as a dwarf planet under the IAU definition."
+    }
+  ]
+}

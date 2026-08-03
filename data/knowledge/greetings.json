@@ -1,0 +1,24 @@
+{
+  "greetings": [
+    { "triggers": ["hi", "hello", "hey", "howdy", "hiya", "greetings", "sup", "what's up", "wassup"],
+      "response": "Hello! 👋 I'm **COSMOS AI** — your intelligent offline space exploration assistant. I can answer questions about planets, stars, galaxies, black holes, NASA/ISRO/ESA missions, astronauts, space weather, and much more — all completely offline!\n\nWhat would you like to explore today? 🚀" },
+    { "triggers": ["good morning"],
+      "response": "Good morning! ☀️ Welcome to COSMOS AI. The universe is waiting to be explored. What space topic shall we dive into today?" },
+    { "triggers": ["good evening", "good night"],
+      "response": "Good evening! 🌙 A perfect time to gaze at the stars. I'm COSMOS AI — ask me anything about the cosmos!" },
+    { "triggers": ["good afternoon"],
+      "response": "Good afternoon! 🌟 I'm COSMOS AI, ready to take you on a journey through the universe. What would you like to know?" },
+    { "triggers": ["how are you", "how r you", "how do you do"],
+      "response": "I'm functioning perfectly — all knowledge bases loaded and semantic search ready! 🤖✅\n\nI'm COSMOS AI, and I'm here to help you explore the universe. What space topic interests you today?" },
+    { "triggers": ["who are you", "what are you", "introduce yourself", "your name"],
+      "response": "I'm **COSMOS AI** 🧠 — an intelligent offline astronomy assistant built for COSMOS-5H1.\n\nI can answer questions about:\n• 🪐 Every planet in the Solar System\n• ⭐ Stars, galaxies, and nebulae\n• ⚫ Black holes and exotic objects\n• 🚀 NASA, ISRO, ESA missions\n• 👨‍🚀 Famous astronauts\n• 🛰 Spacecraft and satellites\n• ☀ Space weather\n• And much more!\n\nAll answers come from my built-in knowledge base — no internet needed!" },
+    { "triggers": ["what can you do", "help", "capabilities", "what do you know"],
+      "response": "Here's what I can do 🚀:\n\n📚 **Answer questions** about any solar system object\n🔍 **Semantic search** — understands natural language, not just keywords\n🗺 **Navigate** — say 'Show Mars' or 'Open Jupiter' to go to that page\n📊 **Compare** — e.g., 'Compare Earth and Mars'\n🌡 **Facts** — temperatures, distances, sizes, compositions\n🛸 **Missions** — Apollo, Artemis, Perseverance, Chandrayaan, and more\n👨‍🚀 **Astronauts** — profiles of space explorers\n\nJust ask me anything!" },
+    { "triggers": ["thank you", "thanks", "thankyou", "thx", "ty"],
+      "response": "You're very welcome! 🌟 Keep exploring the cosmos — there's always more to discover. Is there anything else you'd like to know?" },
+    { "triggers": ["bye", "goodbye", "see you", "farewell", "cya", "later"],
+      "response": "Goodbye! 🚀 Keep looking up — the universe is full of wonders waiting to be discovered. Come back anytime to explore more with COSMOS AI!" },
+    { "triggers": ["ok", "okay", "cool", "awesome", "great", "nice", "wow"],
+      "response": "Glad you think so! 😊 Is there a specific space topic you'd like to explore next? I'm here to guide your cosmic journey." }
+  ]
+}

@@ -1,0 +1,195 @@
+{
+  "id": "satellites",
+  "name": "Artificial Satellites",
+  "description": "An artificial satellite is any human-made object deliberately placed into orbit around Earth or another celestial body. Since the launch of Sputnik 1 in 1957, thousands of satellites have been deployed for communication, navigation, Earth observation, scientific research, weather forecasting, and military purposes. Satellites have fundamentally transformed modern life, enabling GPS navigation, live television, global internet, and real-time weather forecasting.",
+  "first_satellite": {
+    "name": "Sputnik 1",
+    "agency": "USSR (Soviet Union)",
+    "date": "October 4, 1957",
+    "mass": "83.6 kg",
+    "orbital_period": "96.2 minutes",
+    "operated_for": "21 days (batteries died), decayed from orbit January 4, 1958",
+    "significance": "The launch of Sputnik 1 marked the start of the Space Age and the space race between the United States and Soviet Union. It was the first human-made object to orbit Earth, transmitting a radio beep signal that could be heard by amateur radio operators worldwide."
+  },
+  "orbit_types": {
+    "LEO": {
+      "name": "Low Earth Orbit",
+      "altitude": "200–2,000 km above Earth's surface",
+      "orbital_period": "Approximately 90–120 minutes",
+      "examples": "ISS (408 km), Hubble Space Telescope (540 km), most Earth observation satellites, SpaceX Starlink constellation",
+      "advantages": "Closer to Earth means stronger signals, easier servicing, lower launch costs",
+      "disadvantages": "Atmospheric drag causes orbital decay; more satellites needed for global coverage"
+    },
+    "MEO": {
+      "name": "Medium Earth Orbit",
+      "altitude": "2,000–35,786 km",
+      "orbital_period": "2–24 hours",
+      "examples": "GPS (20,200 km), GLONASS (19,100 km), Galileo (23,222 km), O3b broadband constellation",
+      "advantages": "Good compromise between coverage area and signal strength",
+      "disadvantages": "Passes through Van Allen radiation belts, requiring radiation-hardened components"
+    },
+    "GEO": {
+      "name": "Geostationary Orbit",
+      "altitude": "35,786 km",
+      "orbital_period": "24 hours — appears stationary over the same point on Earth",
+      "examples": "Weather satellites (GOES, Meteosat), TV broadcast satellites (DirecTV), communication satellites (Intelsat, SES)",
+      "advantages": "Appears fixed in the sky — ideal for broadcast and communication; one satellite covers 1/3 of Earth",
+      "disadvantages": "High altitude means signal latency (~240 ms round trip), only works near equator for coverage"
+    },
+    "HEO": {
+      "name": "Highly Elliptical Orbit",
+      "altitude": "Varies — highly elongated elliptical path",
+      "example": "Molniya orbit (apogee ~40,000 km, perigee ~1,000 km) — used by Russia for high-latitude communications and coverage of polar regions",
+      "other_examples": "Tundra orbit, SIGINT satellites, XM Radio satellites (Sirius)",
+      "advantages": "Provides extended coverage time over high-latitude regions that GEO cannot serve well"
+    },
+    "SSO": {
+      "name": "Sun-Synchronous Orbit",
+      "altitude": "Typically 600–800 km (a type of LEO)",
+      "description": "Orbital plane precesses to remain aligned with the Sun, passing over every point on Earth at the same local solar time",
+      "examples": "Landsat 9, Sentinel Earth observation satellites, weather polar orbiters"
+    }
+  },
+  "count": {
+    "active_satellites": "Approximately 8,800 active satellites as of 2024",
+    "total_objects": "Approximately 50,000 total tracked objects in Earth orbit (including debris)",
+    "history": "The number of active satellites tripled between 2019 and 2024, largely due to commercial mega-constellations like Starlink",
+    "launches_per_year": "Over 2,000 satellites launched in 2023 alone"
+  },
+  "starlink": {
+    "operator": "SpaceX",
+    "count": "6,000+ active satellites as of 2024, making it by far the largest satellite constellation in history",
+    "purpose": "Global broadband internet access, particularly for underserved and rural areas",
+    "orbit": "LEO at approximately 550 km altitude",
+    "constellation_goal": "Up to 42,000 satellites under FCC license",
+    "speeds": "Typical download speeds of 50–200 Mbps with latency of 20–60 ms",
+    "controversy": "Criticized by astronomers for light pollution affecting ground-based telescopes"
+  },
+  "ISS": {
+    "full_name": "International Space Station",
+    "altitude": "Approximately 408 km (maintained by periodic reboosts)",
+    "speed": "27,600 km/h (7.66 km/s)",
+    "orbital_period": "Approximately 90 minutes — 16 orbits per day",
+    "size": "109 m wide × 73 m long — roughly the size of a football field",
+    "mass": "420,000 kg",
+    "construction_began": "1998",
+    "continuous_habitation": "Since November 2, 2000",
+    "partner_agencies": "NASA, Roscosmos, ESA, JAXA, CSA",
+    "crew": "Typically 6–7 astronauts",
+    "planned_deorbit": "2030 — NASA plans to deorbit the ISS over the South Pacific Ocean"
+  },
+  "notable_satellites": [
+    {
+      "name": "Hubble Space Telescope",
+      "launch": "1990",
+      "operator": "NASA/ESA",
+      "orbit": "LEO — 540 km",
+      "purpose": "Space-based optical and ultraviolet telescope; has revolutionized astronomy with images of the deep universe, nebulae, and exoplanets"
+    },
+    {
+      "name": "GPS Constellation (NAVSTAR)",
+      "launch": "First satellite 1978, full constellation 1993",
+      "operator": "US Air Force / Space Force",
+      "orbit": "MEO — 20,200 km, 24+ satellites",
+      "purpose": "Global navigation and positioning — used by smartphones, aircraft, ships, missiles, and precision agriculture"
+    },
+    {
+      "name": "Landsat 9",
+      "launch": "2021",
+      "operator": "NASA / USGS",
+      "orbit": "SSO — 705 km",
+      "purpose": "Earth observation — monitoring land use, deforestation, crop health, glacial retreat, and urban growth since the Landsat program began in 1972"
+    },
+    {
+      "name": "GOES Weather Satellites",
+      "current_operational": "GOES-16 and GOES-18",
+      "operator": "NOAA / NASA",
+      "orbit": "GEO — 35,786 km",
+      "purpose": "Continuous weather monitoring and forecasting for the Western Hemisphere; tracks hurricanes, severe storms, and wildfires in real time"
+    },
+    {
+      "name": "James Webb Space Telescope (JWST)",
+      "launch": "December 25, 2021",
+      "operator": "NASA/ESA/CSA",
+      "orbit": "L2 Lagrange point — 1.5 million km from Earth",
+      "purpose": "Infrared space telescope designed to observe the earliest galaxies, exoplanet atmospheres, and star formation"
+    },
+    {
+      "name": "Sentinel Satellites (Copernicus Programme)",
+      "operator": "ESA",
+      "orbit": "LEO / SSO",
+      "purpose": "Comprehensive Earth observation for environmental monitoring, climate change, disaster response, and agriculture"
+    }
+  ],
+  "space_debris": {
+    "trackable_objects": "Over 23,000 objects larger than 10 cm are tracked by the US Space Surveillance Network",
+    "estimated_total": "Over 100 million objects larger than 1 mm exist in orbit",
+    "sources": "Defunct satellites, spent rocket stages, fragments from satellite collisions and explosions",
+    "notable_incidents": [
+      "2009: Iridium 33 and Cosmos 2251 collision — first accidental hypervelocity collision between two satellites",
+      "2007: China's ASAT test on Fengyun-1C created over 3,000 trackable debris fragments",
+      "1996: French CERISE satellite struck by Ariane rocket fragment — first confirmed satellite damaged by space debris"
+    ],
+    "kessler_syndrome": {
+      "concept": "Proposed by NASA scientist Donald Kessler in 1978 — a scenario where the density of debris in LEO becomes so high that collisions cascade, creating more debris that causes more collisions in a chain reaction",
+      "risk": "Could render certain orbital shells unusable for centuries",
+      "mitigation": "Deorbit requirements (within 25 years for LEO), active debris removal missions (e.g., ClearSpace-1), collision avoidance maneuvers"
+    },
+    "collision_avoidance": "Operational satellites routinely perform collision avoidance maneuvers; the ISS has performed dozens of such maneuvers since 1998"
+  },
+  "summary": "Artificial satellites have become indispensable to modern civilization. Since Sputnik 1 in 1957, humanity has deployed over 10,000 satellites for navigation (GPS), communications, weather forecasting, Earth observation, scientific research, and more. With the rise of commercial mega-constellations like Starlink, the number of active satellites has grown dramatically. However, the growing population of space debris poses an increasing risk of collisions and threatens the long-term sustainability of orbital space.",
+  "interesting_facts": [
+    "You can often see the International Space Station with the naked eye at dusk or dawn — it's the third brightest object in the night sky after the Moon and Venus.",
+    "GPS satellite signals are so precise that they must account for both special and general relativistic time dilation effects — without these corrections, GPS would drift by about 10 km per day.",
+    "The first commercial communication satellite, Telstar 1, launched in 1962 and transmitted the first live transatlantic television pictures.",
+    "SpaceX's Starlink has deployed more satellites in its first five years than all other operators combined in the entire history of spaceflight.",
+    "Satellites in very low LEO (below 300 km) can reenter the atmosphere and burn up within weeks due to atmospheric drag.",
+    "Geostationary orbit was first proposed by Arthur C. Clarke in a 1945 paper — it is sometimes called the Clarke Orbit in his honor.",
+    "The Hubble Space Telescope has made over 1.5 million observations since 1990 and contributed to more than 20,000 published scientific papers.",
+    "Russia's GLONASS navigation system, like GPS, provides global coverage and is the only alternative navigation constellation to GPS with full global availability.",
+    "Satellites traveling through the South Atlantic Anomaly — where Earth's radiation belts dip closer to the surface — frequently experience electronics glitches and bit flips.",
+    "The graveyard orbit (approximately 300 km above GEO) is used to park retired geostationary satellites so they don't interfere with active ones, since deorbiting from GEO would require more fuel than most satellites carry."
+  ],
+  "faq": [
+    {
+      "question": "What is a satellite?",
+      "answer": "An artificial satellite is any human-made object placed into orbit around Earth or another celestial body. Satellites serve many purposes including communication, navigation (GPS), weather monitoring, Earth observation, and scientific research."
+    },
+    {
+      "question": "How do satellites stay in orbit?",
+      "answer": "Satellites stay in orbit through a balance between their forward velocity and Earth's gravitational pull. Moving fast enough horizontally means that as they fall toward Earth, Earth curves away beneath them — they are essentially in a continuous free fall around the planet."
+    },
+    {
+      "question": "What is geostationary orbit?",
+      "answer": "Geostationary orbit (GEO) is a circular orbit at 35,786 km altitude above the equator where a satellite's orbital period matches Earth's rotation (24 hours). From the ground, a GEO satellite appears to remain stationary in the sky — ideal for communication and weather satellites."
+    },
+    {
+      "question": "How many satellites are currently in orbit?",
+      "answer": "As of 2024, there are approximately 8,800 active satellites in orbit around Earth, plus roughly 50,000 total tracked objects including debris. The number has grown rapidly due to commercial constellations like Starlink."
+    },
+    {
+      "question": "What is Kessler Syndrome?",
+      "answer": "Kessler Syndrome is a scenario proposed by NASA scientist Donald Kessler in 1978 where the density of objects in LEO becomes so high that collisions produce debris that causes more collisions in a cascading chain reaction, potentially making LEO unusable for generations."
+    },
+    {
+      "question": "How do we track space debris?",
+      "answer": "The US Space Surveillance Network uses ground-based radar and optical telescopes to track over 23,000 objects larger than 10 cm. This data is used to predict close approaches and issue collision warnings to satellite operators."
+    },
+    {
+      "question": "Can you see satellites with the naked eye?",
+      "answer": "Yes. Many LEO satellites are visible as moving points of light in the night sky. The ISS is particularly bright and easy to spot at dusk or dawn. Starlink satellites are sometimes visible in chains shortly after launch. Apps like Heavens-Above and ISS Detector help find when satellites pass overhead."
+    },
+    {
+      "question": "What is the International Space Station?",
+      "answer": "The ISS is a habitable space station in LEO at approximately 408 km altitude. Built through an international partnership (NASA, Roscosmos, ESA, JAXA, CSA), it has been continuously inhabited since 2000 and serves as a laboratory for microgravity research. It orbits Earth 16 times per day at 27,600 km/h."
+    },
+    {
+      "question": "Why do some satellites need to be replaced periodically?",
+      "answer": "Satellites have finite lifespans due to fuel depletion (needed for orbital corrections), battery and solar panel degradation, component wear, and radiation damage. Most LEO satellites last 3–7 years; GEO communication satellites are designed to last 15–20 years."
+    },
+    {
+      "question": "What is the difference between GPS and other navigation systems?",
+      "answer": "GPS is the American system (NAVSTAR), but other countries operate their own: Russia has GLONASS, Europe has Galileo, China has BeiDou, India has NavIC, and Japan has QZSS. Modern smartphones typically use signals from multiple constellations simultaneously for improved accuracy."
+    }
+  ]
+}

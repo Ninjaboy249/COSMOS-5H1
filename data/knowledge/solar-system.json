@@ -1,0 +1,43 @@
+{
+  "id": "solar-system",
+  "name": "Solar System",
+  "alternative_names": ["Our Solar System", "Sol System", "Planetary System"],
+  "description": "The Solar System consists of the Sun and all objects gravitationally bound to it. This includes eight planets, their moons, dwarf planets, asteroids, comets, and the interplanetary medium. It formed about 4.6 billion years ago from the gravitational collapse of a giant molecular cloud.",
+  "age": "4.603 billion years",
+  "diameter": "~287.46 billion km (to heliopause)",
+  "distance_from_galactic_center": "26,000–27,000 light-years",
+  "orbital_speed_around_galaxy": "828,000 km/h",
+  "galactic_year": "225–250 million years",
+  "planets": 8,
+  "dwarf_planets": 5,
+  "known_moons": 290,
+  "known_asteroids": "1.1 million+",
+  "known_comets": "3,000+",
+  "star": "Sun (G-type main-sequence)",
+  "location": "Orion Arm, Milky Way Galaxy",
+  "summary": "Our Solar System is a magnificent collection of eight planets, hundreds of moons, and billions of smaller bodies all orbiting our star, the Sun. The Sun contains 99.86% of all mass in the system. The four inner rocky planets — Mercury, Venus, Earth, Mars — are separated from the outer giant planets by the asteroid belt. Beyond Neptune lies the Kuiper Belt and eventually the Oort Cloud, the source of long-period comets.",
+  "interesting_facts": [
+    "The Solar System is 4.6 billion years old, halfway through the Sun's life",
+    "The Sun contains 99.86% of all mass in the Solar System",
+    "Jupiter is more massive than all other planets combined × 2",
+    "The Solar System is travelling through the galaxy at 828,000 km/h",
+    "The Oort Cloud extends up to 2 light-years from the Sun",
+    "It takes light about 5.5 hours to reach the edge of the Solar System",
+    "The Solar System has 8 planets, 5 dwarf planets, and millions of smaller bodies",
+    "Saturn's rings are only about 10 meters thick on average",
+    "Neptune was the first planet predicted mathematically before being observed",
+    "There may be a hypothetical 'Planet Nine' beyond Neptune"
+  ],
+  "faq": [
+    { "q": "How old is the Solar System?", "a": "The Solar System formed approximately 4.603 billion years ago from the gravitational collapse of a giant molecular cloud." },
+    { "q": "How many planets are in the Solar System?", "a": "There are 8 planets: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, and Neptune. Pluto was reclassified as a dwarf planet in 2006." },
+    { "q": "How was the Solar System formed?", "a": "The Solar System formed from a giant molecular cloud of gas and dust that collapsed under its own gravity. The center became the Sun, while the remaining disk of material gradually clumped together to form the planets." },
+    { "q": "How big is the Solar System?", "a": "If measured to the heliopause (where solar wind stops), the Solar System is about 287 billion km across. The Oort Cloud extends much further, up to 2 light-years away." },
+    { "q": "Where is the Solar System in the Milky Way?", "a": "The Solar System is located in the Orion Arm (also called the Local Spur) of the Milky Way galaxy, about 26,000–27,000 light-years from the galactic center." },
+    { "q": "How many moons are in the Solar System?", "a": "As of 2024, there are over 290 confirmed moons orbiting planets and dwarf planets in the Solar System." },
+    { "q": "What is beyond the Solar System?", "a": "Beyond the heliopause lies interstellar space. The nearest star system is Alpha Centauri, about 4.37 light-years away." },
+    { "q": "Is there a Planet Nine?", "a": "Some astronomers hypothesize a large undiscovered planet (Planet Nine) beyond Neptune based on gravitational perturbations of distant Kuiper Belt objects, but it has not been confirmed." },
+    { "q": "How fast does the Solar System move?", "a": "The Solar System orbits the Milky Way galaxy at about 828,000 km/h (230 km/s), completing one orbit every 225–250 million years (a 'galactic year')." },
+    { "q": "What is the Kuiper Belt?", "a": "The Kuiper Belt is a region of the Solar System beyond Neptune's orbit, extending from about 30 to 50 AU from the Sun. It contains many small icy bodies including Pluto and other dwarf planets." }
+  ]
+}

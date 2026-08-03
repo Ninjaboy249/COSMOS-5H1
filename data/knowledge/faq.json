@@ -1,0 +1,231 @@
+{
+  "id": "faq",
+  "name": "General Space FAQ",
+  "description": "A comprehensive FAQ covering all major topics in space science, astronomy, cosmology, and space exploration. These questions and answers are intended to provide clear, accurate, and accessible explanations for curious minds of all ages.",
+  "general_faq": [
+    {
+      "question": "What is the universe?",
+      "answer": "The universe is everything that exists — all matter, energy, space, and time. It includes all galaxies, stars, planets, black holes, gas clouds, dark matter, and dark energy. The observable universe spans about 93 billion light-years in diameter, though the full extent of the universe may be infinite."
+    },
+    {
+      "question": "How old is the universe?",
+      "answer": "The universe is approximately 13.8 billion years old, as determined by measurements of the cosmic microwave background radiation and the rate of cosmic expansion. This figure is established to within about 1% precision thanks to the Planck satellite mission."
+    },
+    {
+      "question": "What is the Big Bang?",
+      "answer": "The Big Bang is the prevailing cosmological model describing the origin of the universe. It describes how the universe began from an extremely hot, dense state approximately 13.8 billion years ago and has been expanding and cooling ever since. It is not an explosion in space — it is the expansion of space itself from an initial singularity."
+    },
+    {
+      "question": "What is dark matter?",
+      "answer": "Dark matter is a hypothetical form of matter that does not emit, absorb, or reflect light, making it invisible. It is inferred from its gravitational effects — it accounts for the rotation of galaxies, gravitational lensing, and the large-scale structure of the universe. Dark matter makes up about 27% of the universe's total mass-energy content, but its exact nature remains unknown."
+    },
+    {
+      "question": "What is dark energy?",
+      "answer": "Dark energy is a mysterious form of energy that permeates all of space and is responsible for the accelerating expansion of the universe. Discovered in 1998 through observations of distant Type Ia supernovae, dark energy makes up approximately 68% of the universe's total energy content. Its nature is one of the biggest unsolved problems in physics."
+    },
+    {
+      "question": "How many galaxies are there in the observable universe?",
+      "answer": "Estimates suggest there are approximately 2 trillion (2 × 10¹²) galaxies in the observable universe, based on data from the Hubble Space Telescope and revised models of galaxy formation. Earlier estimates suggested 200 billion, but deep survey observations revealed many small, faint early galaxies that had been missed."
+    },
+    {
+      "question": "What is a light-year?",
+      "answer": "A light-year is the distance light travels in one year — approximately 9.46 trillion kilometers (5.88 trillion miles). It is used to express vast interstellar and intergalactic distances. For example, the Milky Way galaxy is about 100,000 light-years across."
+    },
+    {
+      "question": "How far away is the nearest star?",
+      "answer": "The nearest star to Earth (other than the Sun) is Proxima Centauri, located approximately 4.24 light-years away (about 40 trillion km). It is part of the Alpha Centauri triple star system. At the speed of the fastest spacecraft ever built (Voyager 1), it would take roughly 73,000 years to reach Proxima Centauri."
+    },
+    {
+      "question": "Is there life elsewhere in the universe?",
+      "answer": "We have not yet discovered life beyond Earth. However, given the vast number of stars (estimated at 10²⁴ in the observable universe), many with Earth-like planets in habitable zones, many scientists consider it likely that life exists elsewhere. The discovery of extremophiles on Earth has expanded our understanding of where life can survive. Active searches include SETI, Mars missions, and study of Europa and Enceladus."
+    },
+    {
+      "question": "What is the International Space Station (ISS)?",
+      "answer": "The ISS is a large habitable spacecraft in low Earth orbit at about 408 km altitude. It is a joint project of NASA, Roscosmos, ESA, JAXA, and CSA. Continuously inhabited since November 2000, it serves as a microgravity research laboratory. It travels at 27,600 km/h and completes 16 orbits of Earth per day."
+    },
+    {
+      "question": "How do rockets work?",
+      "answer": "Rockets work by Newton's Third Law — for every action there is an equal and opposite reaction. They expel hot gas downward at high speed (by burning fuel and oxidizer), and the reaction pushes the rocket upward. Unlike aircraft, rockets carry their own oxidizer and can therefore operate in the vacuum of space where there is no air."
+    },
+    {
+      "question": "What is zero gravity?",
+      "answer": "Zero gravity (more accurately called microgravity or weightlessness) is the condition experienced by objects in free fall, including astronauts in orbit. They are not beyond gravity's reach — Earth's gravity still acts on them. Rather, both the astronaut and their spacecraft are falling toward Earth at the same rate, creating the sensation of weightlessness."
+    },
+    {
+      "question": "What is a supernova?",
+      "answer": "A supernova is a powerful and luminous stellar explosion that occurs at the end of certain stars' lives. Type II supernovae occur when massive stars (>8 solar masses) exhaust their fuel and their cores collapse. Type Ia supernovae occur when a white dwarf accumulates too much mass and undergoes thermonuclear runaway. Supernovae produce and scatter heavy elements throughout the cosmos."
+    },
+    {
+      "question": "What is the multiverse?",
+      "answer": "The multiverse is a hypothetical collection of multiple universes, including our own. Various theories in physics predict different types of multiverses: the Many-Worlds Interpretation of quantum mechanics, the inflationary multiverse from cosmic inflation theory, and the string theory landscape. The multiverse remains speculative as it is not yet possible to observe or test."
+    },
+    {
+      "question": "What is antimatter?",
+      "answer": "Antimatter is composed of antiparticles — particles with the same mass as their normal counterparts but opposite charge and quantum numbers (e.g., antielectrons/positrons, antiprotons). When matter meets antimatter they annihilate each other, releasing pure energy. The universe appears to contain far more matter than antimatter; why this asymmetry exists is one of physics' greatest mysteries."
+    },
+    {
+      "question": "What causes solar and lunar eclipses?",
+      "answer": "A solar eclipse occurs when the Moon passes between Earth and the Sun, blocking sunlight (total, partial, or annular). A lunar eclipse occurs when Earth passes between the Sun and Moon, casting Earth's shadow on the Moon. Total lunar eclipses give the Moon a reddish color (the 'Blood Moon') because Earth's atmosphere scatters red wavelengths into the shadow."
+    },
+    {
+      "question": "What is the difference between a meteor, meteoroid, and meteorite?",
+      "answer": "A meteoroid is a small rocky or metallic object in space. A meteor is the streak of light produced when a meteoroid enters Earth's atmosphere and burns up (a 'shooting star'). A meteorite is a meteoroid that survives the journey through the atmosphere and lands on Earth's surface. Meteor showers occur when Earth passes through debris trails left by comets."
+    },
+    {
+      "question": "What is the asteroid belt?",
+      "answer": "The asteroid belt is a region of space between the orbits of Mars and Jupiter containing millions of rocky and metallic objects. It is not as densely packed as movies suggest — the average distance between asteroids is hundreds of thousands of kilometers. The largest object in the belt is Ceres, now classified as a dwarf planet, with a diameter of about 940 km."
+    },
+    {
+      "question": "Why is space black?",
+      "answer": "Space appears black because it is nearly a perfect vacuum — with almost no matter to scatter light. The sky on Earth is blue because air molecules scatter sunlight. In space, with no air and the Sun's light traveling in straight lines, directions away from the Sun appear black. This is related to Olbers' Paradox, which asks why the night sky is dark despite there being so many stars."
+    },
+    {
+      "question": "What is the observable universe?",
+      "answer": "The observable universe is the spherical region of the universe from which light has had time to reach us since the Big Bang — about 13.8 billion years. Due to cosmic expansion, the edge of the observable universe is currently about 46.5 billion light-years away. Beyond this horizon, regions exist that we cannot observe because light from them has not yet reached us."
+    },
+    {
+      "question": "How do telescopes work?",
+      "answer": "Telescopes collect and focus electromagnetic radiation (light, radio waves, X-rays, etc.) from distant objects. Refracting telescopes use lenses; reflecting telescopes use mirrors. Modern large telescopes all use mirrors. Space telescopes like Hubble and JWST avoid atmospheric distortion and can observe wavelengths blocked by Earth's atmosphere."
+    },
+    {
+      "question": "What is redshift?",
+      "answer": "Redshift is the increase in wavelength (shift toward the red end of the spectrum) of light from an object moving away from the observer. In cosmology, the expansion of the universe stretches light traveling through it, causing distant galaxies to appear redshifted. The farther a galaxy, the greater its redshift — this was the key observation that led to the discovery of the expanding universe."
+    },
+    {
+      "question": "What is the cosmic microwave background (CMB)?",
+      "answer": "The CMB is the thermal radiation left over from the hot, early universe, about 380,000 years after the Big Bang when the universe cooled enough for protons and electrons to combine into hydrogen atoms and space became transparent. It fills all of space as a nearly uniform glow of microwave radiation at about 2.7 Kelvin. Its tiny temperature fluctuations (1 part in 100,000) reveal the seeds of today's cosmic structure."
+    },
+    {
+      "question": "What is String Theory?",
+      "answer": "String Theory is a theoretical framework in physics that proposes that the fundamental constituents of nature are not point particles but tiny one-dimensional vibrating strings of energy. Different vibrational modes correspond to different particles. String Theory is a candidate for a 'Theory of Everything' that unifies quantum mechanics and general relativity, but it requires extra dimensions (10 or 11) and has not yet made testable predictions."
+    },
+    {
+      "question": "What is Quantum Gravity?",
+      "answer": "Quantum gravity is the area of physics that seeks to describe gravity according to the principles of quantum mechanics. General relativity describes gravity beautifully at large scales, while quantum mechanics governs the very small. These two theories are incompatible in their current forms — particularly at the singularities of black holes and the Big Bang. String Theory and Loop Quantum Gravity are leading candidate frameworks."
+    },
+    {
+      "question": "Can we travel faster than light?",
+      "answer": "According to Einstein's Special Theory of Relativity, no object with mass can be accelerated to or beyond the speed of light (299,792 km/s). As a massive object approaches the speed of light, the energy required increases without limit. Some theoretical constructs (like the Alcubierre warp drive) propose manipulating spacetime itself rather than moving through it, but these remain purely theoretical and require forms of energy not known to exist."
+    },
+    {
+      "question": "What is a wormhole?",
+      "answer": "A wormhole (or Einstein-Rosen bridge) is a hypothetical tunnel-like structure connecting two separate points in spacetime. First predicted as a solution to Einstein's equations of general relativity in 1935, wormholes have not been observed. Theoretical wormholes would collapse instantly without exotic matter with negative energy density to prop them open. Whether traversable wormholes are physically possible remains an open question."
+    },
+    {
+      "question": "What are gravitational waves?",
+      "answer": "Gravitational waves are ripples in the fabric of spacetime caused by accelerating masses — most powerfully by merging black holes or neutron stars. Predicted by Einstein's General Theory of Relativity in 1916, they were first directly detected by LIGO on September 14, 2015, from the merger of two black holes 1.3 billion light-years away. This discovery opened an entirely new form of astronomy."
+    },
+    {
+      "question": "What is a black hole?",
+      "answer": "A black hole is a region of spacetime where gravity is so strong that nothing — not even light — can escape from within the event horizon. They form when massive stars collapse at the end of their lives (stellar black holes), or may form through other mechanisms (supermassive black holes at galactic centers). The first direct image of a black hole (M87*) was captured in 2019 by the Event Horizon Telescope."
+    },
+    {
+      "question": "What is a neutron star?",
+      "answer": "A neutron star is the collapsed remnant of a massive star after a supernova explosion. With masses 1–3 times the Sun packed into a sphere about 20 km across, neutron stars are the densest observable objects in the universe. A teaspoon of neutron star material would weigh about a billion tonnes. Some neutron stars spin hundreds of times per second, emitting beams of radiation as pulsars."
+    },
+    {
+      "question": "What is the Milky Way?",
+      "answer": "The Milky Way is the spiral galaxy that contains our Solar System. It is a barred spiral galaxy approximately 100,000 light-years in diameter containing an estimated 100–400 billion stars. Our Solar System is located about 26,000 light-years from the galactic center in a minor spiral arm called the Orion Arm. The Milky Way is part of the Local Group, which includes Andromeda and about 50 smaller galaxies."
+    },
+    {
+      "question": "What is the Hubble Space Telescope?",
+      "answer": "Hubble is a space-based optical telescope launched in 1990, operated by NASA and ESA at 540 km altitude. It has made over 1.5 million observations and contributed to discoveries including the accelerating expansion of the universe, the age of the universe, and detailed images of nebulae, galaxies, and exoplanet atmospheres. It has been serviced five times by Space Shuttle crews."
+    },
+    {
+      "question": "What is an exoplanet?",
+      "answer": "An exoplanet is a planet orbiting a star other than our Sun. The first confirmed exoplanet was discovered in 1992. As of 2024, over 5,500 exoplanets have been confirmed. The Kepler and TESS space telescopes have discovered the majority of them. Some exoplanets orbit within the habitable zone of their star — the range of distances where liquid water could exist on the surface."
+    },
+    {
+      "question": "What is the habitable zone?",
+      "answer": "The habitable zone (also called the 'Goldilocks Zone') is the range of orbital distances from a star where conditions might be suitable for liquid water on a planet's surface — not too hot and not too cold. Earth is in the Sun's habitable zone. However, habitability also depends on atmospheric composition, planetary mass, tidal forces, and other factors."
+    },
+    {
+      "question": "How was the Moon formed?",
+      "answer": "The leading scientific theory is the Giant Impact Hypothesis. About 4.5 billion years ago, a Mars-sized protoplanet called Theia collided with the young Earth. The impact ejected a huge cloud of molten rock and debris into orbit, which eventually coalesced to form the Moon. Evidence includes the Moon's similar isotopic composition to Earth and its relatively low iron content."
+    },
+    {
+      "question": "What is a comet?",
+      "answer": "A comet is a small icy body from the outer solar system that, when it approaches the Sun, heats up and releases gases and dust, forming a glowing coma and sometimes a tail millions of kilometers long. Comets originate from the Kuiper Belt or the distant Oort Cloud. They are considered pristine remnants from the formation of the solar system about 4.6 billion years ago."
+    },
+    {
+      "question": "What are the outer planets of the Solar System?",
+      "answer": "The outer planets are Jupiter, Saturn, Uranus, and Neptune — also called the gas giants (Jupiter, Saturn) and ice giants (Uranus, Neptune). They are located beyond the asteroid belt and are much larger than the inner terrestrial planets. Jupiter is the largest, with a mass more than twice all other planets combined. Saturn is famous for its spectacular ring system."
+    },
+    {
+      "question": "What is the Kuiper Belt?",
+      "answer": "The Kuiper Belt is a region of the solar system beyond Neptune's orbit (30–50 AU from the Sun) containing billions of small icy objects, including dwarf planets like Pluto, Eris, Makemake, and Haumea. It is analogous to the asteroid belt but far larger. It is the source of short-period comets. NASA's New Horizons spacecraft flew through the inner Kuiper Belt after its 2015 Pluto flyby."
+    },
+    {
+      "question": "What is the Oort Cloud?",
+      "answer": "The Oort Cloud is a hypothetical, vast spherical shell of icy bodies thought to surround the solar system at distances of 2,000–100,000 AU from the Sun. It is believed to be the source of long-period comets (with orbital periods greater than 200 years). No spacecraft has ever visited it; its existence is inferred from the orbital characteristics of observed long-period comets."
+    },
+    {
+      "question": "What is a pulsar?",
+      "answer": "A pulsar is a highly magnetized, rapidly rotating neutron star that emits beams of electromagnetic radiation from its magnetic poles. Because the beam sweeps past Earth like a lighthouse, we observe regular pulses — some pulsars are as precise as atomic clocks. The first pulsar was discovered in 1967 by Jocelyn Bell Burnell and initially nicknamed LGM-1 (Little Green Men) because the signal seemed too regular to be natural."
+    },
+    {
+      "question": "What is the James Webb Space Telescope (JWST)?",
+      "answer": "JWST is NASA's flagship space observatory, launched on December 25, 2021. Orbiting the Sun-Earth L2 Lagrange point 1.5 million km from Earth, it observes primarily in infrared wavelengths. It has a 6.5-meter segmented mirror — far larger than Hubble's 2.4 m. JWST can study the atmospheres of exoplanets, the first galaxies in the universe, and star formation in unprecedented detail."
+    },
+    {
+      "question": "What is the difference between a planet and a dwarf planet?",
+      "answer": "The International Astronomical Union (IAU) defines a planet as a body that (1) orbits the Sun, (2) has sufficient mass to be roughly spherical, and (3) has 'cleared the neighborhood' of its orbit of other debris. A dwarf planet meets the first two criteria but has not cleared its orbital neighborhood. Pluto was reclassified from a planet to a dwarf planet in 2006 under this definition."
+    },
+    {
+      "question": "Why does Mars appear red?",
+      "answer": "Mars appears red because its surface and atmosphere are rich in iron oxide (rust). The thin Martian atmosphere also contains fine dust particles that scatter red light. The regolith (soil) is rich in iron minerals that have oxidized over billions of years, giving the planet its distinctive reddish color visible even with the naked eye from Earth."
+    },
+    {
+      "question": "What is the speed of light?",
+      "answer": "The speed of light in a vacuum is exactly 299,792,458 meters per second (approximately 300,000 km/s or 186,000 miles per second). This value is a fundamental constant of nature (denoted c). According to Einstein's Special Theory of Relativity, it is the universal speed limit — no information or matter can travel faster."
+    },
+    {
+      "question": "What is time dilation?",
+      "answer": "Time dilation is a consequence of Einstein's Theory of Relativity. It has two forms: velocity time dilation (moving clocks run slower, proportional to speed) and gravitational time dilation (clocks closer to a massive object run slower). Both effects are measurable and practically important — GPS satellites must correct for both to maintain accuracy. Astronauts on the ISS age slightly more slowly than people on Earth."
+    },
+    {
+      "question": "How far away is the Moon?",
+      "answer": "The average distance from Earth to the Moon is approximately 384,400 km (238,855 miles). This distance varies because the Moon's orbit is elliptical — perigee (closest) is about 356,500 km and apogee (farthest) is about 406,700 km. At the speed of light, it takes about 1.28 seconds to reach the Moon. The Apollo missions took about 3 days."
+    },
+    {
+      "question": "How far away is the Sun?",
+      "answer": "The average Earth-Sun distance is approximately 149.6 million km (92.96 million miles), defined as 1 Astronomical Unit (AU). Light from the Sun takes about 8 minutes and 20 seconds to reach Earth. Earth's orbit is slightly elliptical — closest (perihelion) in early January at about 147 million km, and farthest (aphelion) in early July at about 152 million km."
+    },
+    {
+      "question": "What is Pluto?",
+      "answer": "Pluto is a dwarf planet in the Kuiper Belt, approximately 5.9 billion km from the Sun on average. It was discovered in 1930 by Clyde Tombaugh and classified as the ninth planet for 76 years until it was reclassified as a dwarf planet by the IAU in 2006. NASA's New Horizons spacecraft flew past Pluto in July 2015, revealing a world with mountains, plains, and a heart-shaped nitrogen ice region."
+    },
+    {
+      "question": "What causes seasons on Earth?",
+      "answer": "Seasons are caused by the 23.5-degree tilt of Earth's axis relative to its orbital plane around the Sun, not by Earth's varying distance from the Sun (which is actually closest to the Sun in January). When the Northern Hemisphere is tilted toward the Sun, it experiences summer (longer days, more direct sunlight); six months later, it is tilted away and experiences winter."
+    },
+    {
+      "question": "What is a parsec?",
+      "answer": "A parsec (pc) is a unit of distance equal to about 3.26 light-years or 30.9 trillion km. It is defined as the distance at which one Astronomical Unit (AU) subtends an angle of one arcsecond. Parsecs are commonly used in professional astronomy. The nearest star, Proxima Centauri, is 1.30 parsecs away. Galaxies are typically described in kiloparsecs (kpc) and megaparsecs (Mpc)."
+  },
+    {
+      "question": "What is the event horizon of a black hole?",
+      "answer": "The event horizon is the boundary around a black hole beyond which nothing — including light — can escape the gravitational pull. It is not a physical surface but a mathematical boundary in spacetime. The radius of the event horizon is called the Schwarzschild radius. For a black hole with the mass of Earth, the Schwarzschild radius would be only about 9 mm."
+    },
+    {
+      "question": "What is Hawking radiation?",
+      "answer": "Hawking radiation is a theoretical prediction by physicist Stephen Hawking (1974) that black holes are not perfectly black — they slowly emit thermal radiation due to quantum effects near the event horizon. This means black holes can gradually lose mass and eventually evaporate. For stellar-mass black holes, the effect is negligible, but microscopic black holes would evaporate quickly. Hawking radiation has not yet been directly observed."
+    },
+    {
+      "question": "What is the fate of the universe?",
+      "answer": "Several hypotheses exist depending on the nature of dark energy: the Big Freeze (expansion continues forever, stars burn out, universe approaches absolute zero), the Big Rip (dark energy grows, eventually tearing apart all matter), the Big Crunch (if gravity eventually overcomes expansion, the universe recollapses), or the Big Bounce (the Big Crunch triggers a new Big Bang). Current data best supports the Big Freeze scenario."
+    },
+    {
+      "question": "What is solar wind?",
+      "answer": "The solar wind is a continuous stream of charged particles (mainly electrons and protons) ejected from the Sun's upper atmosphere (corona) at speeds of 300–800 km/s. It fills the entire heliosphere — the bubble of space dominated by the Sun's magnetic field. The solar wind causes cometary tails to always point away from the Sun, creates auroras at Earth's poles, and gradually erodes planetary atmospheres (including ancient Mars)."
+    },
+    {
+      "question": "What is the Fermi Paradox?",
+      "answer": "The Fermi Paradox is the apparent contradiction between the high probability of extraterrestrial civilizations existing (given the vast size of the universe) and the lack of any evidence for or contact with them. Enrico Fermi famously asked 'Where is everybody?' Proposed resolutions include the Rare Earth hypothesis (complex life is extremely uncommon), the Great Filter (a barrier most civilizations don't survive), and many others."
+    },
+    {
+      "question": "What is the Drake Equation?",
+      "answer": "The Drake Equation, formulated by astronomer Frank Drake in 1961, estimates the number of active, communicating extraterrestrial civilizations in the Milky Way. It multiplies together factors like the rate of star formation, the fraction with planets, the fraction with life, and the fraction that develop communicating technology. The equation's utility is in framing the discussion rather than providing a precise answer, as most variables are poorly constrained."
+    }
+  ]
+}

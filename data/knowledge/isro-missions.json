@@ -1,0 +1,152 @@
+{
+  "id": "isro-missions",
+  "name": "ISRO Missions",
+  "isro_founded": {
+    "year": 1969,
+    "founder": "Dr. Vikram Sarabhai",
+    "notes": "The Indian Space Research Organisation was established on August 15, 1969. Dr. Vikram Sarabhai, considered the father of the Indian space program, envisioned using space technology for national development."
+  },
+  "headquarters": "Bangalore, India",
+  "full_name": "Indian Space Research Organisation",
+  "parent_organization": "Department of Space, Government of India",
+  "summary": "ISRO is India's national space agency, founded in 1969 by the visionary Dr. Vikram Sarabhai. Starting with the humble Aryabhata satellite in 1975, ISRO has grown into one of the world's foremost space agencies, achieving milestones that rival far larger and better-funded programs. ISRO is renowned for its cost-effectiveness, having executed the first successful Mars mission on its very first attempt — at a budget lower than the Hollywood film Gravity. The agency operates communication, navigation, and Earth observation satellites through programs like INSAT, GSAT, and IRNSS, and its PSLV rocket has become one of the world's most reliable launch vehicles. ISRO's Chandrayaan-3 mission made India the first country to land near the Moon's south pole in August 2023, a landmark achievement in global space exploration.",
+  "budget_usd": "~2.4 billion USD/year",
+  "notable_missions": {
+    "Aryabhata": {
+      "year": 1975,
+      "achievement": "India's first satellite, launched by the Soviet Union on April 19, 1975. Named after the ancient Indian mathematician and astronomer.",
+      "mass_kg": 360
+    },
+    "SLV": {
+      "year": 1980,
+      "full_name": "Satellite Launch Vehicle",
+      "achievement": "India's first satellite launch vehicle. On July 18, 1980, SLV-3 successfully placed the Rohini satellite in orbit, making India the sixth nation to achieve indigenous launch capability.",
+      "led_by": "Dr. A.P.J. Abdul Kalam"
+    },
+    "PSLV": {
+      "full_name": "Polar Satellite Launch Vehicle",
+      "first_flight": 1993,
+      "status": "Workhorse rocket, 60+ missions",
+      "achievement": "ISRO's most reliable launch vehicle. Successfully carried Chandrayaan-1, Mars Orbiter Mission, and dozens of commercial satellites. In 2017, PSLV-C37 set a world record by launching 104 satellites in a single mission.",
+      "record": "104 satellites in one mission (February 2017)"
+    },
+    "Chandrayaan_1": {
+      "year": 2008,
+      "achievement": "India's first lunar probe. Discovered water molecules on the Moon using the Moon Mineralogy Mapper (M3) instrument in collaboration with NASA. Deployed the Moon Impact Probe (MIP) on November 14, 2008.",
+      "water_discovery": true,
+      "moon_impact_probe": true
+    },
+    "Chandrayaan_2": {
+      "year": 2019,
+      "orbiter": "Active — continues to orbit the Moon and send scientific data",
+      "lander": "Vikram crash-landed on September 6, 2019, due to a software glitch during the final descent phase",
+      "rover": "Pragyan (did not deploy due to lander crash)",
+      "notes": "Despite the lander failure, the orbiter remains functional and has made significant scientific contributions, including detailed mapping of the lunar surface."
+    },
+    "Chandrayaan_3": {
+      "year": 2023,
+      "achievement": "First successful landing near the Moon's south pole on August 23, 2023. India became the fourth country to achieve a soft Moon landing and the first to land near the south pole.",
+      "lander": "Vikram",
+      "rover": "Pragyan",
+      "landing_date": "August 23, 2023",
+      "significance": "The south pole region is scientifically important due to permanently shadowed craters that may contain water ice.",
+      "rover_experiments": ["APXS - Alpha Particle X-ray Spectrometer", "LIBS - Laser Induced Breakdown Spectroscope"]
+    },
+    "Mangalyaan": {
+      "full_name": "Mars Orbiter Mission (MOM)",
+      "year": 2014,
+      "achievement": "First Asian Mars mission and first mission in the world to succeed on its very first attempt. India became the first Asian nation to reach Mars orbit.",
+      "cost_usd": "$74 million",
+      "cost_comparison": "Cheaper than the Hollywood film Gravity ($100M budget)",
+      "launch_date": "November 5, 2013",
+      "arrival_date": "September 24, 2014",
+      "status": "Mission ended in 2022 after fuel depletion"
+    },
+    "Gaganyaan": {
+      "planned": "2025",
+      "achievement": "India's first crewed spaceflight mission. Will carry Indian astronauts (Gagannauts) to low Earth orbit for 3 days.",
+      "crew_module": "Designed for 3 astronauts",
+      "training": "Crew trained in Russia and India",
+      "unmanned_test": "TV-D1 abort test conducted October 2023 — successful"
+    },
+    "Aditya_L1": {
+      "year": 2023,
+      "launch_date": "September 2, 2023",
+      "achievement": "India's first solar observatory mission, placed at the Sun-Earth Lagrange Point 1 (L1), approximately 1.5 million km from Earth.",
+      "instruments": 7,
+      "mission": "Study solar corona, solar wind, and space weather"
+    },
+    "OneWeb_launches": {
+      "description": "ISRO launched 36 OneWeb internet satellites into low Earth orbit using its LVM3 (GSLV Mk III) rocket in 2022 and 2023, marking a significant commercial launch milestone."
+    },
+    "GSAT_series": {
+      "description": "A series of Indian communication satellites providing DTH, internet, and meteorological services across India and neighboring regions. Over 20 GSAT satellites launched.",
+      "notable": "GSAT-11 is India's heaviest satellite at 5,854 kg"
+    },
+    "IRNSS_NavIC": {
+      "description": "Indian Regional Navigation Satellite System (NavIC) — India's own GPS equivalent with 8 satellites providing positioning data over India and surrounding regions up to 1,500 km."
+    }
+  },
+  "interesting_facts": [
+    "ISRO's Mangalyaan reached Mars on its very first attempt in 2014, making India the only country to achieve this — the USA, Soviet Union, and Europe all failed on their first tries.",
+    "The Mars Orbiter Mission (Mangalyaan) cost just $74 million — cheaper than producing many Hollywood blockbusters and far less than NASA's MAVEN Mars mission ($671 million).",
+    "Chandrayaan-3 made India the first nation to successfully land near the Moon's south pole on August 23, 2023, a date now celebrated as National Space Day in India.",
+    "In February 2017, ISRO's PSLV-C37 launched a record-breaking 104 satellites in a single mission, shattering the previous record of 37 satellites.",
+    "ISRO operates on one of the world's smallest space agency budgets — approximately $2.4 billion/year — yet consistently achieves world-class missions.",
+    "The Indian space program started with rocket parts being transported on bicycles and bullock carts to the Thumba launch site in Kerala in the 1960s.",
+    "Dr. A.P.J. Abdul Kalam, who later became President of India, led the development of India's first satellite launch vehicle (SLV-3) at ISRO.",
+    "ISRO's Chandrayaan-1 mission in 2008 played a key role in confirming the presence of water molecules on the Moon's surface.",
+    "The Gaganyaan program aims to make India only the fourth country (after Russia, USA, and China) to independently send humans to space.",
+    "ISRO has launched satellites for over 30 countries, establishing itself as a competitive and affordable launch service provider in the global market."
+  ],
+  "faq": [
+    {
+      "question": "What was the achievement of Chandrayaan-3?",
+      "answer": "Chandrayaan-3 achieved a historic soft landing near the Moon's south pole on August 23, 2023. It made India the first country to successfully land at the lunar south pole and the fourth country overall to achieve a soft Moon landing. The Pragyan rover deployed and conducted experiments on lunar soil composition."
+    },
+    {
+      "question": "Why was Mangalyaan considered a remarkable achievement?",
+      "answer": "Mangalyaan (Mars Orbiter Mission) was remarkable for three reasons: it was India's first interplanetary mission, it succeeded on the very first attempt (no other country had done this), and it cost only $74 million — a fraction of comparable missions by other agencies."
+    },
+    {
+      "question": "What is the Gaganyaan mission?",
+      "answer": "Gaganyaan is ISRO's first crewed spaceflight program, aiming to send three Indian astronauts (called Gagannauts) to low Earth orbit for approximately 3 days. Planned for 2025, it will make India the fourth nation to independently launch humans into space."
+    },
+    {
+      "question": "How does ISRO's budget compare to NASA's?",
+      "answer": "ISRO's annual budget is approximately $2.4 billion USD, while NASA's is about $25 billion — roughly 10 times larger. Despite this, ISRO has achieved comparable milestones through cost-efficient engineering, indigenous development, and strategic prioritization."
+    },
+    {
+      "question": "When was ISRO founded and by whom?",
+      "answer": "ISRO was founded on August 15, 1969, by Dr. Vikram Sarabhai, who is regarded as the father of India's space program. He believed space technology should be used for the socioeconomic development of India."
+    },
+    {
+      "question": "What is the PSLV rocket?",
+      "answer": "The Polar Satellite Launch Vehicle (PSLV) is ISRO's most reliable and frequently used launch vehicle, with over 60 successful missions. It is a four-stage rocket using alternating solid and liquid propulsion stages, and set a world record by launching 104 satellites in a single flight in 2017."
+    },
+    {
+      "question": "What did Chandrayaan-1 discover?",
+      "answer": "Chandrayaan-1 (2008) played a pivotal role in confirming the presence of water molecules on the Moon's surface, particularly in permanently shadowed polar regions. This discovery was made using NASA's Moon Mineralogy Mapper (M3) instrument carried aboard the spacecraft."
+    },
+    {
+      "question": "What is Aditya-L1?",
+      "answer": "Aditya-L1 is India's first dedicated solar observatory mission, launched on September 2, 2023. It is positioned at the Sun-Earth Lagrange Point 1 (L1), 1.5 million km from Earth, and studies the Sun's corona, solar wind, and space weather phenomena."
+    },
+    {
+      "question": "What happened to the Chandrayaan-2 lander?",
+      "answer": "The Chandrayaan-2 Vikram lander crash-landed on the Moon on September 6, 2019, due to a software anomaly during its final descent. However, the orbiter successfully entered lunar orbit and continues to function, providing valuable scientific data including high-resolution lunar surface maps."
+    },
+    {
+      "question": "Has India sent humans to space?",
+      "answer": "As of 2024, India has not yet independently sent humans to space. Rakesh Sharma flew to the Soviet Mir space station in 1984 under a bilateral agreement. The upcoming Gaganyaan mission, planned for 2025, will be India's first independent human spaceflight."
+    },
+    {
+      "question": "What is NavIC?",
+      "answer": "NavIC (Navigation with Indian Constellation), also called IRNSS, is India's own regional satellite navigation system — analogous to the US GPS or European Galileo. It consists of 8 satellites and provides accurate positioning over India and a region extending 1,500 km around it."
+    },
+    {
+      "question": "What record did PSLV-C37 set?",
+      "answer": "On February 15, 2017, PSLV-C37 launched a record 104 satellites simultaneously into orbit from a single rocket — shattering the previous world record of 37 satellites. The payload included the Cartosat-2D earth observation satellite along with 103 smaller international co-passenger satellites."
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "id": "saturn",
+  "name": "Saturn",
+  "alternative_names": ["Ringed Giant", "Lord of the Rings", "Jewel of the Solar System"],
+  "type": "Gas Giant",
+  "planet_number": 6,
+  "description": "Saturn is the sixth planet from the Sun and the second-largest in the Solar System. It is famous for its stunning, extensive ring system and is the least dense planet — it would float on water. Saturn has 146 known moons, including Titan with its thick nitrogen atmosphere.",
+  "diameter": "116,460 km (9.45 × Earth)",
+  "radius": "58,232 km",
+  "mass": "5.683 × 10^26 kg (95.2 × Earth)",
+  "density": "687 kg/m³ (less than water)",
+  "gravity": "10.44 m/s² (1.07 × Earth)",
+  "escape_velocity": "35.5 km/s",
+  "distance_from_sun": "1.43 billion km (9.58 AU)",
+  "distance_from_earth": "1.2–1.7 billion km",
+  "orbital_period": "29.46 years",
+  "orbital_speed": "9.68 km/s",
+  "rotation_period": "10 hours 33 minutes",
+  "axial_tilt": "26.73°",
+  "temperature_cloud_tops": "-139°C",
+  "temperature_core": "~11,700°C",
+  "atmosphere": "96% Hydrogen, 3% Helium, trace methane, ammonia",
+  "ring_system": {
+    "extent": "7,000–80,000 km above equator, 282,000 km outer diameter",
+    "thickness": "10–100 meters average",
+    "composition": "Mostly water ice (90–95%) with rock and dust",
+    "origin": "Likely debris from a destroyed moon 100–200 million years ago",
+    "lifespan": "Will disappear in ~100 million years (ring rain)"
+  },
+  "moons": 146,
+  "notable_moons": {
+    "Titan": "Largest moon; thick nitrogen atmosphere; liquid methane lakes — only moon with surface liquids",
+    "Enceladus": "Active geysers ejecting water ice — subsurface ocean; potential for life",
+    "Mimas": "Resembles the Death Star from Star Wars",
+    "Rhea": "Saturn's second-largest moon",
+    "Iapetus": "Half black, half white surface"
+  },
+  "magnetic_field": "578× weaker than Jupiter, 578× stronger than Earth",
+  "known_missions": [
+    "Pioneer 11 (NASA, 1979) — first Saturn flyby",
+    "Voyager 1 & 2 (NASA, 1980–81) — detailed ring and moon mapping",
+    "Cassini-Huygens (NASA/ESA, 2004–2017) — 13-year orbital study, Huygens lander on Titan",
+    "Dragonfly (NASA, 2028 launch) — rotorcraft to Titan"
+  ],
+  "cassini_highlights": "Cassini orbited Saturn for 13 years (2004–2017), discovering Enceladus's geysers, mapping Titan's surface, and making a final 'Grand Finale' plunge into Saturn's atmosphere",
+  "summary": "Saturn's magnificent ring system, composed mainly of water ice, makes it the most visually striking planet in the Solar System. Its moon Titan is remarkable for having lakes and rivers of liquid methane, and Enceladus shoots water geysers from its south pole — both are fascinating targets in the search for extraterrestrial life.",
+  "interesting_facts": [
+    "Saturn is the least dense planet — with a density of 687 kg/m³, it would float on water",
+    "Saturn's rings span 282,000 km but are only 10–100 meters thick on average",
+    "Titan is the only moon in the Solar System with a thick atmosphere and surface liquids",
+    "Enceladus shoots water vapor geysers from its south pole, feeding Saturn's E ring",
+    "Saturn's rings are made of 90–95% water ice and will vanish in ~100 million years",
+    "A year on Saturn is 29.5 Earth years",
+    "Saturn has 146 known moons — more than any other planet until recently",
+    "Saturn's hexagonal polar vortex is a mysterious jet stream the size of Earth",
+    "The Cassini spacecraft made a deliberate plunge into Saturn in 2017 to avoid contaminating moons",
+    "NASA's Dragonfly mission will send a rotorcraft to explore Titan's surface in the 2030s"
+  ],
+  "faq": [
+    { "q": "Why does Saturn have rings?", "a": "Saturn's rings are believed to be debris from a destroyed moon or captured objects broken apart by Saturn's gravity (tidal forces). The rings are mostly water ice particles ranging from tiny grains to car-sized chunks." },
+    { "q": "How many moons does Saturn have?", "a": "Saturn has 146 confirmed moons as of 2023 — the most of any planet. The largest is Titan, the second-largest moon in the Solar System." },
+    { "q": "What is Titan like?", "a": "Titan is Saturn's largest moon with a thick nitrogen atmosphere (1.5× Earth's surface pressure), liquid methane/ethane lakes near the poles, and a complex organic chemistry. ESA's Huygens probe landed on Titan in 2005." },
+    { "q": "Could there be life on Enceladus?", "a": "Enceladus is a top candidate. It shoots water geysers from its south pole from a subsurface liquid ocean, which contains organic molecules, molecular hydrogen, and silica — suggesting hydrothermal vents that could support life." },
+    { "q": "Is Saturn just gas?", "a": "Saturn is primarily hydrogen and helium gas with no solid surface. Its interior transitions from gas to liquid hydrogen, then to metallic hydrogen, and possibly a small rocky/metallic core." },
+    { "q": "How long do Saturn's rings last?", "a": "Saturn's rings are losing material to 'ring rain' falling into the planet at 10 metric tons per second. At this rate, the rings will disappear in about 100 million years." },
+    { "q": "What was the Cassini mission?", "a": "Cassini was NASA's spacecraft that orbited Saturn from 2004 to 2017, making over 300 orbits. It discovered Enceladus's geysers, mapped Titan in detail, and ended by diving into Saturn's atmosphere in the 'Grand Finale.'" },
+    { "q": "How big is Saturn?", "a": "Saturn has a diameter of 116,460 km — 9.45 times Earth's diameter. It's the second-largest planet in the Solar System after Jupiter." },
+    { "q": "Can Saturn float on water?", "a": "Theoretically yes! Saturn is the only planet with a density (687 kg/m³) lower than water (1,000 kg/m³). If you had an ocean large enough, Saturn would float on it." },
+    { "q": "What is Saturn's hexagonal storm?", "a": "Saturn has a remarkable hexagonal jet stream at its north pole — a six-sided storm system with sides each about 14,500 km long. It was discovered by Voyager and studied in detail by Cassini." }
+  ]
+}

@@ -1,36 +1,114 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# COSMOS-5H1 — IBM Granite AI Space Application
 
-## Getting Started
+A world-class, futuristic AI-powered Space Exploration web application built with Next.js 15, React Three Fiber, IBM Granite AI, and a Python FastAPI backend.
 
-First, run the development server:
+## Features
+
+- 🌌 **Cinematic Loading Screen** — Rocket launch with stars, nebula, and progress animation
+- 🪐 **Interactive 3D Solar System** — All 9 planets with realistic orbits, textures, and physics
+- 🧠 **IBM Granite AI Assistant** — Offline AI via Ollama + LangChain + ChromaDB RAG
+- 🔭 **Planet Detail Modals** — Scientific data, fun facts, and AI insights per planet
+- 🎬 **GSAP + Framer Motion** — Cinematic scroll animations and transitions
+- 📱 **Responsive Design** — Desktop, tablet, and mobile optimized
+
+## Quick Start
+
+### Frontend
 
 ```bash
+cd space-explorer
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Backend (IBM Granite AI)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+# 1. Install Ollama — https://ollama.ai
+# 2. Pull IBM Granite model
+ollama pull granite3.3:2b
 
-## Learn More
+# 3. Install Python dependencies
+cd backend
+pip install -r requirements.txt
 
-To learn more about Next.js, take a look at the following resources:
+# 4. Start API server
+python main.py
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Backend runs at [http://localhost:8000](http://localhost:8000)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Folder Structure
 
-## Deploy on Vercel
+```
+space-explorer/
+├── app/                    # Next.js App Router
+│   ├── page.tsx           # Main application page
+│   ├── layout.tsx         # Root layout
+│   └── globals.css        # Global styles
+├── components/
+│   └── layout/            # Navbar, Footer
+├── features/
+│   ├── loading/           # Loading screen
+│   ├── hero/              # Hero section + Space background
+│   ├── solar-system/      # 3D Solar System + Planet list
+│   ├── planet-modal/      # Planet detail modal
+│   └── ai-assistant/      # IBM Granite AI chat panel
+├── lib/
+│   ├── planets-data.ts    # Complete solar system data
+│   └── utils.ts           # Utility functions
+├── types/
+│   └── index.ts           # TypeScript type definitions
+├── public/
+│   ├── textures/          # Planet texture maps
+│   └── gifs/              # rocket.gif loading animation
+└── backend/               # Python FastAPI + LangChain
+    ├── main.py            # FastAPI server
+    ├── requirements.txt   # Python dependencies
+    └── knowledge/         # PDF knowledge base folder
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Planet Textures
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Place NASA texture maps in `public/textures/`:
+- `mercury.jpg`
+- `venus.jpg`
+- `earth_daymap.jpg`
+- `earth_normal.jpg`
+- `earth_specular.jpg`
+- `mars.jpg`
+- `jupiter.jpg`
+- `saturn.jpg`
+- `uranus.jpg`
+- `neptune.jpg`
+- `pluto.jpg`
+
+Free textures available at [NASA Solar System Exploration](https://solarsystem.nasa.gov/resources/all/?order=pub_date+desc&per_page=50&page=0&search=&fs=&fc=&ft=maps&dp=&category=)
+
+## Loading Rocket GIF
+
+Place your rocket animation at `public/gifs/rocket.gif`. The loading screen includes a built-in SVG fallback if the GIF is not found.
+
+## Environment Variables
+
+Create `.env.local` in the root:
+
+```
+NEXT_PUBLIC_API_URL=http://localhost:8000
+```
+
+## Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Frontend | Next.js 15, React 19, TypeScript |
+| Styling | Tailwind CSS, Glassmorphism |
+| 3D | React Three Fiber, Drei, Three.js |
+| Animation | Framer Motion, GSAP |
+| AI Model | IBM Granite via Ollama |
+| AI Framework | LangChain |
+| Vector DB | ChromaDB |
+| Backend | Python FastAPI |
+| RAG | LangChain + ChromaDB + PDF indexing |

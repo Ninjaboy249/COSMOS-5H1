@@ -1,0 +1,217 @@
+{
+  "id": "rockets",
+  "name": "Rockets and Launch Vehicles",
+  "history": {
+    "overview": "Rocketry evolved from early gunpowder experiments in ancient China to the sophisticated launch vehicles that carry humans and satellites into orbit today.",
+    "milestones": [
+      {
+        "year": 1926,
+        "event": "Robert Goddard launches the world's first liquid-propellant rocket on March 16, 1926, in Auburn, Massachusetts. The flight lasted 2.5 seconds and reached a height of 12 meters."
+      },
+      {
+        "year": 1942,
+        "event": "Germany's V-2 rocket, developed under Wernher von Braun, becomes the first object to reach space (100 km altitude) on October 3, 1942. It was used as a ballistic missile in World War II but laid the technological foundation for all future rockets."
+      },
+      {
+        "year": 1957,
+        "event": "The Soviet R-7 Semyorka rocket launches Sputnik 1 on October 4, 1957 — the first artificial satellite to orbit Earth — marking the dawn of the Space Age."
+      },
+      {
+        "year": 1961,
+        "event": "The R-7 variant Vostok-K launches Yuri Gagarin aboard Vostok 1, making him the first human in space on April 12, 1961."
+      },
+      {
+        "year": 1969,
+        "event": "NASA's Saturn V — the most powerful rocket ever flown at the time — carries Apollo 11 to the Moon on July 16, 1969, enabling the first crewed lunar landing."
+      },
+      {
+        "year": 2015,
+        "event": "SpaceX successfully lands a Falcon 9 first stage booster upright for the first time, demonstrating orbital-class rocket reusability and transforming the economics of spaceflight."
+      }
+    ]
+  },
+  "notable_rockets": [
+    {
+      "name": "Saturn V",
+      "agency": "NASA",
+      "country": "USA",
+      "height": "111 m",
+      "diameter": "10.1 m",
+      "mass_at_launch": "2,970 tonnes",
+      "payload_LEO": "130 tonnes",
+      "payload_TLI": "48.6 tonnes (Trans-Lunar Injection)",
+      "first_flight": "November 9, 1967",
+      "status": "Retired 1973",
+      "total_flights": 13,
+      "achievement": "The most powerful rocket ever to carry humans; only rocket to send humans to the Moon; used in all 9 crewed Apollo lunar missions (including 6 successful landings) and to launch Skylab",
+      "propellant": "RP-1 (kerosene) / Liquid Oxygen (stages 1-2), Liquid Hydrogen / LOX (stage 3)"
+    },
+    {
+      "name": "Space Shuttle",
+      "agency": "NASA",
+      "country": "USA",
+      "height": "56 m (orbiter) / 56 m stack",
+      "payload_LEO": "24.4 tonnes",
+      "first_flight": "April 12, 1981",
+      "status": "Retired 2011",
+      "total_flights": 135,
+      "achievement": "First reusable orbital spacecraft system in history; deployed Hubble Space Telescope, assembled the ISS, and served as a crewed orbital laboratory",
+      "note": "Two disasters — Challenger (1986) and Columbia (2003) — resulted in the loss of 14 astronauts."
+    },
+    {
+      "name": "Falcon 9",
+      "agency": "SpaceX",
+      "country": "USA",
+      "height": "70 m",
+      "diameter": "3.7 m",
+      "payload_LEO": "22.8 tonnes",
+      "payload_GTO": "8.3 tonnes",
+      "first_flight": "June 4, 2010",
+      "status": "Active",
+      "achievement": "First orbital-class rocket to successfully land and re-fly its first stage booster; revolutionized launch costs; first commercial rocket to ferry astronauts to the ISS (Dragon Crew)",
+      "reusability": "First stage boosters have been reflown over 20 times"
+    },
+    {
+      "name": "Falcon Heavy",
+      "agency": "SpaceX",
+      "country": "USA",
+      "height": "70 m",
+      "payload_LEO": "63.8 tonnes",
+      "payload_GTO": "26.7 tonnes",
+      "first_flight": "February 6, 2018",
+      "status": "Active",
+      "achievement": "Most powerful operational rocket in the world at time of writing; first flight famously carried Elon Musk's personal Tesla Roadster to heliocentric orbit",
+      "configuration": "Three Falcon 9 first stages strapped together; all three cores are recoverable"
+    },
+    {
+      "name": "SLS (Space Launch System)",
+      "agency": "NASA",
+      "country": "USA",
+      "height": "98 m (Block 1) / 111 m (Block 1B)",
+      "payload_LEO": "95 tonnes (Block 1) / 130 tonnes (Block 1B)",
+      "payload_TLI": "27 tonnes (Block 1)",
+      "first_flight": "November 16, 2022 (Artemis I)",
+      "status": "Active",
+      "achievement": "NASA's successor to Saturn V; serves as the core launch vehicle for the Artemis program aiming to return humans to the Moon and eventually send them to Mars",
+      "note": "Expendable rocket — core stage is not recovered; each launch costs an estimated $2+ billion"
+    },
+    {
+      "name": "Starship",
+      "agency": "SpaceX",
+      "country": "USA",
+      "height": "121 m (full stack: Super Heavy + Starship)",
+      "payload_LEO": "100–150 tonnes (planned, fully reusable)",
+      "first_full_test": "April 20, 2023",
+      "status": "Development and testing (integrated flight tests ongoing)",
+      "achievement": "Most powerful rocket ever test-fired, surpassing Saturn V in total thrust; designed to be fully and rapidly reusable; selected by NASA as Artemis Human Landing System for Moon missions; SpaceX's vehicle for Mars colonization",
+      "propellant": "Methane (CH₄) / Liquid Oxygen — 'Methalox' — chosen for in-situ production on Mars",
+      "milestones": [
+        "IFT-4 (June 2024): both Starship upper stage and Super Heavy booster successfully returned and splashed down.",
+        "IFT-5 (October 2024): Super Heavy booster caught by 'Mechazilla' launch tower arms for the first time in history."
+      ]
+    },
+    {
+      "name": "PSLV (Polar Satellite Launch Vehicle)",
+      "agency": "ISRO",
+      "country": "India",
+      "height": "44 m",
+      "payload_LEO": "3.8 tonnes",
+      "payload_SSO": "1.75 tonnes",
+      "first_flight": "September 20, 1993",
+      "status": "Active",
+      "achievement": "India's most reliable and prolific rocket — the 'workhorse' of ISRO; launched Chandrayaan-1 (Moon), Mangalyaan (Mars), and a record 104 satellites in a single launch (2017)",
+      "notable_missions": ["Chandrayaan-1", "Mangalyaan (Mars Orbiter Mission)", "Astrosat", "RISAT series"]
+    },
+    {
+      "name": "GSLV Mk III (LVM3)",
+      "agency": "ISRO",
+      "country": "India",
+      "height": "43.5 m",
+      "payload_LEO": "10 tonnes",
+      "payload_GTO": "4 tonnes",
+      "first_flight": "June 5, 2017",
+      "status": "Active",
+      "achievement": "India's heaviest and most powerful operational rocket; successfully launched Chandrayaan-3 (2023) to the Moon; selected for OneWeb commercial satellite launches",
+      "note": "Being evolved to carry crew for India's Gaganyaan human spaceflight program."
+    },
+    {
+      "name": "Ariane 5",
+      "agency": "ESA / ArianeGroup",
+      "country": "Europe",
+      "height": "53 m",
+      "payload_LEO": "21 tonnes",
+      "payload_GTO": "10.7 tonnes",
+      "first_flight": "June 4, 1996",
+      "status": "Retired July 2023",
+      "total_flights": 117,
+      "achievement": "Europe's premier heavy-lift rocket for over 25 years; launched the James Webb Space Telescope on December 25, 2021 — its most celebrated mission; had an exceptional 82-mission consecutive success streak",
+      "successor": "Ariane 6 (first flight 2024)"
+    },
+    {
+      "name": "Soyuz",
+      "agency": "Roscosmos (Energia)",
+      "country": "Russia / USSR",
+      "height": "46 m",
+      "payload_LEO": "7.08 tonnes",
+      "first_flight": "November 28, 1966",
+      "status": "Active",
+      "achievement": "Most flown rocket in history with over 1,900 launches across all Soyuz variants; has served as the sole means of crewed access to the ISS from 2011 to 2020 after Shuttle retirement",
+      "reliability": "One of the most reliable rockets ever built with success rates consistently above 97%"
+    }
+  ],
+  "summary": "Rockets are the only technology capable of propelling cargo and humans beyond Earth's atmosphere. From Robert Goddard's pioneering 1926 liquid-fuel rocket to SpaceX's Starship — the most powerful rocket ever built — launch vehicles have been at the heart of every advance in space exploration. Today, a new era of partially and fully reusable rockets is dramatically reducing the cost of access to space, accelerating science, commerce, and the ambition of crewed missions to the Moon and Mars.",
+  "interesting_facts": [
+    "The Saturn V remains the tallest, heaviest, and most powerful rocket ever successfully flown to orbit, producing 34.5 million newtons of thrust at liftoff.",
+    "SpaceX's Falcon 9 has become the most frequently flown orbital rocket in history, surpassing even the legendary Soyuz in annual launch rate.",
+    "The first-ever liquid-propellant rocket by Robert Goddard in 1926 burned for just 2.5 seconds and rose only 12 meters — yet the technology scaled to reach the Moon within 43 years.",
+    "The V-2 rocket from WWII was the first human-made object to cross the Kármán line (100 km altitude) — the internationally recognized boundary of space.",
+    "SpaceX's Starship generates more thrust than the Saturn V, producing over 74 meganewtons at full power from its 33 Raptor engines.",
+    "India's PSLV set a world record in February 2017 by launching 104 satellites simultaneously on a single rocket, breaking the previous record of 37.",
+    "The Space Shuttle's main engines (SSMEs) were the most efficient hydrogen-fueled engines ever built, achieving a specific impulse of 452 seconds in vacuum.",
+    "Falcon 9 booster B1058 flew 19 missions before retirement — a milestone in rocket reusability that was unimaginable a decade earlier.",
+    "Ariane 5's most famous payload, the James Webb Space Telescope, was so precisely launched that JWST saved enough fuel to operate for potentially 20+ years instead of the planned 10.",
+    "Russia's Soyuz rocket family is derived directly from the R-7 ICBM that launched Sputnik in 1957 — making its lineage over 65 years old and still flying."
+  ],
+  "faq": [
+    {
+      "question": "How does a rocket work?",
+      "answer": "A rocket works on Newton's third law — every action has an equal and opposite reaction. Burning propellant (fuel + oxidizer) creates hot exhaust gases that are expelled at high speed from the nozzle. The reaction pushes the rocket in the opposite direction. Unlike jet engines, rockets carry their own oxidizer and can work in the vacuum of space."
+    },
+    {
+      "question": "What is the most powerful rocket ever built?",
+      "answer": "SpaceX's Starship/Super Heavy stack is the most powerful rocket ever tested, generating over 74 meganewtons of thrust. Historically, NASA's Saturn V was the most powerful rocket to successfully complete orbital and lunar missions, with 34.5 meganewtons of thrust."
+    },
+    {
+      "question": "What is rocket reusability and why does it matter?",
+      "answer": "Reusability means recovering and reflying the rocket (or its most expensive stages) rather than letting them fall into the ocean. SpaceX pioneered orbital-class reusability with Falcon 9. Reusing a booster that costs ~$40 million can reduce launch costs from ~$60 million to under $15 million per flight, dramatically expanding access to space."
+    },
+    {
+      "question": "What rocket sent humans to the Moon?",
+      "answer": "NASA's Saturn V rocket launched all nine crewed Apollo lunar missions (1968–1972), including the six that successfully landed on the Moon. Standing 111 meters tall and weighing nearly 3,000 tonnes at launch, it remains the only rocket to have sent humans beyond low Earth orbit."
+    },
+    {
+      "question": "What is India's most important rocket?",
+      "answer": "ISRO operates two key rockets: the PSLV (Polar Satellite Launch Vehicle), India's reliable workhorse that launched missions to the Moon and Mars; and the GSLV Mk III (LVM3), India's most powerful rocket that successfully launched Chandrayaan-3 to the Moon's south pole in 2023."
+    },
+    {
+      "question": "What is the Artemis program and what rocket does it use?",
+      "answer": "Artemis is NASA's program to return humans to the Moon and establish a sustainable lunar presence as a stepping stone to Mars. It uses the Space Launch System (SLS) — a heavy-lift rocket producing 39 meganewtons of thrust — along with the Orion crew capsule. Artemis I (2022) was its first uncrewed test flight."
+    },
+    {
+      "question": "What fuel do rockets use?",
+      "answer": "Rockets use a variety of propellants: kerosene (RP-1) and liquid oxygen (LOX) for Falcon 9 and Saturn V's first stage; liquid hydrogen (LH₂) and LOX for upper stages and SLS; methane and LOX ('methalox') for SpaceX Starship; and solid propellants for boosters (like the SLS solid rocket boosters and PSLV stages)."
+    },
+    {
+      "question": "Why was the Space Shuttle retired?",
+      "answer": "The Space Shuttle was retired in 2011 after 135 flights for several reasons: extremely high operating costs (~$1.5 billion per flight), two catastrophic accidents (Challenger in 1986, Columbia in 2003) killing 14 astronauts, aging hardware, and the desire to develop next-generation vehicles and focus funding on the ISS and new programs."
+    },
+    {
+      "question": "What is the Kármán line?",
+      "answer": "The Kármán line is the internationally recognized boundary of space, set at 100 km altitude above sea level. Below this, aerodynamic lift is possible; above it, orbital velocity is needed to stay aloft. It is named after Hungarian-American physicist Theodore von Kármán. The US Air Force uses 80 km as its own definition."
+    },
+    {
+      "question": "What is SpaceX Starship designed to do?",
+      "answer": "Starship is SpaceX's fully reusable super-heavy-lift launch vehicle designed for multiple goals: deploying large satellite constellations, serving as NASA's Artemis lunar lander, potentially carrying humans to Mars, and eventually enabling rapid point-to-point travel on Earth. Both the Starship upper stage and Super Heavy booster are designed to be caught and reused within hours."
+    }
+  ]
+}

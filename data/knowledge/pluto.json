@@ -1,0 +1,213 @@
+{
+  "id": "pluto",
+  "name": "Pluto",
+  "alternative_names": ["Dwarf Planet", "Former 9th Planet", "The Plutonian World", "King of the Kuiper Belt"],
+  "type": "Dwarf Planet",
+  "planet_number_formerly": 9,
+  "current_classification": "Dwarf Planet (IAU, 2006)",
+  "kuiper_belt_object": true,
+  "description": "Pluto is a dwarf planet located in the Kuiper Belt, a region of the solar system beyond Neptune filled with icy bodies. Once considered the ninth planet, Pluto was reclassified as a dwarf planet by the International Astronomical Union (IAU) in 2006. Despite its small size, Pluto is a scientifically fascinating world with a complex geology, a layered atmosphere, a giant moon Charon, and iconic features like the heart-shaped Tombaugh Regio plain. NASA's New Horizons spacecraft transformed our understanding of Pluto during its 2015 flyby, revealing a world far more dynamic and beautiful than anyone expected.",
+  "discovery": {
+    "discovered_by": "Clyde Tombaugh",
+    "discovery_date": "February 18, 1930",
+    "discovery_institution": "Lowell Observatory, Arizona, USA",
+    "discovery_method": "Photographic plates comparison (blink comparator)",
+    "named_by": "Venetia Burney, an 11-year-old schoolgirl from Oxford, England"
+  },
+  "physical_characteristics": {
+    "diameter_km": 2377,
+    "diameter_comparison": "About 2/3 the diameter of Earth's Moon; smaller than several moons in the solar system",
+    "radius_km": 1188,
+    "mass_kg": "1.303 × 10^22",
+    "mass_comparison": "About 0.22% of Earth's mass",
+    "density_g_per_cm3": 1.854,
+    "surface_area_km2": "1.779 × 10^7",
+    "volume_earth_comparison": "About 170 Plutos could fit inside Earth"
+  },
+  "gravity": {
+    "surface_gravity_m_per_s2": 0.62,
+    "surface_gravity_relative_to_earth": 0.063,
+    "note": "A 100 kg person on Earth would weigh only 6.3 kg on Pluto. You could jump roughly 10 times higher than on Earth."
+  },
+  "escape_velocity": {
+    "value_km_per_s": 1.21,
+    "comparison": "Much lower than Earth's 11.2 km/s — a spacecraft needs very little energy to leave Pluto"
+  },
+  "distance_from_sun": {
+    "average_km": "5.9 billion km",
+    "average_au": 39.5,
+    "perihelion_au": 29.7,
+    "aphelion_au": 49.3,
+    "perihelion_note": "At perihelion, Pluto is actually closer to the Sun than Neptune (as it was from 1979–1999)",
+    "light_travel_time": "Approximately 5.5 hours at average distance"
+  },
+  "orbital_characteristics": {
+    "orbital_period_years": 248,
+    "orbital_period_days": 90560,
+    "orbital_speed_km_per_s": 4.74,
+    "orbital_eccentricity": 0.249,
+    "orbital_eccentricity_note": "Highly elliptical orbit — far more eccentric than any of the eight planets",
+    "orbital_inclination_degrees": 17.14,
+    "orbital_inclination_note": "Pluto's orbit is tilted significantly relative to the plane of the solar system",
+    "orbital_resonance": "In a 2:3 orbital resonance with Neptune — Pluto completes 2 orbits for every 3 Neptune completes"
+  },
+  "rotation": {
+    "rotation_period": "6.387 Earth days",
+    "rotation_direction": "Retrograde (clockwise when viewed from above the solar system's north pole)",
+    "axial_tilt_degrees": 122.5,
+    "axial_tilt_note": "Like Uranus, Pluto rotates on its side. Its axial tilt of 122.5° means it is essentially upside-down compared to Earth.",
+    "tidally_locked_with_charon": "Pluto and Charon are mutually tidally locked — each keeps the same face permanently toward the other, unlike Earth-Moon which only the Moon is locked"
+  },
+  "temperature": {
+    "temperature_avg_celsius": -233,
+    "temperature_avg_fahrenheit": -387,
+    "temperature_avg_kelvin": 40,
+    "temperature_range_celsius": "-218 to -240",
+    "note": "Pluto is one of the coldest known objects in the solar system. Its temperature varies as it moves closer to and farther from the Sun along its eccentric orbit."
+  },
+  "atmosphere": {
+    "description": "Pluto has a thin, tenuous atmosphere that expands when Pluto is near perihelion (warmer) and partially collapses and freezes onto the surface when it moves away (cooler)",
+    "composition": {
+      "nitrogen_N2": "Primary component (~98%)",
+      "methane_CH4": "Present in small amounts",
+      "carbon_monoxide_CO": "Present in trace amounts"
+    },
+    "surface_pressure_pascals": 1,
+    "surface_pressure_note": "About 1/100,000th of Earth's atmospheric pressure at sea level",
+    "haze_layers": "New Horizons discovered 20 or more layers of haze extending up to 200 km above the surface",
+    "seasonal_changes": "The atmosphere is predicted to largely freeze and collapse onto the surface as Pluto moves toward aphelion in the coming decades"
+  },
+  "surface": {
+    "description": "Pluto has a surprisingly diverse and geologically active surface, as revealed by New Horizons in 2015",
+    "tombaugh_regio": {
+      "name": "Tombaugh Regio",
+      "nickname": "The Heart",
+      "description": "A large, heart-shaped bright region approximately 1,600 km wide on Pluto's surface. Named after Pluto's discoverer, Clyde Tombaugh.",
+      "sputnik_planitia": {
+        "description": "The left lobe of the heart — a vast, smooth nitrogen ice plain about 1,000 km wide, with no impact craters, indicating it is geologically young (possibly under 10 million years old). Features slow-moving convection cells of nitrogen ice.",
+        "origin_theory": "May have formed due to an ancient impact that created a basin which then filled with volatile nitrogen ice"
+      }
+    },
+    "cthulhu_regio": {
+      "name": "Cthulhu Regio",
+      "description": "A large, dark reddish-brown region stretching about 3,000 km across Pluto's equatorial zone. The dark color is caused by tholins — complex organic molecules formed when methane and nitrogen in the atmosphere are broken down by solar ultraviolet light and cosmic rays."
+    },
+    "mountains": {
+      "highest_peak": "Hillary Montes and Tenzing Montes — mountains reaching up to 3,500 m high, composed of water ice",
+      "note": "The mountains are made of water ice, which is rock-hard at Pluto's temperatures"
+    },
+    "other_features": [
+      "Tartarus Dorsa: Blade-like methane ice ridges up to 500 m tall",
+      "Al-Idrisi Montes: Chaotic mountain range at the edge of Tombaugh Regio",
+      "Wright Mons and Piccard Mons: Possible cryovolcanoes (ice volcanoes) up to 6 km tall"
+    ],
+    "possible_subsurface_ocean": "Some scientists believe a liquid water ocean may exist beneath Pluto's surface, kept liquid by radioactive decay heat"
+  },
+  "moons": {
+    "total_count": 5,
+    "moons": [
+      {
+        "name": "Charon",
+        "diameter_km": 1212,
+        "diameter_relative_to_pluto": "More than half Pluto's diameter — the largest moon relative to its planet in the solar system",
+        "mass_relative": "About 12% of Pluto's mass",
+        "orbital_period": "6.387 days (same as Pluto's rotation — mutually tidally locked)",
+        "description": "Charon is so large relative to Pluto that the two are sometimes called a double dwarf planet system. The center of mass (barycenter) lies outside Pluto itself. Charon's surface features include Mordor Macula — a dark reddish polar cap formed by tholins, and Argo Chasma — a canyon system that dwarfs the Grand Canyon."
+      },
+      {
+        "name": "Nix",
+        "diameter_km": 49,
+        "description": "Small, irregularly shaped moon with a reddish spot, possibly the remnant of a past impact"
+      },
+      {
+        "name": "Hydra",
+        "diameter_km": 61,
+        "description": "Largest of the small moons, elongated shape, reflects more light than expected — possibly covered in water ice"
+      },
+      {
+        "name": "Kerberos",
+        "diameter_km": 19,
+        "description": "Surprisingly dark compared to the other small moons; has a two-lobed shape"
+      },
+      {
+        "name": "Styx",
+        "diameter_km": 16,
+        "description": "Smallest and innermost of the four small moons; discovered in 2012 using Hubble Space Telescope"
+      }
+    ],
+    "moon_formation_theory": "All five moons are believed to have formed from the debris of a giant impact between Pluto and another Kuiper Belt object early in solar system history — similar to how Earth's Moon formed"
+  },
+  "reclassification": {
+    "reclassification_year": 2006,
+    "organization": "International Astronomical Union (IAU)",
+    "reason": "In 2006, the IAU formally defined the term 'planet' for the first time. Under the new definition, a planet must: (1) orbit the Sun, (2) have sufficient mass to achieve hydrostatic equilibrium (roughly spherical shape), and (3) have cleared the neighborhood around its orbit of other debris. Pluto meets the first two criteria but not the third — it shares its orbital zone with many other Kuiper Belt objects. It was therefore reclassified as a 'dwarf planet'.",
+    "controversy": "The reclassification remains controversial among some astronomers and much of the public. The vote was made by only ~424 of the approximately 10,000 IAU members. Several scientists continue to advocate for Pluto's planetary status.",
+    "dwarf_planet_companions": ["Eris", "Haumea", "Makemake", "Ceres"]
+  },
+  "known_missions": [
+    {
+      "mission": "New Horizons",
+      "agency": "NASA",
+      "launch_date": "January 19, 2006",
+      "flyby_date": "July 14, 2015",
+      "closest_approach_km": 12500,
+      "significance": "First and only spacecraft to visit Pluto. Revealed stunning surface details including the Tombaugh Regio heart, towering mountains, smooth nitrogen plains, haze layers, and active geology. Transformed understanding of Pluto from a blurry dot to a geologically complex world.",
+      "current_status": "Continuing into the Kuiper Belt; flew by Kuiper Belt object Arrokoth (2014 MU69) on January 1, 2019"
+    }
+  ],
+  "summary": "Pluto is a dwarf planet in the Kuiper Belt, reclassified from its former status as the ninth planet in 2006 when the IAU formalized the definition of 'planet'. With a diameter of just 2,377 km — smaller than Earth's Moon — and located 5.9 billion km from the Sun on average, Pluto takes 248 years to complete one orbit. Its surface, revealed by NASA's New Horizons flyby in 2015, is surprisingly diverse: featuring the iconic heart-shaped Tombaugh Regio plain of nitrogen ice, towering water-ice mountains, dark organic-compound regions, and possible cryovolcanoes. Pluto has five moons, the largest of which — Charon — is so massive relative to Pluto that the two form a binary system. Despite its reclassification, Pluto remains one of the most beloved and scientifically fascinating objects in the solar system.",
+  "interesting_facts": [
+    "Pluto was discovered on February 18, 1930, by 24-year-old Clyde Tombaugh at the Lowell Observatory, and was named by an 11-year-old English girl, Venetia Burney.",
+    "Pluto is smaller than Earth's Moon and seven other moons in the solar system, including Ganymede, Titan, Callisto, Io, Europa, Triton, and the Moon.",
+    "The New Horizons spacecraft took about 9.5 years to reach Pluto after its 2006 launch, traveling at speeds of up to 58,000 km/h.",
+    "Pluto and its largest moon Charon are mutually tidally locked — they always show the same face to each other, like two dancers perpetually facing one another.",
+    "Pluto's heart-shaped region, Tombaugh Regio, is one of the most iconic images in modern astronomy and was seen for the first time ever when New Horizons flew by in 2015.",
+    "Pluto has mountains made of water ice that stand up to 3,500 meters tall — as high as some peaks in the Rocky Mountains.",
+    "Pluto's orbit is so eccentric that for 20 years (1979–1999), it was actually closer to the Sun than Neptune.",
+    "Pluto was discovered in 1930 but wasn't visited by any spacecraft until 85 years later in 2015 — the longest any planet or dwarf planet had to wait for its first visitor.",
+    "The nitrogen ice plain Sputnik Planitia on Pluto shows no impact craters, suggesting it has been resurfaced geologically within the last 10 million years — very recently in cosmic terms.",
+    "Some scientists believe Pluto may have a liquid water ocean beneath its icy surface, potentially maintained by the heat of radioactive decay in its rocky core."
+  ],
+  "faq": [
+    {
+      "question": "Why was Pluto reclassified as a dwarf planet?",
+      "answer": "In 2006, the International Astronomical Union (IAU) formally defined what a planet is for the first time. Under this definition, a planet must: (1) orbit the Sun, (2) have enough mass for gravity to make it roughly spherical, and (3) have 'cleared the neighbourhood' of other objects around its orbit. Pluto meets criteria 1 and 2, but not 3 — it shares the Kuiper Belt with many other icy bodies and has not gravitationally dominated its orbital zone. Therefore, it was reclassified as a 'dwarf planet'."
+    },
+    {
+      "question": "What did the New Horizons mission discover about Pluto?",
+      "answer": "NASA's New Horizons spacecraft transformed our understanding of Pluto during its July 14, 2015 flyby. Key discoveries include: the heart-shaped Tombaugh Regio region, the vast smooth nitrogen ice plain Sputnik Planitia (geologically young and crater-free), water-ice mountains up to 3,500 m tall, more than 20 layers of atmospheric haze, possible cryovolcanoes, complex surface patterns of methane ice ridges, a surprising diversity of terrain, and detailed images of the five moons including Charon's enormous canyon system and dark polar cap."
+    },
+    {
+      "question": "What is Tombaugh Regio?",
+      "answer": "Tombaugh Regio, often called 'The Heart', is a large heart-shaped bright region about 1,600 km wide on Pluto's surface, named after Pluto's discoverer Clyde Tombaugh. Its left lobe is Sputnik Planitia — a vast plain of nitrogen ice that shows no impact craters, indicating it is geologically very young. The right lobe is rougher terrain covered in methane and nitrogen ices. The heart was the first major feature to be clearly resolved as New Horizons approached Pluto in 2015."
+    },
+    {
+      "question": "What is Charon and why is it special?",
+      "answer": "Charon is Pluto's largest moon, with a diameter of 1,212 km — more than half of Pluto's diameter. This makes it the largest moon relative to its parent body in the solar system, and the two are sometimes called a 'binary dwarf planet' system. The center of mass between Pluto and Charon lies outside Pluto itself. Both bodies are mutually tidally locked — each permanently faces the same side toward the other. Charon has its own fascinating surface features, including a massive equatorial canyon system and a dark reddish polar cap called Mordor Macula, formed by tholins."
+    },
+    {
+      "question": "How far away is Pluto and how long does it take to get there?",
+      "answer": "Pluto is about 5.9 billion km (39.5 AU) from the Sun on average. Its orbit is highly elliptical, ranging from 4.4 billion km (29.7 AU) at closest to 7.4 billion km (49.3 AU) at farthest. Light takes about 5.5 hours to travel from the Sun to Pluto at its average distance. New Horizons, launched in January 2006, took about 9.5 years to reach Pluto, traveling at speeds of up to 58,000 km/h — the fastest spacecraft ever launched."
+    },
+    {
+      "question": "Does Pluto have an atmosphere?",
+      "answer": "Yes, Pluto has a thin atmosphere composed primarily of nitrogen (~98%), with small amounts of methane and carbon monoxide. The atmospheric pressure is about 1/100,000th of Earth's at sea level. The atmosphere is dynamic — it expands as Pluto approaches the Sun and gases sublimate from the surface, then partially collapses and freezes back to the surface as Pluto moves farther away. New Horizons discovered that the atmosphere has more than 20 distinct haze layers extending up to 200 km above the surface."
+    },
+    {
+      "question": "How many moons does Pluto have?",
+      "answer": "Pluto has 5 known moons: Charon (the largest, discovered in 1978), Nix and Hydra (discovered in 2005 using Hubble), Kerberos (discovered in 2011), and Styx (discovered in 2012). All five moons are believed to have formed from debris ejected when Pluto collided with another large Kuiper Belt object early in solar system history — similar to the giant impact theory for Earth's Moon."
+    },
+    {
+      "question": "Will Pluto ever be reclassified back as a planet?",
+      "answer": "It is possible but unlikely in the near term. The 2006 IAU classification remains the official scientific standard. Some researchers have proposed alternative planet definitions — such as one based purely on geophysical criteria (a round object in space) that would reinstate Pluto. NASA's New Horizons principal investigator Alan Stern is a vocal advocate for Pluto's planetary status. A revised definition could potentially be voted on at a future IAU General Assembly, but no change has been made as of 2025."
+    },
+    {
+      "question": "What is Cthulhu Regio on Pluto?",
+      "answer": "Cthulhu Regio is a large, dark reddish-brown region stretching about 3,000 km across Pluto's equatorial zone, named after H.P. Lovecraft's fictional cosmic entity. Its dark color is caused by tholins — complex organic molecules created when methane and nitrogen in Pluto's atmosphere are exposed to solar ultraviolet radiation and cosmic rays. Tholins rain down and coat the surface over time, creating one of the darkest regions on Pluto."
+    },
+    {
+      "question": "Is Pluto in the Asteroid Belt?",
+      "answer": "No — Pluto is located in the Kuiper Belt, not the Asteroid Belt. The Asteroid Belt lies between Mars and Jupiter (approximately 2–3.5 AU from the Sun) and contains rocky bodies. The Kuiper Belt is a much larger region extending beyond Neptune's orbit (from about 30 to 50 AU), containing icy bodies including dwarf planets such as Pluto, Eris, Haumea, and Makemake. Pluto orbits the Sun at an average distance of 39.5 AU."
+    }
+  ]
+}
