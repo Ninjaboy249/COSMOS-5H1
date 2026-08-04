@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { AsciiGlitchRipple } from "@/components/ui/ascii-glitch-ripple";
 import WelcomeVideo from "@/features/loading/WelcomeVideo";
 import HeroContent from "@/features/hero/HeroContent";
 import SolarSystemCSS from "@/features/hero/SolarSystemCSS";
@@ -187,7 +188,7 @@ export default function Home() {
                     backgroundClip: "text",
                   }}
                 >
-                  Powered by IBM Granite AI
+                  <AsciiGlitchRipple as="span" dur={1000} spread={1.3}>Powered by IBM Granite AI</AsciiGlitchRipple>
                 </h2>
                 <p className="text-blue-300/50 text-lg max-w-2xl mx-auto">
                   A complete offline AI system for space exploration, running 100% locally on your machine

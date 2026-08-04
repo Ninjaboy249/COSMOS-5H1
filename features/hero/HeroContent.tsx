@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { AsciiGlitchRipple } from "@/components/ui/ascii-glitch-ripple";
 
 interface HeroContentProps {
   onStartExploring: () => void;
@@ -23,7 +24,7 @@ export default function HeroContent({ onStartExploring, onOpenAI }: HeroContentP
       <motion.div className="mb-5 sm:mb-7" variants={reveal} transition={{ duration: 0.75 }}>
         <span className="inline-flex items-center gap-2 rounded-full border border-blue-300/20 bg-blue-300/[0.07] px-4 py-2 text-xs uppercase tracking-[0.2em] text-blue-200">
           <span className="h-1.5 w-1.5 rounded-full bg-cyan-300 shadow-[0_0_10px_#67e8f9]" />
-          Powered by IBM Granite AI · Offline
+          <AsciiGlitchRipple as="span" dur={700} spread={0.9} chars="·-~+:;*░▒▓01">Powered by IBM Granite AI · Offline</AsciiGlitchRipple>
         </span>
       </motion.div>
 
@@ -32,8 +33,8 @@ export default function HeroContent({ onStartExploring, onOpenAI }: HeroContentP
         variants={{ hidden: { opacity: 0, y: 34, filter: "blur(10px)" }, visible: { opacity: 1, y: 0, filter: "blur(0px)" } }}
         transition={{ duration: 1.05, ease: [0.16, 1, 0.3, 1] }}
       >
-        <span>Explore the</span>
-        <span className="luxury-hero-accent"> extraordinary.</span>
+        <AsciiGlitchRipple as="span" dur={900} spread={1.2}>Explore the</AsciiGlitchRipple>
+        <span className="luxury-hero-accent"> <AsciiGlitchRipple as="span" dur={1100} spread={1.4} className="luxury-hero-accent">extraordinary.</AsciiGlitchRipple></span>
       </motion.h1>
 
       <motion.p
@@ -41,8 +42,7 @@ export default function HeroContent({ onStartExploring, onOpenAI }: HeroContentP
         variants={reveal}
         transition={{ duration: 0.85 }}
       >
-        Discover distant worlds, uncover planetary science, and journey through the universe with
-        a private AI companion built for exploration.
+        <AsciiGlitchRipple as="span" dur={800} spread={1.0} chars="·-~+:;=*░▒▓█▄▀■!?&#$@">Discover distant worlds, uncover planetary science, and journey through the universe with a private AI companion built for exploration.</AsciiGlitchRipple>
       </motion.p>
 
       <motion.div className="luxury-actions" variants={reveal} transition={{ duration: 0.85 }}>
