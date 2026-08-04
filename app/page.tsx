@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import WelcomeVideo from "@/features/loading/WelcomeVideo";
 import HeroContent from "@/features/hero/HeroContent";
@@ -11,6 +11,7 @@ import Navbar from "@/components/layout/Navbar";
 import { AgentBentoGrid } from "@/components/ui/agent-bento-grid";
 import CelestialDetails from "@/features/solar-system/CelestialDetails";
 import { CELESTIAL_DETAILS, type CelestialBodyDetails } from "@/lib/celestial-data";
+import Link from "next/link";
 
 export default function Home() {
   const [introStage, setIntroStage] = useState<"welcome" | "ready">("welcome");
@@ -24,6 +25,13 @@ export default function Home() {
   const galaxyRef = useRef<HTMLElement>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
 
+  // Attempt to play music — call this on any user interaction
+  const tryPlayMusic = useCallback(() => {
+    const audio = audioRef.current;
+    if (!audio || !audio.paused) return;
+    audio.play().catch(() => undefined);
+  }, []);
+
   // Start background music immediately (during intro) on mount
   useEffect(() => {
     const audio = audioRef.current;
@@ -31,15 +39,18 @@ export default function Home() {
     audio.volume = 0.35;
     audio.loop = true;
     audio.muted = isMuted;
+    // Try immediately (may work if page was interacted with)
     audio.play().catch(() => {
-      // Autoplay blocked — music will start on first user interaction
+      // Autoplay blocked — music starts on first user interaction
       const startOnInteraction = () => {
         audio.play().catch(() => undefined);
         window.removeEventListener("click", startOnInteraction);
         window.removeEventListener("keydown", startOnInteraction);
+        window.removeEventListener("touchstart", startOnInteraction);
       };
       window.addEventListener("click", startOnInteraction);
       window.addEventListener("keydown", startOnInteraction);
+      window.addEventListener("touchstart", startOnInteraction);
     });
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -55,12 +66,15 @@ export default function Home() {
 
   return (
     <>
-      {/* Background music — persists for entire session */}
+      {/* Background music — persists for entire session, starts from intro */}
       <audio ref={audioRef} src="/audio/space.mp3" loop preload="auto" />
 
       <AnimatePresence>
         {introStage === "welcome" && (
-          <WelcomeVideo onComplete={() => setIntroStage("ready")} />
+          <WelcomeVideo
+            onComplete={() => setIntroStage("ready")}
+            onInteract={tryPlayMusic}
+          />
         )}
       </AnimatePresence>
 
@@ -183,6 +197,41 @@ export default function Home() {
               </motion.div>
 
               <AgentBentoGrid className="agent-capabilities-grid my-8" />
+
+              {/* CTA row */}
+              <motion.div
+                className="flex flex-wrap gap-4 justify-center mt-10"
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                <Link
+                  href="/space"
+                  className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl font-semibold text-sm transition-all duration-200 hover:scale-105"
+                  style={{
+                    background: "linear-gradient(135deg, #2563eb, #7c3aed)",
+                    color: "#fff",
+                    boxShadow: "0 0 28px rgba(99,102,241,0.35)",
+                  }}
+                >
+                  🚀 Explore the Universe
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </Link>
+                <button
+                  onClick={() => setAiOpen(true)}
+                  className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl font-semibold text-sm transition-all duration-200 hover:scale-105"
+                  style={{
+                    background: "rgba(103,232,249,0.07)",
+                    color: "#67e8f9",
+                    border: "1px solid rgba(103,232,249,0.25)",
+                  }}
+                >
+                  🧠 Ask COSMOS AI
+                </button>
+              </motion.div>
             </div>
           </section>
 

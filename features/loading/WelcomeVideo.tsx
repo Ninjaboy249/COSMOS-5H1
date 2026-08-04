@@ -5,17 +5,27 @@ import { motion } from "framer-motion";
 
 interface WelcomeVideoProps {
   onComplete: () => void;
+  /** Called whenever the user first interacts — use to unblock audio autoplay */
+  onInteract?: () => void;
 }
 
-export default function WelcomeVideo({ onComplete }: WelcomeVideoProps) {
+export default function WelcomeVideo({ onComplete, onInteract }: WelcomeVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [leaving, setLeaving] = useState(false);
+  const interactedRef = useRef(false);
+
+  const handleInteract = useCallback(() => {
+    if (interactedRef.current) return;
+    interactedRef.current = true;
+    onInteract?.();
+  }, [onInteract]);
 
   const finish = useCallback(() => {
     if (leaving) return;
+    handleInteract();
     setLeaving(true);
     window.setTimeout(onComplete, 850);
-  }, [leaving, onComplete]);
+  }, [leaving, onComplete, handleInteract]);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -80,6 +90,7 @@ export default function WelcomeVideo({ onComplete }: WelcomeVideoProps) {
 
       <button
         onClick={finish}
+        onPointerDown={handleInteract}
         className="absolute bottom-5 right-5 rounded-full border border-white/15 bg-black/30 px-4 py-2 text-[9px] uppercase tracking-[0.22em] text-white/70 backdrop-blur-md transition hover:border-white/30 hover:bg-white/10 hover:text-white sm:bottom-7 sm:right-7 sm:px-5 sm:text-[10px]"
       >
         Skip intro

@@ -41,7 +41,7 @@ export const SPACE_CATEGORIES: SpaceCategory[] = [
     glow: "rgba(245,158,11,0.35)",
     status: "8 Planets",
     statusColor: "#f59e0b",
-    image: "/images/planets/saturn.png",
+    image: "/images/space-explorer/SolarSystemSpaceExplorer.png",
     tags: ["Planets", "Moons", "Orbits"],
   },
   {
@@ -54,7 +54,7 @@ export const SPACE_CATEGORIES: SpaceCategory[] = [
     glow: "rgba(167,139,250,0.35)",
     status: "5 Classified",
     statusColor: "#a78bfa",
-    image: "/images/planets/pluto.png",
+    image: "/images/space-explorer/DwarfPlanets.png",
     tags: ["Pluto", "Kuiper Belt", "Trans-Neptunian"],
   },
   {
@@ -67,7 +67,7 @@ export const SPACE_CATEGORIES: SpaceCategory[] = [
     glow: "rgba(148,163,184,0.35)",
     status: "1M+ Known",
     statusColor: "#94a3b8",
-    image: "/images/planets/mercury.png",
+    image: "/images/space-explorer/Asteroid.png",
     tags: ["NEO", "Asteroid Belt", "Impact"],
   },
   {
@@ -80,7 +80,7 @@ export const SPACE_CATEGORIES: SpaceCategory[] = [
     glow: "rgba(103,232,249,0.35)",
     status: "Active Tracking",
     statusColor: "#67e8f9",
-    image: "/images/planets/neptune.png",
+    image: "/images/space-explorer/Comet.png",
     tags: ["Comet", "Halley", "Oort Cloud"],
   },
   {
@@ -93,7 +93,7 @@ export const SPACE_CATEGORIES: SpaceCategory[] = [
     glow: "rgba(52,211,153,0.35)",
     status: "~8,800 Active",
     statusColor: "#34d399",
-    image: "/images/planets/earth.png",
+    image: "/images/space-explorer/Satellite.png",
     tags: ["LEO", "GPS", "Communication"],
   },
   {
@@ -106,7 +106,7 @@ export const SPACE_CATEGORIES: SpaceCategory[] = [
     glow: "rgba(96,165,250,0.35)",
     status: "Active Missions",
     statusColor: "#60a5fa",
-    image: "/images/planets/earth.png",
+    image: "/images/space-explorer/SpaceCraft.png",
     tags: ["Voyager", "JWST", "Probes"],
   },
   {
@@ -119,7 +119,7 @@ export const SPACE_CATEGORIES: SpaceCategory[] = [
     glow: "rgba(34,197,94,0.35)",
     status: "Live Data",
     statusColor: "#22c55e",
-    image: "/images/planets/earth.png",
+    image: "/images/space-explorer/Satellite.png",
     tags: ["Climate", "Landsat", "EPIC"],
   },
   {
@@ -132,7 +132,7 @@ export const SPACE_CATEGORIES: SpaceCategory[] = [
     glow: "rgba(251,146,60,0.35)",
     status: "Real-time",
     statusColor: "#fb923c",
-    image: "/images/planets/sun.png",
+    image: "/images/space-explorer/SpaceWeather.png",
     tags: ["Solar Flares", "CME", "Aurora"],
   },
   {
@@ -145,7 +145,7 @@ export const SPACE_CATEGORIES: SpaceCategory[] = [
     glow: "rgba(232,121,249,0.35)",
     status: "5,700+ Confirmed",
     statusColor: "#e879f9",
-    image: "/images/planets/neptune.png",
+    image: "/images/space-explorer/ExoPlanet.png",
     tags: ["Kepler", "TESS", "Habitable Zone"],
   },
   {
@@ -158,7 +158,7 @@ export const SPACE_CATEGORIES: SpaceCategory[] = [
     glow: "rgba(253,230,138,0.35)",
     status: "200B+ in Milky Way",
     statusColor: "#fde68a",
-    image: "/images/planets/sun.png",
+    image: "/images/space-explorer/Stars.png",
     tags: ["Main Sequence", "Supernovae", "Neutron Stars"],
   },
   {
@@ -171,7 +171,7 @@ export const SPACE_CATEGORIES: SpaceCategory[] = [
     glow: "rgba(129,140,248,0.35)",
     status: "2T+ Estimated",
     statusColor: "#818cf8",
-    image: "/images/planets/neptune.png",
+    image: "/images/space-explorer/Galaxies.png",
     tags: ["Milky Way", "Andromeda", "Clusters"],
   },
   {
@@ -184,7 +184,7 @@ export const SPACE_CATEGORIES: SpaceCategory[] = [
     glow: "rgba(244,114,182,0.35)",
     status: "Thousands Mapped",
     statusColor: "#f472b6",
-    image: "/images/planets/uranus.png",
+    image: "/images/space-explorer/Nebulae.png",
     tags: ["Orion", "Pillars of Creation", "Planetary"],
   },
   {
@@ -197,7 +197,7 @@ export const SPACE_CATEGORIES: SpaceCategory[] = [
     glow: "rgba(99,102,241,0.35)",
     status: "M87* Imaged 2019",
     statusColor: "#6366f1",
-    image: "/images/planets/neptune.png",
+    image: "/images/space-explorer/BlackHole.png",
     tags: ["Singularity", "Event Horizon", "Hawking"],
   },
   {
@@ -210,7 +210,7 @@ export const SPACE_CATEGORIES: SpaceCategory[] = [
     glow: "rgba(45,212,191,0.35)",
     status: "Active Research",
     statusColor: "#2dd4bf",
-    image: "/images/planets/uranus.png",
+    image: "/images/space-explorer/Stars.png",
     tags: ["Dark Matter", "LIGO", "CMB"],
   },
   {
@@ -223,7 +223,7 @@ export const SPACE_CATEGORIES: SpaceCategory[] = [
     glow: "rgba(59,130,246,0.35)",
     status: "Active Programs",
     statusColor: "#3b82f6",
-    image: "/images/planets/earth.png",
+    image: "/images/space-explorer/NASA.png",
     tags: ["Apollo", "Artemis", "Mars 2020"],
   },
   {
@@ -236,7 +236,7 @@ export const SPACE_CATEGORIES: SpaceCategory[] = [
     glow: "rgba(56,189,248,0.35)",
     status: "Orbiting Now",
     statusColor: "#38bdf8",
-    image: "/images/planets/earth.png",
+    image: "/images/space-explorer/ISSTracker.png",
     tags: ["Live", "ISS", "Orbit"],
   },
   {
@@ -249,7 +249,7 @@ export const SPACE_CATEGORIES: SpaceCategory[] = [
     glow: "rgba(74,222,128,0.35)",
     status: "NASA EPIC",
     statusColor: "#4ade80",
-    image: "/images/planets/earth.png",
+    image: "/images/space-explorer/Satellite.png",
     tags: ["EPIC", "DSCOVR", "Real-time"],
   },
   {
@@ -262,7 +262,7 @@ export const SPACE_CATEGORIES: SpaceCategory[] = [
     glow: "rgba(192,132,252,0.35)",
     status: "Daily Updated",
     statusColor: "#c084fc",
-    image: "/images/planets/jupiter.png",
+    image: "/images/space-explorer/NASA.png",
     tags: ["APOD", "Photography", "NASA"],
   },
   {
@@ -275,7 +275,7 @@ export const SPACE_CATEGORIES: SpaceCategory[] = [
     glow: "rgba(248,113,113,0.35)",
     status: "Live Photos",
     statusColor: "#f87171",
-    image: "/images/planets/mars.png",
+    image: "/images/space-explorer/MarsRover.png",
     tags: ["Perseverance", "Curiosity", "Jezero"],
   },
   {
@@ -288,7 +288,7 @@ export const SPACE_CATEGORIES: SpaceCategory[] = [
     glow: "rgba(251,113,133,0.35)",
     status: "Live NeoWs",
     statusColor: "#fb7185",
-    image: "/images/planets/mercury.png",
+    image: "/images/space-explorer/NearEarthObject.png",
     tags: ["NEO", "Hazardous", "DART"],
   },
 ];

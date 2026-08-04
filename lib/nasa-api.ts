@@ -3,7 +3,7 @@
  * Every function returns data — never throws to the UI.
  */
 
-const NASA_KEY = "DEMO_KEY"; // Replace with your key; DEMO_KEY works for demos
+const NASA_KEY = process.env.NASA_API_KEY ?? "fGfARkmXW6nfC04VTbUGudqRIzVKNqjhWhgjG5cx";
 
 // ── Types ──────────────────────────────────────────────────────────────────
 
@@ -116,6 +116,13 @@ export async function fetchMarsPhotos(rover: "perseverance" | "curiosity" = "per
   interface MarsApiResp { photos: MarsPhoto[] }
   const data = await safeFetch<MarsApiResp>(url, { photos: FALLBACK_MARS_PHOTOS });
   return data.photos?.slice(0, 12) ?? FALLBACK_MARS_PHOTOS;
+}
+
+export async function fetchLatestMarsPhotos(rover: "perseverance" | "curiosity"): Promise<MarsPhoto[]> {
+  const url = `https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/latest_photos?api_key=${NASA_KEY}`;
+  interface LatestApiResp { latest_photos: MarsPhoto[] }
+  const data = await safeFetch<LatestApiResp>(url, { latest_photos: FALLBACK_MARS_PHOTOS });
+  return data.latest_photos?.slice(0, 12) ?? FALLBACK_MARS_PHOTOS;
 }
 
 export async function fetchNeoToday(): Promise<NeoObject[]> {
