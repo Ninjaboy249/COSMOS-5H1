@@ -33,8 +33,8 @@ export default function HeroContent({ onStartExploring, onOpenAI }: HeroContentP
         variants={{ hidden: { opacity: 0, y: 34, filter: "blur(10px)" }, visible: { opacity: 1, y: 0, filter: "blur(0px)" } }}
         transition={{ duration: 1.05, ease: [0.16, 1, 0.3, 1] }}
       >
-        <AsciiGlitchRipple as="span" dur={900} spread={1.2}>Explore the</AsciiGlitchRipple>
-        <span className="luxury-hero-accent"> <AsciiGlitchRipple as="span" dur={1100} spread={1.4} className="luxury-hero-accent">extraordinary.</AsciiGlitchRipple></span>
+        <span>Explore the</span>
+        <span className="luxury-hero-accent"> extraordinary.</span>
       </motion.h1>
 
       <motion.p
