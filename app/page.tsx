@@ -81,7 +81,6 @@ export default function Home() {
       {introStage === "ready" && (
         <motion.main
           className="premium-shell relative min-h-screen overflow-x-hidden"
-          style={{ background: "#00030a" }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
@@ -103,14 +102,13 @@ export default function Home() {
             id="solar-system"
             ref={solarRef as React.RefObject<HTMLElement>}
             className="hero-stage relative min-h-screen overflow-hidden"
-            style={{ background: "#00030a" }}
           >
 
-            {/* Star field behind everything */}
+            {/* Dark overlay to keep text readable over the photo */}
             <div
               className="absolute inset-0 z-0 pointer-events-none"
               style={{
-                background: "radial-gradient(ellipse at 70% 50%, rgba(255,130,45,.08) 0%, #00030a 42%, #000106 100%)",
+                background: "radial-gradient(ellipse at 70% 50%, rgba(255,130,45,.06) 0%, rgba(0,3,10,0.52) 42%, rgba(0,1,6,0.68) 100%)",
               }}
             />
 
@@ -157,7 +155,7 @@ export default function Home() {
             ref={planetsRef as React.RefObject<HTMLElement>}
             className="relative z-10"
             style={{
-              background: "rgba(2,7,20,0.98)",
+              background: "rgba(2,7,20,0.92)",
               borderTop: "1px solid rgba(255,255,255,0.05)",
             }}
           >

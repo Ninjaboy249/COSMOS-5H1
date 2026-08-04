@@ -67,7 +67,7 @@ body {
 }
 
 .premium-shell {
-  background: #00030a;
+  background: #00030a url('/images/milkyway-bg.jpg') center top / cover no-repeat fixed;
 }
 
 .loading-console {
@@ -95,6 +95,7 @@ body {
 .hero-stage {
   height: 100dvh;
   min-height: 640px;
+  background: transparent;
 }
 
 .luxury-hero-title { max-width: 9ch; letter-spacing: -0.055em; color: #f8fbff; text-wrap: balance; text-shadow: 0 12px 50px rgba(0,0,0,.45); }
