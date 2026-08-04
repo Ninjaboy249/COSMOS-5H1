@@ -90,6 +90,13 @@ export default function Navbar({ isMuted, onToggleMute, onNavClick }: NavbarProp
             >
               🚀 Space Explorer
             </Link>
+            <Link
+              href="/compare"
+              className="px-4 py-2 text-sm font-semibold rounded-lg transition-all duration-200"
+              style={{ color: "#c4b5fd", background: "rgba(139,92,246,0.08)", border: "1px solid rgba(139,92,246,0.2)" }}
+            >
+              🪐 Cosmic Compare
+            </Link>
           </div>
 
           {/* Right side: status + music toggle + hamburger */}
@@ -177,6 +184,14 @@ export default function Navbar({ isMuted, onToggleMute, onNavClick }: NavbarProp
                   style={{ color: "#67e8f9", background: "rgba(103,232,249,0.08)", border: "1px solid rgba(103,232,249,0.2)" }}
                 >
                   🚀 Space Explorer
+                </Link>
+                <Link
+                  href="/compare"
+                  onClick={() => setMobileOpen(false)}
+                  className="flex items-center px-4 py-3 text-sm font-semibold rounded-xl mt-1 transition-all duration-200"
+                  style={{ color: "#c4b5fd", background: "rgba(139,92,246,0.08)", border: "1px solid rgba(139,92,246,0.2)" }}
+                >
+                  🪐 Cosmic Compare
                 </Link>
                 {/* AI Status on mobile */}
                 <div
