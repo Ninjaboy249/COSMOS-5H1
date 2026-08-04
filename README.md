@@ -5,6 +5,10 @@
 
 <br/>
 
+<img src="public/images/spacecraft-animation.svg" alt="Spacecraft flying through space" width="900" />
+
+<br/>
+
 ![Typing SVG](https://readme-typing-svg.demolab.com?font=Orbitron&weight=700&size=36&pause=1000&color=38BDF8&center=true&vCenter=true&width=700&lines=COSMOS+-+5H1;Cognitive+Orbital+Space;Mission+Operating+System;Explore+%E2%80%A2+Discover+%E2%80%A2+Innovate)
 
 <br/>
