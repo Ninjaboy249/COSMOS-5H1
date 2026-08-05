@@ -6,7 +6,7 @@
 // charts, size comparison, single 3D viewer, and IBM Granite AI insights.
 // ─────────────────────────────────────────────────────────────────────────────
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import dynamic from "next/dynamic";
@@ -232,6 +232,135 @@ function Single3DViewPanel() {
   );
 }
 
+// ── Spotlight Tabs ────────────────────────────────────────────────────────────
+// Same animation as the Navbar spotlight — glowing pill + top-edge beam streak
+// that spring-slides to follow the active (and hovered) tab.
+
+function SpotlightTabs({
+  activeTab,
+  onTabChange,
+}: {
+  activeTab: TabId;
+  onTabChange: (id: TabId) => void;
+}) {
+  const [hovered, setHovered] = useState<TabId | null>(null);
+  const [spotStyle, setSpotStyle] = useState({ left: 0, width: 0, opacity: 0 });
+  const containerRef = useRef<HTMLDivElement>(null);
+  const itemRefs = useRef<Map<string, HTMLButtonElement>>(new Map());
+
+  const updateSpot = (id: string | null) => {
+    if (!id || !containerRef.current) {
+      setSpotStyle((s) => ({ ...s, opacity: 0 }));
+      return;
+    }
+    const btn = itemRefs.current.get(id);
+    if (!btn) return;
+    const btnRect = btn.getBoundingClientRect();
+    const containerRect = containerRef.current.getBoundingClientRect();
+    setSpotStyle({
+      left: btnRect.left - containerRect.left,
+      width: btnRect.width,
+      opacity: 1,
+    });
+  };
+
+  // Re-sync spotlight whenever activeTab changes (e.g. "Try comparing" buttons)
+  useEffect(() => {
+    requestAnimationFrame(() => updateSpot(activeTab));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeTab]);
+
+  const target = hovered ?? activeTab;
+
+  return (
+    <div
+      ref={containerRef}
+      className="cc-tabs no-scrollbar"
+      style={{ position: "relative", overflow: "visible" }}
+      onMouseLeave={() => {
+        setHovered(null);
+        updateSpot(activeTab);
+      }}
+    >
+      {/* ── Sliding spotlight pill (follows hovered, snaps back to active) */}
+      <motion.span
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-y-1 rounded-xl"
+        animate={{
+          left: spotStyle.left,
+          width: spotStyle.width,
+          opacity: spotStyle.opacity,
+        }}
+        transition={{ type: "spring", stiffness: 400, damping: 32 }}
+        style={{
+          background:
+            "radial-gradient(ellipse at 50% 0%, rgba(147,197,253,0.16) 0%, rgba(99,102,241,0.10) 60%, transparent 100%)",
+          boxShadow:
+            "0 0 0 1px rgba(147,197,253,0.12), 0 -2px 14px rgba(147,197,253,0.2) inset",
+          zIndex: 0,
+        }}
+      />
+
+      {/* ── Top-edge beam streak */}
+      <motion.span
+        aria-hidden="true"
+        className="pointer-events-none absolute top-1 h-px rounded-full"
+        animate={{
+          left: spotStyle.left + spotStyle.width * 0.15,
+          width: spotStyle.width * 0.7,
+          opacity: spotStyle.opacity,
+        }}
+        transition={{ type: "spring", stiffness: 400, damping: 32 }}
+        style={{
+          background:
+            "linear-gradient(90deg, transparent, rgba(147,197,253,0.75), transparent)",
+          boxShadow: "0 0 8px 1px rgba(147,197,253,0.45)",
+          zIndex: 1,
+        }}
+      />
+
+      {/* ── Tab buttons */}
+      {TABS.map((tab) => {
+        const isActive = activeTab === tab.id;
+        const isLit = target === tab.id;
+        return (
+          <button
+            key={tab.id}
+            ref={(el) => {
+              if (el) itemRefs.current.set(tab.id, el);
+            }}
+            onClick={() => {
+              onTabChange(tab.id);
+              updateSpot(tab.id);
+            }}
+            onMouseEnter={() => {
+              setHovered(tab.id);
+              updateSpot(tab.id);
+            }}
+            className="cc-tab"
+            style={{
+              position: "relative",
+              zIndex: 2,
+              color: isLit ? "#fff" : "rgba(147,197,253,0.5)",
+              background: "transparent",
+              border: isActive
+                ? "1px solid rgba(147,197,253,0.18)"
+                : "1px solid transparent",
+              textShadow: isLit
+                ? "0 0 14px rgba(147,197,253,0.55)"
+                : "none",
+              transition: "color 0.15s, text-shadow 0.15s",
+            }}
+          >
+            <span>{tab.icon}</span>
+            <span>{tab.label}</span>
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
 export default function CosmicComparePage() {
   const [objA, setObjA] = useState<CelestialCompareData>(DEFAULT_A);
   const [objB, setObjB] = useState<CelestialCompareData>(DEFAULT_B);
@@ -332,28 +461,9 @@ export default function CosmicComparePage() {
           ))}
         </motion.div>
 
-        {/* ── Tabs ────────────────────────────────────────────────────── */}
+        {/* ── Tabs — Spotlight animation ──────────────────────────────── */}
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.35 }}>
-          <div className="cc-tabs no-scrollbar">
-            {TABS.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className="cc-tab"
-                style={{
-                  color: activeTab === tab.id ? "#fff" : "rgba(147,197,253,0.5)",
-                  background: activeTab === tab.id ? "rgba(99,102,241,0.2)" : "transparent",
-                  border: activeTab === tab.id ? "1px solid rgba(99,102,241,0.4)" : "1px solid transparent",
-                }}
-              >
-                <span>{tab.icon}</span>
-                <span>{tab.label}</span>
-                {activeTab === tab.id && (
-                  <motion.div className="cc-tab-indicator" layoutId="cc-tab-indicator" />
-                )}
-              </button>
-            ))}
-          </div>
+          <SpotlightTabs activeTab={activeTab} onTabChange={setActiveTab} />
         </motion.div>
 
         {/* ── Tab content ─────────────────────────────────────────────── */}
