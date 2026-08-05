@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 
 interface NavbarProps {
@@ -10,7 +10,173 @@ interface NavbarProps {
   onNavClick: (section: string) => void;
 }
 
-const NAV_ITEMS = ["Solar System", "Planets", "Missions", "Galaxy"] as const;
+// Only Solar System and Planets — Missions and Galaxy removed
+const NAV_ITEMS = ["Solar System", "Planets"] as const;
+
+// ── Spotlight Navbar — animated glowing beam that follows the hovered item ───
+
+function SpotlightNavItems({
+  onNavClick,
+}: {
+  onNavClick: (section: string) => void;
+}) {
+  const [hovered, setHovered] = useState<string | null>(null);
+  const [spotStyle, setSpotStyle] = useState({ left: 0, width: 0, opacity: 0 });
+  const containerRef = useRef<HTMLDivElement>(null);
+  const itemRefs = useRef<Map<string, HTMLButtonElement>>(new Map());
+
+  const updateSpot = (item: string | null) => {
+    if (!item || !containerRef.current) {
+      setSpotStyle((s) => ({ ...s, opacity: 0 }));
+      return;
+    }
+    const btn = itemRefs.current.get(item);
+    if (!btn) return;
+    const container = containerRef.current;
+    const btnRect = btn.getBoundingClientRect();
+    const containerRect = container.getBoundingClientRect();
+    setSpotStyle({
+      left: btnRect.left - containerRect.left,
+      width: btnRect.width,
+      opacity: 1,
+    });
+  };
+
+  const handleEnter = (item: string) => {
+    setHovered(item);
+    updateSpot(item);
+  };
+
+  const handleLeave = () => {
+    setHovered(null);
+    setSpotStyle((s) => ({ ...s, opacity: 0 }));
+  };
+
+  return (
+    <div
+      ref={containerRef}
+      className="relative flex items-center gap-0.5"
+      onMouseLeave={handleLeave}
+    >
+      {/* Sliding spotlight pill */}
+      <motion.span
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-y-0 rounded-lg"
+        animate={{
+          left: spotStyle.left,
+          width: spotStyle.width,
+          opacity: spotStyle.opacity,
+        }}
+        transition={{ type: "spring", stiffness: 380, damping: 30 }}
+        style={{
+          background:
+            "radial-gradient(ellipse at 50% 0%, rgba(147,197,253,0.18) 0%, transparent 70%)",
+          boxShadow:
+            "0 0 0 1px rgba(147,197,253,0.14), 0 -2px 12px rgba(147,197,253,0.25) inset",
+        }}
+      />
+
+      {/* Beam streak above the pill */}
+      <motion.span
+        aria-hidden="true"
+        className="pointer-events-none absolute top-0 h-px rounded-full"
+        animate={{
+          left: spotStyle.left + spotStyle.width * 0.15,
+          width: spotStyle.width * 0.7,
+          opacity: spotStyle.opacity,
+        }}
+        transition={{ type: "spring", stiffness: 380, damping: 30 }}
+        style={{
+          background:
+            "linear-gradient(90deg, transparent, rgba(147,197,253,0.7), transparent)",
+          boxShadow: "0 0 8px 1px rgba(147,197,253,0.5)",
+        }}
+      />
+
+      {NAV_ITEMS.map((item) => (
+        <button
+          key={item}
+          ref={(el) => {
+            if (el) itemRefs.current.set(item, el);
+          }}
+          onClick={() => onNavClick(item)}
+          onMouseEnter={() => handleEnter(item)}
+          className="relative z-10 px-4 py-2 text-sm font-medium rounded-lg transition-colors duration-150 select-none"
+          style={{
+            color:
+              hovered === item
+                ? "rgba(219,234,254,0.95)"
+                : "rgba(147,197,253,0.55)",
+            textShadow:
+              hovered === item
+                ? "0 0 14px rgba(147,197,253,0.6)"
+                : "none",
+          }}
+        >
+          {item}
+        </button>
+      ))}
+    </div>
+  );
+}
+
+// ── Mobile spotlight items (vertical layout, spotlight on left edge) ──────────
+
+function MobileSpotlightItems({
+  onNavClick,
+}: {
+  onNavClick: (section: string) => void;
+}) {
+  const [hovered, setHovered] = useState<string | null>(null);
+
+  return (
+    <div className="flex flex-col gap-0.5">
+      {NAV_ITEMS.map((item) => (
+        <button
+          key={item}
+          onClick={() => onNavClick(item)}
+          onMouseEnter={() => setHovered(item)}
+          onMouseLeave={() => setHovered(null)}
+          className="relative flex items-center w-full px-4 py-3 text-sm text-left rounded-xl overflow-hidden transition-colors duration-150"
+          style={{
+            color:
+              hovered === item
+                ? "rgba(219,234,254,0.95)"
+                : "rgba(147,197,253,0.65)",
+            background:
+              hovered === item ? "rgba(147,197,253,0.07)" : "transparent",
+            textShadow:
+              hovered === item
+                ? "0 0 12px rgba(147,197,253,0.5)"
+                : "none",
+          }}
+        >
+          {/* Left edge beam */}
+          <AnimatePresence>
+            {hovered === item && (
+              <motion.span
+                aria-hidden="true"
+                className="absolute left-0 top-1 bottom-1 w-px rounded-full"
+                initial={{ opacity: 0, scaleY: 0 }}
+                animate={{ opacity: 1, scaleY: 1 }}
+                exit={{ opacity: 0, scaleY: 0 }}
+                transition={{ duration: 0.18 }}
+                style={{
+                  background:
+                    "linear-gradient(180deg, transparent, rgba(147,197,253,0.8), transparent)",
+                  boxShadow: "0 0 6px rgba(147,197,253,0.6)",
+                }}
+              />
+            )}
+          </AnimatePresence>
+          {item}
+        </button>
+      ))}
+    </div>
+  );
+}
+
+// ── Main Navbar ────────────────────────────────────────────────────────────────
 
 export default function Navbar({ isMuted, onToggleMute, onNavClick }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
@@ -40,16 +206,23 @@ export default function Navbar({ isMuted, onToggleMute, onNavClick }: NavbarProp
       <motion.nav
         className="fixed top-0 left-0 right-0 z-40 transition-all duration-300"
         style={{
-          background: scrolled || mobileOpen ? "rgba(2,7,20,0.95)" : "transparent",
-          backdropFilter: scrolled || mobileOpen ? "blur(20px)" : "none",
-          WebkitBackdropFilter: scrolled || mobileOpen ? "blur(20px)" : "none",
-          borderBottom: scrolled || mobileOpen ? "1px solid rgba(80,140,255,0.12)" : "1px solid transparent",
+          background:
+            scrolled || mobileOpen ? "rgba(2,7,20,0.95)" : "transparent",
+          backdropFilter:
+            scrolled || mobileOpen ? "blur(20px)" : "none",
+          WebkitBackdropFilter:
+            scrolled || mobileOpen ? "blur(20px)" : "none",
+          borderBottom:
+            scrolled || mobileOpen
+              ? "1px solid rgba(80,140,255,0.12)"
+              : "1px solid transparent",
         }}
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between px-5 md:px-12 h-16">
+
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2.5 flex-shrink-0">
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -72,34 +245,37 @@ export default function Navbar({ isMuted, onToggleMute, onNavClick }: NavbarProp
             </span>
           </Link>
 
-          {/* Desktop Nav links */}
-          <div className="hidden md:flex items-center gap-1">
-            {NAV_ITEMS.map((item) => (
-              <button
-                key={item}
-                onClick={() => handleNavClick(item)}
-                className="px-4 py-2 text-sm text-blue-300/55 hover:text-white rounded-lg hover:bg-white/5 transition-all duration-200"
-              >
-                {item}
-              </button>
-            ))}
+          {/* Desktop Nav — spotlight items + CTA links */}
+          <div className="hidden md:flex items-center gap-2">
+            <SpotlightNavItems onNavClick={handleNavClick} />
+
+            <div className="w-px h-5 bg-white/10 mx-1" aria-hidden="true" />
+
             <Link
               href="/space"
-              className="px-4 py-2 text-sm font-semibold rounded-lg transition-all duration-200"
-              style={{ color: "#67e8f9", background: "rgba(103,232,249,0.08)", border: "1px solid rgba(103,232,249,0.2)" }}
+              className="px-4 py-2 text-sm font-semibold rounded-lg transition-all duration-200 hover:scale-105"
+              style={{
+                color: "#67e8f9",
+                background: "rgba(103,232,249,0.08)",
+                border: "1px solid rgba(103,232,249,0.2)",
+              }}
             >
               🚀 Space Explorer
             </Link>
             <Link
               href="/compare"
-              className="px-4 py-2 text-sm font-semibold rounded-lg transition-all duration-200"
-              style={{ color: "#c4b5fd", background: "rgba(139,92,246,0.08)", border: "1px solid rgba(139,92,246,0.2)" }}
+              className="px-4 py-2 text-sm font-semibold rounded-lg transition-all duration-200 hover:scale-105"
+              style={{
+                color: "#c4b5fd",
+                background: "rgba(139,92,246,0.08)",
+                border: "1px solid rgba(139,92,246,0.2)",
+              }}
             >
               🪐 Cosmic Compare
             </Link>
           </div>
 
-          {/* Right side: status + music toggle + hamburger */}
+          {/* Right side: AI status + music + hamburger */}
           <div className="flex items-center gap-3">
             <span
               className="hidden md:flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full"
@@ -120,7 +296,9 @@ export default function Navbar({ isMuted, onToggleMute, onNavClick }: NavbarProp
               className="flex items-center justify-center w-8 h-8 rounded-lg transition-all duration-200 hover:bg-white/10"
               style={{
                 border: "1px solid rgba(80,140,255,0.25)",
-                color: isMuted ? "rgba(147,197,253,0.35)" : "rgba(147,197,253,0.75)",
+                color: isMuted
+                  ? "rgba(147,197,253,0.35)"
+                  : "rgba(147,197,253,0.75)",
               }}
             >
               {isMuted ? (
@@ -140,7 +318,10 @@ export default function Navbar({ isMuted, onToggleMute, onNavClick }: NavbarProp
             <button
               onClick={() => setMobileOpen((v) => !v)}
               className="flex md:hidden items-center justify-center w-8 h-8 rounded-lg transition-all duration-200 hover:bg-white/10"
-              style={{ border: "1px solid rgba(80,140,255,0.25)", color: "rgba(147,197,253,0.75)" }}
+              style={{
+                border: "1px solid rgba(80,140,255,0.25)",
+                color: "rgba(147,197,253,0.75)",
+              }}
               aria-label={mobileOpen ? "Close menu" : "Open menu"}
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -154,7 +335,7 @@ export default function Navbar({ isMuted, onToggleMute, onNavClick }: NavbarProp
           </div>
         </div>
 
-        {/* Mobile dropdown menu */}
+        {/* Mobile dropdown */}
         <AnimatePresence>
           {mobileOpen && (
             <motion.div
@@ -168,20 +349,17 @@ export default function Navbar({ isMuted, onToggleMute, onNavClick }: NavbarProp
                 className="flex flex-col gap-1 px-5 pb-4 pt-2"
                 style={{ borderTop: "1px solid rgba(80,140,255,0.10)" }}
               >
-                {NAV_ITEMS.map((item) => (
-                  <button
-                    key={item}
-                    onClick={() => handleNavClick(item)}
-                    className="flex items-center w-full px-4 py-3 text-sm text-left text-blue-300/70 hover:text-white rounded-xl hover:bg-white/5 transition-all duration-200"
-                  >
-                    {item}
-                  </button>
-                ))}
+                <MobileSpotlightItems onNavClick={handleNavClick} />
+
                 <Link
                   href="/space"
                   onClick={() => setMobileOpen(false)}
                   className="flex items-center px-4 py-3 text-sm font-semibold rounded-xl mt-1 transition-all duration-200"
-                  style={{ color: "#67e8f9", background: "rgba(103,232,249,0.08)", border: "1px solid rgba(103,232,249,0.2)" }}
+                  style={{
+                    color: "#67e8f9",
+                    background: "rgba(103,232,249,0.08)",
+                    border: "1px solid rgba(103,232,249,0.2)",
+                  }}
                 >
                   🚀 Space Explorer
                 </Link>
@@ -189,14 +367,21 @@ export default function Navbar({ isMuted, onToggleMute, onNavClick }: NavbarProp
                   href="/compare"
                   onClick={() => setMobileOpen(false)}
                   className="flex items-center px-4 py-3 text-sm font-semibold rounded-xl mt-1 transition-all duration-200"
-                  style={{ color: "#c4b5fd", background: "rgba(139,92,246,0.08)", border: "1px solid rgba(139,92,246,0.2)" }}
+                  style={{
+                    color: "#c4b5fd",
+                    background: "rgba(139,92,246,0.08)",
+                    border: "1px solid rgba(139,92,246,0.2)",
+                  }}
                 >
                   🪐 Cosmic Compare
                 </Link>
-                {/* AI Status on mobile */}
                 <div
                   className="flex items-center gap-1.5 text-xs px-4 py-2 rounded-xl mt-1"
-                  style={{ background: "rgba(0,200,100,0.08)", border: "1px solid rgba(0,200,100,0.2)", color: "#34d399" }}
+                  style={{
+                    background: "rgba(0,200,100,0.08)",
+                    border: "1px solid rgba(0,200,100,0.2)",
+                    color: "#34d399",
+                  }}
                 >
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                   IBM Granite Offline

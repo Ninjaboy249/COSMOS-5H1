@@ -93,8 +93,6 @@ export default function Home() {
             onNavClick={(section) => {
               if (section === "Solar System") scrollTo(solarRef);
               else if (section === "Planets") scrollTo(planetsRef);
-              else if (section === "Missions") scrollTo(missionsRef);
-              else if (section === "Galaxy") scrollTo(galaxyRef);
             }}
           />
 
