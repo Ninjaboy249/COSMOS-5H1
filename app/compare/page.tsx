@@ -2,8 +2,8 @@
 // ─────────────────────────────────────────────────────────────────────────────
 // Cosmic Compare — Main Page
 // Route: /compare
-// Full-featured side-by-side celestial object comparison with 3D viewer,
-// stats, charts, and IBM Granite AI insights.
+// Full-featured side-by-side celestial object comparison with stats,
+// charts, size comparison, single 3D viewer, and IBM Granite AI insights.
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { useState } from "react";
@@ -14,10 +14,10 @@ import ObjectSelector from "@/features/cosmic-compare/ObjectSelector";
 import CompareCard from "@/features/cosmic-compare/CompareCard";
 import VisualCharts from "@/features/cosmic-compare/VisualCharts";
 import AIInsightsPanel from "@/features/cosmic-compare/AIInsightsPanel";
-import { CELESTIAL_OBJECTS, type CelestialCompareData } from "@/lib/cosmic-compare-data";
+import { CELESTIAL_OBJECTS, CELESTIAL_MODELS, type CelestialCompareData } from "@/lib/cosmic-compare-data";
 
-// Lazy load 3D viewer — avoids SSR issues
-const CompareViewer3D = dynamic(() => import("@/features/cosmic-compare/CompareViewer3D"), {
+// Lazy-load single-object 3D viewer (avoids SSR / Three.js issues)
+const SingleViewer3D = dynamic(() => import("@/features/cosmic-compare/SingleViewer3D"), {
   ssr: false,
   loading: () => (
     <div className="rounded-2xl flex items-center justify-center" style={{ height: 480, background: "rgba(0,0,10,0.8)", border: "1px solid rgba(255,255,255,0.08)" }}>
@@ -38,6 +38,7 @@ const TABS = [
   { id: "habitability", label: "Habitability", icon: "🏡" },
   { id: "charts",     label: "Visual Charts", icon: "📊" },
   { id: "ai",         label: "AI Summary",    icon: "🧠" },
+  { id: "size",       label: "Size View",     icon: "📐" },
   { id: "3d",         label: "3D View",       icon: "🪐" },
 ] as const;
 type TabId = typeof TABS[number]["id"];
@@ -56,6 +57,180 @@ const STARS = Array.from({ length: 80 }, (_, i) => ({
   size: `${1 + (i % 2)}px`,
   opacity: 0.2 + (i % 5) * 0.08,
 }));
+
+// ── Size Compare View ──────────────────────────────────────────────────────────
+// Scales both planet images relative to each other (largest = MAX_PX).
+// A secondary "vs Sun" label shows true solar-system scale context.
+
+const SUN_DIAMETER_KM = 1_392_700;
+
+function SizeCompareView({ objA, objB }: { objA: CelestialCompareData; objB: CelestialCompareData }) {
+  const MAX_PX = 280;   // largest object fills this many px
+  const MIN_PX = 32;    // floor so tiny objects are still visible
+
+  const maxDiam = Math.max(objA.diameterKm, objB.diameterKm, 1);
+
+  const pxFor = (km: number) =>
+    km > 0 ? Math.max(MIN_PX, Math.round((km / maxDiam) * MAX_PX)) : MIN_PX;
+
+  const sizeA = pxFor(objA.diameterKm);
+  const sizeB = pxFor(objB.diameterKm);
+
+  const ratio =
+    objA.diameterKm > 0 && objB.diameterKm > 0
+      ? (Math.max(objA.diameterKm, objB.diameterKm) / Math.min(objA.diameterKm, objB.diameterKm)).toFixed(1)
+      : null;
+
+  // Show true percentage of Sun for context
+  const pctOfSun = (km: number) =>
+    km > 0 ? `${((km / SUN_DIAMETER_KM) * 100).toFixed(3)}% of Sun` : "—";
+
+  // Arena height: biggest sphere + label space
+  const arenaH = MAX_PX + 120;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="rounded-2xl overflow-hidden"
+      style={{
+        background: "rgba(255,255,255,0.025)",
+        border: "1px solid rgba(255,255,255,0.08)",
+        backdropFilter: "blur(12px)",
+      }}
+    >
+      {/* Header */}
+      <div className="flex items-center justify-between px-5 py-4 border-b border-white/5">
+        <span className="text-white/60 text-xs uppercase tracking-widest">Real-Scale Size Comparison</span>
+        {ratio && (
+          <span className="text-blue-300/60 text-xs px-3 py-1 rounded-full" style={{ background: "rgba(99,102,241,0.15)", border: "1px solid rgba(99,102,241,0.25)" }}>
+            {ratio}× size difference
+          </span>
+        )}
+      </div>
+
+      {/* Visual arena — objects aligned to bottom baseline */}
+      <div
+        className="flex items-end justify-center gap-16 px-8"
+        style={{ height: arenaH, paddingBottom: 32 }}
+      >
+        {/* Object A */}
+        <div className="flex flex-col items-center" style={{ gap: 12 }}>
+          <div className="relative flex items-center justify-center" style={{ width: sizeA, height: sizeA }}>
+            <div
+              className="absolute inset-0 rounded-full"
+              style={{ background: `radial-gradient(circle, ${objA.glowColor} 0%, transparent 70%)`, opacity: 0.55, transform: "scale(1.3)" }}
+            />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={objA.image}
+              alt={objA.name}
+              style={{ width: sizeA, height: sizeA, objectFit: "contain" }}
+              className="relative z-10"
+            />
+          </div>
+          <div className="text-center" style={{ minWidth: 90 }}>
+            <div className="text-white font-semibold text-sm">{objA.emoji} {objA.name}</div>
+            <div className="text-blue-300/55 text-xs mt-0.5">{objA.diameter}</div>
+            <div className="text-white/30 text-[10px] mt-0.5">{pctOfSun(objA.diameterKm)}</div>
+          </div>
+        </div>
+
+        {/* VS divider */}
+        <div className="self-center">
+          <span className="text-blue-300/30 text-xs uppercase tracking-widest">vs</span>
+        </div>
+
+        {/* Object B */}
+        <div className="flex flex-col items-center" style={{ gap: 12 }}>
+          <div className="relative flex items-center justify-center" style={{ width: sizeB, height: sizeB }}>
+            <div
+              className="absolute inset-0 rounded-full"
+              style={{ background: `radial-gradient(circle, ${objB.glowColor} 0%, transparent 70%)`, opacity: 0.55, transform: "scale(1.3)" }}
+            />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={objB.image}
+              alt={objB.name}
+              style={{ width: sizeB, height: sizeB, objectFit: "contain" }}
+              className="relative z-10"
+            />
+          </div>
+          <div className="text-center" style={{ minWidth: 90 }}>
+            <div className="text-white font-semibold text-sm">{objB.emoji} {objB.name}</div>
+            <div className="text-blue-300/55 text-xs mt-0.5">{objB.diameter}</div>
+            <div className="text-white/30 text-[10px] mt-0.5">{pctOfSun(objB.diameterKm)}</div>
+          </div>
+        </div>
+      </div>
+
+      {/* Scale note */}
+      <div className="px-5 py-3 border-t border-white/5 flex items-center gap-2">
+        <span className="text-white/20 text-[10px]">📐</span>
+        <p className="text-white/30 text-[10px]">
+          Images scaled relative to each other. Percentages show true size vs the Sun (⌀ 1,392,700 km).
+        </p>
+      </div>
+    </motion.div>
+  );
+}
+
+// ── Single 3D View ─────────────────────────────────────────────────────────────
+// Dropdown selects any object that has a GLB; SingleViewer3D renders it.
+
+// Objects that have a GLB model available
+const GLB_OBJECTS = CELESTIAL_OBJECTS.filter((o) => !!CELESTIAL_MODELS[o.id]);
+
+function Single3DViewPanel() {
+  const [selectedId, setSelectedId] = useState<string>(GLB_OBJECTS[0]?.id ?? "earth");
+  const selectedObj = GLB_OBJECTS.find((o) => o.id === selectedId) ?? GLB_OBJECTS[0];
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="rounded-2xl overflow-hidden"
+      style={{
+        background: "rgba(0,0,10,0.7)",
+        border: "1px solid rgba(255,255,255,0.08)",
+      }}
+    >
+      {/* Header with dropdown */}
+      <div className="flex items-center justify-between px-5 py-4 border-b border-white/5">
+        <span className="text-white/60 text-xs uppercase tracking-widest">3D Object Viewer</span>
+
+        {/* Dropdown */}
+        <div className="relative">
+          <select
+            value={selectedId}
+            onChange={(e) => setSelectedId(e.target.value)}
+            className="appearance-none pl-3 pr-8 py-1.5 rounded-lg text-xs font-medium cursor-pointer focus:outline-none"
+            style={{
+              background: "rgba(99,102,241,0.15)",
+              border: "1px solid rgba(99,102,241,0.35)",
+              color: selectedObj.color,
+            }}
+          >
+            {GLB_OBJECTS.map((o) => (
+              <option key={o.id} value={o.id} style={{ background: "#0d0d1a", color: "#fff" }}>
+                {o.emoji} {o.name}
+              </option>
+            ))}
+          </select>
+          {/* Chevron icon */}
+          <svg className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 w-3 h-3 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+          </svg>
+        </div>
+      </div>
+
+      {/* 3D viewer */}
+      <SingleViewer3D obj={selectedObj} />
+    </motion.div>
+  );
+}
 
 export default function CosmicComparePage() {
   const [objA, setObjA] = useState<CelestialCompareData>(DEFAULT_A);
@@ -97,7 +272,7 @@ export default function CosmicComparePage() {
           </h1>
           <p className="cc-subtitle">
             Place any two celestial objects side-by-side. Explore their physical properties, orbital mechanics,
-            3D models, and get AI-powered insights — all in one view.
+            real-scale size comparison, and get AI-powered insights — all in one view.
           </p>
         </motion.div>
       </div>
@@ -206,9 +381,14 @@ export default function CosmicComparePage() {
               <AIInsightsPanel objA={objA} objB={objB} />
             )}
 
-            {/* 3D View */}
+            {/* Size View — proportional images based on real solar system diameters */}
+            {activeTab === "size" && (
+              <SizeCompareView objA={objA} objB={objB} />
+            )}
+
+            {/* Single 3D View */}
             {activeTab === "3d" && (
-              <CompareViewer3D objA={objA} objB={objB} />
+              <Single3DViewPanel />
             )}
           </motion.div>
         </AnimatePresence>
