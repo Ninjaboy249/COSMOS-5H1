@@ -9,7 +9,7 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import type { MissionInput, MissionPlan } from "@/app/api/mission-planner/route";
+import type { MissionInput, MissionPlan } from "@/lib/mission-planner-types";
 
 // ── Star field (static to avoid hydration mismatch) ───────────────────────────
 const STARS = Array.from({ length: 70 }, (_, i) => ({
