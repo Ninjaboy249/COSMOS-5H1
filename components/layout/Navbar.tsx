@@ -273,6 +273,17 @@ export default function Navbar({ isMuted, onToggleMute, onNavClick }: NavbarProp
             >
               🪐 Cosmic Compare
             </Link>
+            <Link
+              href="/mission-planner"
+              className="px-4 py-2 text-sm font-semibold rounded-lg transition-all duration-200 hover:scale-105"
+              style={{
+                color: "#86efac",
+                background: "rgba(74,222,128,0.08)",
+                border: "1px solid rgba(74,222,128,0.2)",
+              }}
+            >
+              🛸 Mission Planner
+            </Link>
           </div>
 
           {/* Right side: AI status + music + hamburger */}
@@ -374,6 +385,18 @@ export default function Navbar({ isMuted, onToggleMute, onNavClick }: NavbarProp
                   }}
                 >
                   🪐 Cosmic Compare
+                </Link>
+                <Link
+                  href="/mission-planner"
+                  onClick={() => setMobileOpen(false)}
+                  className="flex items-center px-4 py-3 text-sm font-semibold rounded-xl mt-1 transition-all duration-200"
+                  style={{
+                    color: "#86efac",
+                    background: "rgba(74,222,128,0.08)",
+                    border: "1px solid rgba(74,222,128,0.2)",
+                  }}
+                >
+                  🛸 Mission Planner
                 </Link>
                 <div
                   className="flex items-center gap-1.5 text-xs px-4 py-2 rounded-xl mt-1"
