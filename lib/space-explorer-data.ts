@@ -291,6 +291,45 @@ export const SPACE_CATEGORIES: SpaceCategory[] = [
     image: "/images/space-explorer/NearEarthObject.png",
     tags: ["NEO", "Hazardous", "DART"],
   },
+  {
+    slug: "launches",
+    icon: "🛸",
+    title: "Launch Tracker",
+    subtitle: "Global Rocket Launches",
+    description: "Upcoming and recent rocket launches from every space agency worldwide, powered by Launch Library 2.",
+    accent: "#34d399",
+    glow: "rgba(52,211,153,0.35)",
+    status: "Live Launches",
+    statusColor: "#34d399",
+    image: "/images/space-explorer/SpaceCraft.png",
+    tags: ["Launches", "SpaceX", "ISRO", "Live"],
+  },
+  {
+    slug: "spacex",
+    icon: "🚀",
+    title: "SpaceX",
+    subtitle: "Commercial Space Leader",
+    description: "Falcon 9, Starship, Dragon missions — the company that redefined commercial spaceflight.",
+    accent: "#60a5fa",
+    glow: "rgba(96,165,250,0.35)",
+    status: "Active Missions",
+    statusColor: "#60a5fa",
+    image: "/images/space-explorer/SpaceCraft.png",
+    tags: ["SpaceX", "Falcon 9", "Starship", "Missions"],
+  },
+  {
+    slug: "exoplanets",
+    icon: "🪐",
+    title: "Exoplanets",
+    subtitle: "Worlds Beyond Our Sun",
+    description: "Over 5,700 confirmed exoplanets discovered — explore potentially habitable worlds from NASA's archive.",
+    accent: "#a78bfa",
+    glow: "rgba(167,139,250,0.35)",
+    status: "5700+ Confirmed",
+    statusColor: "#a78bfa",
+    image: "/images/space-explorer/ExoPlanet.png",
+    tags: ["Exoplanets", "Habitable Zone", "NASA", "TRAPPIST"],
+  },
 ];
 
 export const SPACE_DETAIL: Record<string, SpaceDetailData> = {
@@ -579,6 +618,158 @@ Object.assign(SPACE_DETAIL["black-holes"], {
     "Is there a black hole in the Milky Way?",
   ],
 });
+
+SPACE_DETAIL["launches"] = {
+  slug: "launches",
+  title: "Launch Tracker",
+  subtitle: "Global Rocket Launches",
+  icon: "🛸",
+  heroImage: "/images/space-explorer/SpaceCraft.png",
+  accent: "#34d399",
+  overview:
+    "The Launch Tracker provides real-time data on upcoming and recent rocket launches worldwide, aggregated from the Launch Library 2 open API. From SpaceX Falcon 9 missions to ISRO PSLV launches and ESA Ariane flights, every major orbital and suborbital launch is tracked here with countdown timers, mission details, and launch pad information.",
+  stats: [
+    { label: "Launches in 2024", value: "220+", unit: "Global" },
+    { label: "Space Agencies", value: "15+", unit: "Active" },
+    { label: "SpaceX Flights", value: "96+", unit: "in 2024" },
+    { label: "Success Rate", value: "98.5%", unit: "(2024 avg)" },
+    { label: "Orbital Missions", value: "180+", unit: "in 2024" },
+    { label: "Crewed Missions", value: "8", unit: "in 2024" },
+  ],
+  facts: [
+    "SpaceX became the first private company to launch humans to orbit in 2020",
+    "Falcon 9 has the highest launch cadence of any rocket in history",
+    "Starship is the largest rocket ever built at 120m tall",
+    "India's PSLV has a 95%+ success rate over 60+ launches",
+    "Reusable rockets have reduced launch costs by up to 90%",
+  ],
+  timeline: [
+    { year: "1957", event: "Sputnik 1", detail: "World's first artificial satellite launched by the Soviet Union" },
+    { year: "1969", event: "Apollo 11", detail: "First humans land on the Moon" },
+    { year: "2015", event: "Falcon 9 Landing", detail: "SpaceX lands first orbital rocket booster" },
+    { year: "2020", event: "Crew Dragon", detail: "SpaceX launches first private crewed mission to ISS" },
+    { year: "2023", event: "Starship IFT-1", detail: "First integrated flight test of Starship/Super Heavy" },
+  ],
+  missions: [
+    { name: "Starship IFT-6", agency: "SpaceX", status: "Upcoming", year: "2025", description: "Sixth integrated flight test targeting full mission profile" },
+    { name: "Artemis II", agency: "NASA", status: "Upcoming", year: "2025", description: "First crewed Artemis mission — lunar flyby" },
+    { name: "NISAR", agency: "NASA/ISRO", status: "Upcoming", year: "2025", description: "Joint Earth observation radar satellite" },
+  ],
+  gallery: [
+    { src: "/images/space-explorer/SpaceCraft.png", caption: "Rocket launches: humanity's reach into space" },
+  ],
+  relatedSlugs: ["spacex", "nasa-missions", "iss-tracker"],
+  aiPrompts: [
+    "What upcoming launches should I watch?",
+    "Tell me about Starship",
+    "What is the most reliable rocket?",
+    "How many rockets launched this year?",
+  ],
+  apiSource: "Launch Library 2",
+};
+
+SPACE_DETAIL["spacex"] = {
+  slug: "spacex",
+  title: "SpaceX",
+  subtitle: "Commercial Space Leader",
+  icon: "🚀",
+  heroImage: "/images/space-explorer/SpaceCraft.png",
+  accent: "#60a5fa",
+  overview:
+    "SpaceX, founded by Elon Musk in 2002, has fundamentally transformed commercial spaceflight. With reusable rockets, the Falcon 9 has become the world's most flown orbital launcher. Dragon has delivered crew and cargo to the ISS, while Starship promises fully reusable transport to the Moon, Mars, and beyond. SpaceX's cadence now exceeds all other launch providers combined.",
+  stats: [
+    { label: "Falcon 9 Flights", value: "350+", unit: "total" },
+    { label: "Booster Reuses", value: "20+", unit: "max per booster" },
+    { label: "Starlink Sats", value: "6,000+", unit: "in orbit" },
+    { label: "Crewed Missions", value: "15+", unit: "to ISS" },
+    { label: "Success Rate", value: "98.7%", unit: "Falcon 9" },
+    { label: "Starship Height", value: "120", unit: "meters" },
+  ],
+  facts: [
+    "Falcon 9 was the first orbital-class rocket to successfully land and refly a booster",
+    "Dragon is the first commercial spacecraft certified for human spaceflight by NASA",
+    "Starship produces 16.7 million pounds of thrust — more than any rocket in history",
+    "SpaceX operates the world's largest private satellite constellation (Starlink)",
+    "A single Falcon 9 booster has been flown 22 times",
+  ],
+  timeline: [
+    { year: "2002", event: "SpaceX Founded", detail: "Elon Musk founds Space Exploration Technologies Corp." },
+    { year: "2008", event: "Falcon 1 Orbit", detail: "First privately developed liquid-fueled rocket to reach orbit" },
+    { year: "2012", event: "Dragon CRS-1", detail: "First private spacecraft to berth with the ISS" },
+    { year: "2015", event: "Booster Landing", detail: "Falcon 9 first stage lands at Cape Canaveral" },
+    { year: "2020", event: "Crew Dragon Demo-2", detail: "First private crewed spaceflight to the ISS" },
+    { year: "2023", event: "Starship Test Flights", detail: "IFT-1 through IFT-4 progressively successful" },
+  ],
+  missions: [
+    { name: "Crew Dragon Endurance", agency: "SpaceX/NASA", status: "Active", year: "2024", description: "Commercial Crew rotation mission to ISS" },
+    { name: "Starlink v2 Mini", agency: "SpaceX", status: "Active", year: "2024", description: "Next-gen Starlink satellites with 4× capacity" },
+    { name: "Polaris Dawn", agency: "SpaceX", status: "Completed", year: "2024", description: "First private spacewalk in history" },
+  ],
+  gallery: [
+    { src: "/images/space-explorer/SpaceCraft.png", caption: "SpaceX Dragon capsule on approach to ISS" },
+  ],
+  relatedSlugs: ["launches", "nasa-missions", "spacecraft"],
+  aiPrompts: [
+    "Tell me about Starship",
+    "How does Falcon 9 land?",
+    "What is Dragon spacecraft?",
+    "How many Starlink satellites are in orbit?",
+    "Compare SpaceX to NASA",
+  ],
+};
+
+SPACE_DETAIL["exoplanets"] = {
+  slug: "exoplanets",
+  title: "Exoplanets",
+  subtitle: "Worlds Beyond Our Sun",
+  icon: "🪐",
+  heroImage: "/images/space-explorer/ExoPlanet.png",
+  accent: "#a78bfa",
+  overview:
+    "An exoplanet is any planet that orbits a star other than our Sun. As of 2024, NASA's Exoplanet Archive contains over 5,700 confirmed discoveries. The James Webb Space Telescope is now characterizing their atmospheres, searching for biosignatures — chemical signs of life. From ultra-hot Jupiters to potentially habitable super-Earths, the diversity of worlds is staggering.",
+  stats: [
+    { label: "Confirmed Exoplanets", value: "5,700+", unit: "as of 2024" },
+    { label: "Habitable Zone Candidates", value: "60+", unit: "Earth-like" },
+    { label: "Detection Methods", value: "7+", unit: "techniques" },
+    { label: "TRAPPIST-1 Planets", value: "7", unit: "(3 in HZ)" },
+    { label: "Nearest Exoplanet", value: "4.2", unit: "light years" },
+    { label: "JWST Atmospheres", value: "25+", unit: "characterized" },
+  ],
+  facts: [
+    "Proxima Centauri b is the closest known exoplanet at just 4.2 light years away",
+    "TRAPPIST-1 system has 3 planets in the habitable zone around a single star",
+    "K2-18b may have a water-rich atmosphere detectable by JWST",
+    "Some exoplanets orbit their stars in less than 1 Earth day",
+    "The first confirmed exoplanet discovery was in 1992, orbiting a pulsar",
+    "NASA's Kepler mission discovered over 2,600 exoplanets alone",
+  ],
+  timeline: [
+    { year: "1992", event: "First Exoplanet", detail: "Wolszczan & Frail discover planets orbiting pulsar PSR 1257+12" },
+    { year: "1995", event: "51 Pegasi b", detail: "First exoplanet found around a Sun-like star" },
+    { year: "2009", event: "Kepler Launched", detail: "NASA's planet-hunting telescope begins operations" },
+    { year: "2017", event: "TRAPPIST-1", detail: "Seven Earth-sized planets discovered around nearby dwarf star" },
+    { year: "2021", event: "JWST Launch", detail: "James Webb Space Telescope begins atmospheric characterization" },
+    { year: "2023", event: "K2-18b Atmosphere", detail: "JWST detects possible dimethyl sulfide — potential biosignature" },
+  ],
+  missions: [
+    { name: "James Webb Space Telescope", agency: "NASA/ESA/CSA", status: "Active", year: "2021", description: "Characterizing exoplanet atmospheres in unprecedented detail" },
+    { name: "TESS", agency: "NASA", status: "Active", year: "2018", description: "Transiting Exoplanet Survey Satellite — all-sky planet finder" },
+    { name: "CHEOPS", agency: "ESA", status: "Active", year: "2019", description: "Characterising Exoplanet Satellite — precise radius measurements" },
+    { name: "PLATO", agency: "ESA", status: "Upcoming", year: "2026", description: "PLAnetary Transits and Oscillations — Earth-twin search" },
+  ],
+  gallery: [
+    { src: "/images/space-explorer/ExoPlanet.png", caption: "Artist's conception of a habitable exoplanet" },
+  ],
+  relatedSlugs: ["astronomy-research", "stars", "nasa-missions"],
+  aiPrompts: [
+    "Which exoplanet is most like Earth?",
+    "How do we detect exoplanets?",
+    "Tell me about TRAPPIST-1",
+    "Could life exist on K2-18b?",
+    "What is the habitable zone?",
+  ],
+  apiSource: "NASA Exoplanet Archive",
+};
 
 export function getCategoryBySlug(slug: string): SpaceCategory | undefined {
   return SPACE_CATEGORIES.find((c) => c.slug === slug);

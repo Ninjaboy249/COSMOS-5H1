@@ -16,6 +16,9 @@ import NeoWidget from "@/features/space-explorer/NeoWidget";
 import IssWidget from "@/features/space-explorer/IssWidget";
 import SpaceWeatherWidget from "@/features/space-explorer/SpaceWeatherWidget";
 import EpicWidget from "@/features/space-explorer/EpicWidget";
+import LaunchesWidget from "@/features/space-explorer/LaunchesWidget";
+import ExoplanetWidget from "@/features/space-explorer/ExoplanetWidget";
+import SpaceXWidget from "@/features/space-explorer/SpaceXWidget";
 
 const SECTION_TABS = [
   { id: "overview", label: "Overview" },
@@ -50,7 +53,10 @@ export default function SpaceDetailClient({ slug }: { slug: string }) {
     .map((s) => SPACE_CATEGORIES.find((c) => c.slug === s))
     .filter(Boolean);
 
-  const showLiveData = ["apod", "mars-rover", "neo", "iss-tracker", "earth-live", "space-weather"].includes(slug);
+  const showLiveData = [
+    "apod", "mars-rover", "neo", "iss-tracker", "earth-live", "space-weather",
+    "launches", "spacex", "exoplanets",
+  ].includes(slug);
 
   return (
     <div className="space-detail-shell">
@@ -167,6 +173,9 @@ export default function SpaceDetailClient({ slug }: { slug: string }) {
             {slug === "iss-tracker" && <IssWidget accent={detail.accent} />}
             {slug === "earth-live" && <EpicWidget accent={detail.accent} />}
             {slug === "space-weather" && <SpaceWeatherWidget accent={detail.accent} />}
+            {slug === "launches" && <LaunchesWidget accent={detail.accent} />}
+            {slug === "spacex" && <SpaceXWidget accent={detail.accent} />}
+            {slug === "exoplanets" && <ExoplanetWidget accent={detail.accent} />}
           </motion.section>
         )}
 
