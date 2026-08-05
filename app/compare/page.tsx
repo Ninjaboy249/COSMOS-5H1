@@ -9,25 +9,11 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import dynamic from "next/dynamic";
 import ObjectSelector from "@/features/cosmic-compare/ObjectSelector";
 import CompareCard from "@/features/cosmic-compare/CompareCard";
 import VisualCharts from "@/features/cosmic-compare/VisualCharts";
 import AIInsightsPanel from "@/features/cosmic-compare/AIInsightsPanel";
-import { CELESTIAL_OBJECTS, CELESTIAL_MODELS, type CelestialCompareData } from "@/lib/cosmic-compare-data";
-
-// Lazy-load single-object 3D viewer (avoids SSR / Three.js issues)
-const SingleViewer3D = dynamic(() => import("@/features/cosmic-compare/SingleViewer3D"), {
-  ssr: false,
-  loading: () => (
-    <div className="rounded-2xl flex items-center justify-center" style={{ height: 480, background: "rgba(0,0,10,0.8)", border: "1px solid rgba(255,255,255,0.08)" }}>
-      <div className="flex flex-col items-center gap-3">
-        <div className="w-10 h-10 rounded-full border-2 border-blue-400/30 border-t-blue-400 animate-spin" />
-        <p className="text-blue-300/50 text-sm">Loading 3D Engine…</p>
-      </div>
-    </div>
-  ),
-});
+import { CELESTIAL_OBJECTS, type CelestialCompareData } from "@/lib/cosmic-compare-data";
 
 // ── Tab definitions ────────────────────────────────────────────────────────────
 const TABS = [
@@ -39,7 +25,6 @@ const TABS = [
   { id: "charts",     label: "Visual Charts", icon: "📊" },
   { id: "ai",         label: "AI Summary",    icon: "🧠" },
   { id: "size",       label: "Size View",     icon: "📐" },
-  { id: "3d",         label: "3D View",       icon: "🪐" },
 ] as const;
 type TabId = typeof TABS[number]["id"];
 
@@ -59,19 +44,26 @@ const STARS = Array.from({ length: 80 }, (_, i) => ({
 }));
 
 // ── Size Compare View ──────────────────────────────────────────────────────────
-// Scales both planet images relative to each other (largest = MAX_PX).
-// A secondary "vs Sun" label shows true solar-system scale context.
+// Scales both planet images based on their REAL solar-system diameters.
+// The Sun (⌀ 1,392,700 km) is the scale anchor for true proportions.
+// When neither object is the Sun, the larger of the two fills MAX_PX so
+// the comparison is still meaningful within the available space.
 
 const SUN_DIAMETER_KM = 1_392_700;
 
 function SizeCompareView({ objA, objB }: { objA: CelestialCompareData; objB: CelestialCompareData }) {
-  const MAX_PX = 280;   // largest object fills this many px
-  const MIN_PX = 32;    // floor so tiny objects are still visible
+  const MAX_PX = 320; // px the reference diameter fills
+  const MIN_PX = 20;  // floor so tiny moons/asteroids are still visible
 
-  const maxDiam = Math.max(objA.diameterKm, objB.diameterKm, 1);
+  // If either object is the Sun, scale against the Sun's diameter so its
+  // full disc fills MAX_PX and the other shrinks proportionally.
+  // Otherwise scale against the larger of the two objects.
+  const refDiam = (objA.id === "sun" || objB.id === "sun")
+    ? SUN_DIAMETER_KM
+    : Math.max(objA.diameterKm, objB.diameterKm, 1);
 
   const pxFor = (km: number) =>
-    km > 0 ? Math.max(MIN_PX, Math.round((km / maxDiam) * MAX_PX)) : MIN_PX;
+    km > 0 ? Math.max(MIN_PX, Math.round((km / refDiam) * MAX_PX)) : MIN_PX;
 
   const sizeA = pxFor(objA.diameterKm);
   const sizeB = pxFor(objB.diameterKm);
@@ -81,11 +73,9 @@ function SizeCompareView({ objA, objB }: { objA: CelestialCompareData; objB: Cel
       ? (Math.max(objA.diameterKm, objB.diameterKm) / Math.min(objA.diameterKm, objB.diameterKm)).toFixed(1)
       : null;
 
-  // Show true percentage of Sun for context
   const pctOfSun = (km: number) =>
-    km > 0 ? `${((km / SUN_DIAMETER_KM) * 100).toFixed(3)}% of Sun` : "—";
+    km > 0 ? `${((km / SUN_DIAMETER_KM) * 100).toFixed(3)}% of ☀️` : "—";
 
-  // Arena height: biggest sphere + label space
   const arenaH = MAX_PX + 120;
 
   return (
@@ -102,7 +92,7 @@ function SizeCompareView({ objA, objB }: { objA: CelestialCompareData; objB: Cel
     >
       {/* Header */}
       <div className="flex items-center justify-between px-5 py-4 border-b border-white/5">
-        <span className="text-white/60 text-xs uppercase tracking-widest">Real-Scale Size Comparison</span>
+        <span className="text-white/60 text-xs uppercase tracking-widest">Solar-System Scale Comparison</span>
         {ratio && (
           <span className="text-blue-300/60 text-xs px-3 py-1 rounded-full" style={{ background: "rgba(99,102,241,0.15)", border: "1px solid rgba(99,102,241,0.25)" }}>
             {ratio}× size difference
@@ -169,65 +159,10 @@ function SizeCompareView({ objA, objB }: { objA: CelestialCompareData; objB: Cel
       <div className="px-5 py-3 border-t border-white/5 flex items-center gap-2">
         <span className="text-white/20 text-[10px]">📐</span>
         <p className="text-white/30 text-[10px]">
-          Images scaled relative to each other. Percentages show true size vs the Sun (⌀ 1,392,700 km).
+          Images are scaled to true solar-system proportions — the Sun (⌀ 1,392,700 km) is the scale anchor.
+          Percentages show each object&apos;s real fraction of the Sun&apos;s diameter.
         </p>
       </div>
-    </motion.div>
-  );
-}
-
-// ── Single 3D View ─────────────────────────────────────────────────────────────
-// Dropdown selects any object that has a GLB; SingleViewer3D renders it.
-
-// Objects that have a GLB model available
-const GLB_OBJECTS = CELESTIAL_OBJECTS.filter((o) => !!CELESTIAL_MODELS[o.id]);
-
-function Single3DViewPanel() {
-  const [selectedId, setSelectedId] = useState<string>(GLB_OBJECTS[0]?.id ?? "earth");
-  const selectedObj = GLB_OBJECTS.find((o) => o.id === selectedId) ?? GLB_OBJECTS[0];
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      className="rounded-2xl overflow-hidden"
-      style={{
-        background: "rgba(0,0,10,0.7)",
-        border: "1px solid rgba(255,255,255,0.08)",
-      }}
-    >
-      {/* Header with dropdown */}
-      <div className="flex items-center justify-between px-5 py-4 border-b border-white/5">
-        <span className="text-white/60 text-xs uppercase tracking-widest">3D Object Viewer</span>
-
-        {/* Dropdown */}
-        <div className="relative">
-          <select
-            value={selectedId}
-            onChange={(e) => setSelectedId(e.target.value)}
-            className="appearance-none pl-3 pr-8 py-1.5 rounded-lg text-xs font-medium cursor-pointer focus:outline-none"
-            style={{
-              background: "rgba(99,102,241,0.15)",
-              border: "1px solid rgba(99,102,241,0.35)",
-              color: selectedObj.color,
-            }}
-          >
-            {GLB_OBJECTS.map((o) => (
-              <option key={o.id} value={o.id} style={{ background: "#0d0d1a", color: "#fff" }}>
-                {o.emoji} {o.name}
-              </option>
-            ))}
-          </select>
-          {/* Chevron icon */}
-          <svg className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 w-3 h-3 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-          </svg>
-        </div>
-      </div>
-
-      {/* 3D viewer */}
-      <SingleViewer3D obj={selectedObj} />
     </motion.div>
   );
 }
@@ -491,14 +426,9 @@ export default function CosmicComparePage() {
               <AIInsightsPanel objA={objA} objB={objB} />
             )}
 
-            {/* Size View — proportional images based on real solar system diameters */}
+            {/* Size View — solar-system scale images */}
             {activeTab === "size" && (
               <SizeCompareView objA={objA} objB={objB} />
-            )}
-
-            {/* Single 3D View */}
-            {activeTab === "3d" && (
-              <Single3DViewPanel />
             )}
           </motion.div>
         </AnimatePresence>
