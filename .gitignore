@@ -40,4 +40,8 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-public/GLBs/*.glb
+# These 3 GLBs exceed GitHub's 100 MB limit — keep off git
+public/GLBs/saturn.glb
+public/GLBs/jupiter.glb
+public/GLBs/uranus.glb
+
