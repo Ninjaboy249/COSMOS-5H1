@@ -317,19 +317,6 @@ export const SPACE_CATEGORIES: SpaceCategory[] = [
     image: "/images/space-explorer/SpaceCraft.png",
     tags: ["SpaceX", "Falcon 9", "Starship", "Missions"],
   },
-  {
-    slug: "exoplanets",
-    icon: "🪐",
-    title: "Exoplanets",
-    subtitle: "Worlds Beyond Our Sun",
-    description: "Over 5,700 confirmed exoplanets discovered — explore potentially habitable worlds from NASA's archive.",
-    accent: "#a78bfa",
-    glow: "rgba(167,139,250,0.35)",
-    status: "5700+ Confirmed",
-    statusColor: "#a78bfa",
-    image: "/images/space-explorer/ExoPlanet.png",
-    tags: ["Exoplanets", "Habitable Zone", "NASA", "TRAPPIST"],
-  },
 ];
 
 export const SPACE_DETAIL: Record<string, SpaceDetailData> = {
