@@ -149,8 +149,9 @@ export default function EscapeVelocitySim() {
   // ── Launch ────────────────────────────────────────────────────────────────────
   const launch = useCallback(() => {
     const angleRad  = (angleDeg * Math.PI) / 180;
-    // Launch from surface at (R, 0) in our coordinate system
-    const startR    = pd.radius;
+    // Launch from just above the surface to avoid the r <= pd.radius crash check
+    // firing on the very first substep due to floating-point equality.
+    const startR    = pd.radius * 1.002;
     // Velocity direction: angle from radial (outward)
     // 0° = straight up (radial), 90° = tangential
     const vx = launchV * Math.cos(angleRad);   // radial component
