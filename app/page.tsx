@@ -23,6 +23,15 @@ export default function Home() {
     }
     return "welcome";
   });
+
+  // Mark intro as seen immediately so that navigating away (before video ends)
+  // and pressing Back does NOT replay the intro.
+  useEffect(() => {
+    if (introStage === "welcome") {
+      sessionStorage.setItem("cosmos_intro_seen", "1");
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const [aiOpen, setAiOpen] = useState(false);
   const [celestialBody, setCelestialBody] = useState<CelestialBodyDetails | null>(null);
   const [isMuted, setIsMuted] = useState(false);
@@ -147,7 +156,7 @@ export default function Home() {
 
             {/* Scroll indicator */}
             <motion.div
-              className="absolute bottom-8 left-1/2 z-[3] hidden -translate-x-1/2 flex-col items-center gap-2 text-xs tracking-widest text-blue-400/40 pointer-events-none sm:flex"
+              className="absolute bottom-8 left-1/2 z-[3] hidden -translate-x-1/2 flex-col items-center gap-2 text-xs tracking-widest text-blue-300/80 pointer-events-none sm:flex"
               animate={{ y: [0, 6, 0] }}
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
             >
@@ -186,7 +195,7 @@ export default function Home() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.7 }}
               >
-                <p className="text-blue-400/60 text-xs tracking-[0.3em] uppercase mb-3">Capabilities</p>
+                <p className="text-blue-300/90 text-xs tracking-[0.3em] uppercase mb-3 font-semibold" style={{ textShadow: "0 0 10px rgba(147,197,253,0.4)" }}>Capabilities</p>
                 <h2
                   className="text-4xl font-bold mb-4"
                   style={{
@@ -198,7 +207,7 @@ export default function Home() {
                 >
                   <AsciiGlitchRipple as="span" dur={1000} spread={1.3}>Powered by IBM Granite AI</AsciiGlitchRipple>
                 </h2>
-                <p className="text-blue-300/50 text-lg max-w-2xl mx-auto">
+                <p className="text-blue-100/88 text-lg max-w-2xl mx-auto">
                   A complete offline AI system for space exploration, running 100% locally on your machine
                 </p>
               </motion.div>
@@ -239,6 +248,18 @@ export default function Home() {
                 >
                   ⚛️ Physics Lab
                 </Link>
+                <Link
+                  href="/morse-code"
+                  className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl font-semibold text-sm transition-all duration-200 hover:scale-105"
+                  style={{
+                    background: "rgba(251,191,36,0.08)",
+                    color: "#fde68a",
+                    border: "1px solid rgba(251,191,36,0.3)",
+                    boxShadow: "0 0 20px rgba(251,191,36,0.12)",
+                  }}
+                >
+                  📡 Morse Code
+                </Link>
                 <button
                   onClick={() => setAiOpen(true)}
                   className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl font-semibold text-sm transition-all duration-200 hover:scale-105"
@@ -261,8 +282,8 @@ export default function Home() {
             className="relative z-10"
           >
             <footer className="py-8 px-8 text-center border-t"
-              style={{ borderColor: "rgba(255,255,255,0.05)", background: "rgba(2,7,20,0.98)" }}>
-              <p className="text-blue-400/30 text-sm">
+                style={{ borderColor: "rgba(255,255,255,0.08)", background: "rgba(2,7,20,0.98)" }}>
+                <p className="text-blue-300/70 text-sm">
                 COSMOS-5H1 · Built with IBM Granite AI · 100% Offline · Open Source
               </p>
             </footer>

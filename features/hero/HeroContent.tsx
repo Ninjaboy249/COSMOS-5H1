@@ -38,7 +38,8 @@ export default function HeroContent({ onStartExploring, onOpenAI }: HeroContentP
       </motion.h1>
 
       <motion.p
-        className="mb-8 max-w-md text-base leading-relaxed text-blue-100/60 sm:mb-10 sm:text-lg"
+        className="mb-8 max-w-md text-base leading-relaxed text-blue-100/90 sm:mb-10 sm:text-lg"
+        style={{ textShadow: "0 1px 6px rgba(0,0,0,0.7)" }}
         variants={reveal}
         transition={{ duration: 0.85 }}
       >
@@ -75,7 +76,7 @@ export default function HeroContent({ onStartExploring, onOpenAI }: HeroContentP
         ].map(({ val, label }) => (
           <div key={label}>
             <div className="text-xl font-semibold text-white sm:text-2xl">{val}</div>
-            <div className="mt-1 text-[10px] uppercase tracking-[0.18em] text-blue-300/45">{label}</div>
+            <div className="mt-1 text-[10px] uppercase tracking-[0.18em] text-blue-300/85 font-semibold">{label}</div>
           </div>
         ))}
       </motion.div>

@@ -295,6 +295,17 @@ export default function Navbar({ isMuted, onToggleMute, onNavClick }: NavbarProp
             >
               ⚛️ Physics Lab
             </Link>
+            <Link
+              href="/morse-code"
+              className="px-4 py-2 text-sm font-semibold rounded-lg transition-all duration-200 hover:scale-105"
+              style={{
+                color: "#fde68a",
+                background: "rgba(251,191,36,0.08)",
+                border: "1px solid rgba(251,191,36,0.2)",
+              }}
+            >
+              📡 Morse Code
+            </Link>
           </div>
 
           {/* Right side: AI status + music + hamburger */}
@@ -420,6 +431,18 @@ export default function Navbar({ isMuted, onToggleMute, onNavClick }: NavbarProp
                   }}
                 >
                   ⚛️ Physics Lab
+                </Link>
+                <Link
+                  href="/morse-code"
+                  onClick={() => setMobileOpen(false)}
+                  className="flex items-center px-4 py-3 text-sm font-semibold rounded-xl mt-1 transition-all duration-200"
+                  style={{
+                    color: "#fde68a",
+                    background: "rgba(251,191,36,0.08)",
+                    border: "1px solid rgba(251,191,36,0.2)",
+                  }}
+                >
+                  📡 Morse Code
                 </Link>
                 <div
                   className="flex items-center gap-1.5 text-xs px-4 py-2 rounded-xl mt-1"

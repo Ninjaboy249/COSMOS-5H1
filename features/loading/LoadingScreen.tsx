@@ -297,14 +297,14 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
                 >
                   COSMOS-5H1
                 </h1>
-                <p className="text-blue-300/60 text-sm tracking-[0.25em] mt-1 uppercase">
+                <p className="text-blue-300/90 text-sm tracking-[0.25em] mt-1 uppercase font-semibold" style={{ textShadow: "0 0 10px rgba(147,197,253,0.35)" }}>
                   Powered by IBM Granite AI
                 </p>
               </div>
 
               {/* Progress bar */}
               <div className="w-full">
-                <div className="flex justify-between text-xs text-blue-300/55 mb-2">
+                <div className="flex justify-between text-xs text-blue-300/88 font-medium mb-2">
                   <span className="tracking-wider">
                     {LOADING_MESSAGES[Math.min(messageIdx, LOADING_MESSAGES.length - 1)]}
                   </span>
@@ -332,7 +332,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
               </div>
 
               {/* Status dots */}
-              <div className="grid w-full grid-cols-2 gap-x-5 gap-y-2 text-[9px] text-blue-400/50 sm:flex sm:text-xs">
+              <div className="grid w-full grid-cols-2 gap-x-5 gap-y-2 text-[9px] text-blue-300/85 font-medium sm:flex sm:text-xs">
                 {["SYSTEMS", "AI CORE", "3D ENGINE", "KNOWLEDGE BASE"].map((s, i) => (
                   <motion.div
                     key={s}

@@ -18,13 +18,15 @@
   <img src="https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js&logoColor=white" />
   <img src="https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black" />
   <img src="https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white" />
+  <img src="https://img.shields.io/badge/OpenAI-GPT--4o--mini-412991?style=for-the-badge&logo=openai&logoColor=white" />
   <img src="https://img.shields.io/badge/NASA%20APIs-6%20Integrated-FC3D21?style=for-the-badge&logo=nasa&logoColor=white" />
   <img src="https://img.shields.io/badge/100%25-Offline%20AI-34d399?style=for-the-badge" />
 </p>
 
 <p align="center">
-  <b>An AI-powered, fully offline space exploration platform combining IBM Granite AI, NASA APIs,<br/>
-  3D visualization, and a 28-file knowledge base — built entirely with IBM Bob.</b>
+  <b>An AI-powered space exploration platform combining IBM Granite AI, OpenAI GPT, NASA APIs,<br/>
+  Physics simulations, Morse Code communication, 3D visualization, and a 28-file knowledge base<br/>
+  — built entirely with IBM Bob.</b>
 </p>
 
 <p align="center">
@@ -55,7 +57,7 @@ The universe contains **billions of galaxies, trillions of stars, and infinite m
 - 🔭 **Simulation tools** — complex, not beginner-friendly
 
 **There is no single platform that combines:**
-real-time NASA data + offline AI intelligence + 3D interactive exploration + educational depth — all in one place, for everyone, for free, with full privacy.
+real-time NASA data + offline AI intelligence + 3D interactive exploration + physics simulations + historical communication protocols — all in one place, for everyone, for free, with full privacy.
 
 ---
 
@@ -66,19 +68,23 @@ real-time NASA data + offline AI intelligence + 3D interactive exploration + edu
 <div align="center">
 
 ```
-╔══════════════════════════════════════════════════════════╗
-║           COSMOS-5H1 Platform Overview                   ║
-╠══════════════════════════════════════════════════════════╣
-║  🌌 Cinematic Intro     →  Welcome video + space audio   ║
-║  🪐 Solar System        →  CSS-animated orbiting planets ║
-║  🚀 Space Explorer      →  20 interactive modules        ║
-║  🧠 COSMOS AI           →  Offline TF-IDF semantic chat  ║
-║  📡 NASA APIs           →  6 live feeds + offline cache  ║
-║  🛰 ISS Tracker         →  Real-time position map        ║
-║  📸 APOD                →  Daily astronomy photo         ║
-║  ☄  NEO Tracker         →  Near-Earth object monitor     ║
-║  🎥 Mars Rover Gallery  →  Latest Perseverance photos    ║
-╚══════════════════════════════════════════════════════════╝
+╔══════════════════════════════════════════════════════════════════╗
+║                  COSMOS-5H1 Platform Overview                    ║
+╠══════════════════════════════════════════════════════════════════╣
+║  🌌 Cinematic Intro     →  Welcome video + space audio           ║
+║  🪐 Solar System        →  CSS-animated orbiting planets         ║
+║  🚀 Space Explorer      →  20 interactive modules                ║
+║  🧠 COSMOS AI           →  Offline TF-IDF + OpenAI GPT RAG       ║
+║  📡 NASA APIs           →  6 live feeds + offline cache          ║
+║  🛰  ISS Tracker         →  Real-time position map               ║
+║  📸 APOD                →  Daily astronomy photo                 ║
+║  ☄  NEO Tracker         →  Near-Earth object monitor             ║
+║  🎥 Mars Rover Gallery  →  Latest Perseverance photos            ║
+║  🪐 Cosmic Compare      →  AI-powered side-by-side comparison    ║
+║  🛸 Mission Planner     →  Full AI mission design + risk matrix  ║
+║  ⚛️  Physics & Mission Lab → 8 real-equation simulators          ║
+║  📡 Morse Code Center   →  7-panel interactive communication hub ║
+╚══════════════════════════════════════════════════════════════════╝
 ```
 
 </div>
@@ -87,69 +93,71 @@ real-time NASA data + offline AI intelligence + 3D interactive exploration + edu
 
 | Feature | Description |
 |---|---|
-| 🧠 **Offline AI** | COSMOS AI answers any space question without internet using TF-IDF semantic search over 28 knowledge files |
+| 🧠 **Dual AI** | OpenAI GPT-4o-mini when available; auto-falls back to offline TF-IDF RAG — no internet required |
 | 🪐 **Solar System** | Interactive CSS-animated solar system with clickable planets opening scientific detail modals |
 | 🚀 **Space Explorer** | 20 premium glassmorphism cards navigating to full detail pages (stats, timeline, missions, gallery, AI chat) |
 | 📡 **Live NASA Data** | APOD, Mars Rover Photos, NeoWs, DONKI Space Weather, EPIC Earth Imagery, ISS Position — all with offline fallback |
+| 🪐 **Cosmic Compare** | AI-powered side-by-side celestial body comparison with OpenAI insights panel and offline badge |
+| 🛸 **Mission Planner** | Full mission design: launch windows, orbital mechanics, fuel/ΔV, crew, payload, cost, risk, timeline |
+| ⚛️ **Physics Lab** | 8 real-equation simulators: Tsiolkovsky rocket, Kepler orbit, Schwarzschild black hole, asteroid impact and more |
+| 📡 **Morse Code Center** | 7-panel hub: translator, Web Audio API player, Canvas visualizer, flashlight mode, keyboard practice, lessons, challenge mode, Space Comm Simulator |
 | 🗺 **Navigation AI** | Say "Open Mars" or "Show Jupiter" — COSMOS AI navigates directly to the page |
 | 🔍 **Global Search** | Ctrl+K semantic search across all 20 space modules |
 | 🎙 **Voice Input** | Web Speech API voice questions to COSMOS AI |
 | 💾 **Memory** | Conversation context, search history, and follow-up suggestions persist per session |
 | 🔊 **Ambient Audio** | Looping background space music with Navbar mute toggle |
+| 🎬 **Smart Intro** | Cinematic intro video plays only on fresh tab open — back-navigation skips it instantly |
 
 ---
 
 ## 🤖 AI Approach & Architecture
 
-### The Core Challenge
-> How do you build a smart AI assistant that answers astronomy questions with no internet and no paid API?
+### Dual AI Engine — Online + Offline
 
-### Solution: Offline RAG with TF-IDF Semantic Search
-
-COSMOS-5H1 implements a **full Retrieval-Augmented Generation (RAG) pipeline** using only standard TypeScript — no Python, no vector DB server, no paid API keys required.
+COSMOS-5H1 implements **two AI tiers** that work in perfect harmony:
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                    COSMOS AI Architecture                    │
-├─────────────────────────────────────────────────────────────┤
-│                                                             │
-│   User Question                                             │
-│        │                                                    │
-│        ▼                                                    │
-│   ┌─────────────┐     ┌──────────────────┐                 │
-│   │   Intent    │────▶│  Context Enricher │                 │
-│   │  Detector   │     │  (session memory) │                 │
-│   └─────────────┘     └────────┬─────────┘                 │
-│         │                      │                            │
-│         ▼                      ▼                            │
-│   ┌─────────────────────────────────────┐                  │
-│   │        TF-IDF Semantic Engine       │                  │
-│   │   28 JSON files → 500+ documents   │                  │
-│   │   Tokenize → IDF weights → Cosine  │                  │
-│   └──────────────────┬──────────────────┘                  │
-│                       │                                     │
-│                       ▼                                     │
-│   ┌───────────────────────────────────┐                    │
-│   │       Response Generator          │                    │
-│   │  FAQ match / Overview / Table /   │                    │
-│   │  Attribute query / Navigation     │                    │
-│   └───────────────────────────────────┘                    │
-│                       │                                     │
-│                       ▼                                     │
-│              Streamed Answer + Follow-ups                   │
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────────┐
+│                    COSMOS AI Architecture                        │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│   User Question                                                  │
+│        │                                                         │
+│        ▼                                                         │
+│   ┌─────────────┐     ┌──────────────────────┐                  │
+│   │   Intent    │────▶│  TF-IDF Context       │                  │
+│   │  Detector   │     │  Retriever (28 files) │                  │
+│   └─────────────┘     └──────────┬───────────┘                  │
+│                                  │                               │
+│              ┌───────────────────┴────────────────┐             │
+│              │ OPENAI_API_KEY present?             │             │
+│              ├────────────────────────────────────┤             │
+│         YES  │                              NO    │             │
+│              ▼                              ▼     │             │
+│   ┌──────────────────┐        ┌─────────────────────┐           │
+│   │ OpenAI GPT-4o    │        │ Offline TF-IDF RAG  │           │
+│   │ (context-injected│        │ ResponseGenerator   │           │
+│   │  system prompt)  │        │ (zero external deps)│           │
+│   └──────────────────┘        └─────────────────────┘           │
+│              │                              │                    │
+│              └──────────────┬───────────────┘                   │
+│                             ▼                                    │
+│              Streamed Answer + Follow-ups + Source badge         │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
 ```
 
 ### Service Breakdown
 
 | Service | File | Responsibility |
 |---|---|---|
-| **KnowledgeService** | `lib/cosmos-ai/knowledge-service.ts` | Loads 28 JSON files, builds TF-IDF corpus, normalizes FAQs |
+| **KnowledgeService** | `lib/cosmos-ai/knowledge-service.ts` | Loads 28 JSON files, builds TF-IDF corpus, retrieves context |
 | **IntentService** | `lib/cosmos-ai/intent-service.ts` | Classifies 17 intents: planet, mission, navigation, comparison, greeting, space weather… |
-| **ResponseGenerator** | `lib/cosmos-ai/response-generator.ts` | Converts retrieved docs into natural language: overviews, attribute cards, comparison tables, navigation responses |
-| **ConversationMemory** | `lib/cosmos-ai/conversation-memory.ts` | Session-scoped memory: last entity context, search history, pronoun resolution ("it", "tell me more") |
-| **API Route** | `app/api/cosmos-ai/route.ts` | Next.js server action orchestrating the full pipeline, 100% offline |
+| **ResponseGenerator** | `lib/cosmos-ai/response-generator.ts` | Converts retrieved docs → natural language: overviews, attribute cards, comparison tables |
+| **ConversationMemory** | `lib/cosmos-ai/conversation-memory.ts` | Session-scoped memory: last entity context, search history, pronoun resolution |
+| **AI Chat API** | `app/api/cosmos-ai/route.ts` | Orchestrates TF-IDF retrieval → OpenAI GPT injection → offline fallback |
+| **Compare AI API** | `app/api/cosmos-ai/compare/route.ts` | Dedicated endpoint for Cosmic Compare AI insights |
+| **Mission Planner API** | `app/api/mission-planner/route.ts` | AI-computed launch windows, ΔV, fuel, crew, risk assessment |
 
 ### Knowledge Base — 28 Scientific JSON Files
 
@@ -200,6 +208,67 @@ data/knowledge/
 
 ---
 
+## ⚛️ Physics & Mission Lab
+
+8 real-equation interactive simulators built with pure Canvas 2D API — no external physics libraries:
+
+| Simulator | Physics | Key Equation |
+|---|---|---|
+| 🚀 **Rocket Launch** | Tsiolkovsky rocket equation + atmospheric drag | Δv = Isp·g₀·ln(m₀/mf) |
+| 🎯 **Projectile Motion** | Parabolic trajectory + drag | x = v₀cosθ·t, y = v₀sinθ·t − ½gt² |
+| 🌍 **Gravity Comparison** | Multi-planet drop test | F = mg (g per planet) |
+| 🪐 **Orbital Mechanics** | Kepler orbit + Hohmann transfer | v = √(GM/r) |
+| 🔭 **Newton Gravity** | Inverse-square law | F = Gm₁m₂/r² |
+| ⚡ **Escape Velocity** | Energy classifier + speed gauge | v_e = √(2GM/r) |
+| 🕳 **Black Hole** | Schwarzschild spacetime grid + lensing | r_s = 2GM/c² |
+| ☄ **Asteroid Impact** | Melosh crater scaling + 4-phase animation | D ∝ E^0.294 |
+
+---
+
+## 📡 Morse Code Communication Center
+
+A full 7-panel interactive hub teaching International Morse Code (ITU-R M.1677-1):
+
+```
+Precise timing — all implemented from scratch:
+  Dot  = 1 unit   |  Dash         = 3 units
+  Sym-gap = 1 unit |  Letter-gap   = 3 units
+  Word-gap = 7 units
+  PARIS standard: 50 units/word → WPM = 60000 / (50 × WPM_target) ms per unit
+```
+
+| Panel | Description |
+|---|---|
+| **⟷ Translator** | Bidirectional text↔Morse; copy, download, share; 56-char reference grid |
+| **🔊 Audio Player** | Web Audio API · 600 Hz CW tone · attack/decay envelope · WPM 5–40 · volume · play/pause/stop/replay |
+| **📺 Visualizer** | Canvas pulse track with scrolling scan cursor + live waveform · always visible |
+| **🔦 Flashlight** | LED bulb, screen flash, beacon with pulsing rings · brightness + speed controls |
+| **⌨️ Practice** | Spacebar/mouse/touch input · auto-calibrated dot timing · accuracy, streak, history |
+| **📚 Lessons** | 6 progressive lessons (History → ITU Standard → SOS → Space Comms → Emergency → Amateur Radio) · lock/unlock system |
+| **⚔️ Challenge** | Decode-before-time-runs-out · countdown + streak bonuses · 4 difficulties · high score tracking |
+| **🛸 Space Sim** | Canvas-animated spacecraft + ground station · radio wave propagation · 5 mission scenarios · comm delay simulation |
+
+---
+
+## 🛸 Mission Planner
+
+AI-powered mission design tool that computes a complete space mission plan:
+
+- **Launch Windows** — optimal + backup dates with orbital reasoning
+- **Orbit Profile** — type, altitude, inclination, period
+- **Spacecraft** — name, type, technical description
+- **Propulsion & Fuel** — total propellant, ΔV budget, staging
+- **Crew** — size, roles, training requirements
+- **Payload** — primary/secondary instruments, total mass
+- **Cost Estimate** — USD breakdown by category
+- **Risk Assessment** — 0–10 score + factors + mitigations (animated gauge)
+- **Mission Timeline** — phase-by-phase with pulsing animated dots
+- **Backup & Contingencies** — abort procedures
+
+Destinations: Moon, Mars, Venus, Mercury, Jupiter, Saturn, Europa
+
+---
+
 ## 🎯 Selected Challenge Theme
 
 <div align="center">
@@ -223,10 +292,11 @@ COSMOS-5H1 addresses the **AI for Education** theme by:
 
 - 🌍 **Universal Access** — Works completely offline; no subscription, no internet dependency after load
 - 📚 **Depth over Simplicity** — 28 curated knowledge files with 100+ FAQs per celestial body
-- 🧠 **Intelligent Guidance** — AI detects what the user wants (planet facts, mission history, comparisons) and responds naturally
-- 🚀 **Inspiring Curiosity** — Cinematic intro, animated solar system, 3D visuals, and ambient audio create an immersive learning environment
-- 🔬 **Scientific Accuracy** — All data sourced from NASA, ESA, and peer-reviewed sources
+- 🧠 **Intelligent Guidance** — AI detects what the user wants and responds naturally; upgrades to GPT-4o-mini when a key is present
+- 🚀 **Inspiring Curiosity** — Cinematic intro, animated solar system, physics lab, Morse code communication
+- 🔬 **Scientific Accuracy** — All data sourced from NASA, ESA, and peer-reviewed sources; real equations throughout
 - 🛰 **Real-World Data** — Live NASA API feeds ground the experience in current science
+- 📡 **Historical Communication** — Morse Code module teaches ITU-R M.1677-1 standard used in aviation, maritime, and space
 
 ---
 
@@ -243,7 +313,7 @@ Phase 1 — Foundation
   Bob → Built Navbar with scroll behavior + music toggle
   Bob → Wired section refs for smooth navigation
 
-Phase 2 — Features
+Phase 2 — Space Explorer & NASA APIs
   Bob → Created Space Explorer dashboard (20 glassmorphism cards)
   Bob → Built /space/[slug] dynamic detail pages
   Bob → Implemented all 6 NASA API widgets with offline fallback
@@ -257,13 +327,34 @@ Phase 3 — COSMOS AI System
          ResponseGenerator with markdown output
   Bob → Upgraded AIAssistant: streaming text, voice input,
          history tab, follow-up suggestions, navigation commands
+  Bob → Wired OpenAI GPT-4o-mini as primary with TF-IDF fallback
+  Bob → Built Cosmic Compare AI endpoint with online/offline badge
 
-Phase 4 — Polish
-  Bob → Replaced emoji logo with COSMOS-5H1 brand image
-  Bob → Added background music with loop + mute control
-  Bob → Updated SpaceAIChat to use unified COSMOS AI engine
+Phase 4 — Mission Planner & Physics Lab
+  Bob → AI Mission Planner: launch windows, ΔV, fuel, crew, cost,
+         risk gauge, animated timeline, typewriter summary
+  Bob → Physics Lab: 8 simulators using real equations + Canvas 2D:
+         Tsiolkovsky, Kepler, Schwarzschild, Melosh crater scaling
+  Bob → All simulators: zero external physics libraries
+
+Phase 5 — Morse Code Communication Center
+  Bob → lib/morse-code.ts: full ITU-R M.1677-1 engine (56 chars)
+  Bob → MorseAudioPlayer: Web Audio API 600 Hz CW with precise timing
+  Bob → MorseVisualizer: Canvas pulse track + scrolling scan cursor
+  Bob → FlashlightMode: LED / screen flash / beacon animations
+  Bob → KeyboardPractice: spacebar timing + auto-calibration
+  Bob → MorseLessons: 6 progressive lessons with lock/unlock system
+  Bob → ChallengeMode: timed decode mini-games, 4 difficulties
+  Bob → SpaceCommSim: animated spacecraft + radio wave canvas
+
+Phase 6 — Polish & Bug Fixes
+  Bob → Smart intro: sessionStorage flag set immediately on mount —
+         back-navigation from any route skips video entirely
+  Bob → Mission Planner text: all opacity < 70% eliminated;
+         shimmer animations on card headers; animated timeline dots
+  Bob → Navbar + homepage: added Morse Code entry points
   Bob → TypeScript zero-error validation on every change
-  Bob → Committed 101 files and pushed to GitHub
+  Bob → Committed and pushed all changes to GitHub
 ```
 
 ### Bob Capabilities Used
@@ -272,24 +363,25 @@ Phase 4 — Polish
 |---|---|
 | **Agent Mode** | Full autonomous multi-file implementation across every phase |
 | **`spawn_subagent`** | Generated 15 knowledge base JSON files in parallel (3 subagents × 5 files each) |
-| **`write_file`** | Created 50+ new source files from scratch |
+| **`write_file`** | Created 60+ new source files from scratch |
 | **`apply_diff`** | Surgical edits to existing files without touching surrounding code |
 | **`execute_command`** | `npx tsc --noEmit` after every change to catch type errors immediately |
 | **`grep` / `glob`** | Explored codebase before editing to avoid conflicts |
-| **`update_todo_list`** | Tracked 40+ tasks across 4 major development phases |
+| **`update_todo_list`** | Tracked 60+ tasks across 6 major development phases |
 | **`GetSymbolsOverview`** | Understood component structures before modifying them |
-| **`gh` CLI via Bob** | Created GitHub repo and pushed 101 files in one session |
+| **`insert_content`** | Appended large CSS blocks to globals.css without overwrite |
+| **`gh` CLI via Bob** | Created GitHub repo and pushed all files |
 | **`read_file`** | Always read files before editing — never speculated about code |
 
 ### Lines Written by Bob
 
 ```
-Source code (TypeScript/TSX)  →  ~6,500 lines
-CSS (globals.css additions)   →  ~1,200 lines
-JSON knowledge base files     →  ~4,800 lines
-Configuration & types         →  ~300 lines
-─────────────────────────────────────────────
-Total                         →  ~12,800 lines
+Source code (TypeScript/TSX)  →  ~10,500 lines
+CSS (globals.css additions)   →   ~2,900 lines
+JSON knowledge base files     →   ~4,800 lines
+Configuration & types         →     ~300 lines
+─────────────────────────────────────────────────
+Total                         →  ~18,500 lines
 ```
 
 ---
@@ -310,7 +402,16 @@ npm run dev
 
 Open **[http://localhost:3000](http://localhost:3000)** — no API keys needed, works fully offline.
 
-### Optional: IBM Granite AI Backend (deeper answers)
+### Optional: OpenAI GPT-4o-mini (deeper AI answers)
+
+```env
+# .env.local
+OPENAI_API_KEY=sk-...   # When set, COSMOS AI upgrades to GPT-4o-mini automatically
+```
+
+When `OPENAI_API_KEY` is present the chat panel shows **✨ OpenAI GPT · Online**; without it the system runs the full offline TF-IDF engine silently.
+
+### Optional: IBM Granite AI Backend
 
 ```bash
 # Install Ollama → https://ollama.ai
@@ -332,25 +433,32 @@ COSMOS-5H1/
 ├── app/
 │   ├── page.tsx                    # Main page (intro + solar system + hero)
 │   ├── layout.tsx                  # Root layout
-│   ├── globals.css                 # All styles (4,000+ lines)
+│   ├── globals.css                 # All styles (2,900+ lines, .se-/.cc-/.pl-/.mc-*)
 │   ├── space/
 │   │   ├── page.tsx                # Space Explorer dashboard (20 cards)
-│   │   └── [slug]/
-│   │       ├── page.tsx            # Static route generation
-│   │       └── SpaceDetailClient   # Full detail page (7 tabs)
+│   │   └── [slug]/SpaceDetailClient  # Full detail page (7 tabs)
+│   ├── compare/page.tsx            # Cosmic Compare module
+│   ├── mission-planner/page.tsx    # AI Mission Planner
+│   ├── physics-lab/page.tsx        # Physics & Mission Lab (8 simulators)
+│   ├── morse-code/page.tsx         # Morse Code Communication Center (7 panels)
 │   └── api/
-│       └── cosmos-ai/route.ts      # Offline AI API endpoint
+│       ├── cosmos-ai/route.ts      # AI chat (TF-IDF → OpenAI GPT RAG)
+│       ├── cosmos-ai/compare/      # Cosmic Compare AI endpoint
+│       └── mission-planner/        # Mission plan generator
 │
 ├── components/
-│   ├── layout/Navbar.tsx           # Navigation + music + logo
-│   └── ui/                         # Carousel, bento grid, button
+│   ├── layout/Navbar.tsx           # Navigation + music + logo + all route links
+│   └── ui/                         # Carousel, bento grid, button, ascii-glitch
 │
 ├── features/
 │   ├── ai-assistant/AIAssistant    # Floating COSMOS AI chat panel
+│   ├── cosmic-compare/             # Compare UI + AI insights panel
 │   ├── hero/                       # Hero text + CSS solar system
-│   ├── loading/WelcomeVideo        # Cinematic intro screen
+│   ├── loading/                    # Welcome video + loading screen
 │   ├── solar-system/               # Planet carousel + modals
-│   └── space-explorer/             # 20 widget components + API widgets
+│   ├── space-explorer/             # 20 widget components + NASA API widgets
+│   ├── physics-lab/                # 8 physics simulators (Canvas 2D)
+│   └── morse-code/                 # 8 Morse components (audio + canvas + UI)
 │
 ├── lib/
 │   ├── cosmos-ai/
@@ -358,9 +466,11 @@ COSMOS-5H1/
 │   │   ├── intent-service.ts       # 17-class intent detector
 │   │   ├── response-generator.ts   # RAG answer builder
 │   │   └── conversation-memory.ts  # Session memory + suggestions
+│   ├── morse-code.ts               # ITU-R M.1677-1 engine (encode/decode/timing)
 │   ├── nasa-api.ts                 # 6 NASA APIs + offline fallbacks
 │   ├── space-explorer-data.ts      # 20 category + detail data
-│   └── celestial-data.ts           # Planet stats for modals
+│   ├── celestial-data.ts           # Planet stats for modals
+│   └── env.ts                      # OPENAI_API_KEY accessor with hasOpenAI guard
 │
 ├── data/knowledge/                 # 28 scientific JSON files
 ├── types/index.ts                  # TypeScript interfaces
@@ -381,13 +491,17 @@ COSMOS-5H1/
 
 | Layer | Technology |
 |---|---|
-| **Framework** | Next.js 16.2 (App Router) |
+| **Framework** | Next.js 16.2 (App Router, dynamic imports, SSR-safe) |
 | **UI** | React 19, TypeScript 5 |
-| **Styling** | Tailwind CSS v4, Glassmorphism, Custom CSS |
+| **Styling** | Tailwind CSS v4, Glassmorphism, Custom CSS (`.se-` `.cc-` `.pl-` `.mc-`) |
 | **Animation** | Framer Motion 12, GSAP 3 |
 | **3D** | React Three Fiber, Drei, Three.js |
-| **AI Engine** | Custom TF-IDF + RAG (zero external deps) |
+| **AI Engine** | Custom TF-IDF + RAG pipeline (zero external deps) |
+| **AI Cloud** | OpenAI GPT-4o-mini (optional, auto-detected via `hasOpenAI`) |
 | **AI Backend** | IBM Granite (Ollama), LangChain, ChromaDB |
+| **Physics** | Canvas 2D API + real equations (Tsiolkovsky, Kepler, Schwarzschild, Melosh) |
+| **Audio** | Web Audio API (Morse CW tones, 600 Hz, attack/decay envelope) |
+| **Communication** | ITU-R M.1677-1 Morse Code engine (encode / decode / timing / symbols) |
 | **APIs** | NASA APOD, Mars Rover, NeoWs, DONKI, EPIC, Open Notify |
 | **Voice** | Web Speech API |
 | **Icons** | Lucide React, Phosphor Icons |
@@ -403,11 +517,15 @@ COSMOS-5H1/
 
 | 🌌 Cinematic Intro | 🪐 Solar System | 🚀 Space Explorer |
 |---|---|---|
-| Video intro with ambient music | CSS-animated orbiting planets | 20 glassmorphism module cards |
+| Smart video — plays only on fresh tab, skips on back | CSS-animated orbiting planets | 20 glassmorphism module cards |
 
-| 🧠 COSMOS AI | 📡 Live NASA Data | 🛰 ISS Tracker |
+| 🧠 COSMOS AI | 🪐 Cosmic Compare | 🛸 Mission Planner |
 |---|---|---|
-| Offline chat with streaming text | APOD, Mars Rover, NeoWs | Real-time position map |
+| GPT-4o-mini + offline TF-IDF fallback | AI side-by-side comparison with online/offline badge | Full mission design with animated risk gauge |
+
+| ⚛️ Physics Lab | 📡 Morse Code | 📡 NASA Live Data |
+|---|---|---|
+| 8 real-equation Canvas simulators | 7-panel hub: audio, flash, practice, challenge, space sim | APOD, Mars Rover, NeoWs, ISS tracker |
 
 </div>
 
@@ -416,16 +534,25 @@ COSMOS-5H1/
 ## 🔑 Environment Variables (Optional)
 
 ```env
-# .env.local — only needed for higher NASA API rate limits
-NASA_API_KEY=your_key_here          # Default: DEMO_KEY (works for demos)
-NEXT_PUBLIC_API_URL=http://localhost:8000  # IBM Granite backend
+# .env.local
+
+# Enables GPT-4o-mini for COSMOS AI chat, Cosmic Compare, Mission Planner
+OPENAI_API_KEY=sk-...
+
+# IBM Granite backend (local Ollama)
+NEXT_PUBLIC_API_URL=http://localhost:8000
+
+# Higher NASA API rate limits (default DEMO_KEY works for demos)
+NASA_API_KEY=your_key_here
 ```
+
+All three are **optional** — COSMOS-5H1 runs fully offline without any of them.
 
 ---
 
 <div align="center">
 
-**Built with ❤️ and IBM Bob — Explore · Discover · Simulate · Innovate**
+**Built with ❤️ and IBM Bob — Explore · Discover · Simulate · Communicate · Innovate**
 
 <img src="public/images/cosmos-logo.png" alt="COSMOS-5H1" width="60" />
 

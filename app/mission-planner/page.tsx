@@ -85,8 +85,8 @@ function RiskGauge({ score, level }: { score: number; level: string }) {
   return (
     <div className="flex flex-col gap-2">
       <div className="flex items-center justify-between">
-        <span className="text-white/75 text-xs font-medium">Risk Score</span>
-        <span className="text-sm font-bold" style={{ color, textShadow: `0 0 12px ${color}99` }}>{score}/10 — {level}</span>
+        <span className="text-white/90 text-xs font-semibold">Risk Score</span>
+        <span className="text-sm font-bold" style={{ color, textShadow: `0 0 14px ${color}cc` }}>{score}/10 — {level}</span>
       </div>
       <div className="h-2.5 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.10)" }}>
         <motion.div
@@ -109,30 +109,40 @@ function PlanCard({
 }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 16 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.45, delay }}
+      initial={{ opacity: 0, y: 20, scale: 0.97 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ duration: 0.5, delay, ease: [0.16, 1, 0.3, 1] }}
+      whileHover={{ scale: 1.012, transition: { duration: 0.2 } }}
       className="rounded-2xl overflow-hidden"
       style={{
-        background: "linear-gradient(145deg, rgba(10,22,51,0.65), rgba(2,7,20,0.55))",
-        border: "1px solid rgba(147,197,253,0.18)",
-        backdropFilter: "blur(14px)",
-        boxShadow: "0 4px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(147,197,253,0.06)",
+        background: "linear-gradient(145deg, rgba(10,22,51,0.75), rgba(2,7,20,0.65))",
+        border: "1px solid rgba(147,197,253,0.22)",
+        backdropFilter: "blur(16px)",
+        boxShadow: "0 4px 32px rgba(0,0,0,0.5), inset 0 1px 0 rgba(147,197,253,0.10)",
       }}
     >
+      {/* Animated header bar */}
       <div
-        className="flex items-center gap-2.5 px-5 py-3.5 border-b"
+        className="flex items-center gap-2.5 px-5 py-3.5 border-b relative overflow-hidden"
         style={{
-          borderColor: "rgba(147,197,253,0.12)",
-          background: "rgba(147,197,253,0.04)",
+          borderColor: "rgba(147,197,253,0.15)",
+          background: "linear-gradient(90deg, rgba(147,197,253,0.08), rgba(167,139,250,0.05))",
         }}
       >
-        <span className="text-base">{icon}</span>
+        {/* Shimmer highlight on the header */}
+        <motion.div
+          className="absolute inset-0 pointer-events-none"
+          initial={{ x: "-100%" }}
+          animate={{ x: "200%" }}
+          transition={{ duration: 2.2, delay: delay + 0.5, ease: "easeInOut", repeat: Infinity, repeatDelay: 6 }}
+          style={{ background: "linear-gradient(90deg, transparent, rgba(147,197,253,0.12), transparent)", width: "50%" }}
+        />
+        <span className="text-base relative z-10">{icon}</span>
         <span
-          className="text-xs font-bold uppercase tracking-widest"
+          className="text-xs font-bold uppercase tracking-widest relative z-10"
           style={{
-            color: "#93c5fd",
-            textShadow: "0 0 14px rgba(147,197,253,0.55)",
+            color: "#bfdbfe",
+            textShadow: "0 0 16px rgba(147,197,253,0.7)",
             letterSpacing: "0.12em",
           }}
         >
@@ -147,9 +157,9 @@ function PlanCard({
 // ── Row helper ────────────────────────────────────────────────────────────────
 function Row({ label, value }: { label: string; value: string }) {
   return (
-    <div className="flex items-start justify-between gap-4 py-2 border-b" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
-      <span className="text-blue-200/60 text-xs shrink-0 font-medium">{label}</span>
-      <span className="text-white/95 text-xs text-right font-semibold leading-snug" style={{ textShadow: "0 0 8px rgba(147,197,253,0.2)" }}>{value}</span>
+    <div className="flex items-start justify-between gap-4 py-2 border-b" style={{ borderColor: "rgba(147,197,253,0.10)" }}>
+      <span className="text-xs shrink-0 font-semibold" style={{ color: "#93c5fd", opacity: 0.85 }}>{label}</span>
+      <span className="text-white text-xs text-right font-semibold leading-snug" style={{ textShadow: "0 0 10px rgba(147,197,253,0.3)" }}>{value}</span>
     </div>
   );
 }
@@ -162,29 +172,37 @@ function MissionPlanView({ plan, isNew }: { plan: MissionPlan; isNew: boolean })
     <div className="flex flex-col gap-4">
       {/* Title + summary */}
       <motion.div
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="rounded-2xl px-6 py-6"
+        initial={{ opacity: 0, y: 16, scale: 0.98 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        className="rounded-2xl px-6 py-6 relative overflow-hidden"
         style={{
-          background: "linear-gradient(135deg, rgba(99,102,241,0.18), rgba(147,197,253,0.10))",
-          border: "1px solid rgba(147,197,253,0.25)",
-          boxShadow: "0 0 40px rgba(99,102,241,0.18), inset 0 1px 0 rgba(147,197,253,0.10)",
+          background: "linear-gradient(135deg, rgba(99,102,241,0.22), rgba(147,197,253,0.12))",
+          border: "1px solid rgba(147,197,253,0.30)",
+          boxShadow: "0 0 50px rgba(99,102,241,0.22), inset 0 1px 0 rgba(147,197,253,0.14)",
         }}
       >
+        {/* Animated corner glow */}
+        <motion.div
+          className="absolute -top-8 -right-8 w-32 h-32 rounded-full pointer-events-none"
+          animate={{ opacity: [0.15, 0.35, 0.15], scale: [1, 1.15, 1] }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          style={{ background: "radial-gradient(circle, rgba(147,197,253,0.4), transparent 70%)" }}
+        />
         <h2
-          className="text-xl font-bold mb-3"
+          className="text-xl font-bold mb-3 relative z-10"
           style={{
-            background: "linear-gradient(90deg, #fff, #93c5fd)",
+            background: "linear-gradient(90deg, #fff 30%, #93c5fd 65%, #a78bfa 100%)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             backgroundClip: "text",
             textShadow: "none",
-            filter: "drop-shadow(0 0 10px rgba(147,197,253,0.4))",
+            filter: "drop-shadow(0 0 12px rgba(147,197,253,0.5))",
           }}
         >
           {plan.title}
         </h2>
-        <p className="text-blue-100/85 text-sm leading-relaxed">{summary}<span className="animate-pulse text-blue-300">▊</span></p>
+        <p className="text-blue-50 text-sm leading-relaxed relative z-10" style={{ textShadow: "0 1px 4px rgba(0,0,0,0.5)" }}>{summary}<span className="animate-pulse text-cyan-300" style={{ textShadow: "0 0 8px rgba(103,232,249,0.8)" }}>▊</span></p>
       </motion.div>
 
       {/* Cards grid */}
@@ -209,7 +227,7 @@ function MissionPlanView({ plan, isNew }: { plan: MissionPlan; isNew: boolean })
         <PlanCard icon="🛸" title="Spacecraft" delay={0.15}>
           <Row label="Name" value={plan.spacecraft.name} />
           <Row label="Type" value={plan.spacecraft.type} />
-          <p className="text-blue-100/75 text-xs mt-3 leading-relaxed">{plan.spacecraft.description}</p>
+          <p className="text-blue-100/90 text-xs mt-3 leading-relaxed">{plan.spacecraft.description}</p>
         </PlanCard>
 
         {/* Fuel */}
@@ -217,7 +235,7 @@ function MissionPlanView({ plan, isNew }: { plan: MissionPlan; isNew: boolean })
           <Row label="Total propellant" value={plan.fuel.total} />
           <Row label="Propellant type" value={plan.fuel.propellant} />
           <Row label="Total ΔV" value={plan.fuel.deltaV} />
-          <p className="text-blue-100/75 text-xs mt-3 leading-relaxed">{plan.fuel.stages}</p>
+          <p className="text-blue-100/90 text-xs mt-3 leading-relaxed">{plan.fuel.stages}</p>
         </PlanCard>
 
         {/* Crew */}
@@ -257,18 +275,18 @@ function MissionPlanView({ plan, isNew }: { plan: MissionPlan; isNew: boolean })
             <RiskGauge score={plan.risk.score} level={plan.risk.level} />
           </div>
           <div className="grid grid-cols-1 gap-1 mt-3">
-            <span className="text-blue-300/70 text-[10px] font-bold uppercase tracking-wider mb-1.5" style={{ textShadow: "0 0 8px rgba(147,197,253,0.3)" }}>Risk Factors</span>
+            <span className="text-[10px] font-bold uppercase tracking-wider mb-1.5" style={{ color: "#93c5fd", textShadow: "0 0 10px rgba(147,197,253,0.5)" }}>Risk Factors</span>
             {plan.risk.factors.map((f) => (
               <div key={f} className="flex items-start gap-1.5 py-0.5">
-                <span className="text-red-400 text-[11px] mt-0.5">▲</span>
-                <span className="text-red-200/80 text-xs">{f}</span>
+                <span className="text-red-400 text-[11px] mt-0.5" style={{ textShadow: "0 0 6px rgba(248,113,113,0.6)" }}>▲</span>
+                <span className="text-red-200 text-xs font-medium">{f}</span>
               </div>
             ))}
-            <span className="text-emerald-300/70 text-[10px] font-bold uppercase tracking-wider mt-3 mb-1.5" style={{ textShadow: "0 0 8px rgba(52,211,153,0.3)" }}>Mitigations</span>
+            <span className="text-[10px] font-bold uppercase tracking-wider mt-3 mb-1.5" style={{ color: "#34d399", textShadow: "0 0 10px rgba(52,211,153,0.5)" }}>Mitigations</span>
             {plan.risk.mitigations.map((m) => (
               <div key={m} className="flex items-start gap-1.5 py-0.5">
-                <span className="text-emerald-400 text-[11px] mt-0.5">✓</span>
-                <span className="text-emerald-100/80 text-xs">{m}</span>
+                <span className="text-emerald-400 text-[11px] mt-0.5" style={{ textShadow: "0 0 6px rgba(52,211,153,0.6)" }}>✓</span>
+                <span className="text-emerald-100 text-xs font-medium">{m}</span>
               </div>
             ))}
           </div>
@@ -280,12 +298,20 @@ function MissionPlanView({ plan, isNew }: { plan: MissionPlan; isNew: boolean })
       <PlanCard icon="📅" title="Mission Timeline" delay={0.40}>
         <div className="flex flex-col gap-0">
           {plan.timeline.map((phase, i) => (
-            <div key={phase.phase} className="flex gap-4 pb-5 last:pb-0">
+            <motion.div
+              key={phase.phase}
+              initial={{ opacity: 0, x: -12 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.4, delay: 0.45 + i * 0.07, ease: "easeOut" }}
+              className="flex gap-4 pb-5 last:pb-0"
+            >
               {/* Vertical line + dot */}
               <div className="flex flex-col items-center">
-                <div
+                <motion.div
                   className="w-3 h-3 rounded-full shrink-0 mt-0.5"
-                  style={{ background: "#93c5fd", boxShadow: "0 0 10px rgba(147,197,253,0.7), 0 0 20px rgba(147,197,253,0.3)" }}
+                  animate={{ boxShadow: ["0 0 8px rgba(147,197,253,0.5), 0 0 16px rgba(147,197,253,0.2)", "0 0 14px rgba(147,197,253,0.9), 0 0 28px rgba(147,197,253,0.4)", "0 0 8px rgba(147,197,253,0.5), 0 0 16px rgba(147,197,253,0.2)"] }}
+                  transition={{ duration: 2.5, delay: i * 0.3, repeat: Infinity, ease: "easeInOut" }}
+                  style={{ background: "#93c5fd" }}
                 />
                 {i < plan.timeline.length - 1 && (
                   <div className="w-px flex-1 mt-1" style={{ background: "rgba(147,197,253,0.25)" }} />
@@ -293,28 +319,28 @@ function MissionPlanView({ plan, isNew }: { plan: MissionPlan; isNew: boolean })
               </div>
               <div className="pb-1">
                 <div className="flex items-center gap-2 mb-1">
-                  <span className="text-white text-sm font-bold" style={{ textShadow: "0 0 10px rgba(147,197,253,0.3)" }}>{phase.phase}</span>
+                  <span className="text-white text-sm font-bold" style={{ textShadow: "0 0 12px rgba(147,197,253,0.4)" }}>{phase.phase}</span>
                   <span
                     className="text-[10px] px-2.5 py-0.5 rounded-full font-semibold"
-                    style={{ background: "rgba(147,197,253,0.14)", color: "#93c5fd", border: "1px solid rgba(147,197,253,0.28)", textShadow: "0 0 8px rgba(147,197,253,0.4)" }}
+                    style={{ background: "rgba(147,197,253,0.18)", color: "#bfdbfe", border: "1px solid rgba(147,197,253,0.35)", textShadow: "0 0 8px rgba(147,197,253,0.5)" }}
                   >
                     {phase.duration}
                   </span>
                 </div>
-                <p className="text-blue-100/70 text-xs leading-relaxed">{phase.description}</p>
+                <p className="text-blue-100/90 text-xs leading-relaxed">{phase.description}</p>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </PlanCard>
 
       {/* Backup plan — full width */}
       <PlanCard icon="🔄" title="Backup & Contingencies" delay={0.45}>
-        <p className="text-blue-100/80 text-sm mb-4 leading-relaxed">{plan.backup.plan}</p>
+        <p className="text-blue-50 text-sm mb-4 leading-relaxed">{plan.backup.plan}</p>
         {plan.backup.contingencies.map((c) => (
           <div key={c} className="flex items-start gap-2 py-1.5">
-            <span className="text-blue-400 text-xs mt-0.5">◆</span>
-            <span className="text-white/80 text-xs leading-snug">{c}</span>
+            <span className="text-blue-400 text-xs mt-0.5" style={{ textShadow: "0 0 6px rgba(96,165,250,0.6)" }}>◆</span>
+            <span className="text-white/95 text-xs leading-snug">{c}</span>
           </div>
         ))}
       </PlanCard>
@@ -348,36 +374,66 @@ function LoadingView() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="flex flex-col items-center justify-center gap-6 py-20"
+      className="flex flex-col items-center justify-center gap-6 py-20 relative"
     >
-      {/* Orbit spinner */}
-      <div className="relative w-16 h-16">
-        <div
-          className="absolute inset-0 rounded-full border-2 animate-spin"
-          style={{ borderColor: "rgba(147,197,253,0.12)", borderTopColor: "#93c5fd" }}
+      {/* Pulsing background glow */}
+      <motion.div
+        className="absolute inset-0 rounded-3xl pointer-events-none"
+        animate={{ opacity: [0, 0.4, 0] }}
+        transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+        style={{ background: "radial-gradient(ellipse at center, rgba(147,197,253,0.08) 0%, transparent 70%)" }}
+      />
+
+      {/* Triple-ring orbit spinner */}
+      <div className="relative w-20 h-20">
+        <motion.div
+          className="absolute inset-0 rounded-full border-2"
+          animate={{ rotate: 360 }}
+          transition={{ duration: 1.8, repeat: Infinity, ease: "linear" }}
+          style={{ borderColor: "transparent", borderTopColor: "#93c5fd", boxShadow: "0 0 12px rgba(147,197,253,0.5)" }}
         />
-        <div
-          className="absolute inset-2 rounded-full border animate-spin"
-          style={{ borderColor: "rgba(167,139,250,0.12)", borderTopColor: "#a78bfa", animationDirection: "reverse", animationDuration: "1.2s" }}
+        <motion.div
+          className="absolute inset-2 rounded-full border"
+          animate={{ rotate: -360 }}
+          transition={{ duration: 1.2, repeat: Infinity, ease: "linear" }}
+          style={{ borderColor: "transparent", borderTopColor: "#a78bfa", boxShadow: "0 0 8px rgba(167,139,250,0.5)" }}
+        />
+        <motion.div
+          className="absolute inset-4 rounded-full border"
+          animate={{ rotate: 360 }}
+          transition={{ duration: 2.4, repeat: Infinity, ease: "linear" }}
+          style={{ borderColor: "transparent", borderTopColor: "#34d399", boxShadow: "0 0 6px rgba(52,211,153,0.4)" }}
         />
         <span className="absolute inset-0 flex items-center justify-center text-xl">🚀</span>
       </div>
 
-      <div className="flex flex-col items-center gap-1">
+      <div className="flex flex-col items-center gap-2">
         <span
-          className="text-sm font-semibold"
-          style={{ color: "rgba(147,197,253,0.9)", textShadow: "0 0 12px rgba(147,197,253,0.4)" }}
+          className="text-base font-bold"
+          style={{ color: "#bfdbfe", textShadow: "0 0 14px rgba(147,197,253,0.6)" }}
         >
           Planning your mission…
         </span>
+        {/* Progress dots */}
+        <div className="flex gap-1.5 my-1">
+          {LOADING_STEPS.map((_, i) => (
+            <motion.div
+              key={i}
+              className="w-1.5 h-1.5 rounded-full"
+              animate={{ opacity: i <= stepIdx ? 1 : 0.2, scale: i === stepIdx ? 1.4 : 1 }}
+              transition={{ duration: 0.3 }}
+              style={{ background: i <= stepIdx ? "#93c5fd" : "rgba(147,197,253,0.3)", boxShadow: i === stepIdx ? "0 0 8px rgba(147,197,253,0.8)" : "none" }}
+            />
+          ))}
+        </div>
         <AnimatePresence mode="wait">
           <motion.span
             key={stepIdx}
-            initial={{ opacity: 0, y: 6 }}
+            initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -6 }}
-            className="text-xs"
-            style={{ color: "rgba(147,197,253,0.4)" }}
+            exit={{ opacity: 0, y: -8 }}
+            className="text-xs font-semibold"
+            style={{ color: "#93c5fd", textShadow: "0 0 10px rgba(147,197,253,0.4)" }}
           >
             {LOADING_STEPS[stepIdx]}
           </motion.span>
@@ -467,8 +523,8 @@ export default function MissionPlannerPage() {
         <motion.div initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="mb-1">
           <Link
             href="/"
-            className="inline-flex items-center gap-1.5 text-xs font-medium transition-colors duration-150"
-            style={{ color: "rgba(147,197,253,0.45)" }}
+            className="inline-flex items-center gap-1.5 text-xs font-semibold transition-colors duration-150"
+            style={{ color: "rgba(147,197,253,0.88)", textShadow: "0 0 10px rgba(147,197,253,0.35)" }}
           >
             <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -485,20 +541,20 @@ export default function MissionPlannerPage() {
           <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-3" style={{ background: "linear-gradient(100deg, #fff 20%, #93c5fd 55%, #a78bfa 80%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text", filter: "drop-shadow(0 0 16px rgba(147,197,253,0.35))" }}>
             Mission<span> Planner</span>
           </h1>
-          <p className="text-blue-100/70 text-sm leading-relaxed max-w-lg">
+          <p className="text-blue-100/90 text-sm leading-relaxed max-w-lg" style={{ textShadow: "0 1px 4px rgba(0,0,0,0.6)" }}>
             Configure your mission parameters below. The AI engine will compute launch windows, orbital mechanics, fuel requirements, cost estimates, and a complete risk assessment.
           </p>
         </motion.div>
 
         {/* ── Quick examples ───────────────────────────────────────────────── */}
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.15 }} className="flex flex-wrap gap-2 mb-8">
-          <span className="text-white/25 text-xs self-center">Quick examples:</span>
+          <span className="text-blue-200/80 text-xs self-center font-semibold">Quick examples:</span>
           {EXAMPLES.map((ex) => (
             <button
               key={ex.label}
               onClick={() => applyExample(ex)}
               className="px-3 py-1.5 rounded-full text-xs transition-all duration-200 hover:bg-white/10"
-              style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", color: "rgba(191,219,254,0.55)" }}
+              style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(147,197,253,0.25)", color: "rgba(191,219,254,0.88)" }}
             >
               {ex.label}
             </button>
@@ -535,7 +591,7 @@ export default function MissionPlannerPage() {
                     }}
                   >
                     <span className="text-xl">{d.emoji}</span>
-                    <span className="text-[10px] font-medium" style={{ color: active ? d.color : "rgba(255,255,255,0.4)" }}>{d.label}</span>
+                    <span className="text-[10px] font-semibold" style={{ color: active ? d.color : "rgba(255,255,255,0.75)" }}>{d.label}</span>
                   </button>
                 );
               })}
@@ -556,9 +612,9 @@ export default function MissionPlannerPage() {
                   }}
                   className="px-4 py-2 rounded-xl text-xs font-semibold capitalize transition-all duration-200"
                   style={{
-                    background: missionType === t ? "rgba(147,197,253,0.15)" : "rgba(255,255,255,0.04)",
-                    border: missionType === t ? "1px solid rgba(147,197,253,0.3)" : "1px solid rgba(255,255,255,0.07)",
-                    color: missionType === t ? "#93c5fd" : "rgba(255,255,255,0.4)",
+                    background: missionType === t ? "rgba(147,197,253,0.15)" : "rgba(255,255,255,0.06)",
+                    border: missionType === t ? "1px solid rgba(147,197,253,0.3)" : "1px solid rgba(255,255,255,0.18)",
+                    color: missionType === t ? "#93c5fd" : "rgba(255,255,255,0.82)",
                     textShadow: missionType === t ? "0 0 10px rgba(147,197,253,0.4)" : "none",
                   }}
                 >
@@ -582,7 +638,7 @@ export default function MissionPlannerPage() {
                   onChange={(e) => setCrew(Number(e.target.value))}
                   className="w-full accent-blue-400"
                 />
-                <div className="flex justify-between text-[10px] mt-1" style={{ color: "rgba(255,255,255,0.2)" }}>
+                <div className="flex justify-between text-[10px] mt-1 font-medium" style={{ color: "rgba(147,197,253,0.72)" }}>
                   <span>1</span><span>4</span><span>7</span>
                 </div>
               </div>
@@ -599,7 +655,7 @@ export default function MissionPlannerPage() {
                 onChange={(e) => setDuration(Number(e.target.value))}
                 className="w-full accent-blue-400"
               />
-              <div className="flex justify-between text-[10px] mt-1" style={{ color: "rgba(255,255,255,0.2)" }}>
+              <div className="flex justify-between text-[10px] mt-1 font-medium" style={{ color: "rgba(147,197,253,0.72)" }}>
                 <span>7d</span><span>~1yr</span><span>5yr</span>
               </div>
             </div>
@@ -615,11 +671,11 @@ export default function MissionPlannerPage() {
                   <button
                     key={obj}
                     onClick={() => toggleObjective(obj)}
-                    className="px-3 py-1.5 rounded-full text-xs transition-all duration-200"
+                    className="px-3 py-1.5 rounded-full text-xs transition-all duration-200 font-medium"
                     style={{
-                      background: selected ? "rgba(167,139,250,0.15)" : "rgba(255,255,255,0.04)",
-                      border: selected ? "1px solid rgba(167,139,250,0.35)" : "1px solid rgba(255,255,255,0.07)",
-                      color: selected ? "#c4b5fd" : "rgba(255,255,255,0.35)",
+                      background: selected ? "rgba(167,139,250,0.15)" : "rgba(255,255,255,0.06)",
+                      border: selected ? "1px solid rgba(167,139,250,0.45)" : "1px solid rgba(255,255,255,0.18)",
+                      color: selected ? "#ddd6fe" : "rgba(219,234,254,0.82)",
                     }}
                   >
                     {selected ? "✓ " : ""}{obj}

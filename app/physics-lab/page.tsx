@@ -47,7 +47,7 @@ function SimLoader() {
         <div className="absolute inset-0 rounded-full border-2 animate-spin"
           style={{ borderColor: "rgba(34,211,238,0.15)", borderTopColor: "#22d3ee" }} />
       </div>
-      <span className="text-cyan-300/60 text-xs uppercase tracking-widest">Loading simulator…</span>
+      <span className="text-cyan-300/90 text-xs uppercase tracking-widest font-semibold" style={{ textShadow: "0 0 10px rgba(34,211,238,0.4)" }}>Loading simulator…</span>
     </div>
   );
 }
@@ -176,7 +176,7 @@ export default function PhysicsLabPage() {
 
         {/* ── Footer ── */}
         <footer className="mt-20 text-center">
-          <p className="text-blue-400/25 text-xs">
+          <p className="text-blue-300/65 text-xs">
             COSMOS-5H1 Physics Lab · Real equations, zero fake animations · Open Source
           </p>
         </footer>

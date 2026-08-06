@@ -440,7 +440,7 @@ export default function CosmicComparePage() {
           transition={{ duration: 0.6, delay: 0.5 }}
           className="mt-8 flex flex-wrap gap-2 justify-center"
         >
-          <span className="text-blue-300/30 text-xs self-center">Try comparing:</span>
+          <span className="text-blue-300/80 text-xs self-center font-semibold">Try comparing:</span>
           {[
             ["earth", "mars"], ["sun", "jupiter"], ["earth", "moon"], ["blackHole", "sun"], ["mercury", "pluto"],
           ].map(([a, b]) => {
@@ -450,8 +450,8 @@ export default function CosmicComparePage() {
               <button
                 key={`${a}-${b}`}
                 onClick={() => { setObjA(oa); setObjB(ob); setActiveTab("overview"); }}
-                className="px-3 py-1.5 rounded-full text-xs transition-all duration-200 hover:bg-white/10"
-                style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", color: "rgba(191,219,254,0.5)" }}
+                className="px-3 py-1.5 rounded-full text-xs transition-all duration-200 hover:bg-white/10 font-medium"
+                style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(147,197,253,0.22)", color: "rgba(191,219,254,0.88)" }}
               >
                 {oa.emoji} {oa.name} vs {ob.emoji} {ob.name}
               </button>
