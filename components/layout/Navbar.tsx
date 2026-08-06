@@ -284,6 +284,17 @@ export default function Navbar({ isMuted, onToggleMute, onNavClick }: NavbarProp
             >
               🛸 Mission Planner
             </Link>
+            <Link
+              href="/physics-lab"
+              className="px-4 py-2 text-sm font-semibold rounded-lg transition-all duration-200 hover:scale-105"
+              style={{
+                color: "#22d3ee",
+                background: "rgba(34,211,238,0.08)",
+                border: "1px solid rgba(34,211,238,0.2)",
+              }}
+            >
+              ⚛️ Physics Lab
+            </Link>
           </div>
 
           {/* Right side: AI status + music + hamburger */}
@@ -397,6 +408,18 @@ export default function Navbar({ isMuted, onToggleMute, onNavClick }: NavbarProp
                   }}
                 >
                   🛸 Mission Planner
+                </Link>
+                <Link
+                  href="/physics-lab"
+                  onClick={() => setMobileOpen(false)}
+                  className="flex items-center px-4 py-3 text-sm font-semibold rounded-xl mt-1 transition-all duration-200"
+                  style={{
+                    color: "#22d3ee",
+                    background: "rgba(34,211,238,0.08)",
+                    border: "1px solid rgba(34,211,238,0.2)",
+                  }}
+                >
+                  ⚛️ Physics Lab
                 </Link>
                 <div
                   className="flex items-center gap-1.5 text-xs px-4 py-2 rounded-xl mt-1"

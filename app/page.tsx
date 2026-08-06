@@ -15,7 +15,14 @@ import { CELESTIAL_DETAILS, type CelestialBodyDetails } from "@/lib/celestial-da
 import Link from "next/link";
 
 export default function Home() {
-  const [introStage, setIntroStage] = useState<"welcome" | "ready">("welcome");
+  // Show intro only on first visit within this browser session (new tab).
+  // Back-navigation from sub-pages skips the intro entirely.
+  const [introStage, setIntroStage] = useState<"welcome" | "ready">(() => {
+    if (typeof window !== "undefined" && sessionStorage.getItem("cosmos_intro_seen")) {
+      return "ready";
+    }
+    return "welcome";
+  });
   const [aiOpen, setAiOpen] = useState(false);
   const [celestialBody, setCelestialBody] = useState<CelestialBodyDetails | null>(null);
   const [isMuted, setIsMuted] = useState(false);
@@ -73,7 +80,10 @@ export default function Home() {
       <AnimatePresence>
         {introStage === "welcome" && (
           <WelcomeVideo
-            onComplete={() => setIntroStage("ready")}
+            onComplete={() => {
+              sessionStorage.setItem("cosmos_intro_seen", "1");
+              setIntroStage("ready");
+            }}
             onInteract={tryPlayMusic}
           />
         )}
@@ -216,6 +226,18 @@ export default function Home() {
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
+                </Link>
+                <Link
+                  href="/physics-lab"
+                  className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl font-semibold text-sm transition-all duration-200 hover:scale-105"
+                  style={{
+                    background: "rgba(34,211,238,0.08)",
+                    color: "#22d3ee",
+                    border: "1px solid rgba(34,211,238,0.3)",
+                    boxShadow: "0 0 20px rgba(34,211,238,0.15)",
+                  }}
+                >
+                  ⚛️ Physics Lab
                 </Link>
                 <button
                   onClick={() => setAiOpen(true)}

@@ -123,6 +123,7 @@ export default function AIAssistant({ isOpen: isOpenProp, onOpenChange }: AIAssi
   const [history, setHistory] = useState<string[]>([]);
   const [suggestions, setSuggestions] = useState<string[]>(getSuggestedFollowups(null));
   const [isListening, setIsListening] = useState(false);
+  const [aiSource, setAiSource] = useState<"openai" | "offline" | "local">("offline");
   const [backendStatus] = useState<BackendStatus>({
     status: "offline",
     model: "COSMOS AI",
@@ -229,7 +230,7 @@ export default function AIAssistant({ isOpen: isOpenProp, onOpenChange }: AIAssi
         signal: AbortSignal.timeout(15000),
       });
 
-      const data = await res.json() as { answer: string; entity: string | null; intent: string; navigateTo?: string };
+      const data = await res.json() as { answer: string; entity: string | null; intent: string; navigateTo?: string; source?: string };
       const newId = (Date.now() + 1).toString();
 
       const aiMsg: ChatMessage = {
@@ -241,6 +242,9 @@ export default function AIAssistant({ isOpen: isOpenProp, onOpenChange }: AIAssi
 
       setMessages((prev) => [...prev, aiMsg]);
       setStreamingId(newId);
+      if (data.source === "openai") setAiSource("openai");
+      else if (data.source === "local") setAiSource("local");
+      else setAiSource("offline");
 
       // Save to memory
       addTurn(messageText, data.answer, data.intent, data.entity);
@@ -320,9 +324,13 @@ export default function AIAssistant({ isOpen: isOpenProp, onOpenChange }: AIAssi
                 <div>
                   <div className="cosmos-ai-name">COSMOS AI</div>
                   <div className="cosmos-ai-status-row">
-                    <span className="cosmos-ai-status-dot" />
-                    <span className="cosmos-ai-status-text">Offline · {backendStatus.documentsIndexed} knowledge files · TF-IDF</span>
-                  </div>
+                        <span className="cosmos-ai-status-dot" />
+                        <span className="cosmos-ai-status-text">
+                          {aiSource === "openai"
+                            ? "✨ OpenAI GPT · Online"
+                            : `Offline · ${backendStatus.documentsIndexed} knowledge files · TF-IDF`}
+                        </span>
+                      </div>
                 </div>
               </div>
               <div className="flex gap-1">

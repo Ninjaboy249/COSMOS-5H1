@@ -2204,3 +2204,432 @@ canvas {
     bottom: 6rem !important;
   }
 }
+
+/* ════════════════════════════════════════════════════════════════════════════
+   PHYSICS & MISSION LAB — /physics-lab
+   Design language: dark space, neon cyan/blue, glassmorphism panels
+   ════════════════════════════════════════════════════════════════════════════ */
+
+/* ── Shell ───────────────────────────────────────────────────────────────── */
+.pl-shell {
+  position: relative;
+  min-height: 100dvh;
+  background: #00020a url('/images/milkyway-bg.jpg') center top / cover no-repeat fixed;
+  overflow-x: hidden;
+  padding-top: 5rem;
+}
+
+/* ── Stars ───────────────────────────────────────────────────────────────── */
+.pl-stars {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.pl-star {
+  position: absolute;
+  border-radius: 50%;
+  background: #e0f2fe;
+  animation: pl-twinkle ease-in-out infinite;
+}
+@keyframes pl-twinkle {
+  0%, 100% { opacity: 0.08; transform: scale(0.7); }
+  50%       { opacity: 1;    transform: scale(1.3); }
+}
+
+/* ── Nebula glows ────────────────────────────────────────────────────────── */
+.pl-nebula {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(90px);
+  z-index: 0;
+}
+.pl-nebula-1 {
+  width: 600px; height: 600px;
+  top: -120px; right: -80px;
+  background: radial-gradient(circle, rgba(139,92,246,0.12) 0%, transparent 70%);
+}
+.pl-nebula-2 {
+  width: 500px; height: 500px;
+  bottom: 100px; left: -100px;
+  background: radial-gradient(circle, rgba(6,182,212,0.10) 0%, transparent 70%);
+}
+.pl-nebula-3 {
+  width: 400px; height: 400px;
+  top: 40%; left: 45%;
+  background: radial-gradient(circle, rgba(99,102,241,0.08) 0%, transparent 70%);
+}
+
+/* ── Navigation ──────────────────────────────────────────────────────────── */
+.pl-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(147,197,253,0.75);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+  transition: color 0.2s, text-shadow 0.2s;
+  text-shadow: 0 0 10px rgba(147,197,253,0.35);
+}
+.pl-back-link:hover { color: #bfdbfe; text-shadow: 0 0 16px rgba(147,197,253,0.7); }
+
+/* ── Eyebrow ─────────────────────────────────────────────────────────────── */
+.pl-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: rgba(103,232,249,0.85);
+  font-size: 0.68rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-weight: 650;
+  margin-bottom: 0.75rem;
+  text-shadow: 0 0 12px rgba(103,232,249,0.5);
+}
+.pl-eyebrow-dot {
+  width: 0.42rem; height: 0.42rem;
+  border-radius: 50%;
+  background: #22d3ee;
+  box-shadow: 0 0 8px #22d3ee, 0 0 18px rgba(34,211,238,0.6);
+  animation: pulse 2s infinite;
+  flex-shrink: 0;
+}
+
+/* ── Title ───────────────────────────────────────────────────────────────── */
+.pl-title {
+  font-size: clamp(2.4rem, 5vw, 4.2rem);
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  color: #f0f8ff;
+  line-height: 1;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 45px rgba(34,211,238,0.2), 0 2px 8px rgba(0,0,0,0.8);
+}
+.pl-title-accent {
+  background: linear-gradient(100deg, #22d3ee 0%, #818cf8 55%, #a78bfa 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 14px rgba(34,211,238,0.5));
+}
+.pl-subtitle {
+  max-width: 42rem;
+  color: rgba(186,230,253,0.82);
+  font-size: 0.95rem;
+  line-height: 1.75;
+}
+
+/* ── Module card grid ────────────────────────────────────────────────────── */
+.pl-module-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.45rem;
+  padding: 1.4rem 1.25rem 1.25rem;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(34,211,238,0.12);
+  background: linear-gradient(145deg, rgba(5,14,36,0.85), rgba(1,5,16,0.75));
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 4px 28px rgba(0,0,0,0.5), inset 0 1px 0 rgba(34,211,238,0.06);
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.25s, box-shadow 0.25s;
+  overflow: hidden;
+}
+.pl-module-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at 30% 0%, var(--glow, rgba(34,211,238,0.12)) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.pl-module-card:hover { border-color: rgba(34,211,238,0.28); box-shadow: 0 8px 40px rgba(0,0,0,0.6), 0 0 24px var(--glow, rgba(34,211,238,0.15)), inset 0 1px 0 rgba(34,211,238,0.10); }
+.pl-module-card:hover::before { opacity: 1; }
+.pl-module-icon { font-size: 1.85rem; line-height: 1; }
+.pl-module-label {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #e0f2fe;
+  text-shadow: 0 0 10px rgba(34,211,238,0.3);
+  letter-spacing: -0.01em;
+}
+.pl-module-sub {
+  font-size: 0.68rem;
+  color: rgba(147,197,253,0.55);
+  letter-spacing: 0.04em;
+}
+.pl-module-arrow {
+  position: absolute;
+  bottom: 1rem;
+  right: 1.1rem;
+  font-size: 0.85rem;
+  color: var(--color, #22d3ee);
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity 0.2s, transform 0.2s;
+}
+.pl-module-card:hover .pl-module-arrow { opacity: 1; transform: translateX(0); }
+
+/* ── Simulator panel (glassmorphism container) ───────────────────────────── */
+.pl-sim-panel {
+  background: linear-gradient(145deg, rgba(4,12,32,0.92), rgba(1,5,14,0.88));
+  border: 1px solid rgba(34,211,238,0.14);
+  border-radius: 1.5rem;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 0 60px var(--glow, rgba(34,211,238,0.1)), 0 24px 80px rgba(0,0,0,0.6), inset 0 1px 0 rgba(34,211,238,0.07);
+  overflow: hidden;
+}
+
+/* ── Back button (inside simulator) ─────────────────────────────────────── */
+.pl-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(34,211,238,0.2);
+  background: rgba(34,211,238,0.06);
+  color: rgba(34,211,238,0.8);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.pl-back-btn:hover { background: rgba(34,211,238,0.12); color: #67e8f9; border-color: rgba(34,211,238,0.4); }
+
+/* ── Physics Lab canvas shared rules ─────────────────────────────────────── */
+.pl-canvas {
+  display: block;
+  width: 100%;
+  border-radius: 0.75rem;
+  background: #00020a;
+}
+
+/* ── Stat grid shared ────────────────────────────────────────────────────── */
+.pl-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 0.65rem;
+}
+.pl-stat-cell {
+  padding: 0.75rem 0.9rem;
+  border-radius: 0.85rem;
+  border: 1px solid rgba(34,211,238,0.1);
+  background: rgba(34,211,238,0.04);
+}
+.pl-stat-label {
+  display: block;
+  font-size: 0.58rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(147,197,253,0.5);
+  margin-bottom: 0.3rem;
+}
+.pl-stat-value {
+  display: block;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 0 8px rgba(34,211,238,0.3);
+  letter-spacing: -0.02em;
+}
+
+/* ── Pill buttons (planet selectors etc.) ────────────────────────────────── */
+.pl-pill {
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid rgba(34,211,238,0.18);
+  background: rgba(34,211,238,0.05);
+  color: rgba(147,197,253,0.65);
+  transition: all 0.18s;
+  white-space: nowrap;
+}
+.pl-pill:hover { background: rgba(34,211,238,0.12); color: #a5f3fc; }
+.pl-pill.active {
+  background: rgba(34,211,238,0.16);
+  border-color: rgba(34,211,238,0.45);
+  color: #22d3ee;
+  box-shadow: 0 0 12px rgba(34,211,238,0.25);
+  text-shadow: 0 0 8px rgba(34,211,238,0.5);
+}
+
+/* ── Slider ──────────────────────────────────────────────────────────────── */
+.pl-range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(34,211,238,0.15);
+  outline: none;
+  cursor: pointer;
+}
+.pl-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  background: #22d3ee;
+  box-shadow: 0 0 8px rgba(34,211,238,0.7);
+  cursor: pointer;
+  border: 2px solid rgba(255,255,255,0.8);
+  transition: transform 0.15s;
+}
+.pl-range::-webkit-slider-thumb:hover { transform: scale(1.25); }
+.pl-range::-moz-range-thumb {
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  background: #22d3ee;
+  box-shadow: 0 0 8px rgba(34,211,238,0.7);
+  cursor: pointer;
+  border: 2px solid rgba(255,255,255,0.8);
+}
+
+/* ── Equation chip (floating formula display) ────────────────────────────── */
+.pl-equation {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 0.65rem;
+  border: 1px solid rgba(99,102,241,0.25);
+  background: rgba(99,102,241,0.08);
+  font-family: "Courier New", monospace;
+  font-size: 0.78rem;
+  color: rgba(165,180,252,0.9);
+  text-shadow: 0 0 8px rgba(99,102,241,0.5);
+}
+
+/* ── Badge / status chip ─────────────────────────────────────────────────── */
+.pl-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.pl-badge-success  { background: rgba(52,211,153,0.12);  border: 1px solid rgba(52,211,153,0.3);  color: #34d399; }
+.pl-badge-warning  { background: rgba(251,191,36,0.12);  border: 1px solid rgba(251,191,36,0.3);  color: #fbbf24; }
+.pl-badge-danger   { background: rgba(248,113,113,0.12); border: 1px solid rgba(248,113,113,0.3); color: #f87171; }
+.pl-badge-info     { background: rgba(34,211,238,0.10);  border: 1px solid rgba(34,211,238,0.25); color: #22d3ee; }
+.pl-badge-purple   { background: rgba(167,139,250,0.12); border: 1px solid rgba(167,139,250,0.3); color: #a78bfa; }
+
+/* ── Responsive canvas wrapper ───────────────────────────────────────────── */
+.pl-canvas-wrap {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 0.75rem;
+}
+.pl-canvas-wrap canvas { display: block; width: 100%; height: auto; }
+
+/* ── Simulator layout: controls | canvas | stats ─────────────────────────── */
+.pl-sim-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 1.5rem;
+}
+@media (min-width: 900px) {
+  .pl-sim-layout-h {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 1.5rem;
+  }
+}
+
+/* ── Control panel ───────────────────────────────────────────────────────── */
+.pl-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.25rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(34,211,238,0.12);
+  background: rgba(5,14,36,0.7);
+  backdrop-filter: blur(12px);
+}
+.pl-ctrl-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #22d3ee;
+  text-shadow: 0 0 8px rgba(34,211,238,0.4);
+  margin-bottom: 0.2rem;
+  display: flex;
+  justify-content: space-between;
+}
+.pl-ctrl-value { color: #fff; font-weight: 800; }
+.pl-ctrl-group { display: flex; flex-direction: column; gap: 0.35rem; }
+
+/* ── Action buttons ──────────────────────────────────────────────────────── */
+.pl-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.25rem;
+  border-radius: 0.75rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0.04em;
+}
+.pl-btn-primary {
+  background: linear-gradient(120deg, rgba(34,211,238,0.3), rgba(99,102,241,0.25));
+  border: 1px solid rgba(34,211,238,0.4);
+  color: #a5f3fc;
+  box-shadow: 0 0 18px rgba(34,211,238,0.15);
+}
+.pl-btn-primary:hover { box-shadow: 0 0 26px rgba(34,211,238,0.3); border-color: rgba(34,211,238,0.6); }
+.pl-btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
+.pl-btn-secondary {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: rgba(186,230,253,0.65);
+}
+.pl-btn-secondary:hover { background: rgba(255,255,255,0.08); color: #bfdbfe; }
+.pl-btn-danger {
+  background: rgba(249,115,22,0.15);
+  border: 1px solid rgba(249,115,22,0.3);
+  color: #fb923c;
+}
+.pl-btn-danger:hover { background: rgba(249,115,22,0.22); box-shadow: 0 0 16px rgba(249,115,22,0.2); }
+
+/* ── Physics reference box (formulas) ───────────────────────────────────── */
+.pl-formula-box {
+  padding: 0.9rem 1rem;
+  border-radius: 0.85rem;
+  border: 1px solid rgba(99,102,241,0.2);
+  background: rgba(30,15,60,0.5);
+  font-family: "Courier New", monospace;
+  font-size: 0.75rem;
+  color: rgba(196,181,253,0.85);
+  line-height: 1.8;
+}
+.pl-formula-hl { color: #22d3ee; font-weight: 700; }
+
+/* ── Table ───────────────────────────────────────────────────────────────── */
+.pl-table { width: 100%; border-collapse: collapse; font-size: 0.78rem; }
+.pl-table th { padding: 0.5rem 0.75rem; text-align: left; color: rgba(34,211,238,0.7); font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.12em; border-bottom: 1px solid rgba(34,211,238,0.12); }
+.pl-table td { padding: 0.55rem 0.75rem; color: rgba(224,242,254,0.85); border-bottom: 1px solid rgba(255,255,255,0.04); }
+.pl-table tr:hover td { background: rgba(34,211,238,0.03); }
