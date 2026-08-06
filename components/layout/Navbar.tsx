@@ -308,20 +308,8 @@ export default function Navbar({ isMuted, onToggleMute, onNavClick }: NavbarProp
             </Link>
           </div>
 
-          {/* Right side: AI status + music + hamburger */}
+          {/* Right side: music + hamburger */}
           <div className="flex items-center gap-3">
-            <span
-              className="hidden md:flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full"
-              style={{
-                background: "rgba(0,200,100,0.08)",
-                border: "1px solid rgba(0,200,100,0.25)",
-                color: "#34d399",
-              }}
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              IBM Granite Offline
-            </span>
-
             {/* Music mute / unmute */}
             <button
               onClick={onToggleMute}
@@ -444,17 +432,6 @@ export default function Navbar({ isMuted, onToggleMute, onNavClick }: NavbarProp
                 >
                   📡 Morse Code
                 </Link>
-                <div
-                  className="flex items-center gap-1.5 text-xs px-4 py-2 rounded-xl mt-1"
-                  style={{
-                    background: "rgba(0,200,100,0.08)",
-                    border: "1px solid rgba(0,200,100,0.2)",
-                    color: "#34d399",
-                  }}
-                >
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                  IBM Granite Offline
-                </div>
               </div>
             </motion.div>
           )}
