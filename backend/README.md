@@ -1,32 +1,39 @@
-# Space Explorer — IBM Granite AI Backend
+# COSMOS-5H1 — Python Backend
 
-Python FastAPI backend with LangChain, ChromaDB, and IBM Granite.
+Two services live in this directory:
 
-## Requirements
+| File | Purpose |
+|---|---|
+| `main.py` | FastAPI + IBM Granite RAG (offline, Ollama) |
+| `agent.py` | LiveKit real-time voice agent (Deepgram → Gemini → Murf Abhinav) |
 
+---
+
+## 1 · IBM Granite AI Backend (`main.py`)
+
+### Requirements
 - Python 3.11+
 - [Ollama](https://ollama.ai) installed and running
 
-## Setup
+### Setup
 
 ```bash
-# 1. Pull IBM Granite model via Ollama
+# Pull IBM Granite model
 ollama pull granite3.3:2b
 
-# 2. Install Python dependencies
+# Install dependencies
 pip install -r requirements.txt
 
-# 3. (Optional) Add PDF documents to the knowledge base
+# (Optional) add PDFs/TXTs to knowledge/
 mkdir knowledge
-# Copy your NASA PDFs, astronomy books etc. into the knowledge/ folder
 
-# 4. Start the server
+# Start
 python main.py
 ```
 
-The API will be available at `http://localhost:8000`
+API available at `http://localhost:8000`
 
-## API Endpoints
+### Endpoints
 
 | Endpoint | Method | Description |
 |---|---|---|
@@ -35,32 +42,69 @@ The API will be available at `http://localhost:8000`
 | `/api/planets/{id}` | GET | AI summary for a planet |
 | `/health` | GET | Health check |
 
-## Chat Request
-
-```json
-{
-  "message": "What makes Mars unique?",
-  "history": [],
-  "planet": "mars"
-}
-```
-
-## Environment Variables
+### Environment Variables
 
 | Variable | Default | Description |
 |---|---|---|
 | `GRANITE_MODEL` | `granite3.3:2b` | Ollama model name |
 
-## Knowledge Base
+---
 
-Place PDF documents in the `knowledge/` directory. Supported formats:
-- `.pdf` — NASA articles, astronomy books, research papers
-- `.txt` — Plain text documents
+## 2 · LiveKit Voice Agent (`agent.py`)
 
-Documents are automatically chunked and indexed into ChromaDB on startup.
+Real-time voice pipeline:
 
-## Models Tested
+```
+Microphone → Deepgram Nova-3 (STT) → Gemini 2.0 Flash (LLM) → Murf Abhinav/Conversational (TTS) → Speaker
+```
 
-- `granite3.3:2b` — IBM Granite 3.3 2B (recommended, lightweight)
-- `granite3.3:8b` — IBM Granite 3.3 8B (higher quality, needs more RAM)
-- `llama3.2:3b` — Meta Llama 3.2 3B (fallback alternative)
+### Requirements
+- Python 3.11+
+- A LiveKit Cloud project (free at [livekit.io](https://livekit.io))
+- API keys for Deepgram, Google Gemini, and Murf
+
+### Credentials
+
+The agent reads from `../.env.local` (the project root `.env.local`).
+Make sure these are set:
+
+```
+LIVEKIT_URL=wss://your-project.livekit.cloud
+LIVEKIT_API_KEY=APIxxxxxxxxxxxxxxx
+LIVEKIT_API_SECRET=your-secret
+DEEPGRAM_API_KEY=your-deepgram-key
+GOOGLE_API_KEY=your-gemini-key
+MURF_API_KEY=your-murf-key
+```
+
+### Setup
+
+```bash
+# Install dependencies (from backend/)
+pip install -r requirements.txt
+
+# Download the Silero VAD model (one-time)
+python -c "from livekit.plugins import silero; silero.VAD.load()"
+```
+
+### Run
+
+```bash
+# Development mode (auto-reconnects, verbose logs)
+python agent.py dev
+
+# Production mode
+python agent.py start
+```
+
+### Voice configuration
+
+| Setting | Value |
+|---|---|
+| Voice | Abhinav (en-IN) |
+| Style | Conversational |
+| Model | Murf Falcon (GEN2) |
+| STT | Deepgram Nova-3 (multilingual) |
+| LLM | Gemini 2.0 Flash Lite |
+
+To change the voice, edit `agent.py` and update the `murf.TTS(voice=..., style=...)` call.
