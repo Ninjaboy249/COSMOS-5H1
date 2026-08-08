@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import SpaceCard from "@/features/space-explorer/SpaceCard";
 import SpaceSearch from "@/features/space-explorer/SpaceSearch";
+import VoiceCommander from "@/features/voice/VoiceCommander";
 import { SPACE_CATEGORIES } from "@/lib/space-explorer-data";
 
 const FILTER_TAGS = ["All", "Planets", "Stars", "Missions", "NEO", "Live", "NASA", "3D"];
@@ -133,6 +134,9 @@ export default function SpaceExplorerPage() {
           COSMOS-5H1 Space Explorer · NASA APIs · IBM Granite AI · Open Source
         </p>
       </footer>
+
+      {/* ── COSMOS Voice Commander ── */}
+      <VoiceCommander />
     </div>
   );
 }

@@ -8,6 +8,7 @@ import HeroContent from "@/features/hero/HeroContent";
 import SolarSystemCSS from "@/features/hero/SolarSystemCSS";
 import PlanetList from "@/features/solar-system/PlanetList";
 import AIAssistant from "@/features/ai-assistant/AIAssistant";
+import VoiceCommander from "@/features/voice/VoiceCommander";
 import Navbar from "@/components/layout/Navbar";
 import { AgentBentoGrid } from "@/components/ui/agent-bento-grid";
 import CelestialDetails from "@/features/solar-system/CelestialDetails";
@@ -293,6 +294,12 @@ export default function Home() {
 
           {/* ── AI Assistant ─────────────────────────────────────── */}
           <AIAssistant isOpen={aiOpen} onOpenChange={setAiOpen} />
+
+          {/* ── COSMOS Voice Commander ───────────────────────── */}
+          <VoiceCommander
+            onOpenAI={() => setAiOpen(true)}
+            onScrollToSolar={() => scrollTo(solarRef)}
+          />
         </motion.main>
       )}
     </>

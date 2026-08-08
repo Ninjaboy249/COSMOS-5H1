@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import VoiceCommander from "@/features/voice/VoiceCommander";
 import { getDetailBySlug, getCategoryBySlug, SPACE_CATEGORIES } from "@/lib/space-explorer-data";
 import SpaceHeroBanner from "@/features/space-explorer/SpaceHeroBanner";
 import StatGrid from "@/features/space-explorer/StatGrid";
@@ -208,6 +209,8 @@ export default function SpaceDetailClient({ slug }: { slug: string }) {
           </div>
         </div>
       )}
+      {/* ── COSMOS Voice Commander ── */}
+      <VoiceCommander />
     </div>
   );
 }

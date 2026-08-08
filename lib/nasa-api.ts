@@ -3,7 +3,10 @@
  * Every function returns data — never throws to the UI.
  */
 
-const NASA_KEY = process.env.NASA_API_KEY ?? "fGfARkmXW6nfC04VTbUGudqRIzVKNqjhWhgjG5cx";
+import { env } from "@/lib/env";
+
+/** NASA API key — falls back to DEMO_KEY (rate-limited but functional) */
+const NASA_KEY = env.NASA_API_KEY;
 
 // ── Types ──────────────────────────────────────────────────────────────────
 

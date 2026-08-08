@@ -9,6 +9,7 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import VoiceCommander from "@/features/voice/VoiceCommander";
 import ObjectSelector from "@/features/cosmic-compare/ObjectSelector";
 import CompareCard from "@/features/cosmic-compare/CompareCard";
 import VisualCharts from "@/features/cosmic-compare/VisualCharts";
@@ -459,6 +460,9 @@ export default function CosmicComparePage() {
           })}
         </motion.div>
       </div>
+
+      {/* ── COSMOS Voice Commander ── */}
+      <VoiceCommander />
     </div>
   );
 }

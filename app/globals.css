@@ -2892,3 +2892,409 @@ canvas {
   background: rgba(147,197,253,0.14);
   color: #93c5fd;
 }
+
+/* ════════════════════════════════════════════════════════════════════════════
+   COSMOS VOICE COMMANDER — Voice Pipeline UI
+   Design language: same dark space glassmorphism as the rest of COSMOS-5H1
+   ════════════════════════════════════════════════════════════════════════════ */
+
+/* ── Mic button wrap (bottom-left, above COSMOS AI button at bottom-right) ── */
+.vc-mic-wrap {
+  position: fixed;
+  bottom: 8rem;
+  left: 1.75rem;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .5rem;
+}
+
+/* ── Settings button (small gear above mic) ─────────────────────────────── */
+.vc-settings-btn {
+  width: 2rem;
+  height: 2rem;
+  border-radius: .65rem;
+  display: grid;
+  place-items: center;
+  font-size: .82rem;
+  background: rgba(4,10,32,0.85);
+  border: 1px solid rgba(103,232,249,0.2);
+  color: rgba(103,232,249,0.45);
+  backdrop-filter: blur(12px);
+  transition: all .2s;
+}
+.vc-settings-btn:hover,
+.vc-settings-btn.active {
+  color: #67e8f9;
+  border-color: rgba(103,232,249,0.5);
+  box-shadow: 0 0 12px rgba(103,232,249,0.2);
+}
+
+/* ── Main mic button ─────────────────────────────────────────────────────── */
+.vc-mic-btn {
+  position: relative;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .12rem;
+  background: rgba(4,10,32,0.92);
+  border: 1px solid rgba(103,232,249,0.3);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 24px rgba(103,232,249,0.12), inset 0 1px rgba(255,255,255,0.06);
+  cursor: pointer;
+  transition: border-color .2s, box-shadow .2s, background .2s;
+  overflow: visible;
+}
+.vc-mic-btn:hover {
+  box-shadow: 0 0 36px rgba(103,232,249,0.28);
+  border-color: rgba(103,232,249,0.55);
+}
+
+/* State-specific colours */
+.vc-mic-btn.listening {
+  background: rgba(30,4,4,0.92);
+  border-color: rgba(248,113,113,0.7);
+  box-shadow: 0 0 28px rgba(248,113,113,0.35), inset 0 1px rgba(255,255,255,0.06);
+}
+.vc-mic-btn.processing,
+.vc-mic-btn.executing {
+  background: rgba(6,18,42,0.95);
+  border-color: rgba(167,139,250,0.7);
+  box-shadow: 0 0 28px rgba(167,139,250,0.3), inset 0 1px rgba(255,255,255,0.06);
+}
+.vc-mic-btn.speaking {
+  background: rgba(4,20,12,0.95);
+  border-color: rgba(52,211,153,0.7);
+  box-shadow: 0 0 28px rgba(52,211,153,0.3), inset 0 1px rgba(255,255,255,0.06);
+}
+.vc-mic-btn.error {
+  border-color: rgba(248,113,113,0.55);
+  box-shadow: 0 0 18px rgba(248,113,113,0.2);
+}
+
+/* Pulse ring (listening state) */
+.vc-pulse-ring {
+  position: absolute;
+  inset: -4px;
+  border-radius: 1.4rem;
+  border: 2px solid rgba(248,113,113,0.6);
+  pointer-events: none;
+}
+
+.vc-mic-icon {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.vc-mic-label {
+  font-size: .46rem;
+  font-weight: 650;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: rgba(103,232,249,0.45);
+  white-space: nowrap;
+}
+.vc-mic-btn.listening  .vc-mic-label { color: rgba(248,113,113,0.65); }
+.vc-mic-btn.processing .vc-mic-label,
+.vc-mic-btn.executing  .vc-mic-label { color: rgba(167,139,250,0.65); }
+.vc-mic-btn.speaking   .vc-mic-label { color: rgba(52,211,153,0.65); }
+
+/* ── Response banner (appears above transcript) ──────────────────────────── */
+.vc-banner {
+  position: fixed;
+  bottom: 7rem;
+  left: 50%;
+  /* transform: translateX(-50%) applied inline via framer */
+  z-index: 201;
+  max-width: min(38rem, calc(100vw - 3rem));
+  display: flex;
+  align-items: flex-start;
+  gap: .65rem;
+  padding: .75rem 1rem .75rem .9rem;
+  border-radius: 1.1rem;
+  background: rgba(2,8,24,0.96);
+  border: 1px solid rgba(103,232,249,0.25);
+  backdrop-filter: blur(24px);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.6), 0 0 24px rgba(103,232,249,0.1);
+}
+
+.vc-banner-icon {
+  font-size: 1rem;
+  flex-shrink: 0;
+  margin-top: .05rem;
+}
+
+.vc-banner-text {
+  flex: 1;
+  color: rgba(191,219,254,0.92);
+  font-size: .8rem;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+
+.vc-banner-close {
+  flex-shrink: 0;
+  width: 1.4rem;
+  height: 1.4rem;
+  display: grid;
+  place-items: center;
+  border-radius: .4rem;
+  color: rgba(147,197,253,0.4);
+  font-size: .75rem;
+  transition: color .18s;
+}
+.vc-banner-close:hover { color: rgba(147,197,253,0.85); }
+
+/* ── Transcript pill ─────────────────────────────────────────────────────── */
+.vc-transcript {
+  position: fixed;
+  bottom: 5rem;
+  left: 50%;
+  z-index: 201;
+  padding: .45rem 1rem;
+  border-radius: 999px;
+  background: rgba(4,10,32,0.92);
+  border: 1px solid rgba(167,139,250,0.35);
+  color: rgba(196,181,253,0.9);
+  font-size: .78rem;
+  font-style: italic;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  white-space: nowrap;
+  max-width: min(32rem, calc(100vw - 2rem));
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.vc-transcript-quote {
+  color: rgba(167,139,250,0.5);
+  font-style: normal;
+}
+
+/* ── Settings panel ──────────────────────────────────────────────────────── */
+.vc-settings-panel {
+  position: fixed;
+  bottom: 12rem;
+  left: 1.75rem;
+  z-index: 202;
+  width: min(300px, calc(100vw - 3.5rem));
+  border-radius: 1.5rem;
+  background: rgba(2,7,22,0.97);
+  border: 1px solid rgba(103,232,249,0.2);
+  backdrop-filter: blur(28px);
+  box-shadow: 0 24px 70px rgba(0,0,0,0.65), 0 0 30px rgba(103,232,249,0.07), inset 0 1px rgba(255,255,255,0.06);
+  overflow: hidden;
+}
+
+.vc-settings-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: .8rem 1rem .7rem;
+  border-bottom: 1px solid rgba(103,232,249,0.1);
+  background: rgba(3,10,30,0.7);
+}
+
+.vc-settings-title {
+  color: #f0f9ff;
+  font-size: .82rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+}
+
+.vc-settings-close {
+  width: 1.6rem;
+  height: 1.6rem;
+  display: grid;
+  place-items: center;
+  border-radius: .45rem;
+  color: rgba(147,197,253,0.45);
+  font-size: .75rem;
+  transition: all .18s;
+}
+.vc-settings-close:hover { color: #fff; background: rgba(255,255,255,0.06); }
+
+.vc-settings-body {
+  padding: .75rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+}
+
+/* Toggle switch */
+.vc-setting-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .5rem;
+}
+
+.vc-setting-col {
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+}
+
+.vc-setting-label {
+  color: rgba(147,197,253,0.7);
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .05em;
+}
+
+.vc-setting-value {
+  color: #67e8f9;
+  font-size: .72rem;
+  font-weight: 650;
+}
+
+.vc-toggle {
+  position: relative;
+  width: 2.5rem;
+  height: 1.35rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.12);
+  transition: background .2s;
+  flex-shrink: 0;
+}
+.vc-toggle.on {
+  background: linear-gradient(135deg, #0e7490, #1e3a8a);
+  border-color: rgba(103,232,249,0.4);
+  box-shadow: 0 0 10px rgba(103,232,249,0.2);
+}
+.vc-toggle.off {
+  background: rgba(255,255,255,0.06);
+}
+
+.vc-toggle-thumb {
+  display: block;
+  width: .9rem;
+  height: .9rem;
+  border-radius: 50%;
+  background: #fff;
+  position: absolute;
+  top: 50%;
+  left: .2rem;
+  transform: translateY(-50%);
+}
+
+/* Select dropdown */
+.vc-select {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: .65rem;
+  padding: .4rem .65rem;
+  color: rgba(191,219,254,0.85);
+  font-size: .75rem;
+  outline: none;
+  transition: border-color .2s;
+}
+.vc-select:focus { border-color: rgba(103,232,249,0.4); }
+.vc-select option { background: #02040e; }
+
+/* Range slider */
+.vc-range {
+  -webkit-appearance: none;
+  appearance: none;
+  height: .28rem;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.1);
+  outline: none;
+  width: 100%;
+}
+.vc-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background: #67e8f9;
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(103,232,249,0.5);
+}
+
+/* Quick hints */
+.vc-settings-hints {
+  padding: .65rem 1rem .75rem;
+  border-top: 1px solid rgba(103,232,249,0.08);
+}
+
+.vc-hints-label {
+  color: rgba(103,232,249,0.4);
+  font-size: .6rem;
+  font-weight: 650;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  margin-bottom: .5rem;
+}
+
+.vc-hints-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .3rem;
+}
+
+.vc-hint-chip {
+  padding: .22rem .6rem;
+  border-radius: 999px;
+  border: 1px solid rgba(103,232,249,0.15);
+  background: rgba(103,232,249,0.04);
+  color: rgba(147,197,253,0.6);
+  font-size: .62rem;
+}
+
+/* Settings footer */
+.vc-settings-footer {
+  padding: .4rem 1rem .65rem;
+  color: rgba(103,232,249,0.2);
+  font-size: .58rem;
+  letter-spacing: .06em;
+  text-align: center;
+}
+
+/* ── Unsupported pill ─────────────────────────────────────────────────────── */
+.vc-unsupported-pill {
+  position: fixed;
+  bottom: 8rem;
+  left: 1.75rem;
+  z-index: 200;
+  padding: .45rem .9rem;
+  border-radius: 999px;
+  background: rgba(30,4,4,0.9);
+  border: 1px solid rgba(248,113,113,0.35);
+  color: rgba(248,113,113,0.75);
+  font-size: .65rem;
+  font-weight: 600;
+  max-width: min(22rem, calc(100vw - 3.5rem));
+  backdrop-filter: blur(12px);
+}
+
+/* ── Mobile adjustments ──────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .vc-mic-wrap {
+    bottom: 7.5rem;
+    left: 1rem;
+  }
+  .vc-settings-panel {
+    left: 1rem;
+    bottom: 11.5rem;
+    width: calc(100vw - 2rem);
+  }
+  .vc-banner {
+    bottom: 6.5rem;
+    max-width: calc(100vw - 2rem);
+  }
+  .vc-transcript {
+    bottom: 4.5rem;
+    max-width: calc(100vw - 2rem);
+  }
+}

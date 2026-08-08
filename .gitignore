@@ -45,3 +45,6 @@ public/GLBs/saturn.glb
 public/GLBs/jupiter.glb
 public/GLBs/uranus.glb
 
+
+# Allow example env file to be committed
+!.env.example
