@@ -30,8 +30,8 @@ export async function GET() {
   if (env.hasMurf) {
     try {
       const payload = {
-        voiceId:      "en-IN-abhinav",
-        style:        "Conversation",
+        voiceId:      "en-IN-rohan",
+        style:        "Conversational",
         modelVersion: "GEN2",
         text:         "Test.",
         rate:         0,

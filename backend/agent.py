@@ -93,11 +93,11 @@ async def cosmos_agent(ctx: JobContext):
 
         # ── TTS — Murf Falcon 2 · Abhinav ────────────────────────────────────
         # Requires MURF_API_KEY in .env.local.
-        # model: falcon-2, voice: Abhinav (en-IN), style: Conversation
+        # model: falcon-2, voice: Rohan (en-IN), style: Conversational
         tts=murf.TTS(
             model="falcon-2",
-            voice="Abhinav",
-            style="Conversation",
+            voice="Rohan",
+            style="Conversational",
             tokenizer=tokenize.basic.SentenceTokenizer(min_sentence_len=2),
             text_pacing=True,
         ),

@@ -17,7 +17,7 @@ import { env } from "@/lib/env";
 const MURF_API_URL = "https://api.murf.ai/v1/speech/generate";
 
 // Default voice used when caller doesn't specify one
-const DEFAULT_VOICE_ID = "en-IN-abhinav"; // Murf Falcon (GEN2) voice
+const DEFAULT_VOICE_ID = "en-IN-rohan"; // Murf confirmed Indian English male voice
 
 interface SpeakRequest {
   text: string;
@@ -55,7 +55,7 @@ export async function POST(req: NextRequest) {
   }
 
   const voiceId = body.voiceId ?? DEFAULT_VOICE_ID;
-  const style = body.style ?? "Conversation";
+  const style = body.style ?? "Conversational";
   const modelVersion = body.modelVersion ?? "GEN2";
   // Murf rate is a signed integer percentage: 0 = normal, -50 = slowest, +50 = fastest.
   // Our UI stores rate as a float multiplier (0.5–2.0), so convert: (uiRate - 1) * 100.
