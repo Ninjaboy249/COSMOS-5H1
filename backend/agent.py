@@ -3,17 +3,23 @@ COSMOS-5H1 — LiveKit Voice Agent
 Real-time voice AI pipeline:
   STT  → Deepgram Nova-3 (multilingual)
   LLM  → Google Gemini (via livekit-agents[google])
-  TTS  → Murf Falcon · voice: Abhinav · style: Conversational
+  TTS  → Murf Falcon 2 · voice: Abhinav · style: Conversation
   VAD  → Silero
   Turn → LiveKit MultilingualModel
   NC   → BVC noise cancellation
 
-Reads credentials from .env.local (same file as the Next.js app).
-Run:  python agent.py dev
+Credential loading (in priority order):
+  1. Environment variables already set (Render / any cloud host)
+  2. ../.env.local  — local development alongside the Next.js app
+  3. .env.local     — local development from inside backend/
+
+Run locally:  python agent.py dev
+Deploy:       set env vars in Render dashboard, start cmd: python agent.py start
 """
 from __future__ import annotations
 
 import logging
+import os
 
 from dotenv import load_dotenv
 from livekit import rtc
@@ -32,9 +38,12 @@ from livekit.plugins.turn_detector.multilingual import MultilingualModel
 
 logger = logging.getLogger("cosmos-agent")
 
-# Load secrets from ../.env.local (project root) so this agent
-# shares the same credential file as the Next.js app.
-load_dotenv("../.env.local")
+# Load credentials — only fills in vars that are NOT already set in the
+# environment (so Render's injected env vars always win over any .env file).
+# Try project root first, then backend-local, then skip silently.
+if not os.environ.get("LIVEKIT_URL"):
+    load_dotenv("../.env.local")   # running from backend/ locally
+    load_dotenv(".env.local")      # fallback: running from project root
 
 # ── System prompt ─────────────────────────────────────────────────────────────
 SYSTEM_PROMPT = """You are COSMOS AI, an expert space science voice assistant for the COSMOS-5H1 platform.

@@ -1,0 +1,44 @@
+## Render Infrastructure — COSMOS-5H1 LiveKit Voice Agent
+## https://render.com/docs/infrastructure-as-code
+##
+## Deploy steps:
+##   1. Push this repo to GitHub
+##   2. Go to https://dashboard.render.com → New → Blueprint
+##   3. Connect your GitHub repo — Render will find this file automatically
+##   4. Add the environment variables listed below in the Render dashboard
+##      (they are marked as sync: false so values are never stored in git)
+
+services:
+  - type: worker                        # background worker — no HTTP port needed
+    name: cosmos-voice-agent
+    runtime: python
+    rootDir: backend                    # Render runs commands from this directory
+    buildCommand: pip install -r requirements-agent.txt
+    startCommand: python agent.py start
+    plan: starter                       # free-tier eligible
+    autoDeploy: true                    # re-deploy on every push to main
+
+    envVars:
+      # ── LiveKit ──────────────────────────────────────────────────────────────
+      - key: LIVEKIT_URL
+        sync: false                     # set in Render dashboard — never committed
+      - key: LIVEKIT_API_KEY
+        sync: false
+      - key: LIVEKIT_API_SECRET
+        sync: false
+
+      # ── Deepgram STT ─────────────────────────────────────────────────────────
+      - key: DEEPGRAM_API_KEY
+        sync: false
+
+      # ── Google Gemini LLM ────────────────────────────────────────────────────
+      - key: GOOGLE_API_KEY
+        sync: false
+
+      # ── Murf TTS ─────────────────────────────────────────────────────────────
+      - key: MURF_API_KEY
+        sync: false
+
+      # ── Python logging ───────────────────────────────────────────────────────
+      - key: PYTHONUNBUFFERED
+        value: "1"

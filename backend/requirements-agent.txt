@@ -1,0 +1,11 @@
+# ── COSMOS-5H1 LiveKit Voice Agent — Render deployment deps ──────────────────
+# Slim subset of requirements.txt — only what agent.py needs.
+# Excludes langchain/chromadb/ollama (not used on Render).
+
+python-dotenv>=1.0.0
+livekit-agents>=0.12.0
+livekit-plugins-murf>=0.1.0
+livekit-plugins-deepgram>=0.8.0
+livekit-plugins-google>=0.6.0
+livekit-plugins-silero>=0.8.0
+livekit-plugins-noise-cancellation>=0.2.0

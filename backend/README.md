@@ -87,24 +87,54 @@ pip install -r requirements.txt
 python -c "from livekit.plugins import silero; silero.VAD.load()"
 ```
 
-### Run
+### Run locally
 
 ```bash
 # Development mode (auto-reconnects, verbose logs)
 python agent.py dev
-
-# Production mode
-python agent.py start
 ```
+
+### Deploy to Render
+
+1. Push this repo to GitHub (already done)
+2. Go to [dashboard.render.com](https://dashboard.render.com) → **New** → **Blueprint**
+3. Connect your GitHub repo — Render finds `render.yaml` automatically
+4. In the Render dashboard for the service, add these **Environment Variables**:
+
+| Variable | Where to get it |
+|---|---|
+| `LIVEKIT_URL` | LiveKit Cloud project → Settings |
+| `LIVEKIT_API_KEY` | LiveKit Cloud project → Keys |
+| `LIVEKIT_API_SECRET` | LiveKit Cloud project → Keys |
+| `DEEPGRAM_API_KEY` | console.deepgram.com |
+| `GOOGLE_API_KEY` | aistudio.google.com |
+| `MURF_API_KEY` | murf.ai → API |
+
+5. Click **Deploy** — Render installs `requirements-agent.txt` and runs `python agent.py start`
+
+> **Note:** Render's free **Starter** worker plan works. The agent connects outbound to LiveKit Cloud — no inbound HTTP port is needed.
 
 ### Voice configuration
 
 | Setting | Value |
 |---|---|
 | Voice | Abhinav (en-IN) |
-| Style | Conversational |
-| Model | Murf Falcon (GEN2) |
+| Style | Conversation |
+| Model | Murf Falcon 2 |
 | STT | Deepgram Nova-3 (multilingual) |
 | LLM | Gemini 2.0 Flash Lite |
 
-To change the voice, edit `agent.py` and update the `murf.TTS(voice=..., style=...)` call.
+---
+
+## ⚡ Already working on Vercel — no backend needed
+
+All voice features run entirely through **Next.js serverless routes on Vercel**:
+
+| Feature | Route | Key used |
+|---|---|---|
+| Text-to-speech (Abhinav) | `/api/voice/speak` | `MURF_API_KEY` |
+| Speech-to-text | `/api/voice/deepgram-stt` | `DEEPGRAM_API_KEY` |
+| LiveKit room token | `/api/voice/livekit-token` | `LIVEKIT_API_KEY` + `LIVEKIT_API_SECRET` |
+| COSMOS AI chat | `/api/cosmos-ai` | `OPENAI_API_KEY` (falls back to offline RAG) |
+
+The Python `agent.py` on Render adds a **server-side LiveKit room agent** on top of this — it is optional and only needed if you want the agent to join LiveKit rooms directly (e.g. for future avatar or phone call features).
