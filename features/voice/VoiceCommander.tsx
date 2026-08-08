@@ -2,14 +2,15 @@
 /**
  * COSMOS Voice Commander — Call-model UI
  *
- * Flow:
- *  1. User presses "Call Abhinav" → Abhinav greets the user
- *  2. Abhinav listens continuously (auto-restarts STT after each response)
- *  3. Abhinav speaks responses, then immediately listens again
- *  4. User presses "End Call" to disconnect
+ * Flow (LiveKit / Render agent available):
+ *  1. "Call COSMOS-5H1" → fetches token from /api/voice/livekit-token
+ *  2. Joins LiveKit room — Render agent handles STT → Gemini → Murf Abhinav
+ *  3. Browser publishes mic audio; plays back agent audio automatically
+ *  4. agentState badge shows: Listening / Thinking / Speaking
+ *  5. "End Call" disconnects from the room
  *
- * Removed: voice / language selector (Abhinav is the only voice).
- * Settings panel: speed + volume + auto-speak toggles only.
+ * Fallback (LiveKit not configured):
+ *  Same as before — browser STT → /api/cosmos-ai → /api/voice/speak (Murf TTS)
  */
 
 import { useState, useCallback, useEffect, useRef } from "react";
@@ -17,6 +18,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { useVoiceRecognition } from "@/hooks/useVoiceRecognition";
 import { useVoiceSpeech } from "@/hooks/useVoiceSpeech";
+import { useLiveKitVoice } from "@/hooks/useLiveKitVoice";
 import { routeVoiceCommand, type VoiceCommand } from "@/lib/voice/command-router";
 import { loadVoiceSettings, saveVoiceSettings, type VoiceSettings } from "@/lib/voice/voice-settings";
 
@@ -24,8 +26,11 @@ import { loadVoiceSettings, saveVoiceSettings, type VoiceSettings } from "@/lib/
 
 type CallState = "disconnected" | "connecting" | "listening" | "processing" | "speaking" | "error";
 
+// ── mode tracks whether we are in LiveKit-room mode or fallback mode ──────────
+type VoiceMode = "livekit" | "fallback";
+
 const CALL_LABELS: Record<CallState, string> = {
-  disconnected: "Call Abhinav",
+  disconnected: "Call COSMOS-5H1",
   connecting:   "Connecting…",
   listening:    "Listening…",
   processing:   "Processing…",
@@ -58,6 +63,10 @@ interface VoiceCommanderProps {
 
 export default function VoiceCommander({ onOpenAI, onScrollToSolar }: VoiceCommanderProps) {
   const router = useRouter();
+
+  // ── LiveKit ────────────────────────────────────────────────────────────────
+  const livekit = useLiveKitVoice();
+  const [voiceMode, setVoiceMode] = useState<VoiceMode>("fallback");
 
   // ── Settings ───────────────────────────────────────────────────────────────
   const [settings, setSettings] = useState<VoiceSettings | null>(
@@ -250,13 +259,33 @@ export default function VoiceCommander({ onOpenAI, onScrollToSolar }: VoiceComma
   // ── Start call ─────────────────────────────────────────────────────────────
   const startCall = useCallback(async () => {
     const s = settingsRef.current;
-    if (!s || !isSupported) return;
+    if (!s) return;
     callActiveRef.current = true;
     setCallState("connecting");
     setTranscript(null);
     setResponse(null);
     setShowBanner(false);
 
+    // ── Try LiveKit (Render agent) first ─────────────────────────────────────
+    const lkResult = await livekit.connect("cosmos-voice");
+
+    if (lkResult.ok) {
+      // LiveKit connected — Render agent handles everything
+      setVoiceMode("livekit");
+      setCallState("listening");
+      showMessage("Connected to COSMOS-5H1 via LiveKit. Start speaking!");
+      return;
+    }
+
+    // ── Fallback: browser STT + Murf TTS ─────────────────────────────────────
+    if (!isSupported) {
+      setCallState("error");
+      showMessage("Microphone not supported in this browser. Use Chrome or Edge.");
+      callActiveRef.current = false;
+      return;
+    }
+
+    setVoiceMode("fallback");
     const greeting = "Hello! I'm COSMOS-5H1, your space assistant. Ask me anything about the universe, or say a planet name to explore it.";
     showMessage(greeting);
     setCallState("speaking");
@@ -264,20 +293,23 @@ export default function VoiceCommander({ onOpenAI, onScrollToSolar }: VoiceComma
     if (!callActiveRef.current) return;
     setCallState("listening");
     startSTT();
-  }, [isSupported, showMessage, speak, startSTT]);
+  }, [isSupported, livekit, showMessage, speak, startSTT]);
 
   // ── End call ───────────────────────────────────────────────────────────────
   const endCall = useCallback(() => {
     callActiveRef.current = false;
+    // Disconnect LiveKit room if we were in LiveKit mode
+    if (voiceMode === "livekit") livekit.disconnect();
     stopSTT();
     stopSpeech();
     setTourActive(false);
     if (tourTimerRef.current) clearTimeout(tourTimerRef.current);
     if (bannerTimerRef.current) clearTimeout(bannerTimerRef.current);
     setCallState("disconnected");
+    setVoiceMode("fallback");
     setTranscript(null);
     setShowBanner(false);
-  }, [stopSpeech, stopSTT]);
+  }, [livekit, stopSpeech, stopSTT, voiceMode]);
 
   // ── Keyboard shortcut: Alt+V ───────────────────────────────────────────────
   useEffect(() => {
@@ -390,24 +422,32 @@ export default function VoiceCommander({ onOpenAI, onScrollToSolar }: VoiceComma
           <motion.button
             className="vc-call-btn"
             onClick={startCall}
-            aria-label="Call Abhinav"
-            title="Call Abhinav (Alt+V)"
+            aria-label="Call COSMOS-5H1"
+            title="Call COSMOS-5H1 (Alt+V)"
             whileHover={{ scale: 1.07 }}
             whileTap={{ scale: 0.93 }}
-            disabled={!isSupported}
           >
             <span className="vc-call-icon">📞</span>
-            <span className="vc-call-label">
-              {isSupported ? "Call COSMOS-5H1" : "Not supported"}
-            </span>
+            <span className="vc-call-label">Call COSMOS-5H1</span>
           </motion.button>
         ) : (
-          /* ── Active call button (shows state + end-call) ── */
+          /* ── Active call (state indicator + end-call) ── */
           <div className="vc-active-call">
-            {/* Status indicator */}
-            <div className={`vc-status-btn ${callState}`}>
+            {/* Mode badge */}
+            {voiceMode === "livekit" && (
+              <span className="vc-livekit-badge">⚡ LiveKit</span>
+            )}
+
+            {/* Status indicator — in LiveKit mode show agent state */}
+            <div className={`vc-status-btn ${
+              voiceMode === "livekit"
+                ? livekit.agentState   // "listening" | "thinking" | "speaking" | "idle"
+                : callState
+            }`}>
               {/* Pulse ring while listening */}
-              {callState === "listening" && (
+              {(voiceMode === "livekit"
+                  ? livekit.agentState === "listening"
+                  : callState === "listening") && (
                 <motion.span
                   className="vc-pulse-ring"
                   animate={{ scale: [1, 1.6, 1], opacity: [0.6, 0, 0.6] }}
@@ -416,17 +456,22 @@ export default function VoiceCommander({ onOpenAI, onScrollToSolar }: VoiceComma
               )}
               <motion.span
                 className="vc-mic-icon"
-                key={callState}
+                key={voiceMode === "livekit" ? livekit.agentState : callState}
                 initial={{ scale: 0.7, opacity: 0 }}
                 animate={{ scale: 1,   opacity: 1 }}
                 transition={{ duration: 0.15 }}
               >
-                {callState === "listening"  ? "👂" :
-                 callState === "processing" ? "🧠" :
-                 callState === "speaking"   ? "🔊" :
+                {(voiceMode === "livekit" ? livekit.agentState : callState) === "listening"  ? "👂" :
+                 (voiceMode === "livekit" ? livekit.agentState : callState) === "thinking"   ? "🧠" :
+                 (voiceMode === "livekit" ? livekit.agentState : callState) === "processing" ? "🧠" :
+                 (voiceMode === "livekit" ? livekit.agentState : callState) === "speaking"   ? "🔊" :
                  callState === "connecting" ? "⏳" : "⚡"}
               </motion.span>
-              <span className="vc-mic-label">{CALL_LABELS[callState]}</span>
+              <span className="vc-mic-label">
+                {voiceMode === "livekit"
+                  ? livekit.agentState.charAt(0).toUpperCase() + livekit.agentState.slice(1) + "…"
+                  : CALL_LABELS[callState]}
+              </span>
             </div>
 
             {/* End call */}

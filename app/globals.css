@@ -3414,6 +3414,20 @@ canvas {
   letter-spacing: .04em;
 }
 
+/* ── LiveKit active badge (shown above status button during LiveKit call) ── */
+.vc-livekit-badge {
+  font-size: .5rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: rgba(167,139,250,0.85);
+  background: rgba(167,139,250,0.1);
+  border: 1px solid rgba(167,139,250,0.3);
+  border-radius: .4rem;
+  padding: .12rem .5rem;
+  white-space: nowrap;
+}
+
 /* ── Mobile adjustments ──────────────────────────────────────────────────── */
 @media (max-width: 480px) {
   .vc-mic-wrap {
