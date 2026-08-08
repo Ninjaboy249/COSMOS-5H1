@@ -18,7 +18,7 @@ export interface VoiceSettings {
 const DEFAULT_SETTINGS: VoiceSettings = {
   enabled: true,
   voiceId: "en-IN-abhinav",
-  style: "Conversational",
+  style: "Conversation",   // Murf API exact value — NOT "Conversational"
   modelVersion: "GEN2",
   locale: "en-IN",
   rate: 1.0,
@@ -34,9 +34,9 @@ export function loadVoiceSettings(): VoiceSettings {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return { ...DEFAULT_SETTINGS };
     const stored = JSON.parse(raw) as Partial<VoiceSettings>;
-    // Migrate: if the stored value pre-dates style/modelVersion fields,
-    // drop it entirely so the new Abhinav/Falcon defaults take effect.
-    if (!stored.style || !stored.modelVersion) {
+    // Migrate: reset if pre-dates style/modelVersion, or if style is the
+    // old incorrect value "Conversational" (Murf rejects it).
+    if (!stored.style || !stored.modelVersion || stored.style === "Conversational") {
       localStorage.removeItem(STORAGE_KEY);
       return { ...DEFAULT_SETTINGS };
     }

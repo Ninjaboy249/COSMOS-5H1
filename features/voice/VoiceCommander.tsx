@@ -266,18 +266,34 @@ export default function VoiceCommander({ onOpenAI, onScrollToSolar }: VoiceComma
     setResponse(null);
     setShowBanner(false);
 
-    // ── Try LiveKit (Render agent) first ─────────────────────────────────────
-    const lkResult = await livekit.connect("cosmos-voice");
-
-    if (lkResult.ok) {
-      // LiveKit connected — Render agent handles everything
-      setVoiceMode("livekit");
-      setCallState("listening");
-      showMessage("Connected to COSMOS-5H1 via LiveKit. Start speaking!");
-      return;
+    // ── Try LiveKit only if the token endpoint says it's configured ───────────
+    // Do a lightweight probe first so we don't wait 5–10s to fail.
+    let livekitReady = false;
+    try {
+      const probe = await fetch("/api/voice/livekit-token", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ roomName: "cosmos-voice", participantName: `probe-${Date.now()}` }),
+        signal: AbortSignal.timeout(4_000),
+      });
+      const data = await probe.json() as { fallback?: boolean; token?: string };
+      livekitReady = !data.fallback && !!data.token;
+    } catch {
+      livekitReady = false;
     }
 
-    // ── Fallback: browser STT + Murf TTS ─────────────────────────────────────
+    if (livekitReady) {
+      // Re-use the already-fetched token by connecting now
+      const lkResult = await livekit.connect("cosmos-voice");
+      if (lkResult.ok) {
+        setVoiceMode("livekit");
+        setCallState("listening");
+        showMessage("Connected to COSMOS-5H1 via LiveKit. Start speaking!");
+        return;
+      }
+    }
+
+    // ── Fallback: browser STT + Murf TTS (always works) ──────────────────────
     if (!isSupported) {
       setCallState("error");
       showMessage("Microphone not supported in this browser. Use Chrome or Edge.");

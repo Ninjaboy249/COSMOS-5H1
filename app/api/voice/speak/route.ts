@@ -55,7 +55,7 @@ export async function POST(req: NextRequest) {
   }
 
   const voiceId = body.voiceId ?? DEFAULT_VOICE_ID;
-  const style = body.style ?? "Conversational";
+  const style = body.style ?? "Conversation";
   const modelVersion = body.modelVersion ?? "GEN2";
   // Murf rate is a signed integer percentage: 0 = normal, -50 = slowest, +50 = fastest.
   // Our UI stores rate as a float multiplier (0.5–2.0), so convert: (uiRate - 1) * 100.
