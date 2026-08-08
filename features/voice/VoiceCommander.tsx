@@ -1,514 +1,274 @@
 "use client";
 /**
- * COSMOS Voice Commander — Call-model UI
+ * COSMOS Voice — Simple push-to-talk widget
  *
- * Flow (LiveKit / Render agent available):
- *  1. "Call COSMOS-5H1" → fetches token from /api/voice/livekit-token
- *  2. Joins LiveKit room — Render agent handles STT → Gemini → Murf Abhinav
- *  3. Browser publishes mic audio; plays back agent audio automatically
- *  4. agentState badge shows: Listening / Thinking / Speaking
- *  5. "End Call" disconnects from the room
- *
- * Fallback (LiveKit not configured):
- *  Same as before — browser STT → /api/cosmos-ai → /api/voice/speak (Murf TTS)
+ * Press "Speak" → mic records → COSMOS AI replies → Murf Rohan speaks.
+ * Press the button again or "Stop" to interrupt.
+ * No call state machine. No LiveKit. No autoplay race conditions.
  */
 
 import { useState, useCallback, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
-import { useVoiceRecognition } from "@/hooks/useVoiceRecognition";
 import { useVoiceSpeech } from "@/hooks/useVoiceSpeech";
-import { useLiveKitVoice } from "@/hooks/useLiveKitVoice";
-import { routeVoiceCommand, type VoiceCommand } from "@/lib/voice/command-router";
+import { useVoiceRecognition } from "@/hooks/useVoiceRecognition";
+import { routeVoiceCommand } from "@/lib/voice/command-router";
 import { loadVoiceSettings, saveVoiceSettings, type VoiceSettings } from "@/lib/voice/voice-settings";
-import { unlockAudio } from "@/hooks/useVoiceSpeech";
-
-// ── Call state machine ─────────────────────────────────────────────────────────
-
-type CallState = "disconnected" | "connecting" | "listening" | "processing" | "speaking" | "error";
-
-// ── mode tracks whether we are in LiveKit-room mode or fallback mode ──────────
-type VoiceMode = "livekit" | "fallback";
-
-const CALL_LABELS: Record<CallState, string> = {
-  disconnected: "Call COSMOS-5H1",
-  connecting:   "Connecting…",
-  listening:    "Listening…",
-  processing:   "Processing…",
-  speaking:     "Speaking…",
-  error:        "Reconnecting…",
-};
 
 // ── Tour narration ─────────────────────────────────────────────────────────────
 
 const TOUR_PLANETS = [
   { name: "Sun",     text: "Our Sun — a G-type main sequence star, 4.6 billion years old." },
-  { name: "Mercury", text: "Mercury — the smallest planet and closest to the Sun. Extreme temperature swings." },
-  { name: "Venus",   text: "Venus — Earth's toxic twin with a runaway greenhouse effect at 462 degrees." },
+  { name: "Mercury", text: "Mercury — the smallest planet, closest to the Sun." },
+  { name: "Venus",   text: "Venus — Earth's toxic twin with a runaway greenhouse effect." },
   { name: "Earth",   text: "Earth — our pale blue dot. The only known planet with life." },
-  { name: "Mars",    text: "Mars — the Red Planet with the tallest volcano in the solar system: Olympus Mons." },
-  { name: "Jupiter", text: "Jupiter — the gas giant king, over 1,300 Earths would fit inside." },
-  { name: "Saturn",  text: "Saturn — the ringed wonder, its rings made of ice and rock." },
+  { name: "Mars",    text: "Mars — the Red Planet with the tallest volcano, Olympus Mons." },
+  { name: "Jupiter", text: "Jupiter — the gas giant king. Over 1,300 Earths fit inside." },
+  { name: "Saturn",  text: "Saturn — the ringed wonder, rings made of ice and rock." },
   { name: "Uranus",  text: "Uranus — an ice giant that rotates on its side." },
-  { name: "Neptune", text: "Neptune — the windiest planet with storms exceeding 2,000 kilometres per hour." },
+  { name: "Neptune", text: "Neptune — the windiest planet, storms over 2,000 kilometres per hour." },
 ];
-
-// ── Props ──────────────────────────────────────────────────────────────────────
 
 interface VoiceCommanderProps {
   onOpenAI?: (query?: string) => void;
   onScrollToSolar?: () => void;
 }
 
-// ── Component ──────────────────────────────────────────────────────────────────
+type UIState = "idle" | "listening" | "thinking" | "speaking";
 
 export default function VoiceCommander({ onOpenAI, onScrollToSolar }: VoiceCommanderProps) {
   const router = useRouter();
 
-  // ── LiveKit ────────────────────────────────────────────────────────────────
-  const livekit = useLiveKitVoice();
-  const [voiceMode, setVoiceMode] = useState<VoiceMode>("fallback");
-
   // ── Settings ───────────────────────────────────────────────────────────────
   const [settings, setSettings] = useState<VoiceSettings | null>(
-    () => (typeof window !== "undefined" ? loadVoiceSettings() : null)
+    () => typeof window !== "undefined" ? loadVoiceSettings() : null
   );
   const [showSettings, setShowSettings] = useState(false);
+  const settingsRef = useRef<VoiceSettings | null>(null);
+  useEffect(() => { settingsRef.current = settings; });
 
   const updateSettings = useCallback((patch: Partial<VoiceSettings>) => {
-    setSettings((prev) => {
+    setSettings(prev => {
       const next = saveVoiceSettings({ ...(prev ?? {}), ...patch });
       return next;
     });
   }, []);
 
-  // ── Call state ─────────────────────────────────────────────────────────────
-  const [callState, setCallState] = useState<CallState>("disconnected");
-  const callActiveRef = useRef(false); // tracks call without triggering re-renders
+  // ── TTS + STT ──────────────────────────────────────────────────────────────
+  const { speak, stop: stopSpeech, isSpeaking, initAudio } = useVoiceSpeech();
+  const [uiState, setUiState] = useState<UIState>("idle");
 
-  // ── Conversation UI ────────────────────────────────────────────────────────
-  const [transcript, setTranscript] = useState<string | null>(null);
-  const [response, setResponse]     = useState<string | null>(null);
-  const [showBanner, setShowBanner] = useState(false);
-  const bannerTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  // ── Transcript + response display ─────────────────────────────────────────
+  const [lastTranscript, setLastTranscript] = useState("");
+  const [lastResponse,   setLastResponse]   = useState("");
+  const [showPanel,      setShowPanel]       = useState(false);
 
   // ── Tour ───────────────────────────────────────────────────────────────────
   const [tourActive, setTourActive] = useState(false);
-  const [tourIndex, setTourIndex]   = useState(0);
-  const tourTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [tourIndex,  setTourIndex]  = useState(0);
+  const tourCancelRef = useRef(false);
 
-  // ── TTS ────────────────────────────────────────────────────────────────────
-  const { speak, stop: stopSpeech, isSpeaking } = useVoiceSpeech();
+  // ── Keep uiState in sync with TTS state ───────────────────────────────────
+  useEffect(() => {
+    if (isSpeaking) setUiState("speaking");
+    else if (uiState === "speaking") setUiState("idle");
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSpeaking]);
 
-  // ── Settings ref (stable across callbacks) ─────────────────────────────────
-  const settingsRef = useRef<VoiceSettings | null>(null);
-  useEffect(() => { settingsRef.current = settings; });
-
-  // ── Banner ─────────────────────────────────────────────────────────────────
-  const showMessage = useCallback((text: string, duration = 6000) => {
-    setResponse(text);
-    setShowBanner(true);
-    if (bannerTimerRef.current) clearTimeout(bannerTimerRef.current);
-    bannerTimerRef.current = setTimeout(() => setShowBanner(false), duration);
-  }, []);
-
-  // ── Speak and then restart listening (the call loop) ──────────────────────
-  const speakThenListen = useCallback(
-    async (text: string, s: VoiceSettings, restartSTT: () => void) => {
-      if (!callActiveRef.current) return;
-      setCallState("speaking");
-      if (s.enabled && s.autoSpeak && text.trim()) {
-        await speak(text, s);
-      }
-      if (!callActiveRef.current) return; // call ended during speak
-      setCallState("listening");
-      restartSTT();
-    },
-    [speak]
-  );
-
-  // ── Execute a voice command ────────────────────────────────────────────────
-  const executeCommand = useCallback(
-    async (cmd: VoiceCommand, s: VoiceSettings, restartSTT: () => void) => {
-      if (!callActiveRef.current) return;
-      setCallState("processing");
-      setTranscript(cmd.transcript);
-
-      // ── AI question ───────────────────────────────────────────────────────
-      if (cmd.askAI && cmd.intent === "AI_QUESTION") {
-        let aiAnswer = "";
-        try {
-          const res = await fetch("/api/cosmos-ai", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ message: cmd.transcript, history: [] }),
-            signal: AbortSignal.timeout(15_000),
-          });
-          const data = await res.json() as { answer: string; navigateTo?: string };
-          aiAnswer = data.answer ?? "";
-          if (data.navigateTo) setTimeout(() => router.push(data.navigateTo!), 800);
-        } catch {
-          aiAnswer = "I had trouble reaching COSMOS AI. Please try again.";
-        }
-        onOpenAI?.(cmd.transcript);
-        const spoken = aiAnswer.replace(/\*\*/g, "").replace(/#{1,6} /g, "").slice(0, 400);
-        showMessage(aiAnswer.slice(0, 500));
-        await speakThenListen(spoken, s, restartSTT);
-        return;
-      }
-
-      // ── Open AI ───────────────────────────────────────────────────────────
-      if (cmd.intent === "OPEN_AI") {
-        onOpenAI?.();
-        showMessage(cmd.confirmText);
-        await speakThenListen(cmd.confirmText, s, restartSTT);
-        return;
-      }
-
-      // ── Unknown → AI ──────────────────────────────────────────────────────
-      if (cmd.intent === "UNKNOWN") {
-        onOpenAI?.(cmd.transcript);
-        showMessage("Let me ask COSMOS AI about that.");
-        await speakThenListen("Let me ask COSMOS AI about that.", s, restartSTT);
-        return;
-      }
-
-      // ── Tour start ────────────────────────────────────────────────────────
-      if (cmd.intent === "START_TOUR") {
-        setTourActive(true);
-        setTourIndex(0);
-        onScrollToSolar?.();
-        showMessage("Starting Solar System tour…");
-        await speakThenListen(cmd.confirmText, s, restartSTT);
-        return;
-      }
-
-      // ── Tour stop ─────────────────────────────────────────────────────────
-      if (cmd.intent === "STOP_TOUR") {
-        setTourActive(false);
-        if (tourTimerRef.current) clearTimeout(tourTimerRef.current);
-        stopSpeech();
-        showMessage("Tour stopped.");
-        await speakThenListen("Tour stopped.", s, restartSTT);
-        return;
-      }
-
-      // ── Go back ───────────────────────────────────────────────────────────
-      if (cmd.intent === "GO_BACK") {
-        showMessage(cmd.confirmText);
-        await speak(cmd.confirmText, s);
-        router.back();
-        if (callActiveRef.current) { setCallState("listening"); restartSTT(); }
-        return;
-      }
-
-      // ── Navigate ──────────────────────────────────────────────────────────
-      if (cmd.navigateTo) {
-        showMessage(cmd.confirmText);
-        await speak(cmd.confirmText, s);
-        setTimeout(() => router.push(cmd.navigateTo!), 400);
-        if (callActiveRef.current) { setCallState("listening"); restartSTT(); }
-        return;
-      }
-
-      // ── Fallback ──────────────────────────────────────────────────────────
-      showMessage(cmd.confirmText);
-      await speakThenListen(cmd.confirmText, s, restartSTT);
-    },
-    [onOpenAI, onScrollToSolar, router, showMessage, speak, speakThenListen, stopSpeech]
-  );
-
-  // ── STT callbacks ──────────────────────────────────────────────────────────
-  // We need to reference startSTT before it's created, so we use a stable ref.
-  const startSTTRef = useRef<() => void>(() => {});
-
-  const handleResult = useCallback(
-    (text: string) => {
-      const s = settingsRef.current;
-      if (s && callActiveRef.current) {
-        executeCommand(routeVoiceCommand(text), s, () => startSTTRef.current());
-      }
-    },
-    [executeCommand]
-  );
-
-  const handleError = useCallback(
-    (msg: string) => {
-      if (!callActiveRef.current) return;
-      setCallState("error");
-      showMessage(msg, 3000);
-      // Auto-retry after 3 seconds
-      setTimeout(() => {
-        if (callActiveRef.current) {
-          setCallState("listening");
-          startSTTRef.current();
-        }
-      }, 3000);
-    },
-    [showMessage]
-  );
-
-  const { start: startSTT, stop: stopSTT, isSupported } = useVoiceRecognition({
-    lang: "en-IN",
-    onResult: handleResult,
-    onError: handleError,
-  });
-
-  // Keep the ref current
-  useEffect(() => { startSTTRef.current = startSTT; }, [startSTT]);
-
-  // ── Start call ─────────────────────────────────────────────────────────────
-  const startCall = useCallback(async () => {
-    // Unlock AudioContext immediately on the user gesture (before any await)
-    // This is required for Chrome/Safari autoplay policy
-    unlockAudio();
-
+  // ── Handle a recognised transcript ────────────────────────────────────────
+  const handleTranscript = useCallback(async (transcript: string) => {
     const s = settingsRef.current;
     if (!s) return;
-    callActiveRef.current = true;
-    setCallState("connecting");
-    setTranscript(null);
-    setResponse(null);
-    setShowBanner(false);
 
-    // ── Try LiveKit only if the token endpoint says it's configured ───────────
-    // Do a lightweight probe first so we don't wait 5–10s to fail.
-    let livekitReady = false;
-    try {
-      const probe = await fetch("/api/voice/livekit-token", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ roomName: "cosmos-voice", participantName: `probe-${Date.now()}` }),
-        signal: AbortSignal.timeout(4_000),
-      });
-      const data = await probe.json() as { fallback?: boolean; token?: string };
-      livekitReady = !data.fallback && !!data.token;
-    } catch {
-      livekitReady = false;
-    }
+    setLastTranscript(transcript);
+    setUiState("thinking");
+    setShowPanel(true);
 
-    if (livekitReady) {
-      // Re-use the already-fetched token by connecting now
-      const lkResult = await livekit.connect("cosmos-voice");
-      if (lkResult.ok) {
-        setVoiceMode("livekit");
-        setCallState("listening");
-        showMessage("Connected to COSMOS-5H1 via LiveKit. Start speaking!");
-        return;
+    const cmd = routeVoiceCommand(transcript);
+
+    // Navigation / app shortcuts
+    if (cmd.intent !== "AI_QUESTION" && cmd.intent !== "UNKNOWN" && cmd.intent !== "OPEN_AI") {
+      if (cmd.intent === "START_TOUR") {
+        setTourActive(true); setTourIndex(0); tourCancelRef.current = false;
+        onScrollToSolar?.();
+      } else if (cmd.intent === "STOP_TOUR") {
+        tourCancelRef.current = true; setTourActive(false); stopSpeech();
+      } else if (cmd.intent === "GO_BACK") {
+        router.back();
+      } else if (cmd.navigateTo) {
+        setTimeout(() => router.push(cmd.navigateTo!), 400);
       }
-    }
-
-    // ── Fallback: browser STT + Murf TTS (always works) ──────────────────────
-    if (!isSupported) {
-      setCallState("error");
-      showMessage("Microphone not supported in this browser. Use Chrome or Edge.");
-      callActiveRef.current = false;
+      setLastResponse(cmd.confirmText);
+      setUiState("speaking");
+      await speak(cmd.confirmText, s);
+      setUiState("idle");
       return;
     }
 
-    setVoiceMode("fallback");
-    const greeting = "Hello! I'm COSMOS-5H1, your space assistant. Ask me anything about the universe, or say a planet name to explore it.";
-    showMessage(greeting);
-    setCallState("speaking");
-    await speak(greeting, s);
-    if (!callActiveRef.current) return;
-    setCallState("listening");
-    startSTT();
-  }, [isSupported, livekit, showMessage, speak, startSTT]);
+    // AI question
+    try {
+      const res = await fetch("/api/cosmos-ai", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: transcript, history: [] }),
+        signal: AbortSignal.timeout(15_000),
+      });
+      const data = await res.json() as { answer: string; navigateTo?: string };
+      const answer = data.answer ?? "I couldn't find an answer.";
+      if (data.navigateTo) setTimeout(() => router.push(data.navigateTo!), 800);
+      onOpenAI?.(transcript);
+      setLastResponse(answer);
+      const spoken = answer.replace(/\*\*/g, "").replace(/#{1,6} ?/g, "").slice(0, 400);
+      setUiState("speaking");
+      await speak(spoken, s);
+    } catch {
+      setLastResponse("I had trouble reaching COSMOS AI. Please try again.");
+      await speak("I had trouble reaching COSMOS AI.", s);
+    }
+    setUiState("idle");
+  }, [onOpenAI, onScrollToSolar, router, speak, stopSpeech]);
 
-  // ── End call ───────────────────────────────────────────────────────────────
-  const endCall = useCallback(() => {
-    callActiveRef.current = false;
-    // Disconnect LiveKit room if we were in LiveKit mode
-    if (voiceMode === "livekit") livekit.disconnect();
-    stopSTT();
-    stopSpeech();
-    setTourActive(false);
-    if (tourTimerRef.current) clearTimeout(tourTimerRef.current);
-    if (bannerTimerRef.current) clearTimeout(bannerTimerRef.current);
-    setCallState("disconnected");
-    setVoiceMode("fallback");
-    setTranscript(null);
-    setShowBanner(false);
-  }, [livekit, stopSpeech, stopSTT, voiceMode]);
-
-  // ── Keyboard shortcut: Alt+V ───────────────────────────────────────────────
-  useEffect(() => {
-    const handler = (e: KeyboardEvent) => {
-      if (e.altKey && e.code === "KeyV") {
-        e.preventDefault();
-        if (callActiveRef.current) endCall(); else startCall();
-      }
-    };
-    window.addEventListener("keydown", handler);
-    return () => window.removeEventListener("keydown", handler);
-  }, [startCall, endCall]);
+  // ── STT ────────────────────────────────────────────────────────────────────
+  const { start: startSTT, stop: stopSTT, isSupported, isListening } = useVoiceRecognition({
+    lang: settings?.locale ?? "en-IN",
+    onResult: (t) => { stopSTT(); handleTranscript(t); },
+    onError:  (m) => { setLastResponse(m); setUiState("idle"); },
+  });
 
   // ── Tour loop ──────────────────────────────────────────────────────────────
   useEffect(() => {
     if (!tourActive || !settings) return;
     const item = TOUR_PLANETS[tourIndex];
-    if (!item) { setTimeout(() => setTourActive(false), 0); return; }
-
+    if (!item || tourCancelRef.current) { setTourActive(false); return; }
     let cancelled = false;
-    const run = async () => {
-      if (cancelled) return;
-      showMessage(`🪐 ${item.name} — ${item.text}`);
-      if (settings.enabled && settings.autoSpeak) {
-        await speak(`${item.name}. ${item.text}`, settings);
-      }
-      if (cancelled) return;
+    (async () => {
+      setLastResponse(`${item.name} — ${item.text}`);
+      setShowPanel(true);
+      setUiState("speaking");
+      await speak(`${item.name}. ${item.text}`, settings);
+      if (cancelled || tourCancelRef.current) return;
       if (tourIndex < TOUR_PLANETS.length - 1) {
-        tourTimerRef.current = setTimeout(() => {
-          if (!cancelled) setTourIndex((i) => i + 1);
-        }, 800);
+        setTimeout(() => { if (!cancelled) setTourIndex(i => i + 1); }, 600);
       } else {
-        setTimeout(() => {
-          setTourActive(false);
-          showMessage("Solar System tour complete! 🚀");
-        }, 0);
-        if (settings.enabled && settings.autoSpeak) {
-          await speak("Solar System tour complete!", settings);
-        }
+        setTourActive(false);
+        setLastResponse("Solar System tour complete!");
+        await speak("Solar System tour complete!", settings);
+        setUiState("idle");
       }
-    };
-    run();
-    return () => {
-      cancelled = true;
-      if (tourTimerRef.current) clearTimeout(tourTimerRef.current);
-    };
+    })();
+    return () => { cancelled = true; };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tourActive, tourIndex]);
 
-  // Don't render during SSR
+  // ── Main button click ──────────────────────────────────────────────────────
+  const handleButtonClick = useCallback(() => {
+    // Always init audio synchronously on click — this is the user gesture
+    initAudio();
+
+    if (uiState === "speaking") {
+      stopSpeech();
+      setUiState("idle");
+      return;
+    }
+    if (uiState === "listening") {
+      stopSTT();
+      setUiState("idle");
+      return;
+    }
+    if (uiState === "thinking") return; // wait for AI
+
+    // Start listening
+    if (!isSupported) {
+      setLastResponse("Voice not supported. Use Chrome or Edge.");
+      setShowPanel(true);
+      return;
+    }
+    setUiState("listening");
+    startSTT();
+  }, [uiState, isSupported, initAudio, startSTT, stopSTT, stopSpeech]);
+
+  // ── Alt+V shortcut ─────────────────────────────────────────────────────────
+  useEffect(() => {
+    const h = (e: KeyboardEvent) => {
+      if (e.altKey && e.code === "KeyV") { e.preventDefault(); handleButtonClick(); }
+    };
+    window.addEventListener("keydown", h);
+    return () => window.removeEventListener("keydown", h);
+  }, [handleButtonClick]);
+
   if (settings === null) return null;
 
-  const callActive = callState !== "disconnected";
+  // ── Button appearance ──────────────────────────────────────────────────────
+  const btnIcon  = uiState === "listening" ? "🔴"
+                 : uiState === "thinking"  ? "🧠"
+                 : uiState === "speaking"  ? "🔊"
+                 : "🎙️";
+  const btnLabel = uiState === "listening" ? "Listening…"
+                 : uiState === "thinking"  ? "Thinking…"
+                 : uiState === "speaking"  ? "Stop"
+                 : "Speak";
+  const btnClass = `vc-call-btn ${uiState !== "idle" ? uiState : ""}`;
 
-  // ── Render ─────────────────────────────────────────────────────────────────
   return (
     <>
-      {/* ── Response banner ── */}
+      {/* ── Response panel ── */}
       <AnimatePresence>
-        {showBanner && response && (
+        {showPanel && (lastTranscript || lastResponse) && (
           <motion.div
             className="vc-banner"
             initial={{ opacity: 0, y: 16, x: "-50%" }}
             animate={{ opacity: 1, y: 0,  x: "-50%" }}
-            exit={  { opacity: 0, y: 8,   x: "-50%" }}
+            exit={{ opacity: 0, y: 8, x: "-50%" }}
             transition={{ duration: 0.25 }}
           >
-            <span className="vc-banner-icon">
-              {callState === "speaking" ? "🔊" : callState === "listening" ? "👂" : "🧠"}
-            </span>
-            <span className="vc-banner-text">{response}</span>
-            <button className="vc-banner-close" onClick={() => setShowBanner(false)} aria-label="Dismiss">✕</button>
+            {lastTranscript && (
+              <p className="vc-banner-you">
+                <span style={{ opacity: 0.5, fontSize: "0.7rem", marginRight: "0.4rem" }}>YOU</span>
+                {lastTranscript}
+              </p>
+            )}
+            {lastResponse && (
+              <p className="vc-banner-text">{lastResponse}</p>
+            )}
+            <button className="vc-banner-close" onClick={() => setShowPanel(false)} aria-label="Close">✕</button>
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* ── Transcript pill ── */}
-      <AnimatePresence>
-        {transcript && (callState === "processing") && (
-          <motion.div
-            className="vc-transcript"
-            initial={{ opacity: 0, y: 10, x: "-50%" }}
-            animate={{ opacity: 1, y: 0,  x: "-50%" }}
-            exit={  { opacity: 0, y: 6,   x: "-50%" }}
-            transition={{ duration: 0.2 }}
-          >
-            <span className="vc-transcript-quote">&ldquo;</span>
-            {transcript}
-            <span className="vc-transcript-quote">&rdquo;</span>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* ── Call button area ── */}
+      {/* ── Widget ── */}
       <div className="vc-mic-wrap">
-
         {/* Settings gear */}
         <motion.button
           className={`vc-settings-btn ${showSettings ? "active" : ""}`}
-          onClick={() => setShowSettings((v) => !v)}
+          onClick={() => setShowSettings(v => !v)}
           title="Voice settings"
-          aria-label="Voice settings"
           whileTap={{ scale: 0.92 }}
+        >⚙️</motion.button>
+
+        {/* Main speak button */}
+        <motion.button
+          className={btnClass}
+          onClick={handleButtonClick}
+          whileHover={{ scale: 1.08 }}
+          whileTap={{ scale: 0.93 }}
+          title={`${btnLabel} (Alt+V)`}
         >
-          ⚙️
+          {uiState === "listening" && (
+            <motion.span
+              className="vc-pulse-ring"
+              animate={{ scale: [1, 1.6, 1], opacity: [0.6, 0, 0.6] }}
+              transition={{ duration: 1.2, repeat: Infinity }}
+            />
+          )}
+          <motion.span
+            className="vc-mic-icon"
+            key={uiState}
+            initial={{ scale: 0.7, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.15 }}
+          >{btnIcon}</motion.span>
+          <span className="vc-call-label">{btnLabel}</span>
         </motion.button>
-
-        {!callActive ? (
-          /* ── Start call button ── */
-          <motion.button
-            className="vc-call-btn"
-            onClick={startCall}
-            aria-label="Call COSMOS-5H1"
-            title="Call COSMOS-5H1 (Alt+V)"
-            whileHover={{ scale: 1.07 }}
-            whileTap={{ scale: 0.93 }}
-          >
-            <span className="vc-call-icon">📞</span>
-            <span className="vc-call-label">Call COSMOS-5H1</span>
-          </motion.button>
-        ) : (
-          /* ── Active call (state indicator + end-call) ── */
-          <div className="vc-active-call">
-            {/* Mode badge */}
-            {voiceMode === "livekit" && (
-              <span className="vc-livekit-badge">⚡ LiveKit</span>
-            )}
-
-            {/* Status indicator — in LiveKit mode show agent state */}
-            <div className={`vc-status-btn ${
-              voiceMode === "livekit"
-                ? livekit.agentState   // "listening" | "thinking" | "speaking" | "idle"
-                : callState
-            }`}>
-              {/* Pulse ring while listening */}
-              {(voiceMode === "livekit"
-                  ? livekit.agentState === "listening"
-                  : callState === "listening") && (
-                <motion.span
-                  className="vc-pulse-ring"
-                  animate={{ scale: [1, 1.6, 1], opacity: [0.6, 0, 0.6] }}
-                  transition={{ duration: 1.2, repeat: Infinity }}
-                />
-              )}
-              <motion.span
-                className="vc-mic-icon"
-                key={voiceMode === "livekit" ? livekit.agentState : callState}
-                initial={{ scale: 0.7, opacity: 0 }}
-                animate={{ scale: 1,   opacity: 1 }}
-                transition={{ duration: 0.15 }}
-              >
-                {(voiceMode === "livekit" ? livekit.agentState : callState) === "listening"  ? "👂" :
-                 (voiceMode === "livekit" ? livekit.agentState : callState) === "thinking"   ? "🧠" :
-                 (voiceMode === "livekit" ? livekit.agentState : callState) === "processing" ? "🧠" :
-                 (voiceMode === "livekit" ? livekit.agentState : callState) === "speaking"   ? "🔊" :
-                 callState === "connecting" ? "⏳" : "⚡"}
-              </motion.span>
-              <span className="vc-mic-label">
-                {voiceMode === "livekit"
-                  ? livekit.agentState.charAt(0).toUpperCase() + livekit.agentState.slice(1) + "…"
-                  : CALL_LABELS[callState]}
-              </span>
-            </div>
-
-            {/* End call */}
-            <motion.button
-              className="vc-end-call-btn"
-              onClick={endCall}
-              aria-label="End call"
-              title="End call (Alt+V)"
-              whileHover={{ scale: 1.07 }}
-              whileTap={{ scale: 0.93 }}
-            >
-              <span className="vc-call-icon">📵</span>
-              <span className="vc-call-label">End Call</span>
-            </motion.button>
-          </div>
-        )}
       </div>
 
       {/* ── Settings panel ── */}
@@ -517,28 +277,25 @@ export default function VoiceCommander({ onOpenAI, onScrollToSolar }: VoiceComma
           <motion.div
             className="vc-settings-panel"
             initial={{ opacity: 0, y: 12, scale: 0.96 }}
-            animate={{ opacity: 1, y: 0,  scale: 1    }}
-            exit={  { opacity: 0, y: 8,   scale: 0.94 }}
+            animate={{ opacity: 1, y: 0,  scale: 1 }}
+            exit={{ opacity: 0, y: 8, scale: 0.94 }}
             transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
           >
-            {/* Header */}
             <div className="vc-settings-header">
               <div className="flex items-center gap-2">
-                <span className="text-lg">🎙</span>
-                <span className="vc-settings-title">Abhinav · Voice Settings</span>
+                <span>🎙</span>
+                <span className="vc-settings-title">COSMOS Voice</span>
               </div>
-              <button className="vc-settings-close" onClick={() => setShowSettings(false)} aria-label="Close">✕</button>
+              <button className="vc-settings-close" onClick={() => setShowSettings(false)}>✕</button>
             </div>
 
-            {/* Body */}
             <div className="vc-settings-body">
-              {/* Auto-speak toggle */}
+              {/* Auto-speak */}
               <label className="vc-setting-row">
                 <span className="vc-setting-label">Auto-speak Responses</span>
                 <button
                   className={`vc-toggle ${settings.autoSpeak ? "on" : "off"}`}
                   onClick={() => updateSettings({ autoSpeak: !settings.autoSpeak })}
-                  aria-label={settings.autoSpeak ? "Disable auto-speak" : "Enable auto-speak"}
                 >
                   <motion.span
                     className="vc-toggle-thumb"
@@ -551,15 +308,13 @@ export default function VoiceCommander({ onOpenAI, onScrollToSolar }: VoiceComma
               {/* Speed */}
               <div className="vc-setting-col">
                 <div className="flex justify-between">
-                  <span className="vc-setting-label">Speaking Speed</span>
+                  <span className="vc-setting-label">Speed</span>
                   <span className="vc-setting-value">{settings.rate.toFixed(1)}×</span>
                 </div>
-                <input
-                  type="range" min="0.5" max="2.0" step="0.1"
+                <input type="range" min="0.5" max="2.0" step="0.1"
                   value={settings.rate}
-                  onChange={(e) => updateSettings({ rate: parseFloat(e.target.value) })}
-                  className="vc-range"
-                />
+                  onChange={e => updateSettings({ rate: parseFloat(e.target.value) })}
+                  className="vc-range" />
               </div>
 
               {/* Volume */}
@@ -568,37 +323,29 @@ export default function VoiceCommander({ onOpenAI, onScrollToSolar }: VoiceComma
                   <span className="vc-setting-label">Volume</span>
                   <span className="vc-setting-value">{settings.volume}%</span>
                 </div>
-                <input
-                  type="range" min="0" max="100" step="5"
+                <input type="range" min="0" max="100" step="5"
                   value={settings.volume}
-                  onChange={(e) => updateSettings({ volume: parseInt(e.target.value) })}
-                  className="vc-range"
-                />
+                  onChange={e => updateSettings({ volume: parseInt(e.target.value) })}
+                  className="vc-range" />
               </div>
 
-              {/* Voice info (read-only badge) */}
               <div className="vc-setting-row" style={{ marginTop: "0.25rem" }}>
                 <span className="vc-setting-label">Voice</span>
-                <span className="vc-voice-badge">COSMOS-5H1</span>
+                <span className="vc-voice-badge">COSMOS-5H1 · Rohan</span>
               </div>
             </div>
 
-            {/* Example commands */}
             <div className="vc-settings-hints">
-              <p className="vc-hints-label">Example Commands</p>
+              <p className="vc-hints-label">Try saying…</p>
               <div className="vc-hints-chips">
-                {["Show Mars", "Open Jupiter", "Compare Earth and Mars",
-                  "Start Solar System tour", "Show space weather",
-                  "Open Mission Control", "Explain black holes", "Go home",
-                ].map((h) => (
-                  <span key={h} className="vc-hint-chip">{h}</span>
-                ))}
+                {["Show Mars","Open Jupiter","Compare Earth and Mars",
+                  "Start Solar System tour","Explain black holes","Go home"
+                ].map(h => <span key={h} className="vc-hint-chip">{h}</span>)}
               </div>
             </div>
 
-            {/* Footer */}
             <div className="vc-settings-footer">
-              <span>Alt+V to call / end call &middot; {isSupported ? "✅ Mic ready" : "❌ Mic not supported"}</span>
+              Alt+V to speak · {isSupported ? "✅ Mic ready" : "❌ Use Chrome/Edge"}
             </div>
           </motion.div>
         )}

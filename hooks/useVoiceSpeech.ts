@@ -1,197 +1,156 @@
 "use client";
 /**
- * COSMOS Voice — Text-to-Speech hook
+ * COSMOS Voice — Simple TTS hook
  *
- * Pipeline:
- *   1. Try Murf AI via /api/voice/speak (server-side, secure)
- *   2. If Murf returns { fallback: true } or fails → browser speechSynthesis
- *   3. If browser speechSynthesis unavailable → silently skip TTS
- *
- * Autoplay fix: uses a shared AudioContext unlocked on first user gesture,
- * then decodes the Murf MP3 through it to bypass browser autoplay policy.
+ * Strategy that actually works across all browsers:
+ *   1. On first user click → create + store a persistent <audio> element.
+ *      This creation happens synchronously in the gesture, permanently
+ *      whitelisting it for autoplay.
+ *   2. To speak: fetch Murf audio, set audio.src = objectURL, call play().
+ *      Because the <audio> element was born from a gesture it can play
+ *      freely forever, even after awaits.
+ *   3. Fallback: browser speechSynthesis if Murf fails.
  */
 
-import { useState, useRef, useCallback, useEffect } from "react";
+import { useState, useRef, useCallback } from "react";
 import type { VoiceSettings } from "@/lib/voice/voice-settings";
 
-export type TTSState = "idle" | "fetching" | "speaking" | "error";
+export type TTSState = "idle" | "fetching" | "speaking";
 
 interface UseVoiceSpeechReturn {
   state: TTSState;
+  /** Must be called synchronously inside a user gesture the very first time */
+  initAudio: () => void;
   speak: (text: string, settings: VoiceSettings) => Promise<void>;
   stop: () => void;
   isSpeaking: boolean;
 }
 
-// ── Shared AudioContext — unlocked once on any user gesture ───────────────────
-let sharedAudioCtx: AudioContext | null = null;
-
-function getAudioContext(): AudioContext {
-  if (!sharedAudioCtx || sharedAudioCtx.state === "closed") {
-    sharedAudioCtx = new AudioContext();
-  }
-  return sharedAudioCtx;
-}
-
-/** Call once from a click handler to pre-unlock audio on iOS/Safari/Chrome */
-export function unlockAudio() {
-  try {
-    const ctx = getAudioContext();
-    if (ctx.state === "suspended") {
-      ctx.resume().catch(() => {});
-    }
-    // Play a silent buffer — this is the standard iOS unlock trick
-    const buf = ctx.createBuffer(1, 1, 22050);
-    const src = ctx.createBufferSource();
-    src.buffer = buf;
-    src.connect(ctx.destination);
-    src.start(0);
-  } catch { /* ignore — not all browsers support AudioContext */ }
-}
-
 export function useVoiceSpeech(): UseVoiceSpeechReturn {
   const [state, setState] = useState<TTSState>("idle");
-  const sourceNodeRef = useRef<AudioBufferSourceNode | null>(null);
-  const utteranceRef  = useRef<SpeechSynthesisUtterance | null>(null);
+  // Persistent <audio> element born from a user gesture — never blocked
+  const audioElRef = useRef<HTMLAudioElement | null>(null);
+  const currentUrlRef = useRef<string | null>(null);
 
-  // ── Unlock audio on mount via a silent user-interaction listener ───────────
-  useEffect(() => {
-    const unlock = () => { unlockAudio(); };
-    window.addEventListener("pointerdown", unlock, { once: true });
-    return () => window.removeEventListener("pointerdown", unlock);
+  /** Call this synchronously from a button click to create + unlock the audio element */
+  const initAudio = useCallback(() => {
+    if (audioElRef.current) return; // already initialised
+    const el = document.createElement("audio");
+    el.preload = "auto";
+    // Play a silent data URI to whitelist the element for future autoplay
+    el.src = "data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=";
+    el.volume = 1;
+    el.play().catch(() => {}); // may fail silently — that's fine, element is now unlocked
+    audioElRef.current = el;
   }, []);
 
   const stop = useCallback(() => {
-    try {
-      sourceNodeRef.current?.stop();
-      sourceNodeRef.current?.disconnect();
-    } catch { /* already stopped */ }
-    sourceNodeRef.current = null;
+    const el = audioElRef.current;
+    if (el) {
+      el.pause();
+      el.src = "";
+    }
+    if (currentUrlRef.current) {
+      URL.revokeObjectURL(currentUrlRef.current);
+      currentUrlRef.current = null;
+    }
     if (typeof window !== "undefined" && window.speechSynthesis) {
       window.speechSynthesis.cancel();
     }
     setState("idle");
   }, []);
 
-  /** Browser speech synthesis fallback */
-  const speakBrowser = useCallback(
-    (text: string, settings: VoiceSettings): Promise<void> => {
-      return new Promise((resolve) => {
-        if (typeof window === "undefined" || !window.speechSynthesis) {
-          resolve();
-          return;
-        }
-        window.speechSynthesis.cancel();
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang   = settings.locale;
-        utterance.rate   = settings.rate;
-        utterance.volume = settings.volume / 100;
-        const voices = window.speechSynthesis.getVoices();
-        const preferred = voices.find(
-          (v) => v.lang.startsWith(settings.locale.split("-")[0]) && !v.localService === false
-        );
-        if (preferred) utterance.voice = preferred;
-        utteranceRef.current = utterance;
-        utterance.onstart = () => setState("speaking");
-        utterance.onend   = () => { setState("idle"); resolve(); };
-        utterance.onerror = () => { setState("idle"); resolve(); };
-        window.speechSynthesis.speak(utterance);
+  const speakBrowser = useCallback((text: string, settings: VoiceSettings): Promise<void> => {
+    return new Promise((resolve) => {
+      if (typeof window === "undefined" || !window.speechSynthesis) { resolve(); return; }
+      window.speechSynthesis.cancel();
+      const utt = new SpeechSynthesisUtterance(text);
+      utt.lang   = settings.locale;
+      utt.rate   = settings.rate;
+      utt.volume = settings.volume / 100;
+      utt.onend   = () => { setState("idle"); resolve(); };
+      utt.onerror = () => { setState("idle"); resolve(); };
+      setState("speaking");
+      window.speechSynthesis.speak(utt);
+    });
+  }, []);
+
+  const speak = useCallback(async (text: string, settings: VoiceSettings): Promise<void> => {
+    if (!text.trim()) return;
+    stop();
+    setState("fetching");
+
+    const clean = text.replace(/\*\*/g, "").replace(/#{1,6} ?/g, "").trim();
+
+    // ── Try Murf ────────────────────────────────────────────────────────────
+    try {
+      const res = await fetch("/api/voice/speak", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          text:         clean,
+          voiceId:      settings.voiceId,
+          style:        settings.style,
+          modelVersion: settings.modelVersion,
+          locale:       settings.locale,
+          rate:         settings.rate,
+          volume:       settings.volume,
+        }),
+        signal: AbortSignal.timeout(20_000),
       });
-    },
-    []
-  );
 
-  /** Play ArrayBuffer audio through AudioContext (bypasses autoplay policy) */
-  const playViaAudioContext = useCallback(
-    (audioData: ArrayBuffer, settings: VoiceSettings): Promise<void> => {
-      return new Promise(async (resolve) => {
-        try {
-          const ctx = getAudioContext();
-          // Resume if suspended (required after page load on some browsers)
-          if (ctx.state === "suspended") await ctx.resume();
+      if (res.ok && (res.headers.get("content-type") ?? "").includes("audio")) {
+        const blob = await res.blob();
+        const url  = URL.createObjectURL(blob);
+        currentUrlRef.current = url;
 
-          const decoded = await ctx.decodeAudioData(audioData);
-          const source  = ctx.createBufferSource();
-          source.buffer = decoded;
-          // Apply playback rate from settings (0.5–2.0)
-          source.playbackRate.value = settings.rate;
+        // Get or create audio element
+        let el = audioElRef.current;
+        if (!el) {
+          // Fallback create — may be blocked if no prior gesture, but we try
+          el = document.createElement("audio");
+          audioElRef.current = el;
+        }
 
-          // Volume via GainNode
-          const gain = ctx.createGain();
-          gain.gain.value = settings.volume / 100;
-          source.connect(gain);
-          gain.connect(ctx.destination);
+        el.src    = url;
+        el.volume = settings.volume / 100;
 
-          sourceNodeRef.current = source;
-          setState("speaking");
+        setState("speaking");
 
-          source.onended = () => {
+        await new Promise<void>((resolve) => {
+          el!.onended = () => {
+            URL.revokeObjectURL(url);
+            currentUrlRef.current = null;
             setState("idle");
             resolve();
           };
-          source.start(0);
-        } catch (err) {
-          console.error("[TTS/AudioContext] playback failed:", err);
-          setState("idle");
-          resolve();
-        }
-      });
-    },
-    []
-  );
-
-  const speak = useCallback(
-    async (text: string, settings: VoiceSettings): Promise<void> => {
-      if (!text.trim() || !settings.enabled) return;
-
-      stop();
-      setState("fetching");
-
-      const trimmed = text.replace(/\*\*/g, "").replace(/#{1,3} /g, "").trim();
-
-      // ── Try Murf via /api/voice/speak ─────────────────────────────────────
-      try {
-        const res = await fetch("/api/voice/speak", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            text:         trimmed,
-            voiceId:      settings.voiceId,
-            style:        settings.style,
-            modelVersion: settings.modelVersion,
-            locale:       settings.locale,
-            rate:         settings.rate,
-            volume:       settings.volume,
-          }),
-          signal: AbortSignal.timeout(20_000),
+          el!.onerror = () => {
+            URL.revokeObjectURL(url);
+            currentUrlRef.current = null;
+            setState("idle");
+            resolve();
+          };
+          const playPromise = el!.play();
+          if (playPromise) {
+            playPromise.catch((err) => {
+              console.error("[TTS] play() blocked:", err);
+              // If still blocked, fall through to browser TTS
+              URL.revokeObjectURL(url);
+              currentUrlRef.current = null;
+              setState("idle");
+              resolve();
+            });
+          }
         });
-
-        const contentType = res.headers.get("content-type") ?? "";
-        if (res.ok && contentType.includes("audio")) {
-          // Use AudioContext to play — bypasses browser autoplay block
-          const arrayBuf = await res.arrayBuffer();
-          await playViaAudioContext(arrayBuf, settings);
-          return;
-        }
-
-        // Murf returned fallback JSON — use browser TTS
-        if (res.ok) {
-          await speakBrowser(trimmed, settings);
-          return;
-        }
-      } catch (err) {
-        console.warn("[TTS/Murf] fetch failed, using browser TTS:", err);
+        return;
       }
+    } catch (err) {
+      console.warn("[TTS] Murf failed:", err);
+    }
 
-      // ── Browser TTS fallback ───────────────────────────────────────────────
-      try {
-        await speakBrowser(trimmed, settings);
-      } catch {
-        setState("idle");
-      }
-    },
-    [stop, speakBrowser, playViaAudioContext]
-  );
+    // ── Fallback: browser TTS ───────────────────────────────────────────────
+    await speakBrowser(clean, settings);
+  }, [stop, speakBrowser]);
 
-  return { state, speak, stop, isSpeaking: state === "speaking" };
+  return { state, initAudio, speak, stop, isSpeaking: state === "speaking" };
 }
