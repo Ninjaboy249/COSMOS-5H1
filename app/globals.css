@@ -3278,6 +3278,142 @@ canvas {
   backdrop-filter: blur(12px);
 }
 
+/* ── Call button (idle — "Call Abhinav") ─────────────────────────────────── */
+.vc-call-btn {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .18rem;
+  width: 3.75rem;
+  height: 3.75rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(34,197,94,0.18) 0%, rgba(16,185,129,0.12) 100%);
+  border: 1.5px solid rgba(52,211,153,0.55);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 0 24px rgba(52,211,153,0.22), inset 0 1px rgba(255,255,255,0.07);
+  cursor: pointer;
+  transition: border-color .2s, box-shadow .2s;
+  overflow: visible;
+}
+.vc-call-btn:hover:not(:disabled) {
+  border-color: rgba(52,211,153,0.85);
+  box-shadow: 0 0 36px rgba(52,211,153,0.45);
+}
+.vc-call-btn:disabled {
+  opacity: .45;
+  cursor: not-allowed;
+}
+.vc-call-icon {
+  font-size: 1.35rem;
+  line-height: 1;
+}
+.vc-call-label {
+  font-size: .42rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: rgba(52,211,153,0.7);
+  white-space: nowrap;
+}
+
+/* ── Active call container (status + end-call side by side) ──────────────── */
+.vc-active-call {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .45rem;
+}
+
+/* ── Status button (shown while call is active) ─────────────────────────── */
+.vc-status-btn {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .14rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 1.1rem;
+  background: rgba(4,10,32,0.92);
+  border: 1px solid rgba(103,232,249,0.3);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 20px rgba(103,232,249,0.1), inset 0 1px rgba(255,255,255,0.05);
+  overflow: visible;
+}
+.vc-status-btn.listening {
+  background: rgba(4,20,12,0.95);
+  border-color: rgba(52,211,153,0.7);
+  box-shadow: 0 0 28px rgba(52,211,153,0.3);
+}
+.vc-status-btn.processing {
+  background: rgba(6,18,42,0.95);
+  border-color: rgba(167,139,250,0.7);
+  box-shadow: 0 0 28px rgba(167,139,250,0.3);
+}
+.vc-status-btn.speaking {
+  background: rgba(24,10,50,0.95);
+  border-color: rgba(192,132,252,0.75);
+  box-shadow: 0 0 28px rgba(192,132,252,0.35);
+}
+.vc-status-btn.connecting {
+  border-color: rgba(251,191,36,0.6);
+  box-shadow: 0 0 18px rgba(251,191,36,0.2);
+}
+.vc-status-btn.error {
+  border-color: rgba(248,113,113,0.55);
+  box-shadow: 0 0 18px rgba(248,113,113,0.2);
+}
+.vc-status-btn .vc-mic-label {
+  font-size: .4rem;
+  font-weight: 700;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: rgba(103,232,249,0.5);
+  white-space: nowrap;
+}
+.vc-status-btn.listening  .vc-mic-label { color: rgba(52,211,153,0.7); }
+.vc-status-btn.processing .vc-mic-label { color: rgba(167,139,250,0.7); }
+.vc-status-btn.speaking   .vc-mic-label { color: rgba(192,132,252,0.7); }
+
+/* ── End call button ─────────────────────────────────────────────────────── */
+.vc-end-call-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .18rem;
+  width: 3.75rem;
+  height: 3.75rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(239,68,68,0.22) 0%, rgba(185,28,28,0.16) 100%);
+  border: 1.5px solid rgba(248,113,113,0.6);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 0 24px rgba(248,113,113,0.25), inset 0 1px rgba(255,255,255,0.06);
+  cursor: pointer;
+  transition: border-color .2s, box-shadow .2s;
+}
+.vc-end-call-btn:hover {
+  border-color: rgba(248,113,113,0.9);
+  box-shadow: 0 0 40px rgba(248,113,113,0.5);
+}
+.vc-end-call-btn .vc-call-icon { font-size: 1.3rem; }
+.vc-end-call-btn .vc-call-label { color: rgba(248,113,113,0.75); }
+
+/* ── Voice badge (read-only info in settings) ────────────────────────────── */
+.vc-voice-badge {
+  font-size: .68rem;
+  font-weight: 600;
+  color: rgba(103,232,249,0.7);
+  background: rgba(103,232,249,0.07);
+  border: 1px solid rgba(103,232,249,0.2);
+  border-radius: .5rem;
+  padding: .18rem .6rem;
+  letter-spacing: .04em;
+}
+
 /* ── Mobile adjustments ──────────────────────────────────────────────────── */
 @media (max-width: 480px) {
   .vc-mic-wrap {
