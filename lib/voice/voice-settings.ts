@@ -33,7 +33,14 @@ export function loadVoiceSettings(): VoiceSettings {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return { ...DEFAULT_SETTINGS };
-    return { ...DEFAULT_SETTINGS, ...JSON.parse(raw) };
+    const stored = JSON.parse(raw) as Partial<VoiceSettings>;
+    // Migrate: if the stored value pre-dates style/modelVersion fields,
+    // drop it entirely so the new Abhinav/Falcon defaults take effect.
+    if (!stored.style || !stored.modelVersion) {
+      localStorage.removeItem(STORAGE_KEY);
+      return { ...DEFAULT_SETTINGS };
+    }
+    return { ...DEFAULT_SETTINGS, ...stored };
   } catch {
     return { ...DEFAULT_SETTINGS };
   }

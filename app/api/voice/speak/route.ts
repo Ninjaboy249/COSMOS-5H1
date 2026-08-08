@@ -57,7 +57,10 @@ export async function POST(req: NextRequest) {
   const voiceId = body.voiceId ?? DEFAULT_VOICE_ID;
   const style = body.style ?? "Conversational";
   const modelVersion = body.modelVersion ?? "GEN2";
-  const rate = typeof body.rate === "number" ? Math.max(0.5, Math.min(2.0, body.rate)) : 1.0;
+  // Murf rate is a signed integer percentage: 0 = normal, -50 = slowest, +50 = fastest.
+  // Our UI stores rate as a float multiplier (0.5–2.0), so convert: (uiRate - 1) * 100.
+  const uiRate = typeof body.rate === "number" ? body.rate : 1.0;
+  const murfRate = Math.round(Math.max(-50, Math.min(50, (uiRate - 1.0) * 100)));
   const volume = typeof body.volume === "number" ? Math.max(0, Math.min(100, body.volume)) : 80;
 
   // ── Call Murf AI ──────────────────────────────────────────────────────────
@@ -73,7 +76,7 @@ export async function POST(req: NextRequest) {
         style,
         modelVersion,
         text: truncated,
-        rate,
+        rate: murfRate,
         volume,
         audioDuration: 0,
         encodeAsBase64: false,
@@ -87,7 +90,8 @@ export async function POST(req: NextRequest) {
 
     if (!murfRes.ok) {
       const errText = await murfRes.text().catch(() => "");
-      console.error("[Voice/Murf] API error", murfRes.status, errText.slice(0, 200));
+      console.error("[Voice/Murf] API error", murfRes.status, errText.slice(0, 400));
+      console.error("[Voice/Murf] Request payload:", JSON.stringify({ voiceId, style, modelVersion, murfRate, volume }));
       // Fall back gracefully — don't crash the app
       return NextResponse.json(
         { fallback: true, text: truncated, reason: `Murf error ${murfRes.status}` },
