@@ -21,6 +21,7 @@ import { useVoiceSpeech } from "@/hooks/useVoiceSpeech";
 import { useLiveKitVoice } from "@/hooks/useLiveKitVoice";
 import { routeVoiceCommand, type VoiceCommand } from "@/lib/voice/command-router";
 import { loadVoiceSettings, saveVoiceSettings, type VoiceSettings } from "@/lib/voice/voice-settings";
+import { unlockAudio } from "@/hooks/useVoiceSpeech";
 
 // ── Call state machine ─────────────────────────────────────────────────────────
 
@@ -258,6 +259,10 @@ export default function VoiceCommander({ onOpenAI, onScrollToSolar }: VoiceComma
 
   // ── Start call ─────────────────────────────────────────────────────────────
   const startCall = useCallback(async () => {
+    // Unlock AudioContext immediately on the user gesture (before any await)
+    // This is required for Chrome/Safari autoplay policy
+    unlockAudio();
+
     const s = settingsRef.current;
     if (!s) return;
     callActiveRef.current = true;
