@@ -257,7 +257,7 @@ export default function VoiceCommander({ onOpenAI, onScrollToSolar }: VoiceComma
     setResponse(null);
     setShowBanner(false);
 
-    const greeting = "Hello! I'm Abhinav, your COSMOS space assistant. Ask me anything about the universe, or say a planet name to explore it.";
+    const greeting = "Hello! I'm COSMOS-5H1, your space assistant. Ask me anything about the universe, or say a planet name to explore it.";
     showMessage(greeting);
     setCallState("speaking");
     await speak(greeting, s);
@@ -398,7 +398,7 @@ export default function VoiceCommander({ onOpenAI, onScrollToSolar }: VoiceComma
           >
             <span className="vc-call-icon">📞</span>
             <span className="vc-call-label">
-              {isSupported ? "Call Abhinav" : "Not supported"}
+              {isSupported ? "Call COSMOS-5H1" : "Not supported"}
             </span>
           </motion.button>
         ) : (
@@ -513,7 +513,7 @@ export default function VoiceCommander({ onOpenAI, onScrollToSolar }: VoiceComma
               {/* Voice info (read-only badge) */}
               <div className="vc-setting-row" style={{ marginTop: "0.25rem" }}>
                 <span className="vc-setting-label">Voice</span>
-                <span className="vc-voice-badge">Abhinav · Falcon</span>
+                <span className="vc-voice-badge">COSMOS-5H1</span>
               </div>
             </div>
 

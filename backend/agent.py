@@ -44,6 +44,11 @@ Keep responses short — two to four sentences unless the user asks for more det
 Do not use markdown, bullet points, emojis, or symbols in your spoken responses.
 If you don't know something, say so honestly."""
 
+FIRST_TURN_GREETING = (
+    "Hello! I'm COSMOS-5H1, your space science assistant. "
+    "Ask me anything about the universe, or say a planet name to explore it."
+)
+
 # ── Agent ─────────────────────────────────────────────────────────────────────
 
 class CosmosAssistant(Agent):
@@ -77,12 +82,13 @@ async def cosmos_agent(ctx: JobContext):
         # Requires GOOGLE_API_KEY in .env.local.
         llm=google.LLM(model="gemini-2.0-flash-lite"),
 
-        # ── TTS — Murf Falcon · Abhinav ───────────────────────────────────────
+        # ── TTS — Murf Falcon 2 · Abhinav ────────────────────────────────────
         # Requires MURF_API_KEY in .env.local.
-        # voice: Abhinav (en-IN), style: Conversational, model: Falcon (GEN2)
+        # model: falcon-2, voice: Abhinav (en-IN), style: Conversation
         tts=murf.TTS(
+            model="falcon-2",
             voice="Abhinav",
-            style="Conversational",
+            style="Conversation",
             tokenizer=tokenize.basic.SentenceTokenizer(min_sentence_len=2),
             text_pacing=True,
         ),
@@ -112,6 +118,9 @@ async def cosmos_agent(ctx: JobContext):
     )
 
     await ctx.connect()
+
+    # Greet the user as soon as the session is live
+    await session.say(FIRST_TURN_GREETING, allow_interruptions=True)
 
 
 # ── Entry point ───────────────────────────────────────────────────────────────
