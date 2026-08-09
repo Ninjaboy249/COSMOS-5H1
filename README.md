@@ -20,6 +20,7 @@
   <img src="https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white" />
   <img src="https://img.shields.io/badge/OpenAI-GPT--4o--mini-412991?style=for-the-badge&logo=openai&logoColor=white" />
   <img src="https://img.shields.io/badge/NASA%20APIs-6%20Integrated-FC3D21?style=for-the-badge&logo=nasa&logoColor=white" />
+  <img src="https://img.shields.io/badge/Live%20APIs-9%20Sources-f59e0b?style=for-the-badge" />
   <img src="https://img.shields.io/badge/100%25-Offline%20AI-34d399?style=for-the-badge" />
 </p>
 
@@ -80,6 +81,9 @@ real-time NASA data + offline AI intelligence + 3D interactive exploration + phy
 ║  📸 APOD                →  Daily astronomy photo                 ║
 ║  ☄  NEO Tracker         →  Near-Earth object monitor             ║
 ║  🎥 Mars Rover Gallery  →  Latest Perseverance photos            ║
+║  🛸 Launch Tracker      →  Upcoming & recent launches (LL2)      ║
+║  🚀 SpaceX Tracker      →  Missions + rockets (SpaceX API v4)    ║
+║  🔭 Exoplanet Archive   →  NASA Exoplanet Archive TAP            ║
 ║  🪐 Cosmic Compare      →  AI-powered side-by-side comparison    ║
 ║  🛸 Mission Planner     →  Full AI mission design + risk matrix  ║
 ║  ⚛️  Physics & Mission Lab → 8 real-equation simulators          ║
@@ -97,6 +101,9 @@ real-time NASA data + offline AI intelligence + 3D interactive exploration + phy
 | 🪐 **Solar System** | Interactive CSS-animated solar system with clickable planets opening scientific detail modals |
 | 🚀 **Space Explorer** | 20 premium glassmorphism cards navigating to full detail pages (stats, timeline, missions, gallery, AI chat) |
 | 📡 **Live NASA Data** | APOD, Mars Rover Photos, NeoWs, DONKI Space Weather, EPIC Earth Imagery, ISS Position — all with offline fallback |
+| 🛸 **Launch Tracker** | Upcoming & recent global launches via Launch Library 2 — with static fallback |
+| 🚀 **SpaceX Tracker** | Recent launches, upcoming missions, rocket specs via SpaceX API v4 — with static fallback |
+| 🔭 **Exoplanet Archive** | Habitable-zone & notable exoplanets from NASA Exoplanet Archive TAP — with static fallback |
 | 🪐 **Cosmic Compare** | AI-powered side-by-side celestial body comparison with OpenAI insights panel and offline badge |
 | 🛸 **Mission Planner** | Full mission design: launch windows, orbital mechanics, fuel/ΔV, crew, payload, cost, risk, timeline |
 | ⚛️ **Physics Lab** | 8 real-equation simulators: Tsiolkovsky rocket, Kepler orbit, Schwarzschild black hole, asteroid impact and more |
@@ -195,7 +202,9 @@ data/knowledge/
 └── faq.json                ← 54 general space Q&As
 ```
 
-### NASA API Integrations (with Offline Fallback)
+### Live Data Integrations (with Offline Fallback)
+
+#### NASA APIs (require `NASA_API_KEY` or fall back to `DEMO_KEY`)
 
 | API | Module | Fallback |
 |---|---|---|
@@ -205,6 +214,14 @@ data/knowledge/
 | DONKI Space Weather | `SpaceWeatherWidget` | 2 sample solar events |
 | NASA EPIC (Earth imagery) | `EpicWidget` | Earth planet image |
 | Open Notify ISS | `IssWidget` | Default ISS position, refreshes every 10s |
+
+#### Third-party APIs (free, no key required)
+
+| API | Source | Module | Fallback |
+|---|---|---|---|
+| Upcoming & recent launches | Launch Library 2 (`ll.thespacedevs.com/2.2.0`) | `LaunchesWidget` | 2 static launches |
+| SpaceX launches + rockets | SpaceX REST API v4 (`api.spacexdata.com/v4`) | `SpaceXWidget` | Falcon 9, Starship entries |
+| Exoplanet catalogue | NASA Exoplanet Archive TAP (`exoplanetarchive.ipac.caltech.edu`) | `ExoplanetWidget` | 10 curated notable exoplanets |
 
 ---
 
@@ -355,6 +372,18 @@ Phase 6 — Polish & Bug Fixes
   Bob → Navbar + homepage: added Morse Code entry points
   Bob → TypeScript zero-error validation on every change
   Bob → Committed and pushed all changes to GitHub
+
+Phase 7 — Live Data Labels & Voice Bug Fix
+  Bob → Diagnosed stale closure bug in useVoiceRecognition.ts:
+         onend captured `state` at call time (always "idle"),
+         so setState("idle") never fired → mic stuck after each session
+  Bob → Fixed with functional setState updater: setState(prev => ...)
+  Bob → Corrected source labels on 3 non-NASA live widgets:
+         LaunchesWidget  → "Launch Library 2"
+         SpaceXWidget    → "SpaceX API v4"
+         ExoplanetWidget → "NASA Exoplanet Archive"
+  Bob → Documented all 3 third-party APIs in README
+  Bob → TypeScript zero-error validated, committed, pushed to GitHub
 ```
 
 ### Bob Capabilities Used
@@ -502,7 +531,7 @@ COSMOS-5H1/
 | **Physics** | Canvas 2D API + real equations (Tsiolkovsky, Kepler, Schwarzschild, Melosh) |
 | **Audio** | Web Audio API (Morse CW tones, 600 Hz, attack/decay envelope) |
 | **Communication** | ITU-R M.1677-1 Morse Code engine (encode / decode / timing / symbols) |
-| **APIs** | NASA APOD, Mars Rover, NeoWs, DONKI, EPIC, Open Notify |
+| **APIs** | NASA (APOD, Mars Rover, NeoWs, DONKI, EPIC, ISS) · Launch Library 2 · SpaceX API v4 · NASA Exoplanet Archive |
 | **Voice** | Web Speech API |
 | **Icons** | Lucide React, Phosphor Icons |
 | **Dev Tool** | IBM Bob (100% of code written via agent) |
@@ -523,9 +552,9 @@ COSMOS-5H1/
 |---|---|---|
 | GPT-4o-mini + offline TF-IDF fallback | AI side-by-side comparison with online/offline badge | Full mission design with animated risk gauge |
 
-| ⚛️ Physics Lab | 📡 Morse Code | 📡 NASA Live Data |
+| ⚛️ Physics Lab | 📡 Morse Code | 🌐 Live Data |
 |---|---|---|
-| 8 real-equation Canvas simulators | 7-panel hub: audio, flash, practice, challenge, space sim | APOD, Mars Rover, NeoWs, ISS tracker |
+| 8 real-equation Canvas simulators | 7-panel hub: audio, flash, practice, challenge, space sim | NASA + Launch Library 2 + SpaceX API + Exoplanet Archive |
 
 </div>
 
