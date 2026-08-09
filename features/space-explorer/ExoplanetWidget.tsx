@@ -55,7 +55,7 @@ export default function ExoplanetWidget({ accent }: Props) {
         <div className="flex items-center gap-2">
           <span className="text-lg">🔭</span>
           <span className="text-sm font-bold" style={{ color: accent, textShadow: `0 0 12px ${accent}` }}>Exoplanet Archive</span>
-          <span className="text-white/40 text-xs">NASA TAP</span>
+          <span className="text-white/40 text-xs">NASA Exoplanet Archive</span>
         </div>
         <div className="flex gap-1.5">
           {([["all", "All"], ["habitable", "Habitable Zone"]] as const).map(([id, label]) => (

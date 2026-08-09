@@ -71,7 +71,7 @@ export default function SpaceXWidget({ accent }: Props) {
         <div className="flex items-center gap-2">
           <span className="text-lg">🚀</span>
           <span className="text-sm font-bold" style={{ color: accent, textShadow: `0 0 12px ${accent}` }}>SpaceX</span>
-          <span className="text-white/40 text-xs">Mission Tracker</span>
+          <span className="text-white/40 text-xs">SpaceX API v4</span>
         </div>
         <div className="flex gap-1.5">
           <TabBtn id="recent" label="Recent" />

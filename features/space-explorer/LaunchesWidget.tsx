@@ -56,7 +56,7 @@ export default function LaunchesWidget({ accent }: Props) {
         <div className="flex items-center gap-2">
           <span className="text-lg">🛸</span>
           <span className="text-sm font-bold" style={{ color: accent, textShadow: `0 0 12px ${accent}` }}>Launch Tracker</span>
-          <span className="text-white/40 text-xs">Global Launches</span>
+          <span className="text-white/40 text-xs">Launch Library 2</span>
         </div>
         <div className="flex gap-1.5">
           {(["upcoming", "recent"] as const).map((t) => (
