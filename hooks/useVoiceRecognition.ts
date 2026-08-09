@@ -110,9 +110,7 @@ export function useVoiceRecognition({
     };
 
     recognition.onend = () => {
-      if (state === "listening") {
-        setState("idle");
-      }
+      setState((prev) => (prev === "listening" ? "idle" : prev));
     };
 
     recognitionRef.current = recognition;
