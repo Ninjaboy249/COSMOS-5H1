@@ -293,9 +293,9 @@ Destinations: Moon, Mars, Venus, Mercury, Jupiter, Saturn, Europa
 ```
 ┌───────────────────────────────────────────────────────┐
 │                                                       │
-│   Challenge Theme:  AI FOR GOOD — EDUCATION           │
+│   Challenge:   August Challenge                       │
 │                                                       │
-│   Sub-theme:        SPACE SCIENCE & EXPLORATION       │
+│   Theme:       Advance Space Exploration with AI      │
 │                                                       │
 │   Mission:  Make space knowledge accessible to        │
 │             everyone, everywhere, offline, free.      │
@@ -305,7 +305,7 @@ Destinations: Moon, Mars, Venus, Mercury, Jupiter, Saturn, Europa
 
 </div>
 
-COSMOS-5H1 addresses the **AI for Education** theme by:
+COSMOS-5H1 addresses the **Advance Space Exploration with AI** theme by:
 
 - 🌍 **Universal Access** — Works completely offline; no subscription, no internet dependency after load
 - 📚 **Depth over Simplicity** — 28 curated knowledge files with 100+ FAQs per celestial body
