@@ -1,15 +1,13 @@
 /**
  * COSMOS-5H1 — AI Abstraction Layer
- * Automatically routes between:
- *   Offline: Local TF-IDF RAG (always available, zero cost)
- *   Online:  OpenAI API (when OPENAI_API_KEY is set)
- *
- * The caller never needs to know which mode is active.
+ * Routes requests to IBM Granite 3.3 via local Ollama backend,
+ * falling back to the offline TF-IDF RAG engine when unavailable.
+ * No API keys required.
  */
 
 import { env } from "@/lib/env";
 
-export type AIMode = "offline" | "openai";
+export type AIMode = "granite" | "offline";
 
 export interface AIMessage {
   role: "user" | "assistant" | "system";
@@ -22,50 +20,23 @@ export interface AIRouterResponse {
   model: string;
 }
 
-// ── System prompt for OpenAI (space-domain context) ──────────────────────────
-const SYSTEM_PROMPT = `You are COSMOS AI, an expert space science assistant for the COSMOS-5H1 platform.
-You have deep knowledge of:
-- All planets, moons, asteroids, comets, and dwarf planets in our solar system
-- Stars, galaxies, nebulae, black holes, and deep space objects
-- NASA, ESA, ISRO, SpaceX, and other space agency missions
-- Space history, astronauts, rockets, and spacecraft
-- Astrophysics, orbital mechanics, and space weather
-- Exoplanets and the search for extraterrestrial life
-
-Guidelines:
-- Answer concisely and accurately with scientific detail
-- Use markdown formatting for structure (bold, lists, headers)
-- Always include interesting facts when discussing objects
-- For navigation requests, mention the relevant section of COSMOS-5H1
-- Never fabricate data — if unsure, say so
-- Keep responses under 400 words unless asked for detail`;
-
-// ── OpenAI chat completion ────────────────────────────────────────────────────
-async function callOpenAI(messages: AIMessage[]): Promise<string> {
-  if (!env.OPENAI_API_KEY) throw new Error("No OpenAI key");
-
-  const res = await fetch("https://api.openai.com/v1/chat/completions", {
+// ── IBM Granite 3.3 via local Ollama backend ──────────────────────────────────
+async function callGranite(
+  message: string,
+  history: AIMessage[]
+): Promise<string> {
+  const res = await fetch(`${env.BACKEND_URL}/api/chat`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${env.OPENAI_API_KEY}`,
-    },
-    body: JSON.stringify({
-      model: env.OPENAI_MODEL,
-      messages: [{ role: "system", content: SYSTEM_PROMPT }, ...messages],
-      max_tokens: 600,
-      temperature: 0.7,
-    }),
-    signal: AbortSignal.timeout(15_000),
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ message, history: history.slice(-6) }),
+    signal: AbortSignal.timeout(20_000),
   });
 
-  if (!res.ok) {
-    const err = await res.json().catch(() => ({}));
-    throw new Error(`OpenAI error ${res.status}: ${JSON.stringify(err)}`);
-  }
-
+  if (!res.ok) throw new Error(`Granite backend ${res.status}`);
   const data = await res.json();
-  return data.choices?.[0]?.message?.content ?? "I couldn't generate a response.";
+  const answer = (data.answer ?? "").trim();
+  if (!answer) throw new Error("Granite backend returned empty response");
+  return answer;
 }
 
 // ── Offline RAG call (internal Next.js API route) ─────────────────────────────
@@ -88,17 +59,12 @@ export async function routeAI(
   message: string,
   history: AIMessage[] = []
 ): Promise<AIRouterResponse> {
-  // Try OpenAI first if key is available
-  if (env.hasOpenAI) {
-    try {
-      const answer = await callOpenAI([
-        ...history,
-        { role: "user", content: message },
-      ]);
-      return { answer, mode: "openai", model: env.OPENAI_MODEL };
-    } catch (err) {
-      console.warn("[AI Router] OpenAI failed, falling back to offline RAG:", err);
-    }
+  // Try IBM Granite local backend first
+  try {
+    const answer = await callGranite(message, history);
+    return { answer, mode: "granite", model: "granite3.3:2b" };
+  } catch (err) {
+    console.warn("[AI Router] Granite backend unavailable, falling back to offline RAG:", err);
   }
 
   // Always-available offline fallback
@@ -114,7 +80,7 @@ export async function routeAI(
   }
 }
 
-/** Returns which AI mode is currently active */
+/** Returns which AI mode is currently active (optimistic — assumes backend running) */
 export function getAIMode(): AIMode {
-  return env.hasOpenAI ? "openai" : "offline";
+  return "granite";
 }

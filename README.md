@@ -14,7 +14,7 @@
 <br/>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/IBM_Granite_3.3-Primary%20AI-0f62fe?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/IBM_Granite_3.3-100%25%20Local-0f62fe?style=for-the-badge&logo=ibm&logoColor=white" />
   <img src="https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js&logoColor=white" />
   <img src="https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black" />
   <img src="https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white" />
@@ -24,8 +24,8 @@
 </p>
 
 <p align="center">
-  <b>An AI-powered space exploration platform using IBM Granite 3.3 as primary AI, local TF-IDF retrieval, NASA APIs,<br/>
-  Physics simulations, Morse Code communication, 3D visualization, and a 28-file knowledge base<br/>
+  <b>An AI-powered space exploration platform running IBM Granite 3.3 entirely locally via Ollama — no API keys needed.<br/>
+  NASA APIs, Physics simulations, Morse Code communication, 3D visualization, and a 28-file knowledge base<br/>
   — built entirely with IBM Bob.</b>
 </p>
 
@@ -96,7 +96,7 @@ real-time NASA data + offline AI intelligence + 3D interactive exploration + phy
 
 | Feature | Description |
 |---|---|
-| 🧠 **Triple AI** | IBM Granite 3.3 (Groq) as primary; falls back to OpenAI GPT-4o-mini; then offline TF-IDF RAG — no internet required |
+| 🧠 **IBM Granite AI** | IBM Granite 3.3 runs locally via Ollama — no API keys, no cloud calls, full offline intelligence |
 | 🪐 **Solar System** | Interactive CSS-animated solar system with clickable planets opening scientific detail modals |
 | 🚀 **Space Explorer** | 20 premium glassmorphism cards navigating to full detail pages (stats, timeline, missions, gallery, AI chat) |
 | 📡 **Live NASA Data** | APOD, Mars Rover Photos, NeoWs, DONKI Space Weather, EPIC Earth Imagery, ISS Position — all with offline fallback |
@@ -118,9 +118,9 @@ real-time NASA data + offline AI intelligence + 3D interactive exploration + phy
 
 ## 🤖 AI Approach & Architecture
 
-### Triple AI Engine — IBM Granite · OpenAI · Offline
+### IBM Granite 3.3 — 100% Local, Zero API Keys
 
-COSMOS-5H1 implements **three AI tiers** that cascade gracefully:
+COSMOS-5H1 runs IBM Granite 3.3 entirely on your machine via Ollama:
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
@@ -135,28 +135,22 @@ COSMOS-5H1 implements **three AI tiers** that cascade gracefully:
 │   │  Detector   │     │  Retriever (28 files) │                  │
 │   └─────────────┘     └──────────┬───────────┘                  │
 │                                  │                               │
-│        ┌─────────────────────────┴──────────────────┐           │
-│        │          GROQ_API_KEY present?              │           │
-│        ├───────────────────┬────────────────────────┤           │
-│   YES  │                   │                   NO   │           │
-│        ▼                   │                        │           │
-│   ┌──────────────┐    OPENAI_API_KEY present?        │           │
-│   │ IBM Granite  │    ┌────┴──────────┐              │           │
-│   │  3.3 via     │    │  YES  │  NO  │              │           │
-│   │  Groq cloud  │    ▼       ▼       ▼              │           │
-│   │ (PRIMARY AI) │  ┌──────────────────────────┐     │           │
-│   └──────────────┘  │ OpenAI GPT-4o-mini       │     │           │
-│        │            │ (context-injected)       │     │           │
-│        │            └──────────────────────────┘     │           │
-│        │                          │                  │           │
-│        └──────────────┬───────────┘                  │           │
-│                       │       ┌──────────────────────┘           │
-│                       │       │ Offline TF-IDF RAG               │
-│                       │       │ (zero external deps)             │
-│                       │       └──────────────────────            │
-│                       ▼                                          │
+│                                  ▼                               │
+│              ┌───────────────────────────────────────┐          │
+│              │  Local IBM Granite 3.3 backend         │          │
+│              │  backend/main.py → Ollama → granite3.3 │          │
+│              │  No API key · No cloud · No cost        │          │
+│              └──────────────────┬────────────────────┘          │
+│                                 │  backend unreachable?          │
+│                                 ▼                                │
+│              ┌───────────────────────────────────────┐          │
+│              │  Offline TF-IDF RAG                    │          │
+│              │  (zero external dependencies)          │          │
+│              └───────────────────────────────────────┘          │
+│                                 │                                │
+│                                 ▼                                │
 │        Streamed Answer + Follow-ups + Source badge               │
-│        🔷 IBM Granite 3.3 · ✨ OpenAI GPT · 📡 Offline          │
+│        🔷 IBM Granite 3.3 · Local  OR  📡 Offline TF-IDF        │
 │                                                                  │
 └─────────────────────────────────────────────────────────────────┘
 ```
@@ -169,9 +163,9 @@ COSMOS-5H1 implements **three AI tiers** that cascade gracefully:
 | **IntentService** | `lib/cosmos-ai/intent-service.ts` | Classifies 17 intents: planet, mission, navigation, comparison, greeting, space weather… |
 | **ResponseGenerator** | `lib/cosmos-ai/response-generator.ts` | Converts retrieved docs → natural language: overviews, attribute cards, comparison tables |
 | **ConversationMemory** | `lib/cosmos-ai/conversation-memory.ts` | Session-scoped memory: last entity context, search history, pronoun resolution |
-| **AI Chat API** | `app/api/cosmos-ai/route.ts` | Orchestrates TF-IDF retrieval → **Granite 3.3 (Groq)** → OpenAI GPT → offline fallback |
-| **Compare AI API** | `app/api/cosmos-ai/compare/route.ts` | Dedicated endpoint for Cosmic Compare — same three-tier priority |
-| **Mission Planner API** | `app/api/mission-planner/route.ts` | AI-computed launch windows, ΔV, fuel, crew, risk assessment — Granite → OpenAI → offline |
+| **AI Chat API** | `app/api/cosmos-ai/route.ts` | TF-IDF retrieval → IBM Granite 3.3 (local) → offline TF-IDF fallback |
+| **Compare AI API** | `app/api/cosmos-ai/compare/route.ts` | Cosmic Compare — IBM Granite 3.3 local → offline fallback |
+| **Mission Planner API** | `app/api/mission-planner/route.ts` | AI mission planning — IBM Granite 3.3 local → deterministic offline engine |
 
 ### Knowledge Base — 28 Scientific JSON Files
 
@@ -438,42 +432,22 @@ npm run dev
 
 Open **[http://localhost:3000](http://localhost:3000)** — no API keys needed, works fully offline.
 
-### Primary AI: IBM Granite 3.3 via Groq (recommended)
-
-```env
-# .env.local
-GROQ_API_KEY=gsk_...   # Free at console.groq.com — IBM Granite 3.3 8B Instruct via Groq cloud
-```
-
-When `GROQ_API_KEY` is present, all three AI endpoints (chat, compare, mission planner) run **IBM Granite 3.3** via Groq's cloud inference API. The chat panel displays **🔷 IBM Granite 3.3 · Online**.
-
-### Optional: OpenAI GPT-4o-mini (secondary AI fallback)
-
-```env
-# .env.local
-OPENAI_API_KEY=sk-...   # Used only when GROQ_API_KEY is absent
-```
-
-When `OPENAI_API_KEY` is present (and `GROQ_API_KEY` is not), COSMOS AI uses OpenAI GPT-4o-mini. Panel shows **✨ OpenAI GPT · Online**.
-
-### Full offline (no API keys needed)
-
-When neither key is set, the system runs the complete TF-IDF RAG engine with zero external calls. All 28 knowledge files remain fully searchable.
-
-### Optional: IBM Granite Offline Backend (Ollama)
-
-The `backend/main.py` service runs IBM Granite locally via Ollama — useful when you want a fully air-gapped setup with no cloud calls.
+### IBM Granite 3.3 — runs locally, no API key
 
 ```bash
-# Install Ollama → https://ollama.ai
+# 1 · Install Ollama → https://ollama.ai
 ollama pull granite3.3:2b
 
-# Start Python backend
+# 2 · Start the Python backend
 cd backend
 pip install -r requirements.txt
 python main.py
-# → runs at http://localhost:8000
+# → http://localhost:8000
 ```
+
+That's it. The Next.js app connects to `http://localhost:8000` automatically. The chat panel shows **🔷 IBM Granite 3.3 · Local** when the backend is running.
+
+If the backend is not running, every AI call falls back silently to the **offline TF-IDF RAG engine** — 28 knowledge files, zero external calls, still fully functional.
 
 ---
 
@@ -548,9 +522,9 @@ COSMOS-5H1/
 | **Animation** | Framer Motion 12, GSAP 3 |
 | **3D** | React Three Fiber, Drei, Three.js |
 | **AI Engine** | Custom TF-IDF + RAG pipeline (zero external deps) |
-| **AI Primary** | IBM Granite 3.3 via Groq cloud (`GROQ_API_KEY`) |
-| **AI Secondary** | OpenAI GPT-4o-mini (fallback when `GROQ_API_KEY` absent) |
-| **AI Backend** | IBM Granite (Ollama), LangChain, ChromaDB — offline option |
+| **AI Model** | IBM Granite 3.3 via local Ollama (`backend/main.py`) — no API key |
+| **AI Fallback** | Offline TF-IDF RAG — works without backend running |
+| **AI Backend** | FastAPI + LangChain + ChromaDB + IBM Granite 3.3 (Ollama) |
 | **Physics** | Canvas 2D API + real equations (Tsiolkovsky, Kepler, Schwarzschild, Melosh) |
 | **Audio** | Web Audio API (Morse CW tones, 600 Hz, attack/decay envelope) |
 | **Communication** | ITU-R M.1677-1 Morse Code engine (encode / decode / timing / symbols) |
@@ -586,23 +560,16 @@ COSMOS-5H1/
 ## 🔑 Environment Variables (Optional)
 
 ```env
-# .env.local
+# .env.local  (all optional — the app works with zero keys)
 
-# ── PRIMARY: IBM Granite 3.3 via Groq cloud (free) ────────────────────────────
-# Get key at https://console.groq.com — enables Granite 3.3 8B Instruct
-GROQ_API_KEY=gsk_...
-
-# ── SECONDARY: OpenAI GPT-4o-mini (fallback when Groq key absent) ─────────────
-OPENAI_API_KEY=sk-...
-
-# ── IBM Granite offline backend (local Ollama, fully air-gapped) ──────────────
+# IBM Granite local backend URL (default: http://localhost:8000)
 NEXT_PUBLIC_BACKEND_URL=http://localhost:8000
 
-# ── Higher NASA API rate limits (default DEMO_KEY works for demos) ────────────
+# Higher NASA API rate limits (DEMO_KEY works for demos)
 NASA_API_KEY=your_key_here
 ```
 
-All three are optional. The core knowledge and simulation experience remains available without them; live API data and cloud AI features require connectivity.
+No API keys are required. Start Ollama + `python main.py` and the full IBM Granite AI is live.
 
 ---
 

@@ -1,7 +1,8 @@
 /**
  * COSMOS-5H1 — /api/mission-planner
  * POST — AI-powered space mission planning
- * Priority: IBM Granite 3.3 (Groq) → OpenAI → deterministic offline engine.
+ * Uses IBM Granite 3.3 via local Ollama backend; falls back to deterministic offline engine.
+ * No API keys required.
  */
 
 import { NextRequest, NextResponse } from "next/server";
@@ -10,19 +11,14 @@ import type { MissionInput, MissionPlan } from "@/lib/mission-planner-types";
 
 export type { MissionInput, MissionPlan };
 
-// ── Shared mission prompt ─────────────────────────────────────────────────────
+// ── IBM Granite 3.3 via local Ollama backend ──────────────────────────────────
 
-function buildMissionPrompt(input: MissionInput): string {
-  return `You are COSMOS Mission AI, an expert space mission planner.
+async function planWithGranite(input: MissionInput): Promise<MissionPlan> {
+  const prompt = `Plan a ${input.missionType} mission to ${input.destination}.
+Crew: ${input.crew} astronauts. Duration: ${input.duration} days.
+Objectives: ${input.objectives.join(", ")}.${input.budget ? ` Budget: ${input.budget}.` : ""}
 
-Plan a ${input.missionType} mission to ${input.destination} with these parameters:
-- Crew: ${input.crew} astronauts
-- Duration: ${input.duration} days
-- Mission type: ${input.missionType}
-- Objectives: ${input.objectives.join(", ")}
-${input.budget ? `- Budget target: ${input.budget}` : ""}
-
-Return ONLY a JSON object matching this exact structure (no markdown, no explanation):
+Return ONLY a JSON object (no markdown fences):
 {
   "title": "Mission name",
   "launchWindow": {"date": "Month Year", "reason": "why optimal", "backupDate": "backup window"},
@@ -32,99 +28,28 @@ Return ONLY a JSON object matching this exact structure (no markdown, no explana
   "crew": {"size": ${input.crew}, "roles": ["role1","role2"], "training": "duration and type"},
   "payload": {"primary": "primary payload", "secondary": "secondary", "totalMass": "kg"},
   "timeline": [{"phase": "phase name", "duration": "weeks/months", "description": "what happens"}],
-  "risk": {"score": 0-10, "level": "Low/Medium/High/Critical", "factors": ["risk1"], "mitigations": ["mitigation1"]},
+  "risk": {"score": 7, "level": "High", "factors": ["risk1"], "mitigations": ["mitigation1"]},
   "cost": {"estimated": "$X billion", "breakdown": [{"item": "item", "cost": "$X billion"}]},
   "backup": {"plan": "backup approach", "contingencies": ["contingency1"]},
   "summary": "2-3 sentence executive summary"
 }`;
-}
 
-// ── IBM Granite 3.3 via watsonx.ai (primary AI) ──────────────────────────────
-
-async function planWithGranite(input: MissionInput): Promise<MissionPlan> {
-  const prompt = buildMissionPrompt(input);
-  const url = `https://${env.WATSONX_REGION}.ml.cloud.ibm.com/ml/v1/text/generation?version=2023-05-29`;
-
-  const res = await fetch(url, {
+  const res = await fetch(`${env.BACKEND_URL}/api/chat`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-      Authorization: `Bearer ${env.WATSONX_API_KEY}`,
-    },
-    body: JSON.stringify({
-      model_id: env.WATSONX_MODEL,
-      project_id: env.WATSONX_PROJECT_ID,
-      input: `${prompt}\n\nRespond with ONLY valid JSON, no markdown fences:\n`,
-      parameters: { max_new_tokens: 1200, temperature: 0.7, decoding_method: "sample", repetition_penalty: 1.05 },
-    }),
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ message: prompt, history: [] }),
     signal: AbortSignal.timeout(25_000),
   });
 
-  if (!res.ok) {
-    const errText = await res.text().catch(() => "");
-    throw new Error(`watsonx.ai ${res.status}: ${errText.slice(0, 200)}`);
-  }
+  if (!res.ok) throw new Error(`Granite backend ${res.status}`);
   const data = await res.json();
-  const content = data.results?.[0]?.generated_text ?? "";
-  if (!content) throw new Error("watsonx.ai returned empty response");
+  const content = (data.answer ?? "").trim();
+  if (!content) throw new Error("Granite backend returned empty response");
+  // Strip any markdown fences the model may wrap around JSON
   const json = content.replace(/^```(?:json)?\s*/i, "").replace(/\s*```$/, "").trim();
   return JSON.parse(json) as MissionPlan;
 }
 
-// ── Groq cloud inference (secondary AI) ──────────────────────────────────────
-
-async function planWithGroq(input: MissionInput): Promise<MissionPlan> {
-  const prompt = buildMissionPrompt(input);
-
-  const res = await fetch("https://api.groq.com/openai/v1/chat/completions", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${env.GROQ_API_KEY}`,
-    },
-    body: JSON.stringify({
-      model: env.GROQ_MODEL,
-      messages: [{ role: "user", content: prompt }],
-      max_tokens: 1200,
-      temperature: 0.7,
-    }),
-    signal: AbortSignal.timeout(20_000),
-  });
-
-  if (!res.ok) throw new Error(`Groq error ${res.status}`);
-  const data = await res.json();
-  const raw = (data.choices?.[0]?.message?.content ?? "{}").replace(/<think>[\s\S]*?<\/think>/gi, "");
-  const json = raw.replace(/^```(?:json)?\s*/i, "").replace(/\s*```$/, "").trim();
-  return JSON.parse(json) as MissionPlan;
-}
-
-// ── OpenAI mission planning (tertiary AI) ────────────────────────────────────
-
-async function planWithOpenAI(input: MissionInput): Promise<MissionPlan> {
-  const prompt = buildMissionPrompt(input);
-
-  const res = await fetch("https://api.openai.com/v1/chat/completions", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${env.OPENAI_API_KEY}`,
-    },
-    body: JSON.stringify({
-      model: env.OPENAI_MODEL,
-      messages: [{ role: "user", content: prompt }],
-      max_tokens: 1200,
-      temperature: 0.7,
-      response_format: { type: "json_object" },
-    }),
-    signal: AbortSignal.timeout(20_000),
-  });
-
-  if (!res.ok) throw new Error(`OpenAI error ${res.status}`);
-  const data = await res.json();
-  const content = data.choices?.[0]?.message?.content ?? "{}";
-  return JSON.parse(content) as MissionPlan;
-}
 
 // ── Offline deterministic mission planner ────────────────────────────────────
 
@@ -247,47 +172,11 @@ export async function POST(req: NextRequest) {
     let plan: MissionPlan;
     let source: string;
 
-    if (env.hasGranite) {
-      try {
-        plan = await planWithGranite(input);
-        source = "granite";
-      } catch (err) {
-        console.warn("[Mission Planner] watsonx.ai/Granite failed, trying Groq:", err);
-        if (env.hasGroq) {
-          try { plan = await planWithGroq(input); source = "groq"; }
-          catch { plan = offlinePlan(input); source = "offline"; }
-        } else if (env.hasOpenAI) {
-          try { plan = await planWithOpenAI(input); source = "openai"; }
-          catch { plan = offlinePlan(input); source = "offline"; }
-        } else {
-          plan = offlinePlan(input);
-          source = "offline";
-        }
-      }
-    } else if (env.hasGroq) {
-      try {
-        plan = await planWithGroq(input);
-        source = "groq";
-      } catch (err) {
-        console.warn("[Mission Planner] Groq failed, trying OpenAI:", err);
-        if (env.hasOpenAI) {
-          try { plan = await planWithOpenAI(input); source = "openai"; }
-          catch { plan = offlinePlan(input); source = "offline"; }
-        } else {
-          plan = offlinePlan(input);
-          source = "offline";
-        }
-      }
-    } else if (env.hasOpenAI) {
-      try {
-        plan = await planWithOpenAI(input);
-        source = "openai";
-      } catch (err) {
-        console.warn("[Mission Planner] OpenAI failed, using offline engine:", err);
-        plan = offlinePlan(input);
-        source = "offline";
-      }
-    } else {
+    try {
+      plan = await planWithGranite(input);
+      source = "granite";
+    } catch (err) {
+      console.warn("[Mission Planner] Granite backend unavailable, using offline engine:", err);
       plan = offlinePlan(input);
       source = "offline";
     }

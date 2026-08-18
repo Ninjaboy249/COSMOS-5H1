@@ -30,9 +30,8 @@ export async function GET() {
   // ── Env vars ──────────────────────────────────────────────────────────────
   report.env = {
     MURF_API_KEY:    env.MURF_API_KEY ? `set (${env.MURF_API_KEY.slice(0,8)}…)` : "MISSING",
-    OPENAI_API_KEY:  env.OPENAI_API_KEY ? "set" : "MISSING",
     hasMurf:         env.hasMurf,
-    hasOpenAI:       env.hasOpenAI,
+    hasGranite:      env.hasGranite,
     hasLiveKit:      env.hasLiveKit,
   };
 

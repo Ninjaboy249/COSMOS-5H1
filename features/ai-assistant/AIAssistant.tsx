@@ -123,7 +123,7 @@ export default function AIAssistant({ isOpen: isOpenProp, onOpenChange }: AIAssi
   const [history, setHistory] = useState<string[]>([]);
   const [suggestions, setSuggestions] = useState<string[]>(getSuggestedFollowups(null));
   const [isListening, setIsListening] = useState(false);
-  const [aiSource, setAiSource] = useState<"openai" | "granite" | "groq" | "offline" | "local">("offline");
+  const [aiSource, setAiSource] = useState<"granite" | "offline" | "local">("offline");
   const [backendStatus] = useState<BackendStatus>({
     status: "offline",
     model: "COSMOS AI",
@@ -243,8 +243,6 @@ export default function AIAssistant({ isOpen: isOpenProp, onOpenChange }: AIAssi
       setMessages((prev) => [...prev, aiMsg]);
       setStreamingId(newId);
       if (data.source === "granite") setAiSource("granite");
-      else if (data.source === "groq") setAiSource("groq");
-      else if (data.source === "openai") setAiSource("openai");
       else if (data.source === "local") setAiSource("local");
       else setAiSource("offline");
 
@@ -329,11 +327,7 @@ export default function AIAssistant({ isOpen: isOpenProp, onOpenChange }: AIAssi
                         <span className="cosmos-ai-status-dot" />
                         <span className="cosmos-ai-status-text">
                           {aiSource === "granite"
-                            ? "🔷 IBM Granite 3.3 · Online"
-                            : aiSource === "groq"
-                            ? "⚡ Groq Cloud · Online"
-                            : aiSource === "openai"
-                            ? "✨ OpenAI GPT · Online"
+                            ? "🔷 IBM Granite 3.3 · Local"
                             : `Offline · ${backendStatus.documentsIndexed} knowledge files · TF-IDF`}
                         </span>
                       </div>
