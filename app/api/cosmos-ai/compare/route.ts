@@ -50,9 +50,43 @@ Write the response in this exact format using markdown:
 Be concise, scientifically accurate, and highlight the most surprising contrasts. Total response under 380 words.`;
 }
 
-// ── IBM Granite 3.3 via Groq (primary AI) ────────────────────────────────────
+// ── IBM Granite 3.3 via watsonx.ai (primary AI) ──────────────────────────────
 
 async function compareWithGranite(body: CompareBody): Promise<string> {
+  const { objA: a, objB: b } = body;
+  const prompt = buildComparePrompt(a, b);
+  const systemNote = "You are COSMOS AI, a space science expert. Always respond in markdown with bullet points.";
+
+  const url = `https://${env.WATSONX_REGION}.ml.cloud.ibm.com/ml/v1/text/generation?version=2023-05-29`;
+  const res = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: `Bearer ${env.WATSONX_API_KEY}`,
+    },
+    body: JSON.stringify({
+      model_id: env.WATSONX_MODEL,
+      project_id: env.WATSONX_PROJECT_ID,
+      input: `${systemNote}\n\n${prompt}\n\nAssistant:`,
+      parameters: { max_new_tokens: 700, temperature: 0.7, decoding_method: "sample", repetition_penalty: 1.1 },
+    }),
+    signal: AbortSignal.timeout(20_000),
+  });
+
+  if (!res.ok) {
+    const errText = await res.text().catch(() => "");
+    throw new Error(`watsonx.ai ${res.status}: ${errText.slice(0, 200)}`);
+  }
+  const data = await res.json();
+  const text = data.results?.[0]?.generated_text ?? "";
+  if (!text) throw new Error("watsonx.ai returned empty response");
+  return text.trim();
+}
+
+// ── Groq cloud inference (secondary AI) ──────────────────────────────────────
+
+async function compareWithGroq(body: CompareBody): Promise<string> {
   const { objA: a, objB: b } = body;
   const prompt = buildComparePrompt(a, b);
 
@@ -76,14 +110,13 @@ async function compareWithGranite(body: CompareBody): Promise<string> {
 
   if (!res.ok) {
     const errText = await res.text().catch(() => "");
-    throw new Error(`Groq/Granite ${res.status}: ${errText.slice(0, 120)}`);
+    throw new Error(`Groq ${res.status}: ${errText.slice(0, 120)}`);
   }
-
   const data = await res.json();
-  return (data.choices?.[0]?.message?.content ?? "").trim();
+  return (data.choices?.[0]?.message?.content ?? "").replace(/<think>[\s\S]*?<\/think>/gi, "").trim();
 }
 
-// ── OpenAI comparison (secondary AI) ─────────────────────────────────────────
+// ── OpenAI comparison (tertiary AI) ──────────────────────────────────────────
 
 async function compareWithOpenAI(body: CompareBody): Promise<string> {
   const { objA: a, objB: b } = body;
@@ -173,16 +206,27 @@ export async function POST(req: NextRequest) {
         comparison = await compareWithGranite(body);
         source = "granite";
       } catch (err) {
-        console.warn("[Compare] Granite/Groq failed, trying OpenAI:", err);
+        console.warn("[Compare] watsonx.ai/Granite failed, trying Groq:", err);
+        if (env.hasGroq) {
+          try { comparison = await compareWithGroq(body); source = "groq"; }
+          catch { comparison = offlineComparison(body); source = "offline"; }
+        } else if (env.hasOpenAI) {
+          try { comparison = await compareWithOpenAI(body); source = "openai"; }
+          catch { comparison = offlineComparison(body); source = "offline"; }
+        } else {
+          comparison = offlineComparison(body);
+          source = "offline";
+        }
+      }
+    } else if (env.hasGroq) {
+      try {
+        comparison = await compareWithGroq(body);
+        source = "groq";
+      } catch (err) {
+        console.warn("[Compare] Groq failed, trying OpenAI:", err);
         if (env.hasOpenAI) {
-          try {
-            comparison = await compareWithOpenAI(body);
-            source = "openai";
-          } catch (err2) {
-            console.warn("[Compare] OpenAI failed, using offline fallback:", err2);
-            comparison = offlineComparison(body);
-            source = "offline";
-          }
+          try { comparison = await compareWithOpenAI(body); source = "openai"; }
+          catch { comparison = offlineComparison(body); source = "offline"; }
         } else {
           comparison = offlineComparison(body);
           source = "offline";

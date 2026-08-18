@@ -93,7 +93,7 @@ export default function AIInsightsPanel({ objA, objB }: Props) {
   const [loading, setLoading]     = useState(false);
   const [generated, setGenerated] = useState(false);
   const [streaming, setStreaming] = useState(false);
-  const [aiSource, setAiSource]   = useState<"granite" | "openai" | "offline" | null>(null);
+  const [aiSource, setAiSource]   = useState<"granite" | "groq" | "openai" | "offline" | null>(null);
 
   const generate = async () => {
     setLoading(true);
@@ -145,7 +145,12 @@ export default function AIInsightsPanel({ objA, objB }: Props) {
       const answer = data.comparison || generateFallback(objA, objB);
       setInsight(answer);
       setStreaming(true);
-      setAiSource(data.source === "granite" ? "granite" : data.source === "openai" ? "openai" : "offline");
+      setAiSource(
+        data.source === "granite" ? "granite"
+        : data.source === "groq" ? "groq"
+        : data.source === "openai" ? "openai"
+        : "offline"
+      );
     } catch {
       setInsight(generateFallback(objA, objB));
       setStreaming(true);
@@ -185,6 +190,8 @@ export default function AIInsightsPanel({ objA, objB }: Props) {
             <p className="text-purple-300/70 text-xs">
               {aiSource === "granite"
                 ? "🔷 Powered by IBM Granite 3.3"
+                : aiSource === "groq"
+                ? "⚡ Powered by Groq Cloud"
                 : aiSource === "openai"
                 ? "✨ Powered by OpenAI GPT"
                 : aiSource === "offline"
@@ -320,12 +327,12 @@ export default function AIInsightsPanel({ objA, objB }: Props) {
                   <span
                     className="text-[10px] px-2.5 py-1 rounded-full font-medium"
                     style={{
-                      background: aiSource === "granite" ? "rgba(14,165,233,0.15)" : aiSource === "openai" ? "rgba(99,102,241,0.15)" : "rgba(147,197,253,0.08)",
-                      border: aiSource === "granite" ? "1px solid rgba(14,165,233,0.3)" : aiSource === "openai" ? "1px solid rgba(99,102,241,0.3)" : "1px solid rgba(147,197,253,0.15)",
-                      color: aiSource === "granite" ? "#38bdf8" : aiSource === "openai" ? "#a78bfa" : "rgba(147,197,253,0.6)",
+                      background: aiSource === "granite" ? "rgba(14,165,233,0.15)" : aiSource === "groq" ? "rgba(251,191,36,0.12)" : aiSource === "openai" ? "rgba(99,102,241,0.15)" : "rgba(147,197,253,0.08)",
+                      border: aiSource === "granite" ? "1px solid rgba(14,165,233,0.3)" : aiSource === "groq" ? "1px solid rgba(251,191,36,0.3)" : aiSource === "openai" ? "1px solid rgba(99,102,241,0.3)" : "1px solid rgba(147,197,253,0.15)",
+                      color: aiSource === "granite" ? "#38bdf8" : aiSource === "groq" ? "#fbbf24" : aiSource === "openai" ? "#a78bfa" : "rgba(147,197,253,0.6)",
                     }}
                   >
-                    {aiSource === "granite" ? "🔷 IBM Granite 3.3" : aiSource === "openai" ? "✨ OpenAI GPT" : "📡 Offline mode"}
+                    {aiSource === "granite" ? "🔷 IBM Granite 3.3" : aiSource === "groq" ? "⚡ Groq Cloud" : aiSource === "openai" ? "✨ OpenAI GPT" : "📡 Offline mode"}
                   </span>
                 )}
               </div>

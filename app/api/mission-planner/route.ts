@@ -39,9 +39,42 @@ Return ONLY a JSON object matching this exact structure (no markdown, no explana
 }`;
 }
 
-// ── IBM Granite 3.3 via Groq (primary AI) ────────────────────────────────────
+// ── IBM Granite 3.3 via watsonx.ai (primary AI) ──────────────────────────────
 
 async function planWithGranite(input: MissionInput): Promise<MissionPlan> {
+  const prompt = buildMissionPrompt(input);
+  const url = `https://${env.WATSONX_REGION}.ml.cloud.ibm.com/ml/v1/text/generation?version=2023-05-29`;
+
+  const res = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: `Bearer ${env.WATSONX_API_KEY}`,
+    },
+    body: JSON.stringify({
+      model_id: env.WATSONX_MODEL,
+      project_id: env.WATSONX_PROJECT_ID,
+      input: `${prompt}\n\nRespond with ONLY valid JSON, no markdown fences:\n`,
+      parameters: { max_new_tokens: 1200, temperature: 0.7, decoding_method: "sample", repetition_penalty: 1.05 },
+    }),
+    signal: AbortSignal.timeout(25_000),
+  });
+
+  if (!res.ok) {
+    const errText = await res.text().catch(() => "");
+    throw new Error(`watsonx.ai ${res.status}: ${errText.slice(0, 200)}`);
+  }
+  const data = await res.json();
+  const content = data.results?.[0]?.generated_text ?? "";
+  if (!content) throw new Error("watsonx.ai returned empty response");
+  const json = content.replace(/^```(?:json)?\s*/i, "").replace(/\s*```$/, "").trim();
+  return JSON.parse(json) as MissionPlan;
+}
+
+// ── Groq cloud inference (secondary AI) ──────────────────────────────────────
+
+async function planWithGroq(input: MissionInput): Promise<MissionPlan> {
   const prompt = buildMissionPrompt(input);
 
   const res = await fetch("https://api.groq.com/openai/v1/chat/completions", {
@@ -59,15 +92,14 @@ async function planWithGranite(input: MissionInput): Promise<MissionPlan> {
     signal: AbortSignal.timeout(20_000),
   });
 
-  if (!res.ok) throw new Error(`Groq/Granite error ${res.status}`);
+  if (!res.ok) throw new Error(`Groq error ${res.status}`);
   const data = await res.json();
-  const content = data.choices?.[0]?.message?.content ?? "{}";
-  // Strip any markdown fences Granite may wrap around JSON
-  const json = content.replace(/^```(?:json)?\s*/i, "").replace(/\s*```$/, "").trim();
+  const raw = (data.choices?.[0]?.message?.content ?? "{}").replace(/<think>[\s\S]*?<\/think>/gi, "");
+  const json = raw.replace(/^```(?:json)?\s*/i, "").replace(/\s*```$/, "").trim();
   return JSON.parse(json) as MissionPlan;
 }
 
-// ── OpenAI mission planning (secondary AI) ───────────────────────────────────
+// ── OpenAI mission planning (tertiary AI) ────────────────────────────────────
 
 async function planWithOpenAI(input: MissionInput): Promise<MissionPlan> {
   const prompt = buildMissionPrompt(input);
@@ -220,16 +252,27 @@ export async function POST(req: NextRequest) {
         plan = await planWithGranite(input);
         source = "granite";
       } catch (err) {
-        console.warn("[Mission Planner] Granite/Groq failed, trying OpenAI:", err);
+        console.warn("[Mission Planner] watsonx.ai/Granite failed, trying Groq:", err);
+        if (env.hasGroq) {
+          try { plan = await planWithGroq(input); source = "groq"; }
+          catch { plan = offlinePlan(input); source = "offline"; }
+        } else if (env.hasOpenAI) {
+          try { plan = await planWithOpenAI(input); source = "openai"; }
+          catch { plan = offlinePlan(input); source = "offline"; }
+        } else {
+          plan = offlinePlan(input);
+          source = "offline";
+        }
+      }
+    } else if (env.hasGroq) {
+      try {
+        plan = await planWithGroq(input);
+        source = "groq";
+      } catch (err) {
+        console.warn("[Mission Planner] Groq failed, trying OpenAI:", err);
         if (env.hasOpenAI) {
-          try {
-            plan = await planWithOpenAI(input);
-            source = "openai";
-          } catch (err2) {
-            console.warn("[Mission Planner] OpenAI failed, using offline engine:", err2);
-            plan = offlinePlan(input);
-            source = "offline";
-          }
+          try { plan = await planWithOpenAI(input); source = "openai"; }
+          catch { plan = offlinePlan(input); source = "offline"; }
         } else {
           plan = offlinePlan(input);
           source = "offline";

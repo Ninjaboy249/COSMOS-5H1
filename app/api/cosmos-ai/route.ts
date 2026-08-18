@@ -5,9 +5,10 @@
  * Strategy:
  *  1. Greeting / navigation intents — answered instantly from local logic (no AI call).
  *  2. TF-IDF retrieves top knowledge-base context (always runs, feeds into AI tiers).
- *  3. If GROQ_API_KEY is set → IBM Granite 3.3 via Groq cloud (primary AI).
- *  4. Else if OPENAI_API_KEY is set → OpenAI GPT-4o-mini (secondary AI).
- *  5. Fallback → pure offline TF-IDF response generator (zero external calls).
+ *  3. If WATSONX_API_KEY + WATSONX_PROJECT_ID → IBM Granite 3.3 via watsonx.ai (primary AI).
+ *  4. Else if GROQ_API_KEY is set → Groq cloud inference (secondary AI).
+ *  5. Else if OPENAI_API_KEY is set → OpenAI GPT-4o-mini (tertiary AI).
+ *  6. Fallback → pure offline TF-IDF response generator (zero external calls).
  */
 
 import { NextRequest, NextResponse } from "next/server";
@@ -26,9 +27,65 @@ Use the provided knowledge context when relevant. Be accurate, engaging, and con
 Format answers with markdown: use ## for sections, bullet points with •, and **bold** for key terms.
 Keep responses under 400 words unless a detailed comparison is requested.`;
 
-// ── IBM Granite 3.3 via Groq (primary AI) ─────────────────────────────────────
+// ── Strip <think> blocks from reasoning models ────────────────────────────────
+function stripThink(text: string): string {
+  return text.replace(/<think>[\s\S]*?<\/think>/gi, "").trim();
+}
+
+// ── IBM Granite 3.3 via watsonx.ai (primary AI) ───────────────────────────────
 
 async function askGranite(
+  question: string,
+  context: string,
+  history: { role: string; content: string }[]
+): Promise<string> {
+  const contextBlock = context
+    ? `\n\n## Knowledge Base Context\n${context}\n\n---\n`
+    : "";
+
+  // watsonx.ai uses a different request format from the OpenAI-compatible API.
+  // Ref: https://cloud.ibm.com/apidocs/watsonx-ai#text-generation
+  const input = `${SYSTEM_PROMPT}\n\n${contextBlock}Question: ${question}\n\nAssistant:`;
+
+  const region = env.WATSONX_REGION;
+  const url = `https://${region}.ml.cloud.ibm.com/ml/v1/text/generation?version=2023-05-29`;
+
+  const res = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: `Bearer ${env.WATSONX_API_KEY}`,
+    },
+    body: JSON.stringify({
+      model_id: env.WATSONX_MODEL,
+      project_id: env.WATSONX_PROJECT_ID,
+      input,
+      parameters: {
+        max_new_tokens: 600,
+        temperature: 0.65,
+        decoding_method: "sample",
+        repetition_penalty: 1.1,
+      },
+    }),
+    signal: AbortSignal.timeout(20_000),
+  });
+
+  if (!res.ok) {
+    const errText = await res.text().catch(() => "");
+    throw new Error(`watsonx.ai ${res.status}: ${errText.slice(0, 200)}`);
+  }
+
+  const data = await res.json();
+  // watsonx response: { results: [{ generated_text: "..." }] }
+  const text = data.results?.[0]?.generated_text ?? "";
+  if (!text) throw new Error("watsonx.ai returned empty response");
+  return text.trim();
+}
+
+// ── Groq cloud inference (secondary AI) ───────────────────────────────────────
+
+async function askGroq(
   question: string,
   context: string,
   history: { role: string; content: string }[]
@@ -63,14 +120,14 @@ async function askGranite(
 
   if (!res.ok) {
     const errText = await res.text().catch(() => "");
-    throw new Error(`Groq/Granite ${res.status}: ${errText.slice(0, 120)}`);
+    throw new Error(`Groq ${res.status}: ${errText.slice(0, 120)}`);
   }
 
   const data = await res.json();
-  return (data.choices?.[0]?.message?.content ?? "").trim();
+  return stripThink(data.choices?.[0]?.message?.content ?? "");
 }
 
-// ── OpenAI call with RAG context (secondary AI) ───────────────────────────────
+// ── OpenAI call with RAG context (tertiary AI) ────────────────────────────────
 
 async function askOpenAI(
   question: string,
@@ -177,7 +234,7 @@ export async function POST(req: NextRequest) {
       .map((r) => `[${r.doc.title}]: ${r.doc.text.slice(0, 350)}`)
       .join("\n\n");
 
-    // ── 5a. Try IBM Granite 3.3 via Groq (primary AI) ─────────────────────
+    // ── 5a. Try IBM Granite 3.3 via watsonx.ai (primary AI) ───────────────
     if (env.hasGranite) {
       try {
         const answer = await askGranite(query, contextText, history);
@@ -191,11 +248,29 @@ export async function POST(req: NextRequest) {
           });
         }
       } catch (err) {
-        console.warn("[COSMOS AI] Granite/Groq failed, trying OpenAI:", err);
+        console.warn("[COSMOS AI] watsonx.ai/Granite failed, trying Groq:", err);
       }
     }
 
-    // ── 5b. Try OpenAI (secondary AI, with local KB context injected) ──────
+    // ── 5b. Try Groq (secondary AI) ────────────────────────────────────────
+    if (env.hasGroq) {
+      try {
+        const answer = await askGroq(query, contextText, history);
+        if (answer) {
+          return NextResponse.json({
+            answer,
+            intent: intent.intent,
+            entity: intent.entity,
+            confidence: intent.confidence,
+            source: "groq",
+          });
+        }
+      } catch (err) {
+        console.warn("[COSMOS AI] Groq failed, trying OpenAI:", err);
+      }
+    }
+
+    // ── 5c. Try OpenAI (tertiary AI, with local KB context injected) ───────
     if (env.hasOpenAI) {
       try {
         const answer = await askOpenAI(query, contextText, history);

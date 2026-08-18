@@ -19,12 +19,25 @@ export const env = {
   /** OpenAI model — defaults to gpt-4o-mini */
   OPENAI_MODEL: process.env.OPENAI_MODEL ?? "gpt-4o-mini",
 
-  // ── IBM Granite (Groq) ─────────────────────────────────────────────────────
-  /** Groq API key — enables IBM Granite 3.3 via Groq cloud inference */
+  // ── IBM Granite (watsonx.ai) ───────────────────────────────────────────────
+  /** watsonx.ai API key — enables IBM Granite 3.3 directly from IBM */
+  WATSONX_API_KEY: process.env.WATSONX_API_KEY ?? null,
+
+  /** watsonx.ai project ID — required alongside the API key */
+  WATSONX_PROJECT_ID: process.env.WATSONX_PROJECT_ID ?? null,
+
+  /** Granite model ID on watsonx.ai */
+  WATSONX_MODEL: process.env.WATSONX_MODEL ?? "ibm/granite-3-3-8b-instruct",
+
+  /** watsonx.ai region — us-south is the free-tier region */
+  WATSONX_REGION: process.env.WATSONX_REGION ?? "us-south",
+
+  // ── Groq (fallback cloud inference) ───────────────────────────────────────
+  /** Groq API key — used when watsonx is absent, for fast LLM inference */
   GROQ_API_KEY: process.env.GROQ_API_KEY ?? null,
 
-  /** Groq model — IBM Granite 3.3 8B Instruct */
-  GROQ_MODEL: process.env.GROQ_MODEL ?? "ibm-granite/granite-3.3-8b-instruct",
+  /** Groq model */
+  GROQ_MODEL: process.env.GROQ_MODEL ?? "llama-3.3-70b-versatile",
 
   // ── Murf TTS ──────────────────────────────────────────────────────────────
   /** Murf AI API key — null when not set (browser speechSynthesis fallback) */
@@ -57,8 +70,13 @@ export const env = {
   BACKEND_URL: process.env.NEXT_PUBLIC_BACKEND_URL ?? "http://localhost:8000",
 
   // ── Derived capability flags ───────────────────────────────────────────────
-  /** Whether IBM Granite via Groq cloud is available */
+  /** Whether IBM Granite via watsonx.ai is available */
   get hasGranite(): boolean {
+    return !!this.WATSONX_API_KEY && !!this.WATSONX_PROJECT_ID;
+  },
+
+  /** Whether Groq cloud inference is available */
+  get hasGroq(): boolean {
     return !!this.GROQ_API_KEY;
   },
 
