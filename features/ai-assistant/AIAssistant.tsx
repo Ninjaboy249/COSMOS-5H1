@@ -134,6 +134,9 @@ export default function AIAssistant({ isOpen: isOpenProp, onOpenChange }: AIAssi
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const recognitionRef = useRef<unknown>(null);
+  // Always-current mirror of messages — avoids stale closure in sendMessage
+  const messagesRef = useRef<ChatMessage[]>([INITIAL_MSG]);
+  useEffect(() => { messagesRef.current = messages; }, [messages]);
 
   // Scroll to bottom
   useEffect(() => {
@@ -225,7 +228,7 @@ export default function AIAssistant({ isOpen: isOpenProp, onOpenChange }: AIAssi
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           message: enrichedQuery,
-          history: messages.slice(-6).map((m) => ({ role: m.role, content: m.content })),
+          history: messagesRef.current.slice(-6).map((m) => ({ role: m.role, content: m.content })),
         }),
         signal: AbortSignal.timeout(15000),
       });
