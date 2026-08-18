@@ -483,18 +483,25 @@ export default function MissionPlannerPage() {
 
     const input: MissionInput = { destination, crew, duration, missionType, objectives };
 
+    // Enforce a minimum 2-second loading animation so the UI feels deliberate
+    const minDelay = new Promise<void>((resolve) => setTimeout(resolve, 2000));
+
     try {
-      const res = await fetch("/api/mission-planner", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(input),
-      });
+      const [res] = await Promise.all([
+        fetch("/api/mission-planner", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(input),
+        }),
+        minDelay,
+      ]);
       if (!res.ok) throw new Error(`Server error ${res.status}`);
       const data = await res.json() as { plan: MissionPlan };
       setPlan(data.plan);
       // Scroll to result
       setTimeout(() => resultRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 100);
     } catch (err) {
+      await minDelay; // also honour minimum on error path
       setError(err instanceof Error ? err.message : "Mission planning failed");
     } finally {
       setLoading(false);
