@@ -1,0 +1,269 @@
+{
+  "id": "scientists",
+  "name": "Space Scientists & Astronomers",
+  "summary": "The history of space exploration is built on the discoveries of scientists, mathematicians, astronomers, and physicists who transformed our understanding of the universe. From Isaac Newton's laws of gravity to Stephen Hawking's theories on black holes, these individuals laid the foundations of modern astronomy, astrophysics, and space travel.",
+  "scientists": [
+    {
+      "name": "Isaac Newton",
+      "born": "January 4, 1643, Woolsthorpe, England",
+      "died": "March 31, 1727, Kensington, England",
+      "nationality": "British",
+      "field": "Physics, Mathematics, Astronomy",
+      "key_contributions": [
+        "Law of Universal Gravitation — every mass attracts every other mass with a force proportional to their masses and inversely proportional to the square of the distance between them (F = Gm₁m₂/r²)",
+        "Three Laws of Motion — foundation of classical mechanics and orbital physics",
+        "Invented calculus (independently of Leibniz)",
+        "Explained why planets orbit the Sun using mathematical physics",
+        "Built the first practical reflecting telescope (Newtonian telescope, 1668)"
+      ],
+      "impact_on_space": "Newton's law of gravitation is the mathematical engine behind every rocket trajectory, orbital calculation, and planetary mission ever planned. Without it, sending spacecraft to the Moon, Mars, or beyond would be impossible.",
+      "famous_quote": "If I have seen further, it is by standing on the shoulders of giants.",
+      "interesting_facts": [
+        "The apple story is likely true — Newton himself described being inspired by watching an apple fall",
+        "He spent more time studying alchemy and the Bible than physics",
+        "His Principia Mathematica (1687) is considered one of the most important scientific books ever written",
+        "He was a Member of Parliament but reportedly only spoke once — to ask someone to close a window"
+      ]
+    },
+    {
+      "name": "Albert Einstein",
+      "born": "March 14, 1879, Ulm, Germany",
+      "died": "April 18, 1955, Princeton, New Jersey, USA",
+      "nationality": "German-American",
+      "field": "Theoretical Physics",
+      "key_contributions": [
+        "Special Theory of Relativity (1905) — E=mc², space and time are relative to the observer",
+        "General Theory of Relativity (1915) — gravity is the curvature of spacetime caused by mass",
+        "Predicted gravitational waves (confirmed by LIGO in 2016)",
+        "Predicted gravitational lensing — light bends around massive objects (confirmed 1919)",
+        "Predicted black holes and the expanding universe (though he initially resisted the idea)"
+      ],
+      "impact_on_space": "General Relativity is essential for GPS satellite accuracy, understanding black holes, interpreting gravitational wave detections, and modeling the Big Bang. Without relativistic corrections, GPS would drift by kilometres per day.",
+      "famous_quote": "Imagination is more important than knowledge. Knowledge is limited. Imagination encircles the world.",
+      "interesting_facts": [
+        "Einstein failed his entrance exam to the Swiss Federal Polytechnic on his first attempt",
+        "He renounced his German citizenship at age 16 to avoid military service",
+        "His brain was removed without permission after his death and studied for decades",
+        "He won the 1921 Nobel Prize in Physics — not for relativity, but for his explanation of the photoelectric effect",
+        "He was offered the presidency of Israel in 1952 and declined"
+      ]
+    },
+    {
+      "name": "Stephen Hawking",
+      "born": "January 8, 1942, Oxford, England",
+      "died": "March 14, 2018, Cambridge, England",
+      "nationality": "British",
+      "field": "Theoretical Physics, Cosmology",
+      "key_contributions": [
+        "Hawking Radiation — black holes slowly emit thermal radiation and eventually evaporate, combining general relativity with quantum mechanics",
+        "Singularity theorems (with Roger Penrose) — proved that singularities are a general feature of general relativity",
+        "Black hole information paradox — proposed and debated for decades",
+        "Brief History of Time (1988) — sold over 25 million copies, making cosmology accessible to the public",
+        "Contributed to the no-boundary proposal for the origin of the universe"
+      ],
+      "personal_story": "Hawking was diagnosed with ALS (motor neurone disease) at age 21 and given 2 years to live. He survived for 55 more years, conducting groundbreaking research while progressively losing all motor function. He communicated using a speech synthesiser operated by a single cheek muscle.",
+      "impact_on_space": "Hawking's theoretical work on black holes, the Big Bang, and quantum gravity shaped modern cosmology. His popular writing inspired generations of scientists and the general public to engage with fundamental questions about the universe.",
+      "famous_quote": "However difficult life may seem, there is always something you can do and succeed at. It matters that you don't just give up.",
+      "interesting_facts": [
+        "He was born exactly 300 years after the death of Galileo",
+        "He died on March 14, 2018 — Albert Einstein's birthday",
+        "Despite his fame, Hawking Radiation has never been directly observed — black holes are too cold",
+        "He appeared in The Simpsons, Star Trek, and Big Bang Theory",
+        "He held the Lucasian Chair of Mathematics at Cambridge — the same position held by Isaac Newton"
+      ]
+    },
+    {
+      "name": "Carl Sagan",
+      "born": "November 9, 1934, Brooklyn, New York, USA",
+      "died": "December 20, 1996, Seattle, Washington, USA",
+      "nationality": "American",
+      "field": "Astronomy, Cosmology, Astrophysics, Science Communication",
+      "key_contributions": [
+        "Pioneer in the study of the atmospheric chemistry of Venus and the seasons of Mars",
+        "Worked on the Mariner, Viking, and Voyager missions",
+        "Designed the Pioneer plaque and Voyager Golden Record — humanity's messages to the cosmos",
+        "Cosmos: A Personal Voyage (1980) — watched by over 500 million people in 60 countries",
+        "Pale Blue Dot — coined the phrase and promoted the perspective of Earth from the outer solar system",
+        "Wrote Contact (1985) — later adapted into a film, exploring the search for extraterrestrial intelligence"
+      ],
+      "pale_blue_dot": "On February 14, 1990, Sagan convinced NASA to turn Voyager 1's camera back toward Earth from 6 billion kilometres away. The resulting image showed Earth as a tiny 0.12-pixel dot in a sunbeam. Sagan wrote: 'Look again at that dot. That's here. That's home. That's us.'",
+      "impact_on_space": "Sagan made science accessible and inspiring to millions. He championed the search for extraterrestrial life, the importance of critical thinking, and the fragility and preciousness of Earth. His work directly influenced the design of multiple NASA missions.",
+      "famous_quote": "The cosmos is within us. We are made of star-stuff. We are a way for the universe to know itself.",
+      "interesting_facts": [
+        "He published over 600 scientific papers and authored or co-authored 20 books",
+        "He was a strong advocate for marijuana legalisation, writing anonymously under the pen name 'Mr X'",
+        "He predicted the greenhouse effect on Venus and correctly described the surface conditions before probes confirmed them",
+        "He was twice rejected from the National Academy of Sciences — reportedly because colleagues found his popularisation work undignified",
+        "The Mars Pathfinder lander's base station was renamed the Carl Sagan Memorial Station after his death"
+      ]
+    },
+    {
+      "name": "Edwin Hubble",
+      "born": "November 20, 1889, Marshfield, Missouri, USA",
+      "died": "September 28, 1953, San Marino, California, USA",
+      "nationality": "American",
+      "field": "Astronomy, Observational Cosmology",
+      "key_contributions": [
+        "Proved that 'nebulae' like Andromeda are entire galaxies outside the Milky Way (1924), vastly expanding the known universe",
+        "Discovered Hubble's Law (1929) — galaxies are moving away from us, and the farther they are the faster they recede, proving the universe is expanding",
+        "Developed the Hubble classification system for galaxy morphology (elliptical, spiral, irregular)",
+        "Laid the observational foundation for the Big Bang theory"
+      ],
+      "impact_on_space": "Before Hubble, the Milky Way was thought to be the entire universe. His discoveries revealed a universe of hundreds of billions of galaxies, and his observation of the expanding universe set the stage for the Big Bang model. The Hubble Space Telescope is named in his honour.",
+      "famous_quote": "Equipped with his five senses, man explores the universe around him and calls the adventure Science.",
+      "interesting_facts": [
+        "He earned a law degree before switching to astronomy",
+        "Despite being considered for the Nobel Prize, he was never awarded one — astronomy was not considered a physics discipline at the time",
+        "He served in both World War I and World War II",
+        "The Hubble Space Telescope, launched in 1990, is one of the most productive scientific instruments in history"
+      ]
+    },
+    {
+      "name": "Galileo Galilei",
+      "born": "February 15, 1564, Pisa, Italy",
+      "died": "January 8, 1642, Arcetri, Italy",
+      "nationality": "Italian",
+      "field": "Astronomy, Physics, Mathematics",
+      "key_contributions": [
+        "First to use a telescope for systematic astronomical observations (1609)",
+        "Discovered the four largest moons of Jupiter (now called the Galilean moons: Io, Europa, Ganymede, Callisto)",
+        "Observed the phases of Venus, confirming the heliocentric model",
+        "Discovered sunspots and studied the Moon's surface",
+        "Supported and provided evidence for the Copernican heliocentric model",
+        "Developed the law of falling bodies and principles of inertia"
+      ],
+      "conflict_with_church": "In 1633, the Roman Inquisition tried Galileo for heresy for supporting the heliocentric (Sun-centred) model. He was forced to recant and spent the last 9 years of his life under house arrest. The Church formally acknowledged its error in 1992.",
+      "impact_on_space": "Galileo transformed astronomy from a purely theoretical discipline into an observational science. His telescopic discoveries provided the first direct evidence for the heliocentric solar system, and his work on motion laid the groundwork for Newton's laws.",
+      "famous_quote": "And yet it moves. (Eppur si muove)",
+      "interesting_facts": [
+        "He was born on the same day Michelangelo died",
+        "He died on the same day Isaac Newton was born (by old-style calendar)",
+        "Jupiter's four largest moons — discovered by Galileo — may harbour conditions suitable for life, especially Europa",
+        "NASA's Galileo spacecraft orbited Jupiter from 1995 to 2003 and was named in his honour"
+      ]
+    },
+    {
+      "name": "Johannes Kepler",
+      "born": "December 27, 1571, Weil der Stadt, Germany",
+      "died": "November 15, 1630, Regensburg, Germany",
+      "nationality": "German",
+      "field": "Astronomy, Mathematics",
+      "key_contributions": [
+        "Kepler's First Law: Planets orbit the Sun in ellipses, with the Sun at one focus",
+        "Kepler's Second Law: A line from a planet to the Sun sweeps equal areas in equal times (planets move faster when closer to the Sun)",
+        "Kepler's Third Law: The square of a planet's orbital period is proportional to the cube of its semi-major axis (T² ∝ a³)",
+        "Provided the mathematical foundation that Newton used to derive the law of gravity"
+      ],
+      "impact_on_space": "Kepler's laws are still used today for every orbital calculation — from satellite launches to interplanetary trajectories. NASA's Kepler Space Telescope, which discovered thousands of exoplanets, is named in his honour.",
+      "interesting_facts": [
+        "He worked as an assistant to Tycho Brahe and inherited his precise observational data after Brahe's death",
+        "He suffered from smallpox as a child which damaged his eyesight, making him better suited to theoretical work than observation",
+        "He wrote one of the first works of science fiction: Somnium (1608), describing a journey to the Moon"
+      ]
+    },
+    {
+      "name": "Nicolaus Copernicus",
+      "born": "February 19, 1473, Royal Prussia (modern Poland)",
+      "died": "May 24, 1543, Frombork, Royal Prussia",
+      "nationality": "Polish",
+      "field": "Astronomy, Mathematics",
+      "key_contributions": [
+        "Proposed the heliocentric model of the solar system — the Sun, not the Earth, is at the centre",
+        "Published De Revolutionibus Orbium Coelestium (1543) — one of the most important books in the history of science",
+        "Replaced the 1,400-year-old Ptolemaic geocentric model",
+        "Triggered the Copernican Revolution — the scientific revolution in astronomy"
+      ],
+      "impact_on_space": "The heliocentric model was the foundation of modern astronomy. Without Copernicus, the work of Galileo, Kepler, and Newton would not have followed in the same form. The term 'Copernican Revolution' is used broadly to describe any fundamental shift in worldview.",
+      "interesting_facts": [
+        "He published his heliocentric theory only in the year of his death, reportedly receiving the first printed copy on his deathbed",
+        "He held the heliocentric idea privately for decades, fearing ridicule or religious persecution",
+        "A chemical element — Copernicium (Cn, atomic number 112) — is named after him"
+      ]
+    },
+    {
+      "name": "Wernher von Braun",
+      "born": "March 23, 1912, Wirsitz, Germany",
+      "died": "June 16, 1977, Alexandria, Virginia, USA",
+      "nationality": "German-American",
+      "field": "Aerospace Engineering, Rocket Technology",
+      "key_contributions": [
+        "Chief architect of the Saturn V rocket — the most powerful rocket ever built, which launched Apollo missions to the Moon",
+        "Developed the V-2 rocket during World War II — the world's first long-range guided ballistic missile",
+        "Director of NASA's Marshall Space Flight Center",
+        "Led the development of the Redstone, Jupiter-C, and Saturn rocket families",
+        "Visionary advocate for crewed Mars exploration"
+      ],
+      "controversy": "Von Braun worked for Nazi Germany's rocket programme and used forced labour from concentration camps at the Mittelwerk factory. This remains one of the most ethically complex legacies in the history of space exploration.",
+      "impact_on_space": "The Saturn V rocket von Braun designed remains the most capable launch vehicle ever flown. It is the vehicle that took 24 humans to the Moon between 1968 and 1972. His engineering work made the Apollo programme technically possible.",
+      "famous_quote": "Basic research is what I am doing when I don't know what I am doing.",
+      "interesting_facts": [
+        "He surrendered to American forces at the end of WW2 as part of Operation Paperclip",
+        "He was a science consultant for Walt Disney in the 1950s, creating TV programmes about space exploration",
+        "He advocated for a Mars mission throughout his career but died before seeing it happen",
+        "The Saturn V's first stage generated 7.6 million pounds of thrust — equivalent to 85 Hoover Dams"
+      ]
+    },
+    {
+      "name": "Katherine Johnson",
+      "born": "August 26, 1918, White Sulphur Springs, West Virginia, USA",
+      "died": "February 24, 2020, Newport News, Virginia, USA",
+      "nationality": "American",
+      "field": "Mathematics, Orbital Mechanics",
+      "key_contributions": [
+        "Calculated the orbital trajectory for Alan Shepard's Freedom 7 — the first American in space (1961)",
+        "Verified the computer calculations for John Glenn's orbital mission — Glenn refused to fly until Johnson personally checked the numbers",
+        "Calculated the trajectory for Apollo 11's journey to the Moon and back",
+        "Worked on early NASA Earth Resources Satellite problems and the Space Shuttle programme",
+        "Co-authored 26 scientific papers"
+      ],
+      "personal_story": "Johnson worked at NASA (then NACA) as one of the 'human computers' — Black women mathematicians who performed calculations by hand. She worked in a segregated office and had to fight to attend briefings and be credited on research papers.",
+      "legacy": "Johnson's story was told in the book and film 'Hidden Figures' (2016). In 2015 she received the Presidential Medal of Freedom. NASA named a computational research facility after her in 2017.",
+      "famous_quote": "I counted everything. I counted the steps to the road, the steps up to church, the number of dishes and silverware I washed. Anything that could be counted, I did.",
+      "interesting_facts": [
+        "She graduated from college at age 18 with degrees in mathematics and French",
+        "She worked at NASA for 33 years",
+        "She was awarded the Congressional Gold Medal in 2019",
+        "She said about her work: 'I just did my job.'",
+        "She died at 101 years old"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "question": "Who is the most famous space scientist?",
+      "answer": "Several scientists stand out as the most influential in space science. Isaac Newton (gravity and laws of motion) made space travel mathematically possible. Albert Einstein (general relativity) explained how gravity warps spacetime. Stephen Hawking advanced our understanding of black holes. Carl Sagan made astronomy accessible to millions. Edwin Hubble proved the universe is expanding. Each transformed humanity's understanding of the cosmos."
+    },
+    {
+      "question": "Who was Stephen Hawking?",
+      "answer": "Stephen Hawking (1942–2018) was a British theoretical physicist and cosmologist at Cambridge University. Despite being diagnosed with ALS at 21 and given 2 years to live, he survived 55 more years. His greatest scientific contribution was Hawking Radiation — the theoretical prediction that black holes emit thermal radiation and slowly evaporate. He wrote A Brief History of Time (1988), sold 25 million copies. He held the same Cambridge professorship as Isaac Newton. He died on March 14, 2018 — Einstein's birthday — aged 76."
+    },
+    {
+      "question": "Who was Carl Sagan?",
+      "answer": "Carl Sagan (1934–1996) was an American astronomer, cosmologist, and science communicator. He studied Venus, Mars, and the search for extraterrestrial life, and worked on the Viking, Voyager, and Pioneer missions. He designed the Pioneer plaque and Voyager Golden Record. His TV series Cosmos (1980) was watched by 500 million people. He coined the phrase 'Pale Blue Dot' to describe Earth photographed from 6 billion km away by Voyager 1. He died of pneumonia in 1996 at 62."
+    },
+    {
+      "question": "Who discovered the expanding universe?",
+      "answer": "Edwin Hubble discovered the expanding universe in 1929. Using observations at Mount Wilson Observatory, he found that galaxies are moving away from us and the farther they are, the faster they recede — now called Hubble's Law. This discovery was the observational foundation for the Big Bang theory. The Hubble Space Telescope, launched in 1990, is named after him."
+    },
+    {
+      "question": "Who created the laws of gravity?",
+      "answer": "Isaac Newton formulated the Law of Universal Gravitation in 1687, published in his Principia Mathematica. The law states that every mass attracts every other mass with a force proportional to the product of their masses and inversely proportional to the square of the distance between them (F = Gm₁m₂/r²). This law explains planetary orbits, tides, satellite trajectories, and all of classical gravitational physics. Albert Einstein later extended this with General Relativity (1915), explaining gravity as the curvature of spacetime."
+    },
+    {
+      "question": "Who first proposed that Earth orbits the Sun?",
+      "answer": "Nicolaus Copernicus (1473–1543) proposed the heliocentric model — that the Earth and other planets orbit the Sun — in his book De Revolutionibus (1543). This replaced the Earth-centred Ptolemaic model that had dominated for 1,400 years. Galileo later provided observational evidence for Copernicus's model using a telescope, and Kepler gave it mathematical precision through his laws of planetary motion."
+    },
+    {
+      "question": "Who was Galileo Galilei?",
+      "answer": "Galileo Galilei (1564–1642) was an Italian astronomer and physicist who was the first to use a telescope for systematic sky observations. He discovered Jupiter's four largest moons, observed the phases of Venus, and found evidence supporting the heliocentric model. He was put on trial by the Inquisition in 1633 for heresy and spent his last years under house arrest. He is considered the father of modern observational astronomy and experimental physics."
+    },
+    {
+      "question": "Who was Katherine Johnson?",
+      "answer": "Katherine Johnson (1918–2020) was an African-American mathematician who worked at NASA as a 'human computer.' She calculated the orbital trajectory for Alan Shepard's 1961 spaceflight and verified John Glenn's orbital mechanics by hand — Glenn refused to fly until she personally checked the computer's numbers. She also computed the Apollo 11 Moon trajectory. Her story was told in the 2016 film Hidden Figures. She received the Presidential Medal of Freedom in 2015 and died in 2020 aged 101."
+    },
+    {
+      "question": "Who was Wernher von Braun?",
+      "answer": "Wernher von Braun (1912–1977) was a German-American aerospace engineer who built the Saturn V rocket — the most powerful rocket ever flown, which launched all Apollo Moon missions. He originally developed rockets for Nazi Germany (including the V-2) using forced labour, then surrendered to the US in 1945. He became director of NASA's Marshall Space Flight Center and was the chief engineer behind the Moon programme. The ethical complexity of his wartime work remains a significant part of his legacy."
+    }
+  ]
+}

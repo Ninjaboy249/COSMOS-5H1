@@ -30,6 +30,7 @@ import isroMissions from "@/data/knowledge/isro-missions.json";
 import esaMissions from "@/data/knowledge/esa-missions.json";
 import rockets from "@/data/knowledge/rockets.json";
 import astronauts from "@/data/knowledge/astronauts.json";
+import scientists from "@/data/knowledge/scientists.json";
 import spaceWeather from "@/data/knowledge/space-weather.json";
 import faq from "@/data/knowledge/faq.json";
 
@@ -232,7 +233,8 @@ export function buildCorpus(): KnowledgeDoc[] {
     ...buildDocs(isroMissions, "isro-missions", "ISRO Missions", 1.2),
     ...buildDocs(esaMissions, "esa-missions", "ESA Missions", 1.1),
     ...buildDocs(rockets, "rockets", "Rockets", 1.0),
-    ...buildDocs(astronauts, "astronauts", "Astronauts", 1.1),
+    ...buildDocs(astronauts, "astronauts", "Astronauts", 1.3),
+    ...buildDocs(scientists, "scientists", "Space Scientists", 1.3),
     ...buildDocs(spaceWeather, "space-weather", "Space Weather", 1.0),
   ];
 

@@ -40,11 +40,36 @@
   "notable_astronauts": [
     {
       "name": "Neil Armstrong",
+      "full_name": "Neil Alden Armstrong",
       "country": "USA",
-      "missions": ["Apollo 11"],
+      "born": "August 5, 1930, Wapakoneta, Ohio, USA",
+      "died": "August 25, 2012 (aged 82), Cincinnati, Ohio, USA",
+      "missions": ["Gemini 8", "Apollo 11"],
       "achievement": "First human to walk on the Moon (July 20, 1969)",
-      "born": "August 5, 1930",
-      "died": "August 25, 2012"
+      "role": "Commander, Apollo 11; Research Test Pilot; Aerospace Engineer",
+      "education": "B.S. Aeronautical Engineering, Purdue University; M.S. Aerospace Engineering, University of Southern California",
+      "famous_quote": "That's one small step for [a] man, one giant leap for mankind.",
+      "moon_landing_detail": "On July 20, 1969, Armstrong stepped onto the Moon's Sea of Tranquility at 02:56 UTC, becoming the first human in history to walk on another world. Buzz Aldrin joined him 20 minutes later. Together they spent 2 hours 31 minutes on the lunar surface, collecting 21.5 kg of samples.",
+      "career_before_nasa": "Armstrong was a naval aviator who flew 78 combat missions in the Korean War. He then became a test pilot at the NACA High-Speed Flight Station, flying over 200 different aircraft including the X-15 rocket plane to the edge of space.",
+      "gemini_8_mission": "On Gemini 8 (March 1966), Armstrong performed the first successful docking of two spacecraft in orbit. When the Agena target vehicle began rolling uncontrollably, he used the re-entry thrusters to stabilize — quick thinking that likely saved both crew members' lives.",
+      "personality": "Armstrong was famously modest and private. He rarely gave interviews and returned to academic life after NASA, teaching aerospace engineering at the University of Cincinnati.",
+      "apollo_11_facts": [
+        "Apollo 11 launched July 16, 1969 on a Saturn V rocket",
+        "Crew: Neil Armstrong (Commander), Buzz Aldrin (Lunar Module Pilot), Michael Collins (Command Module Pilot)",
+        "Lunar Module named Eagle; Command Module named Columbia",
+        "Armstrong manually piloted the Eagle past a boulder field with only 25 seconds of fuel remaining",
+        "The mission returned 21.5 kg of Moon rocks and soil samples",
+        "The crew was quarantined for 21 days after return as a precaution against lunar pathogens"
+      ],
+      "legacy": "Armstrong's moonwalk was watched live by an estimated 600 million people — about 1 in 5 humans alive at the time. He remains a symbol of human courage, engineering excellence, and the potential of exploration. He later advocated for continued space exploration but maintained that the achievements belonged to thousands of engineers, scientists, and workers who made Apollo possible.",
+      "interesting_facts": [
+        "Armstrong's first words on the Moon are still debated — he insists he said 'one small step for A man' but the 'a' was inaudible in the transmission",
+        "He was 38 years old when he walked on the Moon",
+        "He flew over 200 different aircraft types during his career",
+        "After leaving NASA in 1971, he lived quietly on a farm in Ohio",
+        "He refused to sign autographs after discovering dealers were selling them for profit",
+        "The footprints he left on the Moon will remain for millions of years — there is no wind on the Moon to erase them"
+      ]
     },
     {
       "name": "Buzz Aldrin",
@@ -204,6 +229,22 @@
     {
       "question": "What is the ISS?",
       "answer": "The International Space Station (ISS) is a large habitable spacecraft in low Earth orbit, built and operated by a 15-nation consortium. It has been continuously inhabited since November 2, 2000, hosting over 270 people from 20 countries, serving as a microgravity research laboratory."
+    },
+    {
+      "question": "Who is Neil Armstrong?",
+      "answer": "Neil Armstrong (August 5, 1930 – August 25, 2012) was an American astronaut and aerospace engineer who became the first human to walk on the Moon on July 20, 1969, during the Apollo 11 mission. He stepped onto the lunar surface at 02:56 UTC and spoke the iconic words: 'That's one small step for [a] man, one giant leap for mankind.' Before NASA, he flew 78 combat missions in the Korean War and tested the X-15 rocket plane. After leaving NASA in 1971, he taught aerospace engineering at the University of Cincinnati. He died on August 25, 2012, aged 82."
+    },
+    {
+      "question": "What did Neil Armstrong say on the Moon?",
+      "answer": "Neil Armstrong said 'That's one small step for [a] man, one giant leap for mankind' as he stepped onto the lunar surface on July 20, 1969. The word 'a' before 'man' was inaudible in the live transmission. Armstrong always insisted he said it. It is one of the most famous sentences in human history, spoken to an audience of ~600 million people watching live."
+    },
+    {
+      "question": "When did Neil Armstrong walk on the Moon?",
+      "answer": "Neil Armstrong walked on the Moon on July 20, 1969, at 02:56 UTC during Apollo 11. He spent 2 hours 31 minutes on the surface with Buzz Aldrin while Michael Collins orbited above. Armstrong manually piloted the lunar Eagle past a boulder field with only 25 seconds of fuel remaining before landing."
+    },
+    {
+      "question": "What was Neil Armstrong's background?",
+      "answer": "Neil Armstrong was a naval aviator who flew 78 combat missions in the Korean War, then a test pilot at NACA (NASA's predecessor), flying over 200 aircraft types including the X-15 above 200,000 feet. He earned a B.S. in Aeronautical Engineering from Purdue University and an M.S. from USC. He joined NASA's astronaut corps in 1962 and commanded Gemini 8 in 1966 before Apollo 11."
     }
   ]
 }
