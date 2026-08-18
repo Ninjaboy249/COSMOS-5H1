@@ -10,7 +10,7 @@ interface LoadingScreenProps {
 const LOADING_MESSAGES = [
   "Initializing star maps...",
   "Loading planetary data...",
-  "Connecting to IBM Granite AI...",
+  "Preparing COSMOS AI...",
   "Calibrating telescope arrays...",
   "Mapping the cosmos...",
   "Warming up ion thrusters...",
@@ -298,7 +298,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
                   COSMOS-5H1
                 </h1>
                 <p className="text-blue-300/90 text-sm tracking-[0.25em] mt-1 uppercase font-semibold" style={{ textShadow: "0 0 10px rgba(147,197,253,0.35)" }}>
-                  Powered by IBM Granite AI
+                  Hybrid AI with offline fallback
                 </p>
               </div>
 

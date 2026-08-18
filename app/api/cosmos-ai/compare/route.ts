@@ -3,7 +3,7 @@
  * POST /api/cosmos-ai/compare
  *
  * Generates a rich AI comparison between two celestial objects.
- * Uses OpenAI when available; falls back to structured offline template.
+ * Priority: IBM Granite 3.3 (Groq) → OpenAI → offline structured template.
  */
 
 import { NextRequest, NextResponse } from "next/server";
@@ -24,12 +24,10 @@ interface CompareBody {
   };
 }
 
-// ── OpenAI comparison ────────────────────────────────────────────────────────
+// ── Shared prompt builder ─────────────────────────────────────────────────────
 
-async function compareWithOpenAI(body: CompareBody): Promise<string> {
-  const { objA: a, objB: b } = body;
-
-  const prompt = `You are COSMOS AI, an expert space scientist. Write an engaging, scientifically accurate comparison between ${a.name} and ${b.name}.
+function buildComparePrompt(a: CompareBody["objA"], b: CompareBody["objB"]): string {
+  return `You are COSMOS AI, an expert space scientist. Write an engaging, scientifically accurate comparison between ${a.name} and ${b.name}.
 
 Known data:
 ${a.name}: diameter ${a.diameter}, mass ${a.mass}, gravity ${a.gravity}, surface temp ${a.surfaceTemp}, moons ${a.moons}, atmosphere: ${a.atmosphere}, habitability: ${a.habitability}${a.escapeVelocity ? `, escape velocity ${a.escapeVelocity}` : ""}${a.distanceFromSun ? `, distance from Sun ${a.distanceFromSun}` : ""}${a.waterPresence ? `, water: ${a.waterPresence}` : ""}
@@ -50,6 +48,46 @@ Write the response in this exact format using markdown:
 • [2–3 fascinating or surprising facts]
 
 Be concise, scientifically accurate, and highlight the most surprising contrasts. Total response under 380 words.`;
+}
+
+// ── IBM Granite 3.3 via Groq (primary AI) ────────────────────────────────────
+
+async function compareWithGranite(body: CompareBody): Promise<string> {
+  const { objA: a, objB: b } = body;
+  const prompt = buildComparePrompt(a, b);
+
+  const res = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${env.GROQ_API_KEY}`,
+    },
+    body: JSON.stringify({
+      model: env.GROQ_MODEL,
+      messages: [
+        { role: "system", content: "You are COSMOS AI, a space science expert. Always respond in markdown with bullet points." },
+        { role: "user", content: prompt },
+      ],
+      max_tokens: 700,
+      temperature: 0.7,
+    }),
+    signal: AbortSignal.timeout(20_000),
+  });
+
+  if (!res.ok) {
+    const errText = await res.text().catch(() => "");
+    throw new Error(`Groq/Granite ${res.status}: ${errText.slice(0, 120)}`);
+  }
+
+  const data = await res.json();
+  return (data.choices?.[0]?.message?.content ?? "").trim();
+}
+
+// ── OpenAI comparison (secondary AI) ─────────────────────────────────────────
+
+async function compareWithOpenAI(body: CompareBody): Promise<string> {
+  const { objA: a, objB: b } = body;
+  const prompt = buildComparePrompt(a, b);
 
   const res = await fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",
@@ -130,7 +168,27 @@ export async function POST(req: NextRequest) {
     let comparison: string;
     let source: string;
 
-    if (env.hasOpenAI) {
+    if (env.hasGranite) {
+      try {
+        comparison = await compareWithGranite(body);
+        source = "granite";
+      } catch (err) {
+        console.warn("[Compare] Granite/Groq failed, trying OpenAI:", err);
+        if (env.hasOpenAI) {
+          try {
+            comparison = await compareWithOpenAI(body);
+            source = "openai";
+          } catch (err2) {
+            console.warn("[Compare] OpenAI failed, using offline fallback:", err2);
+            comparison = offlineComparison(body);
+            source = "offline";
+          }
+        } else {
+          comparison = offlineComparison(body);
+          source = "offline";
+        }
+      }
+    } else if (env.hasOpenAI) {
       try {
         comparison = await compareWithOpenAI(body);
         source = "openai";

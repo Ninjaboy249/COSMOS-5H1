@@ -1,7 +1,7 @@
 /**
  * COSMOS-5H1 — /api/mission-planner
  * POST — AI-powered space mission planning
- * Uses OpenAI if key is present, falls back to deterministic offline engine.
+ * Priority: IBM Granite 3.3 (Groq) → OpenAI → deterministic offline engine.
  */
 
 import { NextRequest, NextResponse } from "next/server";
@@ -10,10 +10,10 @@ import type { MissionInput, MissionPlan } from "@/lib/mission-planner-types";
 
 export type { MissionInput, MissionPlan };
 
-// ── OpenAI mission planning ───────────────────────────────────────────────────
+// ── Shared mission prompt ─────────────────────────────────────────────────────
 
-async function planWithOpenAI(input: MissionInput): Promise<MissionPlan> {
-  const prompt = `You are COSMOS Mission AI, an expert space mission planner.
+function buildMissionPrompt(input: MissionInput): string {
+  return `You are COSMOS Mission AI, an expert space mission planner.
 
 Plan a ${input.missionType} mission to ${input.destination} with these parameters:
 - Crew: ${input.crew} astronauts
@@ -37,6 +37,40 @@ Return ONLY a JSON object matching this exact structure (no markdown, no explana
   "backup": {"plan": "backup approach", "contingencies": ["contingency1"]},
   "summary": "2-3 sentence executive summary"
 }`;
+}
+
+// ── IBM Granite 3.3 via Groq (primary AI) ────────────────────────────────────
+
+async function planWithGranite(input: MissionInput): Promise<MissionPlan> {
+  const prompt = buildMissionPrompt(input);
+
+  const res = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${env.GROQ_API_KEY}`,
+    },
+    body: JSON.stringify({
+      model: env.GROQ_MODEL,
+      messages: [{ role: "user", content: prompt }],
+      max_tokens: 1200,
+      temperature: 0.7,
+    }),
+    signal: AbortSignal.timeout(20_000),
+  });
+
+  if (!res.ok) throw new Error(`Groq/Granite error ${res.status}`);
+  const data = await res.json();
+  const content = data.choices?.[0]?.message?.content ?? "{}";
+  // Strip any markdown fences Granite may wrap around JSON
+  const json = content.replace(/^```(?:json)?\s*/i, "").replace(/\s*```$/, "").trim();
+  return JSON.parse(json) as MissionPlan;
+}
+
+// ── OpenAI mission planning (secondary AI) ───────────────────────────────────
+
+async function planWithOpenAI(input: MissionInput): Promise<MissionPlan> {
+  const prompt = buildMissionPrompt(input);
 
   const res = await fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",
@@ -181,7 +215,27 @@ export async function POST(req: NextRequest) {
     let plan: MissionPlan;
     let source: string;
 
-    if (env.hasOpenAI) {
+    if (env.hasGranite) {
+      try {
+        plan = await planWithGranite(input);
+        source = "granite";
+      } catch (err) {
+        console.warn("[Mission Planner] Granite/Groq failed, trying OpenAI:", err);
+        if (env.hasOpenAI) {
+          try {
+            plan = await planWithOpenAI(input);
+            source = "openai";
+          } catch (err2) {
+            console.warn("[Mission Planner] OpenAI failed, using offline engine:", err2);
+            plan = offlinePlan(input);
+            source = "offline";
+          }
+        } else {
+          plan = offlinePlan(input);
+          source = "offline";
+        }
+      }
+    } else if (env.hasOpenAI) {
       try {
         plan = await planWithOpenAI(input);
         source = "openai";

@@ -70,7 +70,7 @@ export default function SpaceExplorerPage() {
           </h1>
           <p className="se-subtitle">
             20 interactive modules — from our solar system to the edge of the observable universe.
-            Powered by NASA APIs, IBM Granite AI, and 3D visualization.
+            Powered by NASA APIs, local retrieval, optional cloud AI, and 3D visualization.
           </p>
         </motion.div>
 
@@ -131,7 +131,7 @@ export default function SpaceExplorerPage() {
       {/* ── Footer ──────────────────────────────────────────────── */}
       <footer className="se-footer">
         <p>
-          COSMOS-5H1 Space Explorer · NASA APIs · IBM Granite AI · Open Source
+          COSMOS-5H1 Space Explorer · NASA APIs · Hybrid AI · Open Source
         </p>
       </footer>
 

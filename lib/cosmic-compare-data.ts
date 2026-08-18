@@ -63,9 +63,6 @@ export const CELESTIAL_MODELS: Record<string, string> = {
   venus:      "/GLBs/venus.glb",
   earth:      "/GLBs/earth.glb",
   mars:       "/GLBs/mars.glb",
-  jupiter:    "/GLBs/jupiter.glb",
-  saturn:     "/GLBs/saturn.glb",
-  uranus:     "/GLBs/uranus.glb",
   neptune:    "/GLBs/neptune.glb",
   sun:        "/GLBs/sun.glb",
   moon:       "/GLBs/moon.glb",
@@ -78,6 +75,29 @@ export const CELESTIAL_MODELS: Record<string, string> = {
   asteroid:   "",
   comet:      "",
 };
+
+/** Deep link to the interactive viewer when a bundled GLB exists. */
+export function get3DViewerRoute(objectId: string): string | null {
+  return CELESTIAL_MODELS[objectId]
+    ? `/compare?view=3d&object=${encodeURIComponent(objectId)}`
+    : null;
+}
+
+/** Resolve natural-language object names that have real bundled GLB assets. */
+export function findBundled3DObject(text: string): string | null {
+  const normalized = text.toLowerCase();
+  const aliases: Array<[string, string]> = [
+    ["black hole", "blackHole"],
+    ["mercury", "mercury"],
+    ["venus", "venus"],
+    ["earth", "earth"],
+    ["mars", "mars"],
+    ["neptune", "neptune"],
+    ["sun", "sun"],
+    ["moon", "moon"],
+  ];
+  return aliases.find(([alias]) => normalized.includes(alias))?.[1] ?? null;
+}
 
 export const CELESTIAL_OBJECTS: CelestialCompareData[] = [
   {

@@ -123,7 +123,7 @@ export default function AIAssistant({ isOpen: isOpenProp, onOpenChange }: AIAssi
   const [history, setHistory] = useState<string[]>([]);
   const [suggestions, setSuggestions] = useState<string[]>(getSuggestedFollowups(null));
   const [isListening, setIsListening] = useState(false);
-  const [aiSource, setAiSource] = useState<"openai" | "offline" | "local">("offline");
+  const [aiSource, setAiSource] = useState<"openai" | "granite" | "offline" | "local">("offline");
   const [backendStatus] = useState<BackendStatus>({
     status: "offline",
     model: "COSMOS AI",
@@ -242,7 +242,8 @@ export default function AIAssistant({ isOpen: isOpenProp, onOpenChange }: AIAssi
 
       setMessages((prev) => [...prev, aiMsg]);
       setStreamingId(newId);
-      if (data.source === "openai") setAiSource("openai");
+      if (data.source === "granite") setAiSource("granite");
+      else if (data.source === "openai") setAiSource("openai");
       else if (data.source === "local") setAiSource("local");
       else setAiSource("offline");
 
@@ -326,7 +327,9 @@ export default function AIAssistant({ isOpen: isOpenProp, onOpenChange }: AIAssi
                   <div className="cosmos-ai-status-row">
                         <span className="cosmos-ai-status-dot" />
                         <span className="cosmos-ai-status-text">
-                          {aiSource === "openai"
+                          {aiSource === "granite"
+                            ? "🔷 IBM Granite 3.3 · Online"
+                            : aiSource === "openai"
                             ? "✨ OpenAI GPT · Online"
                             : `Offline · ${backendStatus.documentsIndexed} knowledge files · TF-IDF`}
                         </span>
@@ -477,7 +480,7 @@ export default function AIAssistant({ isOpen: isOpenProp, onOpenChange }: AIAssi
 
             {/* Footer hint */}
             <div className="cosmos-ai-footer-hint">
-              Alt+Space to toggle · Say "Open Mars" to navigate · 100% offline
+              Alt+Space to toggle · Say “Open Mars” for its 3D view · offline fallback available
             </div>
           </motion.div>
         )}

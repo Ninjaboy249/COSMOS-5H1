@@ -24,7 +24,7 @@ export default function HeroContent({ onStartExploring, onOpenAI }: HeroContentP
       <motion.div className="mb-5 sm:mb-7" variants={reveal} transition={{ duration: 0.75 }}>
         <span className="inline-flex items-center gap-2 rounded-full border border-blue-300/20 bg-blue-300/[0.07] px-4 py-2 text-xs uppercase tracking-[0.2em] text-blue-200">
           <span className="h-1.5 w-1.5 rounded-full bg-cyan-300 shadow-[0_0_10px_#67e8f9]" />
-          <AsciiGlitchRipple as="span" dur={700} spread={0.9} chars="·-~+:;*░▒▓01">Powered by IBM Granite AI · Offline</AsciiGlitchRipple>
+          <AsciiGlitchRipple as="span" dur={700} spread={0.9} chars="·-~+:;*░▒▓01">Hybrid AI · OpenAI + Offline RAG</AsciiGlitchRipple>
         </span>
       </motion.div>
 
@@ -63,7 +63,7 @@ export default function HeroContent({ onStartExploring, onOpenAI }: HeroContentP
           whileHover={{ y: -3 }}
           whileTap={{ y: 0, scale: 0.98 }}
         >
-          <span>Ask Granite AI</span>
+          <span>Ask COSMOS AI</span>
           <span className="luxury-ai-dot" aria-hidden="true" />
         </motion.button>
       </motion.div>

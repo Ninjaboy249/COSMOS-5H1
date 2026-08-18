@@ -3,7 +3,7 @@
 // Cosmic Compare — Main Page
 // Route: /compare
 // Full-featured side-by-side celestial object comparison with stats,
-// charts, size comparison, single 3D viewer, and IBM Granite AI insights.
+// charts, size comparison, a single-object 3D viewer, and hybrid AI insights.
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { useState, useRef, useEffect } from "react";
@@ -14,6 +14,7 @@ import ObjectSelector from "@/features/cosmic-compare/ObjectSelector";
 import CompareCard from "@/features/cosmic-compare/CompareCard";
 import VisualCharts from "@/features/cosmic-compare/VisualCharts";
 import AIInsightsPanel from "@/features/cosmic-compare/AIInsightsPanel";
+import SingleViewer3D from "@/features/cosmic-compare/SingleViewer3D";
 import { CELESTIAL_OBJECTS, type CelestialCompareData } from "@/lib/cosmic-compare-data";
 
 // ── Tab definitions ────────────────────────────────────────────────────────────
@@ -26,6 +27,7 @@ const TABS = [
   { id: "charts",     label: "Visual Charts", icon: "📊" },
   { id: "ai",         label: "AI Summary",    icon: "🧠" },
   { id: "size",       label: "Size View",     icon: "📐" },
+  { id: "3d",         label: "3D View",       icon: "🪐" },
 ] as const;
 type TabId = typeof TABS[number]["id"];
 
@@ -203,7 +205,6 @@ function SpotlightTabs({
   // Re-sync spotlight whenever activeTab changes (e.g. "Try comparing" buttons)
   useEffect(() => {
     requestAnimationFrame(() => updateSpot(activeTab));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeTab]);
 
   const target = hovered ?? activeTab;
@@ -301,6 +302,19 @@ export default function CosmicComparePage() {
   const [objA, setObjA] = useState<CelestialCompareData>(DEFAULT_A);
   const [objB, setObjB] = useState<CelestialCompareData>(DEFAULT_B);
   const [activeTab, setActiveTab] = useState<TabId>("overview");
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("view") !== "3d") return;
+
+    const requested = params.get("object");
+    const selected = CELESTIAL_OBJECTS.find((object) => object.id === requested);
+    const timer = window.setTimeout(() => {
+      if (selected) setObjA(selected);
+      setActiveTab("3d");
+    }, 0);
+    return () => window.clearTimeout(timer);
+  }, []);
 
   const swapObjects = () => {
     setObjA(objB);
@@ -430,6 +444,11 @@ export default function CosmicComparePage() {
             {/* Size View — solar-system scale images */}
             {activeTab === "size" && (
               <SizeCompareView objA={objA} objB={objB} />
+            )}
+
+            {/* Interactive single-object GLB viewer */}
+            {activeTab === "3d" && (
+              <SingleViewer3D obj={objA} />
             )}
           </motion.div>
         </AnimatePresence>

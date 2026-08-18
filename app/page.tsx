@@ -206,10 +206,10 @@ export default function Home() {
                     backgroundClip: "text",
                   }}
                 >
-                  <AsciiGlitchRipple as="span" dur={1000} spread={1.3}>Powered by IBM Granite AI</AsciiGlitchRipple>
+                  <AsciiGlitchRipple as="span" dur={1000} spread={1.3}>Transparent Hybrid AI</AsciiGlitchRipple>
                 </h2>
                 <p className="text-blue-100/88 text-lg max-w-2xl mx-auto">
-                  A complete offline AI system for space exploration, running 100% locally on your machine
+                  Local retrieval works offline; optional cloud AI adds richer generated explanations
                 </p>
               </motion.div>
 
@@ -285,7 +285,7 @@ export default function Home() {
             <footer className="py-8 px-8 text-center border-t"
                 style={{ borderColor: "rgba(255,255,255,0.08)", background: "rgba(2,7,20,0.98)" }}>
                 <p className="text-blue-300/70 text-sm">
-                COSMOS-5H1 · Built with IBM Granite AI · 100% Offline · Open Source
+                COSMOS-5H1 · OpenAI + Local TF-IDF RAG · Offline-Capable · Open Source
               </p>
             </footer>
           </section>

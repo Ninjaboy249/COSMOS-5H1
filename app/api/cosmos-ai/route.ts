@@ -4,8 +4,10 @@
  *
  * Strategy:
  *  1. Greeting / navigation intents — answered instantly from local logic (no AI call).
- *  2. If OPENAI_API_KEY is set → call OpenAI GPT with the TF-IDF top-results as context.
- *  3. Fallback → pure offline TF-IDF response generator (zero external calls).
+ *  2. TF-IDF retrieves top knowledge-base context (always runs, feeds into AI tiers).
+ *  3. If GROQ_API_KEY is set → IBM Granite 3.3 via Groq cloud (primary AI).
+ *  4. Else if OPENAI_API_KEY is set → OpenAI GPT-4o-mini (secondary AI).
+ *  5. Fallback → pure offline TF-IDF response generator (zero external calls).
  */
 
 import { NextRequest, NextResponse } from "next/server";
@@ -18,25 +20,69 @@ import {
   buildNavigationResponse,
 } from "@/lib/cosmos-ai/response-generator";
 
-// ── OpenAI call with RAG context ──────────────────────────────────────────────
+const SYSTEM_PROMPT = `You are COSMOS AI, an expert space science assistant for the COSMOS-5H1 platform.
+Answer questions about astronomy, planets, stars, missions, and space phenomena.
+Use the provided knowledge context when relevant. Be accurate, engaging, and concise.
+Format answers with markdown: use ## for sections, bullet points with •, and **bold** for key terms.
+Keep responses under 400 words unless a detailed comparison is requested.`;
+
+// ── IBM Granite 3.3 via Groq (primary AI) ─────────────────────────────────────
+
+async function askGranite(
+  question: string,
+  context: string,
+  history: { role: string; content: string }[]
+): Promise<string> {
+  const contextBlock = context
+    ? `\n\n## Knowledge Base Context\n${context}\n\n---\n`
+    : "";
+
+  const messages = [
+    { role: "system", content: SYSTEM_PROMPT },
+    ...history.slice(-6).map((h) => ({
+      role: h.role as "user" | "assistant",
+      content: h.content,
+    })),
+    { role: "user" as const, content: `${contextBlock}Question: ${question}` },
+  ];
+
+  const res = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${env.GROQ_API_KEY}`,
+    },
+    body: JSON.stringify({
+      model: env.GROQ_MODEL,
+      messages,
+      max_tokens: 600,
+      temperature: 0.65,
+    }),
+    signal: AbortSignal.timeout(18_000),
+  });
+
+  if (!res.ok) {
+    const errText = await res.text().catch(() => "");
+    throw new Error(`Groq/Granite ${res.status}: ${errText.slice(0, 120)}`);
+  }
+
+  const data = await res.json();
+  return (data.choices?.[0]?.message?.content ?? "").trim();
+}
+
+// ── OpenAI call with RAG context (secondary AI) ───────────────────────────────
 
 async function askOpenAI(
   question: string,
   context: string,
   history: { role: string; content: string }[]
 ): Promise<string> {
-  const systemPrompt = `You are COSMOS AI, an expert space science assistant for the COSMOS-5H1 platform.
-Answer questions about astronomy, planets, stars, missions, and space phenomena.
-Use the provided knowledge context when relevant. Be accurate, engaging, and concise.
-Format answers with markdown: use ## for sections, bullet points with •, and **bold** for key terms.
-Keep responses under 400 words unless a detailed comparison is requested.`;
-
   const contextBlock = context
     ? `\n\n## Knowledge Base Context\n${context}\n\n---\n`
     : "";
 
   const messages = [
-    { role: "system", content: systemPrompt },
+    { role: "system", content: SYSTEM_PROMPT },
     ...history.slice(-6).map((h) => ({
       role: h.role as "user" | "assistant",
       content: h.content,
@@ -131,7 +177,25 @@ export async function POST(req: NextRequest) {
       .map((r) => `[${r.doc.title}]: ${r.doc.text.slice(0, 350)}`)
       .join("\n\n");
 
-    // ── 5. Try OpenAI (with local KB context injected) ─────────────────────
+    // ── 5a. Try IBM Granite 3.3 via Groq (primary AI) ─────────────────────
+    if (env.hasGranite) {
+      try {
+        const answer = await askGranite(query, contextText, history);
+        if (answer) {
+          return NextResponse.json({
+            answer,
+            intent: intent.intent,
+            entity: intent.entity,
+            confidence: intent.confidence,
+            source: "granite",
+          });
+        }
+      } catch (err) {
+        console.warn("[COSMOS AI] Granite/Groq failed, trying OpenAI:", err);
+      }
+    }
+
+    // ── 5b. Try OpenAI (secondary AI, with local KB context injected) ──────
     if (env.hasOpenAI) {
       try {
         const answer = await askOpenAI(query, contextText, history);

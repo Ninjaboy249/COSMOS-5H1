@@ -19,6 +19,13 @@ export const env = {
   /** OpenAI model — defaults to gpt-4o-mini */
   OPENAI_MODEL: process.env.OPENAI_MODEL ?? "gpt-4o-mini",
 
+  // ── IBM Granite (Groq) ─────────────────────────────────────────────────────
+  /** Groq API key — enables IBM Granite 3.3 via Groq cloud inference */
+  GROQ_API_KEY: process.env.GROQ_API_KEY ?? null,
+
+  /** Groq model — IBM Granite 3.3 8B Instruct */
+  GROQ_MODEL: process.env.GROQ_MODEL ?? "ibm-granite/granite-3.3-8b-instruct",
+
   // ── Murf TTS ──────────────────────────────────────────────────────────────
   /** Murf AI API key — null when not set (browser speechSynthesis fallback) */
   MURF_API_KEY: process.env.MURF_API_KEY ?? null,
@@ -50,6 +57,11 @@ export const env = {
   BACKEND_URL: process.env.NEXT_PUBLIC_BACKEND_URL ?? "http://localhost:8000",
 
   // ── Derived capability flags ───────────────────────────────────────────────
+  /** Whether IBM Granite via Groq cloud is available */
+  get hasGranite(): boolean {
+    return !!this.GROQ_API_KEY;
+  },
+
   /** Whether OpenAI is available */
   get hasOpenAI(): boolean {
     return !!this.OPENAI_API_KEY && this.OPENAI_API_KEY.startsWith("sk-");

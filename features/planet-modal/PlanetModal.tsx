@@ -214,7 +214,7 @@ export default function PlanetModal({ planet, onClose, onAskAI }: PlanetModalPro
                     className="space-y-2.5"
                   >
                     <p className="text-blue-300/55 text-sm mb-5">
-                      Ask IBM Granite AI anything about {planet.name}:
+                      Ask COSMOS AI anything about {planet.name}:
                     </p>
                     {[
                       `What makes ${planet.name} unique?`,

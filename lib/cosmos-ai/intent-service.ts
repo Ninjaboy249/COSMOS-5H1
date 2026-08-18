@@ -28,6 +28,8 @@ export interface DetectedIntent {
   navigateTo?: string;
 }
 
+import { findBundled3DObject, get3DViewerRoute } from "@/lib/cosmic-compare-data";
+
 // ── Keyword maps ───────────────────────────────────────────────────────────
 
 const PLANET_KEYWORDS: Record<string, string> = {
@@ -121,9 +123,14 @@ export function detectIntent(query: string): DetectedIntent {
   // Navigation
   if (NAVIGATION_PATTERNS[0].patterns.some((p) => q.startsWith(p + " ") || q.includes(p + " "))) {
     // Try to find which planet/object
-    const entity = findPlanetEntity(q);
+    const entity = findPlanetEntity(q) ?? findBundled3DObject(q);
     if (entity) {
-      return { intent: "navigation", entity, confidence: 0.9, navigateTo: `/space/${entity}` };
+      return {
+        intent: "navigation",
+        entity,
+        confidence: 0.9,
+        navigateTo: get3DViewerRoute(entity) ?? `/space/${entity}`,
+      };
     }
   }
 

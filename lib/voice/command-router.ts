@@ -5,6 +5,8 @@
  * with voice-specific intents (NAVIGATE, COMPARE, TOUR, etc.)
  */
 
+import { findBundled3DObject, get3DViewerRoute } from "@/lib/cosmic-compare-data";
+
 // ── Voice intents (superset of the text-chat intents) ────────────────────────
 
 export type VoiceIntent =
@@ -397,7 +399,8 @@ export function routeVoiceCommand(transcript: string): VoiceCommand {
     const isSun = planet === "sun";
     const isMoon = planet === "moon";
     const slug = PLANET_SLUG[planet] ?? planet;
-    const route = `/space/${slug}`;
+    const modelRoute = hasNavVerb ? get3DViewerRoute(planet) : null;
+    const route = modelRoute ?? `/space/${slug}`;
     const intent: VoiceIntent = isSun ? "SHOW_SUN" : isMoon ? "SHOW_MOON" : "SHOW_PLANET";
     return {
       intent,
@@ -405,7 +408,21 @@ export function routeVoiceCommand(transcript: string): VoiceCommand {
       entity2: null,
       transcript,
       navigateTo: route,
-      confirmText: `Opening ${capitalize(planet)}.`,
+      confirmText: modelRoute
+        ? `Opening the interactive 3D view of ${capitalize(planet)}.`
+        : `Opening ${capitalize(planet)}.`,
+    };
+  }
+
+  const bundled3DObject = hasNavVerb ? findBundled3DObject(text) : null;
+  if (bundled3DObject) {
+    return {
+      intent: "NAVIGATE",
+      entity: bundled3DObject,
+      entity2: null,
+      transcript,
+      navigateTo: get3DViewerRoute(bundled3DObject)!,
+      confirmText: `Opening the interactive 3D view of ${capitalize(bundled3DObject)}.`,
     };
   }
 

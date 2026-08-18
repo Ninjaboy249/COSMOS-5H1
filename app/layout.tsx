@@ -6,13 +6,13 @@ import { cn } from "@/lib/utils";
 const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 export const metadata: Metadata = {
-  title: "COSMOS-5H1 — IBM Granite AI",
+  title: "COSMOS-5H1 — AI Space Explorer",
   description:
-    "An immersive AI-powered space exploration experience. Discover planets, learn astronomy, and explore the universe with IBM Granite offline AI.",
-  keywords: "space, planets, AI, IBM Granite, solar system, astronomy, NASA, 3D",
+    "An immersive, offline-capable space exploration experience with interactive 3D models, local retrieval, and optional cloud AI.",
+  keywords: "space, planets, AI, solar system, astronomy, NASA, 3D",
   openGraph: {
-    title: "COSMOS-5H1 — IBM Granite AI",
-    description: "Explore the cosmos with offline IBM Granite AI",
+    title: "COSMOS-5H1 — AI Space Explorer",
+    description: "Explore the cosmos with interactive 3D models and offline-capable AI",
     type: "website",
   },
 };
