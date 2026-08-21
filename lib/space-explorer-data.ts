@@ -1140,7 +1140,55 @@ SPACE_DETAIL["space-weather"] = {
   apiSource: "NASA DONKI API",
 };
 
-// Inject rich data for key slugs
+// ── Black holes — full definition (was previously only Object.assign, causing crash) ──
+SPACE_DETAIL["black-holes"] = {
+  slug: "black-holes",
+  title: "Black Holes",
+  subtitle: "Gravity's Extreme",
+  icon: "⚫",
+  heroImage: "/images/space-explorer/BlackHole.png",
+  accent: "#6366f1",
+  overview: "Black holes are regions of spacetime where gravity is so intense that nothing — not even electromagnetic radiation — can escape once past the event horizon. They form when massive stars collapse at the end of their lives, or through other extreme processes. In 2019, the Event Horizon Telescope produced the first image of a black hole's shadow: M87*, a supermassive black hole 6.5 billion times the mass of our Sun.",
+  stats: [
+    { label: "M87* Mass", value: "6.5 Billion", unit: "× Sun" },
+    { label: "Sagittarius A* Mass", value: "4 Million", unit: "× Sun" },
+    { label: "Event Horizon Image", value: "April 10, 2019" },
+    { label: "Closest BH to Earth", value: "~1,500", unit: "light-years" },
+    { label: "Schwarzschild Radius (Sun)", value: "~3", unit: "km" },
+    { label: "LIGO Detections", value: "90+", unit: "mergers" },
+  ],
+  facts: [
+    "Sagittarius A* is the supermassive black hole at the Milky Way's center",
+    "Black holes don't suck — they only affect things that come too close",
+    "Time passes slower near a black hole (gravitational time dilation)",
+    "The first black hole ever photographed is M87* in 2019",
+    "Stephen Hawking proposed that black holes slowly evaporate via Hawking radiation",
+    "Supermassive black holes exist at the center of nearly all large galaxies",
+  ],
+  timeline: [
+    { year: "1916", event: "Schwarzschild Solution", detail: "Karl Schwarzschild derives first black hole solution from Einstein's equations" },
+    { year: "1967", event: "Term 'Black Hole' Coined", detail: "John Wheeler popularizes the term at a conference" },
+    { year: "1974", event: "Hawking Radiation", detail: "Hawking predicts black holes slowly evaporate via quantum effects" },
+    { year: "2015", event: "Gravitational Waves", detail: "LIGO detects first waves from a black hole merger" },
+    { year: "2019", event: "First Image", detail: "Event Horizon Telescope photographs M87* shadow" },
+    { year: "2022", event: "Milky Way BH Imaged", detail: "EHT images Sagittarius A* — the black hole at our galaxy's center" },
+  ],
+  missions: [
+    { name: "Event Horizon Telescope", agency: "International Consortium", status: "Active", year: "2017", description: "Earth-spanning radio telescope array that imaged M87* and Sgr A*" },
+    { name: "LIGO / Virgo / KAGRA", agency: "NSF/EU/NAOJ", status: "Active", year: "2015", description: "Gravitational wave detectors sensing black hole mergers across the universe" },
+    { name: "James Webb Space Telescope", agency: "NASA/ESA/CSA", status: "Active", year: "2021", description: "Probing black hole feeding and growth in the early universe" },
+  ],
+  gallery: [{ src: "/images/space-explorer/BlackHole.png", caption: "M87* — the first black hole ever photographed, April 2019" }],
+  relatedSlugs: ["galaxies", "stars", "astronomy-research", "nebulae"],
+  aiPrompts: [
+    "What happens if you fall into a black hole?",
+    "How are black holes detected?",
+    "What is Hawking radiation?",
+    "Is there a black hole in the Milky Way?",
+  ],
+};
+
+// ── Spacecraft — inject rich data into stub ───────────────────────────────────
 Object.assign(SPACE_DETAIL["spacecraft"], {
   overview: "From the first artificial satellite Sputnik 1 to the distant Voyager probes sailing in interstellar space, spacecraft have become humanity's eyes and hands across the cosmos. Modern spacecraft like the James Webb Space Telescope peer back to the first light after the Big Bang.",
   stats: [
@@ -1178,61 +1226,6 @@ Object.assign(SPACE_DETAIL["spacecraft"], {
     "What can James Webb see that Hubble can't?",
     "Which spacecraft has travelled farthest?",
     "What will the Europa Clipper find?",
-  ],
-});
-
-Object.assign(SPACE_DETAIL["apod"], {
-  overview: "NASA's Astronomy Picture of the Day (APOD) has been publishing a new astronomical image every single day since June 16, 1995. Each image is accompanied by a brief explanation written by a professional astronomer. APOD is one of NASA's most popular websites, visited by millions worldwide.",
-  stats: [
-    { label: "Archive Start", value: "June 16, 1995" },
-    { label: "Images Published", value: "10,000+" },
-    { label: "Daily Visitors", value: "1 Million+" },
-    { label: "Languages", value: "21" },
-  ],
-  facts: [
-    "APOD has been published every day since 1995 without interruption",
-    "It is one of NASA's most-accessed websites",
-    "Images are selected from telescopes, spacecraft, and citizen astronomers",
-    "Each image is explained by professional astronomers",
-    "The archive contains over 10,000 unique images",
-  ],
-  aiPrompts: [
-    "What is today's APOD image?",
-    "How does NASA select APOD images?",
-    "What has been the most popular APOD?",
-    "Can I submit a photo to APOD?",
-  ],
-});
-
-Object.assign(SPACE_DETAIL["black-holes"], {
-  overview: "Black holes are regions of spacetime where gravity is so intense that nothing — not even electromagnetic radiation — can escape once past the event horizon. They form when massive stars collapse at the end of their lives, or through other extreme processes. In 2019, the Event Horizon Telescope produced the first image of a black hole's shadow: M87*, a supermassive black hole 6.5 billion times the mass of our Sun.",
-  stats: [
-    { label: "M87* Mass", value: "6.5 Billion", unit: "× Sun" },
-    { label: "Sagittarius A* Mass", value: "4 Million", unit: "× Sun" },
-    { label: "Event Horizon Image", value: "April 10, 2019" },
-    { label: "Closest BH to Earth", value: "~1,500", unit: "light-years" },
-  ],
-  facts: [
-    "Sagittarius A* is the supermassive black hole at the Milky Way's center",
-    "Black holes don't suck — they only affect things that come too close",
-    "Time passes slower near a black hole (gravitational time dilation)",
-    "The first black hole ever photographed is M87* in 2019",
-    "Stephen Hawking proposed that black holes slowly evaporate via Hawking radiation",
-    "Supermassive black holes exist at the center of nearly all large galaxies",
-  ],
-  timeline: [
-    { year: "1916", event: "Schwarzschild Solution", detail: "Karl Schwarzschild derives first black hole solution" },
-    { year: "1967", event: "Term 'Black Hole' Coined", detail: "John Wheeler popularizes the term" },
-    { year: "1974", event: "Hawking Radiation", detail: "Hawking predicts black holes slowly evaporate" },
-    { year: "2015", event: "Gravitational Waves", detail: "LIGO detects waves from black hole merger" },
-    { year: "2019", event: "First Image", detail: "EHT photographs M87* event horizon shadow" },
-    { year: "2022", event: "Milky Way BH Imaged", detail: "EHT images Sagittarius A* for the first time" },
-  ],
-  aiPrompts: [
-    "What happens if you fall into a black hole?",
-    "How are black holes detected?",
-    "What is Hawking radiation?",
-    "Is there a black hole in the Milky Way?",
   ],
 });
 
