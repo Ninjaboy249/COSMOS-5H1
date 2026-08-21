@@ -155,10 +155,28 @@ export async function fetchNeoToday(): Promise<NeoObject[]> {
 
 export async function fetchSpaceWeather(): Promise<SpaceWeatherEvent[]> {
   const end = new Date().toISOString().split("T")[0];
-  const start = new Date(Date.now() - 7 * 24 * 3600 * 1000).toISOString().split("T")[0];
-  const url = `https://api.nasa.gov/DONKI/FLR?startDate=${start}&endDate=${end}&api_key=${NASA_KEY}`;
-  const data = await safeFetch<SpaceWeatherEvent[]>(url, FALLBACK_SPACE_WEATHER);
-  return Array.isArray(data) && data.length > 0 ? data.slice(0, 6) : FALLBACK_SPACE_WEATHER;
+  const start = new Date(Date.now() - 30 * 24 * 3600 * 1000).toISOString().split("T")[0];
+  // Try FLR (solar flares) first — wider 30-day window to ensure results
+  const flrUrl = `https://api.nasa.gov/DONKI/FLR?startDate=${start}&endDate=${end}&api_key=${NASA_KEY}`;
+  // DONKI FLR response uses flrID / beginTime / classType
+  interface DonkiFlr { flrID: string; beginTime: string; classType: string; note?: string }
+  const flrRaw = await safeFetch<DonkiFlr[]>(flrUrl, []);
+  if (Array.isArray(flrRaw) && flrRaw.length > 0) {
+    return flrRaw.slice(0, 6).map((f) => ({
+      activityID: f.flrID,
+      startTime: f.beginTime,
+      note: f.classType ? `${f.classType}-class solar flare` : (f.note ?? "Solar flare detected"),
+      type: "FLR",
+    }));
+  }
+  // Also try CME as fallback
+  const cmeUrl = `https://api.nasa.gov/DONKI/CME?startDate=${start}&endDate=${end}&api_key=${NASA_KEY}`;
+  interface DonkiCme { activityID: string; startTime: string; note: string }
+  const cmeRaw = await safeFetch<DonkiCme[]>(cmeUrl, []);
+  if (Array.isArray(cmeRaw) && cmeRaw.length > 0) {
+    return cmeRaw.slice(0, 6).map((c) => ({ activityID: c.activityID, startTime: c.startTime, note: c.note ?? "Coronal Mass Ejection", type: "CME" }));
+  }
+  return FALLBACK_SPACE_WEATHER;
 }
 
 export async function fetchIssPosition(): Promise<IssPosition> {
@@ -184,12 +202,14 @@ export async function fetchEpicImages(): Promise<{ identifier: string; caption: 
     return [{ identifier: "fallback", caption: "Earth from DSCOVR satellite", date: new Date().toISOString().split("T")[0], url: "/images/planets/earth.png" }];
   }
   return data.slice(0, 6).map((img) => {
-    const d = img.date.split(" ")[0].replace(/-/g, "/");
+    // Use the date portion only (YYYY-MM-DD) for the proxy route
+    const dateOnly = img.date.split(" ")[0];
     return {
       identifier: img.identifier,
       caption: img.caption,
       date: img.date,
-      url: `https://api.nasa.gov/EPIC/archive/natural/${d}/png/${img.identifier}.png?api_key=${NASA_KEY}`,
+      // Proxy through our own API route to avoid CORS issues with NASA's EPIC PNG endpoint
+      url: `/api/epic-proxy?id=${img.identifier}&date=${dateOnly}`,
     };
   });
 }

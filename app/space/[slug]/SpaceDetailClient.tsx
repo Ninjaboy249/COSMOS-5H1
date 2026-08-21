@@ -127,7 +127,7 @@ export default function SpaceDetailClient({ slug }: { slug: string }) {
             {detail.stats.length > 0 ? (
               <StatGrid stats={detail.stats} accent={detail.accent} />
             ) : (
-              <p className="section-body-text opacity-50">Statistical data loading via live APIs…</p>
+              <p className="section-body-text opacity-50">No statistical data available for this module.</p>
             )}
           </motion.section>
         )}
@@ -151,7 +151,7 @@ export default function SpaceDetailClient({ slug }: { slug: string }) {
             {detail.missions.length > 0 ? (
               <MissionsPanel missions={detail.missions} />
             ) : (
-              <p className="section-body-text opacity-50">Mission data will be loaded from Launch Library API.</p>
+              <p className="section-body-text opacity-50">No mission records available for this module.</p>
             )}
           </motion.section>
         )}
