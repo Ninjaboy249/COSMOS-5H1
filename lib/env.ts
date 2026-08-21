@@ -12,6 +12,10 @@ export const env = {
   /** NASA API key — falls back to DEMO_KEY (rate-limited but functional) */
   NASA_API_KEY: process.env.NASA_API_KEY ?? "DEMO_KEY",
 
+  // ── Pexels ────────────────────────────────────────────────────────────────
+  /** Pexels API key — used server-side only for gallery image search */
+  PEXELS_API_KEY: process.env.PEXELS_API_KEY ?? "",
+
   // ── IBM Granite local backend ─────────────────────────────────────────────
   /**
    * URL of the local IBM Granite backend (backend/main.py via Ollama).

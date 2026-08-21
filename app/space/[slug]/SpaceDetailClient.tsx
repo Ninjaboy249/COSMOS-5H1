@@ -160,7 +160,7 @@ export default function SpaceDetailClient({ slug }: { slug: string }) {
         {activeTab === "gallery" && (
           <motion.section key="gallery" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45 }}>
             <h2 className="section-heading" style={{ color: detail.accent }}>Image Gallery</h2>
-            <SpaceGallery images={detail.gallery} accent={detail.accent} />
+            <SpaceGallery images={detail.gallery} accent={detail.accent} topic={detail.title} />
           </motion.section>
         )}
 
