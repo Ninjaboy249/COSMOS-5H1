@@ -150,7 +150,7 @@ export default function Home() {
               <div className="mx-auto w-full max-w-7xl px-5 pb-24 pt-28 sm:px-8 md:px-14 lg:px-20">
                 <HeroContent
                   onStartExploring={() => scrollTo(planetsRef)}
-                  onOpenAI={() => setAiOpen(true)}
+                  onOpenCosmos={() => setAiOpen(true)}
                 />
               </div>
             </div>
@@ -206,10 +206,10 @@ export default function Home() {
                     backgroundClip: "text",
                   }}
                 >
-                  <AsciiGlitchRipple as="span" dur={1000} spread={1.3}>Transparent Hybrid AI</AsciiGlitchRipple>
+                  <AsciiGlitchRipple as="span" dur={1000} spread={1.3}>COSMOS AI</AsciiGlitchRipple>
                 </h2>
                 <p className="text-blue-100/88 text-lg max-w-2xl mx-auto">
-                  Local retrieval works offline; optional cloud AI adds richer generated explanations
+                  Local retrieval works fully offline — no external services required
                 </p>
               </motion.div>
 
@@ -285,7 +285,7 @@ export default function Home() {
             <footer className="py-8 px-8 text-center border-t"
                 style={{ borderColor: "rgba(255,255,255,0.08)", background: "rgba(2,7,20,0.98)" }}>
                 <p className="text-blue-300/70 text-sm">
-                COSMOS-5H1 · OpenAI + Local TF-IDF RAG · Offline-Capable · Open Source
+                COSMOS-5H1 · Local TF-IDF RAG · Offline-Capable · Open Source
               </p>
             </footer>
           </section>
@@ -297,7 +297,7 @@ export default function Home() {
 
           {/* ── COSMOS Voice Commander ───────────────────────── */}
           <VoiceCommander
-            onOpenAI={() => setAiOpen(true)}
+            onOpenCosmos={() => setAiOpen(true)}
             onScrollToSolar={() => scrollTo(solarRef)}
           />
         </motion.main>

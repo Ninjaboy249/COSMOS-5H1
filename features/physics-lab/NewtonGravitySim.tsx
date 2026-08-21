@@ -91,10 +91,10 @@ const STARS = buildStars(180);
 // ─── Simulation state ─────────────────────────────────────────────────────────
 
 interface SimBodies {
-  x1: number; // canvas px
+  x1: number; // canvas px (centre)
   x2: number;
-  v1: number; // px/s (canvas space, towards each other means towards centre)
-  v2: number;
+  v1: number; // px/s towards right (+) for body1
+  v2: number; // px/s towards left  (−) for body2
 }
 
 const DEFAULT_M1 = 5.972e24; // Earth mass
@@ -175,6 +175,200 @@ function StatRow({ label, children }: StatRowProps) {
   );
 }
 
+// ─── Canvas draw (pure function, no React state dependencies) ─────────────────
+
+function drawSceneToCanvas(
+  canvas: HTMLCanvasElement,
+  bodies: SimBodies,
+  explosion: ExplosionState | null,
+  simDistM: number,
+  m1: number,
+  m2: number,
+  r1px: number,
+  r2px: number,
+) {
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return;
+
+  // ── Background ──────────────────────────────────────────────────────────
+  ctx.fillStyle = "#050a14";
+  ctx.fillRect(0, 0, CW, CH);
+
+  // Stars
+  for (const s of STARS) {
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(255,255,255,${s.alpha})`;
+    ctx.fill();
+  }
+
+  const cx1 = bodies.x1;
+  const cx2 = bodies.x2;
+  const midX = (cx1 + cx2) / 2;
+  const midY = CH / 2;
+
+  // ── Distance line ────────────────────────────────────────────────────────
+  const distPx = Math.max(0, cx2 - r2px - (cx1 + r1px));
+  if (distPx > 4) {
+    ctx.save();
+    ctx.setLineDash([4, 4]);
+    ctx.strokeStyle = "rgba(148,163,184,0.4)";
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(cx1 + r1px, midY);
+    ctx.lineTo(cx2 - r2px, midY);
+    ctx.stroke();
+
+    // Tick marks
+    ctx.setLineDash([]);
+    ctx.lineWidth = 1.5;
+    for (const tickX of [cx1 + r1px, cx2 - r2px]) {
+      ctx.beginPath();
+      ctx.moveTo(tickX, midY - 6);
+      ctx.lineTo(tickX, midY + 6);
+      ctx.stroke();
+    }
+
+    // Label
+    const labelDist = simDistM < 1.496e11
+      ? `${(simDistM / 1e3).toExponential(2)} km`
+      : `${(simDistM / 1.496e11).toFixed(2)} AU`;
+    ctx.fillStyle = "rgba(148,163,184,0.9)";
+    ctx.font = "11px monospace";
+    ctx.textAlign = "center";
+    ctx.fillText(labelDist, midX, midY - 10);
+    ctx.restore();
+  }
+
+  // ── Force arrows ─────────────────────────────────────────────────────────
+  const currentForce = (G * m1 * m2) / (simDistM * simDistM);
+  const logF = Math.log10(Math.max(currentForce, 1));
+  const arrowLen = Math.min(80, Math.max(12, (logF - 5) * 6));
+
+  const drawArrow = (fromX: number, towardX: number, y: number) => {
+    const dir = towardX > fromX ? 1 : -1;
+    const ax = fromX + dir * arrowLen;
+    ctx.save();
+    ctx.strokeStyle = "#ef4444";
+    ctx.fillStyle = "#ef4444";
+    ctx.lineWidth = 2.5;
+    ctx.shadowColor = "#ef4444";
+    ctx.shadowBlur = 6;
+    ctx.beginPath();
+    ctx.moveTo(fromX, y);
+    ctx.lineTo(ax, y);
+    ctx.stroke();
+    // Arrowhead
+    ctx.beginPath();
+    ctx.moveTo(ax, y);
+    ctx.lineTo(ax - dir * 10, y - 5);
+    ctx.lineTo(ax - dir * 10, y + 5);
+    ctx.closePath();
+    ctx.fill();
+    ctx.restore();
+  };
+
+  drawArrow(cx1 + r1px + 3, cx2, midY - r1px * 0.3);
+  drawArrow(cx2 - r2px - 3, cx1, midY - r2px * 0.3);
+
+  // ── Glow spheres ─────────────────────────────────────────────────────────
+  const drawGlowSphere = (
+    x: number,
+    radius: number,
+    color1: string,
+    color2: string,
+    glowColor: string,
+    label: string,
+  ) => {
+    // Outer glow
+    const grd = ctx.createRadialGradient(x, midY, radius * 0.2, x, midY, radius * 2.2);
+    grd.addColorStop(0, glowColor);
+    grd.addColorStop(1, "transparent");
+    ctx.beginPath();
+    ctx.arc(x, midY, radius * 2.2, 0, Math.PI * 2);
+    ctx.fillStyle = grd;
+    ctx.fill();
+
+    // Sphere body
+    const bodyGrd = ctx.createRadialGradient(
+      x - radius * 0.35, midY - radius * 0.35, radius * 0.1,
+      x, midY, radius,
+    );
+    bodyGrd.addColorStop(0, color1);
+    bodyGrd.addColorStop(1, color2);
+    ctx.beginPath();
+    ctx.arc(x, midY, radius, 0, Math.PI * 2);
+    ctx.fillStyle = bodyGrd;
+    ctx.fill();
+
+    // Specular highlight
+    const hiliteGrd = ctx.createRadialGradient(
+      x - radius * 0.3, midY - radius * 0.3, 0,
+      x - radius * 0.3, midY - radius * 0.3, radius * 0.55,
+    );
+    hiliteGrd.addColorStop(0, "rgba(255,255,255,0.45)");
+    hiliteGrd.addColorStop(1, "transparent");
+    ctx.beginPath();
+    ctx.arc(x, midY, radius, 0, Math.PI * 2);
+    ctx.fillStyle = hiliteGrd;
+    ctx.fill();
+
+    // Label
+    ctx.fillStyle = "rgba(255,255,255,0.85)";
+    ctx.font = `bold ${Math.max(10, radius * 0.45)}px sans-serif`;
+    ctx.textAlign = "center";
+    ctx.fillText(label, x, midY + radius + 14);
+  };
+
+  drawGlowSphere(cx1, r1px, "#a78bfa", "#4c1d95", "rgba(167,139,250,0.25)", "m₁");
+  drawGlowSphere(cx2, r2px, "#22d3ee", "#164e63", "rgba(34,211,238,0.25)", "m₂");
+
+  // ── Explosion ────────────────────────────────────────────────────────────
+  if (explosion) {
+    const t = explosion.t;
+    const maxR = 120;
+    const ringR = t * maxR;
+
+    // Expanding ring
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(explosion.x, explosion.y, ringR, 0, Math.PI * 2);
+    ctx.strokeStyle = `rgba(251,146,60,${1 - t})`;
+    ctx.lineWidth = 6 * (1 - t) + 1;
+    ctx.shadowColor = "rgba(251,146,60,0.8)";
+    ctx.shadowBlur = 20;
+    ctx.stroke();
+    ctx.restore();
+
+    // Inner flash
+    const flashGrd = ctx.createRadialGradient(
+      explosion.x, explosion.y, 0,
+      explosion.x, explosion.y, ringR * 0.7,
+    );
+    flashGrd.addColorStop(0, `rgba(255,200,50,${0.9 * (1 - t)})`);
+    flashGrd.addColorStop(1, "transparent");
+    ctx.beginPath();
+    ctx.arc(explosion.x, explosion.y, ringR * 0.7, 0, Math.PI * 2);
+    ctx.fillStyle = flashGrd;
+    ctx.fill();
+
+    // Shockwave particles
+    for (let i = 0; i < 8; i++) {
+      const angle = (i / 8) * Math.PI * 2;
+      const pr = ringR * 0.9;
+      ctx.beginPath();
+      ctx.arc(
+        explosion.x + Math.cos(angle) * pr,
+        explosion.y + Math.sin(angle) * pr,
+        4 * (1 - t) + 1,
+        0, Math.PI * 2,
+      );
+      ctx.fillStyle = `rgba(253,224,71,${1 - t})`;
+      ctx.fill();
+    }
+  }
+}
+
 // ─── Main component ───────────────────────────────────────────────────────────
 
 export default function NewtonGravitySim() {
@@ -184,14 +378,26 @@ export default function NewtonGravitySim() {
   const bodiesRef = useRef<SimBodies | null>(null);
   const explosionRef = useRef<ExplosionState | null>(null);
 
-  const [m1, setM1] = useState(DEFAULT_M1);
-  const [m2, setM2] = useState(DEFAULT_M2);
-  const [dist, setDist] = useState(DEFAULT_DIST);
+  // Keep always-current refs for values used inside the rAF loop so the loop
+  // never goes stale and never needs to be restarted when sliders change.
+  const m1Ref = useRef(DEFAULT_M1);
+  const m2Ref = useRef(DEFAULT_M2);
+  const distRef = useRef(DEFAULT_DIST);
+
+  const [m1, setM1Raw] = useState(DEFAULT_M1);
+  const [m2, setM2Raw] = useState(DEFAULT_M2);
+  const [dist, setDistRaw] = useState(DEFAULT_DIST);
   const [animating, setAnimating] = useState(false);
   const [exploded, setExploded] = useState(false);
 
-  // Derived physics (always computed from sliders, even during animation for
-  // the formula panel which shows the initial slider-set values).
+  // Keep refs in sync whenever state changes.
+  useEffect(() => { m1Ref.current = m1; }, [m1]);
+  useEffect(() => { m2Ref.current = m2; }, [m2]);
+  useEffect(() => { distRef.current = dist; }, [dist]);
+
+  // Derived physics for display panels (always from slider state).
+  const r1px = massToRadius(m1);
+  const r2px = massToRadius(m2);
   const force = (G * m1 * m2) / (dist * dist);
   const a1 = force / m1;
   const a2 = force / m2;
@@ -199,333 +405,157 @@ export default function NewtonGravitySim() {
   const distKm = dist / 1e3;
   const distAU = dist / 1.496e11;
 
-  const r1px = massToRadius(m1);
-  const r2px = massToRadius(m2);
-
   // ── Reset helper ─────────────────────────────────────────────────────────────
 
   const resetSim = useCallback(() => {
-    setAnimating(false);
-    setExploded(false);
+    cancelAnimationFrame(rafRef.current);
     bodiesRef.current = null;
     explosionRef.current = null;
     lastTimeRef.current = null;
-    cancelAnimationFrame(rafRef.current);
+    setAnimating(false);
+    setExploded(false);
   }, []);
 
-  // ── Canvas drawing ────────────────────────────────────────────────────────────
+  // ── Static draw (when not animating) ─────────────────────────────────────────
 
-  const drawScene = useCallback(
-    (bodies: SimBodies, explosion: ExplosionState | null, simDist: number) => {
-      const canvas = canvasRef.current;
-      if (!canvas) return;
-      const ctx = canvas.getContext("2d");
-      if (!ctx) return;
-
-      // ── Background ──────────────────────────────────────────────────────────
-      ctx.fillStyle = "#050a14";
-      ctx.fillRect(0, 0, CW, CH);
-
-      // Stars
-      for (const s of STARS) {
-        ctx.beginPath();
-        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255,255,255,${s.alpha})`;
-        ctx.fill();
-      }
-
-      const cx1 = bodies.x1;
-      const cx2 = bodies.x2;
-      const midX = (cx1 + cx2) / 2;
-      const midY = CH / 2;
-
-      // ── Distance line ────────────────────────────────────────────────────────
-      const distPx = Math.max(0, cx2 - r2px - (cx1 + r1px));
-      if (distPx > 4) {
-        ctx.save();
-        ctx.setLineDash([4, 4]);
-        ctx.strokeStyle = "rgba(148,163,184,0.4)";
-        ctx.lineWidth = 1;
-        ctx.beginPath();
-        ctx.moveTo(cx1 + r1px, midY);
-        ctx.lineTo(cx2 - r2px, midY);
-        ctx.stroke();
-
-        // Tick marks
-        ctx.setLineDash([]);
-        ctx.lineWidth = 1.5;
-        for (const tickX of [cx1 + r1px, cx2 - r2px]) {
-          ctx.beginPath();
-          ctx.moveTo(tickX, midY - 6);
-          ctx.lineTo(tickX, midY + 6);
-          ctx.stroke();
-        }
-
-        // Label
-        const labelDist = simDist < 1.496e11
-          ? `${(simDist / 1e3).toExponential(2)} km`
-          : `${(simDist / 1.496e11).toFixed(2)} AU`;
-        ctx.fillStyle = "rgba(148,163,184,0.9)";
-        ctx.font = "11px monospace";
-        ctx.textAlign = "center";
-        ctx.fillText(labelDist, midX, midY - 10);
-        ctx.restore();
-      }
-
-      // ── Force arrows ─────────────────────────────────────────────────────────
-      const currentForce = (G * m1 * m2) / (simDist * simDist);
-      const logF = Math.log10(Math.max(currentForce, 1));
-      const arrowLen = Math.min(80, Math.max(12, (logF - 5) * 6));
-
-      const drawArrow = (fromX: number, towardX: number, y: number) => {
-        const dir = towardX > fromX ? 1 : -1;
-        const ax = fromX + dir * arrowLen;
-        ctx.save();
-        ctx.strokeStyle = "#ef4444";
-        ctx.fillStyle = "#ef4444";
-        ctx.lineWidth = 2.5;
-        ctx.shadowColor = "#ef4444";
-        ctx.shadowBlur = 6;
-        ctx.beginPath();
-        ctx.moveTo(fromX, y);
-        ctx.lineTo(ax, y);
-        ctx.stroke();
-        // Arrowhead
-        ctx.beginPath();
-        ctx.moveTo(ax, y);
-        ctx.lineTo(ax - dir * 10, y - 5);
-        ctx.lineTo(ax - dir * 10, y + 5);
-        ctx.closePath();
-        ctx.fill();
-        ctx.restore();
-      };
-
-      drawArrow(cx1 + r1px + 3, cx2, midY - r1px * 0.3);
-      drawArrow(cx2 - r2px - 3, cx1, midY - r2px * 0.3);
-
-      // ── Body 1 (left) ────────────────────────────────────────────────────────
-      const drawGlowSphere = (
-        x: number,
-        radius: number,
-        color1: string,
-        color2: string,
-        glowColor: string,
-        label: string,
-      ) => {
-        // Outer glow
-        const grd = ctx.createRadialGradient(x, midY, radius * 0.2, x, midY, radius * 2.2);
-        grd.addColorStop(0, glowColor);
-        grd.addColorStop(1, "transparent");
-        ctx.beginPath();
-        ctx.arc(x, midY, radius * 2.2, 0, Math.PI * 2);
-        ctx.fillStyle = grd;
-        ctx.fill();
-
-        // Sphere body
-        const bodyGrd = ctx.createRadialGradient(
-          x - radius * 0.35, midY - radius * 0.35, radius * 0.1,
-          x, midY, radius,
-        );
-        bodyGrd.addColorStop(0, color1);
-        bodyGrd.addColorStop(1, color2);
-        ctx.beginPath();
-        ctx.arc(x, midY, radius, 0, Math.PI * 2);
-        ctx.fillStyle = bodyGrd;
-        ctx.fill();
-
-        // Specular highlight
-        const hiliteGrd = ctx.createRadialGradient(
-          x - radius * 0.3, midY - radius * 0.3, 0,
-          x - radius * 0.3, midY - radius * 0.3, radius * 0.55,
-        );
-        hiliteGrd.addColorStop(0, "rgba(255,255,255,0.45)");
-        hiliteGrd.addColorStop(1, "transparent");
-        ctx.beginPath();
-        ctx.arc(x, midY, radius, 0, Math.PI * 2);
-        ctx.fillStyle = hiliteGrd;
-        ctx.fill();
-
-        // Label
-        ctx.fillStyle = "rgba(255,255,255,0.85)";
-        ctx.font = `bold ${Math.max(10, radius * 0.45)}px sans-serif`;
-        ctx.textAlign = "center";
-        ctx.fillText(label, x, midY + radius + 14);
-      };
-
-      drawGlowSphere(
-        cx1, r1px,
-        "#a78bfa", "#4c1d95",
-        "rgba(167,139,250,0.25)", "m₁",
-      );
-      drawGlowSphere(
-        cx2, r2px,
-        "#22d3ee", "#164e63",
-        "rgba(34,211,238,0.25)", "m₂",
-      );
-
-      // ── Explosion ────────────────────────────────────────────────────────────
-      if (explosion) {
-        const t = explosion.t;
-        const maxR = 120;
-        const ringR = t * maxR;
-
-        // Expanding ring
-        ctx.save();
-        ctx.beginPath();
-        ctx.arc(explosion.x, explosion.y, ringR, 0, Math.PI * 2);
-        ctx.strokeStyle = `rgba(251,146,60,${1 - t})`;
-        ctx.lineWidth = 6 * (1 - t) + 1;
-        ctx.shadowColor = "rgba(251,146,60,0.8)";
-        ctx.shadowBlur = 20;
-        ctx.stroke();
-        ctx.restore();
-
-        // Inner flash
-        const flashGrd = ctx.createRadialGradient(
-          explosion.x, explosion.y, 0,
-          explosion.x, explosion.y, ringR * 0.7,
-        );
-        flashGrd.addColorStop(0, `rgba(255,200,50,${0.9 * (1 - t)})`);
-        flashGrd.addColorStop(1, "transparent");
-        ctx.beginPath();
-        ctx.arc(explosion.x, explosion.y, ringR * 0.7, 0, Math.PI * 2);
-        ctx.fillStyle = flashGrd;
-        ctx.fill();
-
-        // Shockwave particles
-        for (let i = 0; i < 8; i++) {
-          const angle = (i / 8) * Math.PI * 2;
-          const pr = ringR * 0.9;
-          ctx.beginPath();
-          ctx.arc(
-            explosion.x + Math.cos(angle) * pr,
-            explosion.y + Math.sin(angle) * pr,
-            4 * (1 - t) + 1,
-            0, Math.PI * 2,
-          );
-          ctx.fillStyle = `rgba(253,224,71,${1 - t})`;
-          ctx.fill();
-        }
-      }
-    },
-    [m1, m2, r1px, r2px],
-  );
+  useEffect(() => {
+    if (animating || exploded) return;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const r1 = massToRadius(m1);
+    const r2 = massToRadius(m2);
+    const bodies = bodiesRef.current ?? initialBodies(r1, r2, dist);
+    drawSceneToCanvas(canvas, bodies, null, dist, m1, m2, r1, r2);
+  }, [animating, exploded, m1, m2, dist]);
 
   // ── Animation loop ────────────────────────────────────────────────────────────
 
   useEffect(() => {
-    if (!animating) {
-      // Draw static scene from slider values.
-      cancelAnimationFrame(rafRef.current);
-      const staticBodies = initialBodies(r1px, r2px, dist);
-      drawScene(staticBodies, null, dist);
-      return;
-    }
+    if (!animating) return;
+
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    // Use snapshot of dist/radii at the moment animation starts.
+    // These are fixed for the duration of this animation run so the
+    // scale doesn't jump when sliders are touched while animating.
+    const startDist = distRef.current;
+    const startM1 = m1Ref.current;
+    const startM2 = m2Ref.current;
+    const startR1 = massToRadius(startM1);
+    const startR2 = massToRadius(startM2);
+    const mpp = metersPerPixel(startDist);
 
     // Initialise bodies if starting fresh.
     if (!bodiesRef.current) {
-      bodiesRef.current = initialBodies(r1px, r2px, dist);
+      bodiesRef.current = initialBodies(startR1, startR2, startDist);
       lastTimeRef.current = null;
     }
 
-    const mpp = metersPerPixel(dist); // metres per pixel, fixed at animation start
-
     const step = (ts: number) => {
       if (lastTimeRef.current === null) lastTimeRef.current = ts;
-      const rawDt = Math.min((ts - lastTimeRef.current) / 1000, 0.05); // cap at 50 ms
+      // Cap raw dt at 50 ms to avoid huge jumps after tab switch.
+      const rawDt = Math.min((ts - lastTimeRef.current) / 1000, 0.05);
       lastTimeRef.current = ts;
 
-      // Slow down time so the drift is visually interesting.
-      // We want to finish in roughly 8 seconds so we scale dt.
+      // Time-scale: slow motion factor so the drift is visually interesting.
       const dt = rawDt * 5e6;
 
       const bodies = bodiesRef.current!;
 
-      // Current separation in metres.
-      const edgeDist = bodies.x2 - r2px - (bodies.x1 + r1px);
-      const simDistM = Math.max(edgeDist * mpp, 1e3);
-      const f = (G * m1 * m2) / (simDistM * simDistM);
-      const acc1 = f / m1; // m/s²
-      const acc2 = f / m2;
+      // Current edge-to-edge gap in pixels → convert to metres.
+      const edgePx = bodies.x2 - startR2 - (bodies.x1 + startR1);
+      const simDistM = Math.max(edgePx * mpp, 1e3);
 
-      // Convert acceleration to px/s (in canvas space, scaled time already applied).
-      const acc1px = (acc1 / mpp) * dt;
-      const acc2px = (acc2 / mpp) * dt;
+      // Compute accelerations (m/s²) then convert to px/s².
+      const f = (G * startM1 * startM2) / (simDistM * simDistM);
+      const acc1ms2 = f / startM1;
+      const acc2ms2 = f / startM2;
+      const acc1px = acc1ms2 / mpp; // px/s²
+      const acc2px = acc2ms2 / mpp;
 
-      bodies.v1 += acc1px; // body 1 moves right (+)
-      bodies.v2 -= acc2px; // body 2 moves left (−)
-      bodies.x1 += bodies.v1;
-      bodies.x2 += bodies.v2;
+      // Integrate: v += a·dt  then  x += v·dt  (symplectic Euler)
+      bodies.v1 += acc1px * dt;  // body 1 accelerates rightward (+)
+      bodies.v2 -= acc2px * dt;  // body 2 accelerates leftward  (−)
+      bodies.x1 += bodies.v1 * dt;
+      bodies.x2 += bodies.v2 * dt;
 
       // Collision check: edge-to-edge distance ≤ 0.
-      const newEdgeDist = bodies.x2 - r2px - (bodies.x1 + r1px);
-      if (newEdgeDist <= 0) {
-        // Snap together at midpoint.
-        const collisionX = (bodies.x1 + r1px + bodies.x2 - r2px) / 2;
+      const newEdgePx = bodies.x2 - startR2 - (bodies.x1 + startR1);
+      if (newEdgePx <= 0) {
+        const collisionX = (bodies.x1 + startR1 + bodies.x2 - startR2) / 2;
         explosionRef.current = { x: collisionX, y: CH / 2, t: 0 };
-        drawScene(bodies, explosionRef.current, simDistM);
+        drawSceneToCanvas(canvas, bodies, explosionRef.current, simDistM, startM1, startM2, startR1, startR2);
         setExploded(true);
         setAnimating(false);
         return;
       }
 
-      drawScene(bodies, explosionRef.current, simDistM);
-
-      // Animate explosion ring if present (shouldn't be here, but kept safe).
-      if (explosionRef.current) {
-        explosionRef.current.t = Math.min(explosionRef.current.t + rawDt, 1);
-      }
-
+      drawSceneToCanvas(canvas, bodies, null, simDistM, startM1, startM2, startR1, startR2);
       rafRef.current = requestAnimationFrame(step);
     };
 
     rafRef.current = requestAnimationFrame(step);
     return () => cancelAnimationFrame(rafRef.current);
-  }, [animating, m1, m2, r1px, r2px, dist, drawScene]);
+  }, [animating]); // Only re-run when animating flag changes — not on slider changes.
 
-  // After collision — keep drawing the explosion ring fading out.
+  // ── Explosion afterburn ───────────────────────────────────────────────────────
+
   useEffect(() => {
     if (!exploded || !explosionRef.current) return;
+
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    // Snapshot the bodies and params at collision moment.
+    const snap = bodiesRef.current ? { ...bodiesRef.current } : initialBodies(massToRadius(m1Ref.current), massToRadius(m2Ref.current), distRef.current);
+    const snapM1 = m1Ref.current;
+    const snapM2 = m2Ref.current;
+    const snapR1 = massToRadius(snapM1);
+    const snapR2 = massToRadius(snapM2);
+    const explosionX = explosionRef.current.x;
+
     let start: number | null = null;
-    const snap = bodiesRef.current ?? initialBodies(r1px, r2px, dist);
 
     const animateExplosion = (ts: number) => {
       if (!start) start = ts;
       const t = Math.min((ts - start) / 1400, 1);
-      explosionRef.current = { x: explosionRef.current!.x, y: CH / 2, t };
-      drawScene(snap, explosionRef.current, 1e5);
-      if (t < 1) rafRef.current = requestAnimationFrame(animateExplosion);
-      else {
+      const ex: ExplosionState = { x: explosionX, y: CH / 2, t };
+      drawSceneToCanvas(canvas, snap, ex, 1e5, snapM1, snapM2, snapR1, snapR2);
+      if (t < 1) {
+        rafRef.current = requestAnimationFrame(animateExplosion);
+      } else {
         // Auto-reset after explosion finishes.
         explosionRef.current = null;
         bodiesRef.current = null;
         setExploded(false);
-        setM1(DEFAULT_M1);
-        setM2(DEFAULT_M2);
-        setDist(DEFAULT_DIST);
+        setM1Raw(DEFAULT_M1);
+        setM2Raw(DEFAULT_M2);
+        setDistRaw(DEFAULT_DIST);
       }
     };
 
     rafRef.current = requestAnimationFrame(animateExplosion);
     return () => cancelAnimationFrame(rafRef.current);
-  }, [exploded, drawScene, dist, r1px, r2px]);
+  }, [exploded]); // Only re-run when exploded flag changes.
 
-  // ── Slider change invalidates animation ──────────────────────────────────────
+  // ── Slider handlers ───────────────────────────────────────────────────────────
 
   const handleM1 = useCallback((v: number) => {
-    setM1(v);
+    setM1Raw(v);
+    // Stop animation so the static draw re-renders with new positions.
     setAnimating(false);
     bodiesRef.current = null;
   }, []);
 
   const handleM2 = useCallback((v: number) => {
-    setM2(v);
+    setM2Raw(v);
     setAnimating(false);
     bodiesRef.current = null;
   }, []);
 
   const handleDist = useCallback((v: number) => {
-    setDist(v);
+    setDistRaw(v);
     setAnimating(false);
     bodiesRef.current = null;
   }, []);
@@ -549,7 +579,7 @@ export default function NewtonGravitySim() {
         {/* Canvas */}
         <div
           className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl"
-          style={{ minWidth: CW, minHeight: CH }}
+          style={{ width: CW, height: CH, flexShrink: 0 }}
         >
           <canvas ref={canvasRef} width={CW} height={CH} />
 
@@ -661,10 +691,16 @@ export default function NewtonGravitySim() {
             <button
               onClick={() => {
                 if (exploded) return;
-                setAnimating((a) => !a);
                 if (animating) {
+                  // Stop: cancel loop, restore static view.
+                  cancelAnimationFrame(rafRef.current);
+                  lastTimeRef.current = null;
+                  setAnimating(false);
+                } else {
+                  // Start fresh each time.
                   bodiesRef.current = null;
                   lastTimeRef.current = null;
+                  setAnimating(true);
                 }
               }}
               disabled={exploded}
@@ -679,9 +715,9 @@ export default function NewtonGravitySim() {
             <button
               onClick={() => {
                 resetSim();
-                setM1(DEFAULT_M1);
-                setM2(DEFAULT_M2);
-                setDist(DEFAULT_DIST);
+                setM1Raw(DEFAULT_M1);
+                setM2Raw(DEFAULT_M2);
+                setDistRaw(DEFAULT_DIST);
               }}
               className="rounded-xl px-4 py-2.5 text-sm font-semibold bg-purple-500/20 border border-purple-400/50 text-purple-300 hover:bg-purple-500/30 transition-all"
             >

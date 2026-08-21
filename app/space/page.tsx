@@ -131,7 +131,7 @@ export default function SpaceExplorerPage() {
       {/* ── Footer ──────────────────────────────────────────────── */}
       <footer className="se-footer">
         <p>
-          COSMOS-5H1 Space Explorer · NASA APIs · Hybrid AI · Open Source
+          COSMOS-5H1 Space Explorer · NASA APIs · COSMOS AI · Open Source
         </p>
       </footer>
 

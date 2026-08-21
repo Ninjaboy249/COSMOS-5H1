@@ -5,7 +5,7 @@ import { AsciiGlitchRipple } from "@/components/ui/ascii-glitch-ripple";
 
 interface HeroContentProps {
   onStartExploring: () => void;
-  onOpenAI: () => void;
+  onOpenCosmos: () => void;
 }
 
 const reveal = {
@@ -13,7 +13,7 @@ const reveal = {
   visible: { opacity: 1, y: 0 },
 };
 
-export default function HeroContent({ onStartExploring, onOpenAI }: HeroContentProps) {
+export default function HeroContent({ onStartExploring, onOpenCosmos }: HeroContentProps) {
   return (
     <motion.div
       className="hero-copy relative max-w-xl"
@@ -24,7 +24,7 @@ export default function HeroContent({ onStartExploring, onOpenAI }: HeroContentP
       <motion.div className="mb-5 sm:mb-7" variants={reveal} transition={{ duration: 0.75 }}>
         <span className="inline-flex items-center gap-2 rounded-full border border-blue-300/20 bg-blue-300/[0.07] px-4 py-2 text-xs uppercase tracking-[0.2em] text-blue-200">
           <span className="h-1.5 w-1.5 rounded-full bg-cyan-300 shadow-[0_0_10px_#67e8f9]" />
-          <AsciiGlitchRipple as="span" dur={700} spread={0.9} chars="·-~+:;*░▒▓01">Hybrid AI · OpenAI + Offline RAG</AsciiGlitchRipple>
+          <AsciiGlitchRipple as="span" dur={700} spread={0.9} chars="·-~+:;*░▒▓01">COSMOS AI · Offline RAG</AsciiGlitchRipple>
         </span>
       </motion.div>
 
@@ -58,7 +58,7 @@ export default function HeroContent({ onStartExploring, onOpenAI }: HeroContentP
         </motion.button>
 
         <motion.button
-          onClick={onOpenAI}
+          onClick={onOpenCosmos}
           className="luxury-button luxury-button-secondary"
           whileHover={{ y: -3 }}
           whileTap={{ y: 0, scale: 0.98 }}

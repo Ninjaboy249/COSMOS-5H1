@@ -63,7 +63,7 @@ real-time NASA data + offline AI intelligence + 3D interactive exploration + phy
 
 ## 💡 Solution — COSMOS-5H1
 
-**COSMOS-5H1** (Cognitive Orbital Space Mission Operating System) is an AI-assisted space exploration application with a local knowledge engine and offline fallbacks. Live data, cloud-generated answers, and voice-provider features require their respective network services.
+**COSMOS-5H1** (Cognitive Orbital Space Mission Operating System) is an AI-assisted space exploration application with a local knowledge engine and offline fallbacks. Live data and voice features require their respective network services.
 
 <div align="center">
 
@@ -74,7 +74,7 @@ real-time NASA data + offline AI intelligence + 3D interactive exploration + phy
 ║  🌌 Cinematic Intro     →  Welcome video + space audio           ║
 ║  🪐 Solar System        →  CSS-animated orbiting planets         ║
 ║  🚀 Space Explorer      →  20 interactive modules                ║
-║  🧠 COSMOS AI           →  Offline TF-IDF + OpenAI GPT RAG       ║
+║  🧠 COSMOS AI           →  Offline TF-IDF RAG · IBM Granite 3.3  ║
 ║  📡 NASA APIs           →  6 live feeds + offline cache          ║
 ║  🛰  ISS Tracker         →  Real-time position map               ║
 ║  📸 APOD                →  Daily astronomy photo                 ║
@@ -96,14 +96,14 @@ real-time NASA data + offline AI intelligence + 3D interactive exploration + phy
 
 | Feature | Description |
 |---|---|
-| 🧠 **IBM Granite AI** | IBM Granite 3.3 runs locally via Ollama — no API keys, no cloud calls, full offline intelligence |
+| 🧠 **COSMOS AI** | IBM Granite 3.3 runs locally via Ollama — no API keys, no cloud calls, full offline intelligence |
 | 🪐 **Solar System** | Interactive CSS-animated solar system with clickable planets opening scientific detail modals |
 | 🚀 **Space Explorer** | 20 premium glassmorphism cards navigating to full detail pages (stats, timeline, missions, gallery, AI chat) |
 | 📡 **Live NASA Data** | APOD, Mars Rover Photos, NeoWs, DONKI Space Weather, EPIC Earth Imagery, ISS Position — all with offline fallback |
 | 🛸 **Launch Tracker** | Upcoming & recent global launches via Launch Library 2 — with static fallback |
 | 🚀 **SpaceX Tracker** | Recent launches, upcoming missions, rocket specs via SpaceX API v4 — with static fallback |
 | 🔭 **Exoplanet Archive** | Habitable-zone & notable exoplanets from NASA Exoplanet Archive TAP — with static fallback |
-| 🪐 **Cosmic Compare** | AI-powered side-by-side celestial body comparison with OpenAI insights panel and offline badge |
+| 🪐 **Cosmic Compare** | AI-powered side-by-side celestial body comparison with offline knowledge insights |
 | 🛸 **Mission Planner** | Full mission design: launch windows, orbital mechanics, fuel/ΔV, crew, payload, cost, risk, timeline |
 | ⚛️ **Physics Lab** | 8 real-equation simulators: Tsiolkovsky rocket, Kepler orbit, Schwarzschild black hole, asteroid impact and more |
 | 📡 **Morse Code Center** | 7-panel hub: translator, Web Audio API player, Canvas visualizer, flashlight mode, keyboard practice, lessons, challenge mode, Space Comm Simulator |
@@ -163,8 +163,8 @@ COSMOS-5H1 runs IBM Granite 3.3 entirely on your machine via Ollama:
 | **IntentService** | `lib/cosmos-ai/intent-service.ts` | Classifies 17 intents: planet, mission, navigation, comparison, greeting, space weather… |
 | **ResponseGenerator** | `lib/cosmos-ai/response-generator.ts` | Converts retrieved docs → natural language: overviews, attribute cards, comparison tables |
 | **ConversationMemory** | `lib/cosmos-ai/conversation-memory.ts` | Session-scoped memory: last entity context, search history, pronoun resolution |
-| **AI Chat API** | `app/api/cosmos-ai/route.ts` | TF-IDF retrieval → IBM Granite 3.3 (local) → offline TF-IDF fallback |
-| **Compare AI API** | `app/api/cosmos-ai/compare/route.ts` | Cosmic Compare — IBM Granite 3.3 local → offline fallback |
+| **AI Chat API** | `app/api/cosmos-ai/route.ts` | IBM Granite 3.3 (local) → offline TF-IDF RAG fallback |
+| **Compare AI API** | `app/api/cosmos-ai/compare/` | Cosmic Compare — IBM Granite 3.3 local → offline fallback |
 | **Mission Planner API** | `app/api/mission-planner/route.ts` | AI mission planning — IBM Granite 3.3 local → deterministic offline engine |
 
 ### Knowledge Base — 28 Scientific JSON Files
@@ -236,7 +236,7 @@ data/knowledge/
 | 🎯 **Projectile Motion** | Parabolic trajectory + drag | x = v₀cosθ·t, y = v₀sinθ·t − ½gt² |
 | 🌍 **Gravity Comparison** | Multi-planet drop test | F = mg (g per planet) |
 | 🪐 **Orbital Mechanics** | Kepler orbit + Hohmann transfer | v = √(GM/r) |
-| 🔭 **Newton Gravity** | Inverse-square law | F = Gm₁m₂/r² |
+| 🔭 **Newton Gravity** | Inverse-square law with symplectic Euler integration | F = Gm₁m₂/r² |
 | ⚡ **Escape Velocity** | Energy classifier + speed gauge | v_e = √(2GM/r) |
 | 🕳 **Black Hole** | Schwarzschild spacetime grid + lensing | r_s = 2GM/c² |
 | ☄ **Asteroid Impact** | Melosh crater scaling + 4-phase animation | D ∝ E^0.294 |
@@ -310,7 +310,7 @@ COSMOS-5H1 addresses the **Advance Space Exploration with AI** theme by:
 
 - 🌍 **Universal Access** — Works completely offline; no subscription, no internet dependency after load
 - 📚 **Depth over Simplicity** — 28 curated knowledge files with 100+ FAQs per celestial body
-- 🧠 **Intelligent Guidance** — AI detects what the user wants and responds naturally; upgrades to GPT-4o-mini when a key is present
+- 🧠 **Intelligent Guidance** — COSMOS AI detects what the user wants and responds naturally; IBM Granite 3.3 runs entirely on-device
 - 🚀 **Inspiring Curiosity** — Cinematic intro, animated solar system, physics lab, Morse code communication
 - 🔬 **Scientific Accuracy** — All data sourced from NASA, ESA, and peer-reviewed sources; real equations throughout
 - 🛰 **Real-World Data** — Live NASA API feeds ground the experience in current science
@@ -345,7 +345,7 @@ Phase 3 — COSMOS AI System
          ResponseGenerator with markdown output
   Bob → Upgraded AIAssistant: streaming text, voice input,
          history tab, follow-up suggestions, navigation commands
-  Bob → Wired OpenAI GPT-4o-mini as primary with TF-IDF fallback
+  Bob → Wired IBM Granite 3.3 (local) as primary with TF-IDF fallback
   Bob → Built Cosmic Compare AI endpoint with online/offline badge
 
 Phase 4 — Mission Planner & Physics Lab
@@ -384,6 +384,16 @@ Phase 7 — Live Data Labels & Voice Bug Fix
          SpaceXWidget    → "SpaceX API v4"
          ExoplanetWidget → "NASA Exoplanet Archive"
   Bob → Documented all 3 third-party APIs in README
+
+Phase 8 — Streaming Fix & Cleanup
+  Bob → Fixed StreamingText restart-on-keypress bug in AIAssistant:
+         onDone inline arrow caused useEffect dep change every keystroke
+         → solved with onDoneRef pattern (effect only deps on [text])
+  Bob → Removed all OpenAI references — COSMOS AI runs fully offline
+         via IBM Granite 3.3 (local) with TF-IDF RAG fallback
+  Bob → Fixed Newton Gravity simulator: wrong integration (double-dt),
+         animation loop restarting on slider change, stale drawScene
+         closure, explosion afterburn restarting, canvas sizing
   Bob → TypeScript zero-error validated, committed, pushed to GitHub
 ```
 
@@ -397,7 +407,7 @@ Phase 7 — Live Data Labels & Voice Bug Fix
 | **`apply_diff`** | Surgical edits to existing files without touching surrounding code |
 | **`execute_command`** | `npx tsc --noEmit` after every change to catch type errors immediately |
 | **`grep` / `glob`** | Explored codebase before editing to avoid conflicts |
-| **`update_todo_list`** | Tracked 60+ tasks across 6 major development phases |
+| **`update_todo_list`** | Tracked 60+ tasks across 8 major development phases |
 | **`GetSymbolsOverview`** | Understood component structures before modifying them |
 | **`insert_content`** | Appended large CSS blocks to globals.css without overwrite |
 | **`gh` CLI via Bob** | Created GitHub repo and pushed all files |
@@ -406,12 +416,12 @@ Phase 7 — Live Data Labels & Voice Bug Fix
 ### Lines Written by Bob
 
 ```
-Source code (TypeScript/TSX)  →  ~10,500 lines
+Source code (TypeScript/TSX)  →  ~11,000 lines
 CSS (globals.css additions)   →   ~2,900 lines
 JSON knowledge base files     →   ~4,800 lines
 Configuration & types         →     ~300 lines
 ─────────────────────────────────────────────────
-Total                         →  ~18,500 lines
+Total                         →  ~19,000 lines
 ```
 
 ---
@@ -467,7 +477,7 @@ COSMOS-5H1/
 │   ├── physics-lab/page.tsx        # Physics & Mission Lab (8 simulators)
 │   ├── morse-code/page.tsx         # Morse Code Communication Center (7 panels)
 │   └── api/
-│       ├── cosmos-ai/route.ts      # AI chat (TF-IDF → OpenAI GPT RAG)
+│       ├── cosmos-ai/route.ts      # AI chat (IBM Granite 3.3 → TF-IDF fallback)
 │       ├── cosmos-ai/compare/      # Cosmic Compare AI endpoint
 │       └── mission-planner/        # Mission plan generator
 │
@@ -494,8 +504,7 @@ COSMOS-5H1/
 │   ├── morse-code.ts               # ITU-R M.1677-1 engine (encode/decode/timing)
 │   ├── nasa-api.ts                 # 6 NASA APIs + offline fallbacks
 │   ├── space-explorer-data.ts      # 20 category + detail data
-│   ├── celestial-data.ts           # Planet stats for modals
-│   └── env.ts                      # OPENAI_API_KEY accessor with hasOpenAI guard
+│   └── celestial-data.ts           # Planet stats for modals
 │
 ├── data/knowledge/                 # 28 scientific JSON files
 ├── types/index.ts                  # TypeScript interfaces
@@ -547,7 +556,7 @@ COSMOS-5H1/
 
 | 🧠 COSMOS AI | 🪐 Cosmic Compare | 🛸 Mission Planner |
 |---|---|---|
-| GPT-4o-mini + offline TF-IDF fallback | AI side-by-side comparison with online/offline badge | Full mission design with animated risk gauge |
+| IBM Granite 3.3 local + offline TF-IDF fallback | AI side-by-side comparison with online/offline badge | Full mission design with animated risk gauge |
 
 | ⚛️ Physics Lab | 📡 Morse Code | 🌐 Live Data |
 |---|---|---|

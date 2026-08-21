@@ -3,7 +3,7 @@
 // Cosmic Compare — Main Page
 // Route: /compare
 // Full-featured side-by-side celestial object comparison with stats,
-// charts, size comparison, a single-object 3D viewer, and hybrid AI insights.
+// charts, size comparison, a single-object 3D viewer, and AI insights.
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { useState, useRef, useEffect } from "react";

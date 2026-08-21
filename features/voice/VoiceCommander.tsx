@@ -30,13 +30,13 @@ const TOUR_PLANETS = [
 ];
 
 interface VoiceCommanderProps {
-  onOpenAI?: (query?: string) => void;
+  onOpenCosmos?: (query?: string) => void;
   onScrollToSolar?: () => void;
 }
 
 type UIState = "idle" | "listening" | "thinking" | "speaking";
 
-export default function VoiceCommander({ onOpenAI, onScrollToSolar }: VoiceCommanderProps) {
+export default function VoiceCommander({ onOpenCosmos, onScrollToSolar }: VoiceCommanderProps) {
   const router = useRouter();
 
   // ── Settings ───────────────────────────────────────────────────────────────
@@ -116,7 +116,7 @@ export default function VoiceCommander({ onOpenAI, onScrollToSolar }: VoiceComma
       const data = await res.json() as { answer: string; navigateTo?: string };
       const answer = data.answer ?? "I couldn't find an answer.";
       if (data.navigateTo) setTimeout(() => router.push(data.navigateTo!), 800);
-      onOpenAI?.(transcript);
+      onOpenCosmos?.(transcript);
       setLastResponse(answer);
       const spoken = answer.replace(/\*\*/g, "").replace(/#{1,6} ?/g, "").slice(0, 400);
       setUiState("speaking");
@@ -126,7 +126,7 @@ export default function VoiceCommander({ onOpenAI, onScrollToSolar }: VoiceComma
       await speak("I had trouble reaching COSMOS AI.", s);
     }
     setUiState("idle");
-  }, [onOpenAI, onScrollToSolar, router, speak, stopSpeech]);
+  }, [onOpenCosmos, onScrollToSolar, router, speak, stopSpeech]);
 
   // ── STT ────────────────────────────────────────────────────────────────────
   const { start: startSTT, stop: stopSTT, isSupported, isListening } = useVoiceRecognition({

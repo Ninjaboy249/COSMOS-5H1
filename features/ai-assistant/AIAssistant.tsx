@@ -26,6 +26,8 @@ const INITIAL_MSG: ChatMessage = {
 function StreamingText({ text, onDone }: { text: string; onDone?: () => void }) {
   const [displayed, setDisplayed] = useState("");
   const [done, setDone] = useState(false);
+  const onDoneRef = useRef(onDone);
+  useEffect(() => { onDoneRef.current = onDone; });
 
   useEffect(() => {
     setDisplayed("");
@@ -41,11 +43,11 @@ function StreamingText({ text, onDone }: { text: string; onDone?: () => void }) 
         clearInterval(timer);
         setDisplayed(text);
         setDone(true);
-        onDone?.();
+        onDoneRef.current?.();
       }
     }, delay);
     return () => clearInterval(timer);
-  }, [text, onDone]);
+  }, [text]);
 
   return <span className="whitespace-pre-wrap">{done ? text : displayed}{!done && <span className="cosmos-ai-cursor">|</span>}</span>;
 }

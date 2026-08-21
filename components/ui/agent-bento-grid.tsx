@@ -619,7 +619,7 @@ const RETRIEVAL_QUERIES = [
   { ns: "codebase", q: "Redis cache invalidation patterns", t: "2.4s" },
   { ns: "slack", q: "deployment discussion #eng", t: "4.0s" },
   { ns: "notion", q: "Q3 roadmap — agent features", t: "5.8s" },
-  { ns: "docs", q: "OpenAI function calling schema", t: "7.2s" },
+  { ns: "docs", q: "COSMOS AI knowledge graph schema", t: "7.2s" },
 ];
 
 export function Card4() {
