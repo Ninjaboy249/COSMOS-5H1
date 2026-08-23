@@ -388,17 +388,9 @@ canvas {
 .cc-shell {
   position: relative;
   min-height: 100dvh;
-  background: #00030a url('/images/milkyway-bg.jpg') center top / cover no-repeat fixed;
+  background: #00030a;
   overflow-x: hidden;
   padding-top: 5rem;
-}
-.cc-shell::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 2, 10, 0.62);
-  pointer-events: none;
-  z-index: 0;
 }
 
 /* Particle field — same technique as space-explorer */
@@ -2229,17 +2221,9 @@ canvas {
 .pl-shell {
   position: relative;
   min-height: 100dvh;
-  background: #00020a url('/images/milkyway-bg.jpg') center top / cover no-repeat fixed;
+  background: #00030a;
   overflow-x: hidden;
   padding-top: 5rem;
-}
-.pl-shell::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 2, 10, 0.62);
-  pointer-events: none;
-  z-index: 0;
 }
 
 /* ── Stars ───────────────────────────────────────────────────────────────── */
