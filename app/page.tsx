@@ -207,7 +207,7 @@ export default function Home() {
                     backgroundClip: "text",
                   }}
                 >
-                  <AsciiGlitchRipple as="span" dur={1000} spread={1.3}>Powered by IBM BoB</AsciiGlitchRipple>
+                  <AsciiGlitchRipple as="span" dur={1000} spread={1.3}>COSMOS AI</AsciiGlitchRipple>
                 </h2>
                 <p className="text-blue-100/88 text-lg max-w-2xl mx-auto">
                   Local retrieval works fully offline — no external services required
@@ -271,7 +271,7 @@ export default function Home() {
                     border: "1px solid rgba(103,232,249,0.25)",
                   }}
                 >
-                  🤖 Powered by IBM BoB
+                  🧠 Ask COSMOS AI
                 </button>
               </motion.div>
             </div>
