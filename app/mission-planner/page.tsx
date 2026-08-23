@@ -513,6 +513,9 @@ export default function MissionPlannerPage() {
       className="min-h-screen"
       style={{ background: "#00030a url('/images/milkyway-bg.jpg') center top / cover no-repeat fixed" }}
     >
+      {/* Dark overlay — darkens milkyway so all text stays legible */}
+      <div className="fixed inset-0 pointer-events-none" style={{ background: "rgba(0,2,10,0.62)" }} aria-hidden="true" />
+
       {/* Star particles */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
         {STARS.map((s) => (
