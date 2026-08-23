@@ -1,6 +1,7 @@
 "use client";
 // ─────────────────────────────────────────────────────────────────────────────
 // COSMOS-5H1 — AI Mission Planner
+import { AnimatedRays } from "@/components/ui/animated-rays";
 // Route: /mission-planner
 // Lets the user configure a space mission; calls /api/mission-planner;
 // renders the full MissionPlan with typewriter animation.
@@ -513,6 +514,9 @@ export default function MissionPlannerPage() {
       className="min-h-screen"
       style={{ background: "#00030a" }}
     >
+      {/* Animated rays background */}
+      <AnimatedRays className="fixed inset-0 z-0 pointer-events-none opacity-40" />
+
       {/* Star particles */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
         {STARS.map((s) => (
@@ -546,7 +550,7 @@ export default function MissionPlannerPage() {
             COSMOS-5H1 · AI Mission Planner
           </p>
           <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-3" style={{ background: "linear-gradient(100deg, #fff 20%, #93c5fd 55%, #a78bfa 80%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text", filter: "drop-shadow(0 0 16px rgba(147,197,253,0.35))" }}>
-            Mission<span> Planner</span>
+            Mission<span style={{ fontFamily: "var(--font-script), cursive", fontWeight: 400, letterSpacing: "0.01em" }}> Planner</span>
           </h1>
           <p className="text-blue-100/90 text-sm leading-relaxed max-w-lg" style={{ textShadow: "0 1px 4px rgba(0,0,0,0.6)" }}>
             Configure your mission parameters below. The AI engine will compute launch windows, orbital mechanics, fuel requirements, cost estimates, and a complete risk assessment.

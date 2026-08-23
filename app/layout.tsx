@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
+import { Geist, Kaushan_Script } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
+const kaushanScript = Kaushan_Script({ subsets: ['latin'], weight: '400', variable: '--font-script' });
 
 export const metadata: Metadata = {
   title: "COSMOS-5H1 — AI Space Explorer",
@@ -23,7 +24,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={cn("dark font-sans", geist.variable)}>
+    <html lang="en" className={cn("dark font-sans", geist.variable, kaushanScript.variable)}>
       <head>
         <meta name="theme-color" content="#020714" />
         <meta name="color-scheme" content="dark" />

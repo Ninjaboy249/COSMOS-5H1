@@ -38,6 +38,7 @@ const config: Config = {
         orbit: "orbit 10s linear infinite",
         twinkle: "twinkle 2s ease-in-out infinite",
         "gradient-shift": "gradient-shift 8s ease infinite",
+        "aurora-bg": "aurora-bg 60s linear infinite",
       },
       keyframes: {
         float: {
@@ -51,6 +52,10 @@ const config: Config = {
         "gradient-shift": {
           "0%, 100%": { backgroundPosition: "0% 50%" },
           "50%": { backgroundPosition: "100% 50%" },
+        },
+        "aurora-bg": {
+          "0%, 100%": { backgroundPosition: "50% 50%, 50% 50%" },
+          "50%": { backgroundPosition: "350% 50%, 350% 50%" },
         },
       },
       backgroundImage: {

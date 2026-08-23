@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import VoiceCommander from "@/features/voice/VoiceCommander";
+import { AnimatedRays } from "@/components/ui/animated-rays";
 import { getDetailBySlug, getCategoryBySlug, SPACE_CATEGORIES } from "@/lib/space-explorer-data";
 import SpaceHeroBanner from "@/features/space-explorer/SpaceHeroBanner";
 import StatGrid from "@/features/space-explorer/StatGrid";
@@ -61,6 +62,9 @@ export default function SpaceDetailClient({ slug }: { slug: string }) {
 
   return (
     <div className="space-detail-shell">
+      {/* Animated rays background */}
+      <AnimatedRays className="fixed inset-0 z-0 pointer-events-none opacity-40" />
+
       {/* Hero */}
       <SpaceHeroBanner
         icon={detail.icon}

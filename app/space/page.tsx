@@ -7,6 +7,7 @@ import SpaceCard from "@/features/space-explorer/SpaceCard";
 import SpaceSearch from "@/features/space-explorer/SpaceSearch";
 import VoiceCommander from "@/features/voice/VoiceCommander";
 import { SPACE_CATEGORIES } from "@/lib/space-explorer-data";
+import { AnimatedRays } from "@/components/ui/animated-rays";
 
 const FILTER_TAGS = ["All", "Planets", "Stars", "Missions", "NEO", "Live", "NASA", "3D"];
 
@@ -24,6 +25,9 @@ export default function SpaceExplorerPage() {
 
   return (
     <div className="space-explorer-shell">
+      {/* Animated rays background */}
+      <AnimatedRays className="fixed inset-0 z-0 pointer-events-none opacity-40" />
+
       {/* Particle field */}
       <div className="space-explorer-particles" aria-hidden="true">
         {Array.from({ length: 60 }).map((_, i) => (

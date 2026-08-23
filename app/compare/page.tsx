@@ -10,6 +10,7 @@ import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import VoiceCommander from "@/features/voice/VoiceCommander";
+import { AnimatedRays } from "@/components/ui/animated-rays";
 import ObjectSelector from "@/features/cosmic-compare/ObjectSelector";
 import CompareCard from "@/features/cosmic-compare/CompareCard";
 import VisualCharts from "@/features/cosmic-compare/VisualCharts";
@@ -323,6 +324,9 @@ export default function CosmicComparePage() {
 
   return (
     <div className="cc-shell">
+      {/* Animated rays background */}
+      <AnimatedRays className="fixed inset-0 z-0 pointer-events-none opacity-40" />
+
       {/* Particle field */}
       <div className="cc-particles" aria-hidden="true">
         {STARS.map((s) => (

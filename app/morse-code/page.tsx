@@ -9,6 +9,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { textToMorse } from "@/lib/morse-code";
+import { AnimatedRays } from "@/components/ui/animated-rays";
 import MorseTranslator from "@/features/morse-code/MorseTranslator";
 import MorseVisualizer from "@/features/morse-code/MorseVisualizer";
 import MorseLessons from "@/features/morse-code/MorseLessons";
@@ -61,6 +62,9 @@ export default function MorseCodePage() {
       className="min-h-screen"
       style={{ background: "#00030a" }}
     >
+      {/* Animated rays background */}
+      <AnimatedRays className="fixed inset-0 z-0 pointer-events-none opacity-40" />
+
       {/* Star particles */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
         {STARS.map((s) => (
@@ -116,7 +120,7 @@ export default function MorseCodePage() {
               filter: "drop-shadow(0 0 16px rgba(147,197,253,0.35))",
             }}
           >
-            Morse Code <span>Center</span>
+            Morse Code <span style={{ fontFamily: "var(--font-script), cursive", fontWeight: 400, letterSpacing: "0.01em" }}>Center</span>
           </h1>
           <p className="text-blue-100/90 text-sm leading-relaxed max-w-xl" style={{ textShadow: "0 1px 4px rgba(0,0,0,0.6)" }}>
             Learn, practice, and use International Morse code — from SOS distress signals to deep-space communication. Translate, listen, flash, and challenge yourself.

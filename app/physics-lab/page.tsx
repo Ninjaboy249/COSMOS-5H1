@@ -3,6 +3,7 @@
 import { useState, Suspense, lazy } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import { AnimatedRays } from "@/components/ui/animated-rays";
 
 // Lazy-load each heavy simulator to keep initial bundle light
 const RocketLaunchSim       = lazy(() => import("@/features/physics-lab/RocketLaunchSim"));
@@ -59,6 +60,9 @@ export default function PhysicsLabPage() {
 
   return (
     <div className="pl-shell">
+      {/* Animated rays background */}
+      <AnimatedRays className="fixed inset-0 z-0 pointer-events-none opacity-40" />
+
       {/* ── Star field ── */}
       <div className="pl-stars" aria-hidden="true">
         {STARS.map((s) => (
