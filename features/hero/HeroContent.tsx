@@ -24,7 +24,7 @@ export default function HeroContent({ onStartExploring, onOpenCosmos }: HeroCont
       <motion.div className="mb-5 sm:mb-7" variants={reveal} transition={{ duration: 0.75 }}>
         <span className="inline-flex items-center gap-2 rounded-full border border-blue-300/20 bg-blue-300/[0.07] px-4 py-2 text-xs uppercase tracking-[0.2em] text-blue-200">
           <span className="h-1.5 w-1.5 rounded-full bg-cyan-300 shadow-[0_0_10px_#67e8f9]" />
-          <AsciiGlitchRipple as="span" dur={700} spread={0.9} chars="·-~+:;*░▒▓01">COSMOS AI · Offline RAG</AsciiGlitchRipple>
+          <AsciiGlitchRipple as="span" dur={700} spread={0.9} chars="·-~+:;*░▒▓01">Powered by IBM BoB · Offline RAG</AsciiGlitchRipple>
         </span>
       </motion.div>
 
