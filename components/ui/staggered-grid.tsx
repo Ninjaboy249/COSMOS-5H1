@@ -47,7 +47,7 @@ export interface StaggeredGridProps {
 const DEFAULT_TILES: [GridTile, GridTile, GridTile] = [
     { type: 'github',    label: 'GitHub',    href: 'https://github.com/Ninjaboy249/COSMOS-5H1', hoverLabel: 'Source Code' },
     { type: 'bob',       label: 'IBM BoB',   iconSrc: '/images/bob-icon.png', hoverLabel: '~27k lines written' },
-    { type: 'portfolio', label: 'Portfolio', href: 'https://myportfolio-eight-xi-18.vercel.app/', iconSrc: '/images/bob-icon.png', hoverLabel: 'View Portfolio' },
+    { type: 'portfolio', label: 'Portfolio', href: 'https://myportfolio-eight-xi-18.vercel.app/', iconSrc: '/images/portfolio-icon.png', hoverLabel: 'Shivam · Portfolio' },
 ]
 
 export function StaggeredGrid({

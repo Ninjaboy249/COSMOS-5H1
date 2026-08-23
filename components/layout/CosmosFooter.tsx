@@ -48,23 +48,23 @@ const BENTO_ITEMS = [
   },
   {
     id: "portfolio",
-    title: "Portfolio",
-    subtitle: "Developer",
-    description: "Visit the developer's portfolio to see more projects.",
+    title: "Shivam · Portfolio",
+    subtitle: "Build · Learn · Grow",
+    description: "Visit Shivam's developer portfolio — projects, skills, and more.",
     icon: (
       <a
         href="https://myportfolio-eight-xi-18.vercel.app/"
         target="_blank"
         rel="noopener noreferrer"
-        className="flex items-center justify-center w-9 h-9 rounded-full bg-purple-500/20 border border-purple-400/30 hover:bg-purple-500/30 transition-colors"
+        className="flex items-center justify-center w-9 h-9 rounded-full overflow-hidden border border-purple-400/40 hover:border-purple-300/70 transition-colors"
         onClick={(e) => e.stopPropagation()}
-        title="Open portfolio"
+        title="Open Shivam's portfolio"
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/images/bob-icon.png" alt="Portfolio" className="w-7 h-7 object-contain" />
+        <img src="/images/portfolio-icon.png" alt="Shivam Portfolio" className="w-9 h-9 object-cover" />
       </a>
     ),
-    image: "/images/space-explorer/Galaxies.png",
+    image: "/images/portfolio-icon.png",
   },
 ];
 
