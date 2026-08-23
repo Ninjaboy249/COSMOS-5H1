@@ -14,6 +14,7 @@ import { AgentBentoGrid } from "@/components/ui/agent-bento-grid";
 import CelestialDetails from "@/features/solar-system/CelestialDetails";
 import { CELESTIAL_DETAILS, type CelestialBodyDetails } from "@/lib/celestial-data";
 import Link from "next/link";
+import CosmosFooter from "@/components/layout/CosmosFooter";
 
 export default function Home() {
   // Show intro only on first visit within this browser session (new tab).
@@ -282,12 +283,7 @@ export default function Home() {
             ref={galaxyRef as React.RefObject<HTMLElement>}
             className="relative z-10"
           >
-            <footer className="py-8 px-8 text-center border-t"
-                style={{ borderColor: "rgba(255,255,255,0.08)", background: "rgba(2,7,20,0.98)" }}>
-                <p className="text-blue-300/70 text-sm">
-                COSMOS-5H1 · Local TF-IDF RAG · Offline-Capable · Open Source
-              </p>
-            </footer>
+            <CosmosFooter />
           </section>
 
           <CelestialDetails body={celestialBody} onClose={() => setCelestialBody(null)} />
