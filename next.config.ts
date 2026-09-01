@@ -25,15 +25,7 @@ const nextConfig: NextConfig = {
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
           {
             key: "Content-Security-Policy",
-            value: [
-              "frame-src",
-              "https://www.youtube.com",
-              "https://www.youtube-nocookie.com",
-              "https://player.vimeo.com",
-              "https://science.nasa.gov",
-              "https://apod.nasa.gov",
-              ";",
-            ].join(" "),
+            value: "frame-src https://www.youtube.com https://www.youtube-nocookie.com https://player.vimeo.com;",
           },
         ],
       },

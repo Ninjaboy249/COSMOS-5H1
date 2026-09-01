@@ -15,6 +15,8 @@ export interface ApodData {
   explanation: string;
   url: string;
   hdurl?: string;
+  /** Set by fetchApod when url is a direct mp4/webm file */
+  video_url?: string;
   date: string;
   media_type: "image" | "video";
   copyright?: string;
@@ -110,17 +112,12 @@ async function safeFetch<T>(url: string, fallback: T, timeoutMs = 5000): Promise
 
 export async function fetchApod(date?: string): Promise<ApodData> {
   const dateParam = date ? `&date=${date}` : "";
-  // NASA has moved APOD from apod.nasa.gov → science.nasa.gov/apod
-  // The JSON API endpoint stays on api.nasa.gov but the media URLs may now
-  // reference science.nasa.gov — both domains are handled by the iframe/img.
   const url = `https://api.nasa.gov/planetary/apod?api_key=${NASA_KEY}${dateParam}`;
   const data = await safeFetch<ApodData>(url, FALLBACK_APOD);
-  // Normalise any legacy apod.nasa.gov URLs to science.nasa.gov/apod
-  if (data.url?.includes("apod.nasa.gov")) {
-    data.url = data.url.replace("apod.nasa.gov", "science.nasa.gov/apod");
-  }
-  if (data.hdurl?.includes("apod.nasa.gov")) {
-    data.hdurl = data.hdurl.replace("apod.nasa.gov", "science.nasa.gov/apod");
+  // When NASA returns a direct mp4/webm (not a YouTube embed), mark it as
+  // video_url so the widget renders a <video> tag instead of an <iframe>.
+  if (data.media_type === "video" && data.url?.match(/\.(mp4|webm|ogg)(\?|$)/i)) {
+    data.video_url = data.url;
   }
   return data;
 }
