@@ -110,8 +110,19 @@ async function safeFetch<T>(url: string, fallback: T, timeoutMs = 5000): Promise
 
 export async function fetchApod(date?: string): Promise<ApodData> {
   const dateParam = date ? `&date=${date}` : "";
+  // NASA has moved APOD from apod.nasa.gov → science.nasa.gov/apod
+  // The JSON API endpoint stays on api.nasa.gov but the media URLs may now
+  // reference science.nasa.gov — both domains are handled by the iframe/img.
   const url = `https://api.nasa.gov/planetary/apod?api_key=${NASA_KEY}${dateParam}`;
-  return safeFetch<ApodData>(url, FALLBACK_APOD);
+  const data = await safeFetch<ApodData>(url, FALLBACK_APOD);
+  // Normalise any legacy apod.nasa.gov URLs to science.nasa.gov/apod
+  if (data.url?.includes("apod.nasa.gov")) {
+    data.url = data.url.replace("apod.nasa.gov", "science.nasa.gov/apod");
+  }
+  if (data.hdurl?.includes("apod.nasa.gov")) {
+    data.hdurl = data.hdurl.replace("apod.nasa.gov", "science.nasa.gov/apod");
+  }
+  return data;
 }
 
 export async function fetchMarsPhotos(rover: "perseverance" | "curiosity" = "perseverance", sol = 1000): Promise<MarsPhoto[]> {
@@ -180,15 +191,33 @@ export async function fetchSpaceWeather(): Promise<SpaceWeatherEvent[]> {
 }
 
 export async function fetchIssPosition(): Promise<IssPosition> {
+  // open-notify.org is no longer reliable — use wheretheiss.at as primary
+  // with api.open-notify.org as secondary fallback.
+  interface WhereIsIt { latitude: number; longitude: number; timestamp: number; altitude: number; velocity: number }
+  const primary = await safeFetch<WhereIsIt | null>(
+    "https://api.wheretheiss.at/v1/satellites/25544",
+    null,
+    6000
+  );
+  if (primary && typeof primary.latitude === "number") {
+    return {
+      latitude: primary.latitude,
+      longitude: primary.longitude,
+      timestamp: primary.timestamp,
+      altitude: Math.round(primary.altitude),
+      velocity: Math.round(primary.velocity),
+    };
+  }
+  // Secondary fallback: open-notify
   interface OpenNotify { iss_position: { latitude: string; longitude: string }; timestamp: number }
-  const data = await safeFetch<OpenNotify>(
+  const secondary = await safeFetch<OpenNotify>(
     "https://api.open-notify.org/iss-now.json",
     { iss_position: { latitude: String(FALLBACK_ISS.latitude), longitude: String(FALLBACK_ISS.longitude) }, timestamp: FALLBACK_ISS.timestamp }
   );
   return {
-    latitude: parseFloat(data.iss_position.latitude),
-    longitude: parseFloat(data.iss_position.longitude),
-    timestamp: data.timestamp,
+    latitude: parseFloat(secondary.iss_position.latitude),
+    longitude: parseFloat(secondary.iss_position.longitude),
+    timestamp: secondary.timestamp,
     altitude: 408,
     velocity: 27600,
   };

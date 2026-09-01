@@ -27,7 +27,13 @@ export default function ApodWidget({ accent }: { accent: string }) {
       ) : (
         <div className="api-widget-video-wrap">
           <iframe
-            src={data.url.replace("watch?v=", "embed/").replace("youtu.be/", "www.youtube.com/embed/")}
+            src={data.url
+              // normalise watch URLs to embed
+              .replace(/https?:\/\/(www\.)?youtube\.com\/watch\?v=/, "https://www.youtube-nocookie.com/embed/")
+              .replace(/https?:\/\/youtu\.be\//, "https://www.youtube-nocookie.com/embed/")
+              // swap any existing youtube.com embed for nocookie variant (no tracking, fewer blocks)
+              .replace("www.youtube.com/embed/", "www.youtube-nocookie.com/embed/")
+            }
             title={data.title}
             className="api-widget-video"
             allowFullScreen
