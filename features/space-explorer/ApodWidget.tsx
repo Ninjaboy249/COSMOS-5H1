@@ -26,7 +26,15 @@ export default function ApodWidget({ accent }: { accent: string }) {
         <img src={data.url} alt={data.title} className="api-widget-img" style={{ filter: `drop-shadow(0 0 24px ${accent}44)` }} />
       ) : (
         <div className="api-widget-video-wrap">
-          <iframe src={data.url} title={data.title} className="api-widget-video" allowFullScreen />
+          <iframe
+            src={data.url.replace("watch?v=", "embed/").replace("youtu.be/", "www.youtube.com/embed/")}
+            title={data.title}
+            className="api-widget-video"
+            allowFullScreen
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            loading="lazy"
+          />
         </div>
       )}
       <h3 className="api-widget-title" style={{ color: accent }}>{data.title}</h3>
